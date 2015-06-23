@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Backbone Contact Manager
 ========================
 
@@ -23,3 +24,7 @@ http://dmytroyarmak.github.io/codeangels-backbone-introduction
 ## Next lesson
 
 https://github.com/dmytroyarmak/marionette-contact-manager
+=======
+# cschedule_client
+cschedule_client
+>>>>>>> 09d27b9c33714022a89afd1746c66a0be1a847dc
