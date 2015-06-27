@@ -88,6 +88,8 @@
       </form>
     </script>
 
+
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
@@ -100,7 +102,18 @@
     <script src="app/js/views/contactForm.js"></script>
     <script src="app/js/router.js"></script>
 
+
+
+
+
+
     <script>
+	
+	$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+      options.url = 'http://apitest1.servicescheduler.net/community/30001'+ options.url+ '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+    });
+	
+	
       $(function() {
         ContactManager.start({
           contacts: [
