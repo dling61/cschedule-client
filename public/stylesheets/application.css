@@ -64,10 +64,10 @@ body {
 #floatDiv {
         position:absolute;
         left:50%;
-        margin-top:180px;
+        margin-top:190px;
         margin-left:-210px;
-        width:200px;
-        height:140px;
+        width:320px;
+        height:124px;
         background-color: #eee;
     border: solid;
     z-index : 9999;

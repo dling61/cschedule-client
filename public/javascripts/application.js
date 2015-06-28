@@ -339,10 +339,41 @@ renderCalendar: ->
             var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
             
              var pool = new PoolMembers(  );
-            pool.fetch();
-            $("body").prepend("<div id='floatDiv' ><h3>Assignment Pool");
-            $("#floatDiv").append("<img src='http://test.cschedule.com/profile/124.png'>");
-            $("#floatDiv").append("<div>Irene");
+            
+            $("body").prepend("<div id='floatDiv' ><h3 style='margin-top: 3px;'>Food Service Helpers");
+                        
+            var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
+            
+            var pool = new PoolMembers(  );
+     
+            pool.fetch({   //EventList().fetch({
+                    /*
+                    data: {
+                      from: start.getTime(),
+                      to: end.getTime()
+                    },
+                    */
+                    success: function (eventList) {
+                      events = []
+                      events = _.map(eventList.models, function (event)  {
+                        var newEv = {
+                            title: event.get("title"),
+                            start: new Date(event.get("start")),
+                            //end: new Date(event.get("end")),
+                            //url: event.get("url")
+                        };
+                          newEv.title = event.attributes.username;
+                          newEv.start = event.attributes.userprofile;
+                          var personDiv = $("<div style='float:right; margin-left:8px; margin-right:8px;'>");
+                          
+                        personDiv.append("<img src='" + newEv.start + "'>");
+                        personDiv.append("<div>" + newEv.title);
+                        $("#floatDiv").append(personDiv);
+                          
+                        return newEv;
+                      });
+                  }
+                });
             
             //this.eventView.model = this.collection.get(fcEvent.id);
             //this.eventView.render();
