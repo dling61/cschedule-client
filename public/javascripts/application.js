@@ -1,23 +1,61 @@
 $(function(){
+
+    
+    
+    
+    
+    var PoolMember = Backbone.Model.extend();
+    
+      var PoolMembers = Backbone.Collection.extend({
+                                            
+        model: PoolMember,
+       
+   url : 'http://apitest1.servicescheduler.net/task/30001/assignmentpool?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&',     
+        
+
+        parse : function(resp, xhr) {
+          return resp.apgroup[0].member;
+        }
+      });
+            
+            
+            
     var Event = Backbone.Model.extend();
 
     var Events = Backbone.Collection.extend({
+        
+                showpool: function  (event, taskID) {
+                alert('Show Pool !');
+                //event.stopPropagation ();
+                return false;
+            },
+ 
+                                            
         model: Event,
 //        url: 'events'
         url: 'http://apitest1.servicescheduler.net/community/30001/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&',
         
 
+                     
+
+
+        
         // **parse** converts a response into a list of models to be added to the
         // collection. The default implementation is just to pass it through.
         parse : function(resp, xhr) {
             
-          function getAssignees(task) {
+
+            
+          function getAssignees(taskID, taskAssignees) {
               var names = "";
-              task.forEach(function (name) {
-                  names += '<div style="float:left; margin-left:10px;"><div><img src=".\\images\\' + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+              taskAssignees.forEach(function (name) {
+                  names += '<div style="float:left; margin-left:10px;text-align: center;"><div><img src=".\\images\\' + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
                   
                   //names += '\n' + name.username;
               });
+              names += '<div class="poolIcon" task-id="' + taskID*1.0 
+                  + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">'
+                    +'<div><img src=".\\images\\poolIcon.png" height="32" width="32"></div><div>pool</div></div>';
               names += '<div style="clear:both"></div>';
               return names;
           }
@@ -50,8 +88,8 @@ $(function(){
             
           var eventsC = {
             events:    [],
-            color:     'white',     // an option!
-            textColor: 'black' // an option!
+                color:     'white',     // an option!
+                textColor: 'black' // an option!
           };
         
           var evsC = evsC[30001];
@@ -61,7 +99,8 @@ $(function(){
 
                 assignNames = "";
                 for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++ ) {
-                    assignNames += '<div style="margin-top:36px;">' + getAssignees(evsC[dayIdx].task[taskIdx].assignment) + '</div>';
+                    var taskID = evsC[dayIdx].task[taskIdx].taskid;
+                    assignNames += '<div style="margin-top:36px;">' + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
                 }
 
                 var newEv = {
@@ -87,8 +126,7 @@ $(function(){
                       for (taskid = 0; taskid < tasks.length; taskid++) {
 
                         $('#event1_title').append('<div class="taskname">' 
-                                          + '<div>' + tasks[taskid].taskname + '</div>'
-                                          + '<div class="taskdescr">Help do the task with other participants</div></div>');
+                                          + '<div>' + tasks[taskid].taskname + '</div>'  );
                       }
                 }
 
@@ -162,6 +200,9 @@ $('#calendar').fullCalendar({
             
             this.eventView = new EventView();            
         },
+        
+ 
+        
         render: function() {
             this.el.fullCalendar({
                 header: {
@@ -201,15 +242,89 @@ $('#calendar').fullCalendar({
                 eventDrop:   this.eventDropOrResize,        
                 eventResize: this.eventDropOrResize,
                 
-                hiddenDays: [ 0, 1, 2, 3, 4, 5 ],
+                hiddenDays: [ 0, 1, 2, 3, 4, 6 ],
                 aspectRatio: 3.0,
-                fixedWeekCount : false
-                                
+                fixedWeekCount : false,
+                
+                
+                eventSources: [
+
+        // your event source
+        {
+           
+                events: function (start, end, timezone, callback) {
+                  var newEvents = new Events();
+                    newEvents.fetch({   //EventList().fetch({
+                    /*
+                    data: {
+                      from: start.getTime(),
+                      to: end.getTime()
+                    },
+                    */
+                    success: function (eventList) {
+                      events = []
+                      events = _.map(eventList.models, function (event)  {
+                        var newEv = {
+                            title: event.get("title"),
+                            start: new Date(event.get("start")),
+                            //end: new Date(event.get("end")),
+                            //url: event.get("url")
+                        };
+                          newEv.title = event.attributes.events[0].title;
+                          newEv.start = event.attributes.events[0].start;
+                        return newEv;
+                      });
+                        
+                    events[0].start="2015-06-05 20:30:00";    
+                      callback(events);
+                        
+                        //$('.poolIcon').click( function(){alert(event)} );
+                  }
+                })
+              },
+            color: 'white',   // an option!
+            textColor: 'black' // an option!
+        }
+            ]
+
             });
+/*
+
+
+renderCalendar: ->
+      @.$("#calendar").fullCalendar({
+        header: {
+          left: 'prev,next today'
+          center: 'title'
+          right: 'month,basicWeek,basicDay'
+        }
+        allDayDefault: false
+        editable: false
+        events: (start, end, callback) ->
+          new EventList().fetch({
+            data: {
+              from: start.getTime()
+              to: end.getTime()
+            }
+            success: (eventList) ->
+              events = []
+              events = _.map(eventList.models, (event) -> {
+                title: event.get("title")
+                start: new Date(event.get("start"))
+                end: new Date(event.get("end"))
+                url: event.get("url")
+              })
+              callback(events)
+          })
+      })
+*/
+            
+            
+            
         },
         addAll: function() {
             //WFB this.el.fullCalendar('addEventSource', this.collection.toJSON())
-            this.el.fullCalendar('addEventSource', this.collection.toJSON()[0]);
+            // CHENGED TO USE EVENT FUNCTION this.el.fullCalendar('addEventSource', this.collection.toJSON()[0]);
         },
         addOne: function(event) {
             this.el.fullCalendar('renderEvent', event.toJSON());
@@ -219,9 +334,18 @@ $('#calendar').fullCalendar({
             this.eventView.model = new Event({start: startDate, end: endDate});
             this.eventView.render();            
         },
-        eventClick: function(fcEvent) {
-            this.eventView.model = this.collection.get(fcEvent.id);
-            this.eventView.render();
+        eventClick: function(fcEvent, jsEvent, view) {
+            
+            var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
+            
+             var pool = new PoolMembers(  );
+            pool.fetch();
+            $("body").prepend("<div id='floatDiv' ><h3>Assignment Pool");
+            $("#floatDiv").append("<img src='http://test.cschedule.com/profile/124.png'>");
+            $("#floatDiv").append("<div>Irene");
+            
+            //this.eventView.model = this.collection.get(fcEvent.id);
+            //this.eventView.render();
         },
         change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
@@ -286,7 +410,10 @@ $('#calendar').fullCalendar({
         }        
     });
     
+    
+  
+    
     var events = new Events();
     new EventsView({el: $("#calendar"), collection: events}).render();
-    events.fetch();
+    //events.fetch();
 });
