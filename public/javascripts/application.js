@@ -14,10 +14,11 @@ $(function(){
           function getAssignees(task) {
               var names = "";
               task.forEach(function (name) {
-                  names += '<div style="float:left; margin-left:10px;"><div><img src=".\\images\\' + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                  names += '<div style="float:left; margin-left:10px;text-align: center;"><div><img src=".\\images\\' + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
                   
                   //names += '\n' + name.username;
               });
+              names += '<div style="float:left; margin-left:10px;text-align: center; color: lightgray;"><div><img src=".\\images\\poolIcon.png"  height="32" width="32"></div><div>pool</div></div>';
               names += '<div style="clear:both"></div>';
               return names;
           }
@@ -87,8 +88,7 @@ $(function(){
                       for (taskid = 0; taskid < tasks.length; taskid++) {
 
                         $('#event1_title').append('<div class="taskname">' 
-                                          + '<div>' + tasks[taskid].taskname + '</div>'
-                                          + '<div class="taskdescr">Help do the task with other participants</div></div>');
+                                          + '<div>' + tasks[taskid].taskname + '</div>'  );
                       }
                 }
 
