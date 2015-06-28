@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+body {
+    background: rgba(248, 248, 248, 1);
+
+    margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	}
+
+.dialog label {
+	width:90px;
+    float:left;
+}
+
+.dialog .field {
+	width:170px;	
+}
+
+#calendar {
+	width: 900px;
+	margin: 0 auto;
+  position: relative;
+  top: -63px;
+}
+
+
+.taskname {
+    text-align: left;
+    margin-left: 16px;
+    margin-top:  43px;
+}
+
+.taskdescr {
+    font-size: 6pt;
+    padding-top: 4px;
+}
+
+.addtaskbtn {
+    margin-top:10px; color:white; background: grey;
+    padding-left:14px; padding-right: 14px;
+}
+
+.hrtask {
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   margin-left: 48px;
+   height: 0;
+   width: 92%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top:    1px solid #aaaaaa;
+   border-bottom: 1px solid #ffffff;
+   z-index:10;
+}
