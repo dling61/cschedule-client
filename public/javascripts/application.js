@@ -368,6 +368,8 @@ renderCalendar: ->
                           
                         personDiv.append("<img src='" + newEv.start + "'>");
                         personDiv.append("<div>" + newEv.title);
+                          if (newEv.title === 'Irene')
+                              personDiv.append("<div style='color: goldenrod;'>after July");
                         $("#floatDiv").append(personDiv);
                           
                         return newEv;
