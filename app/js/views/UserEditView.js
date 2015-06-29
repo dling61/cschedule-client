@@ -3,7 +3,6 @@ var UserEditView = Backbone.View.extend({
     el: '.page',
     events: {
         'submit .edit-user-form': 'saveUser',
-        'click .delete': 'deleteUser'
     },
     saveUser: function (ev) {
         var userDetails = $(ev.currentTarget).serializeObject();
@@ -11,15 +10,6 @@ var UserEditView = Backbone.View.extend({
         user.save(userDetails, {
             success: function (user) {
 
-                router.navigate('', { trigger: true });
-            }
-        });
-        return false;
-    },
-    deleteUser: function (ev) {
-        this.user.destroy({
-            success: function () {
-                console.log('destroyed');
                 router.navigate('', { trigger: true });
             }
         });
