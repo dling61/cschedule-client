@@ -8,6 +8,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 </head>
 <body>
@@ -24,8 +25,8 @@
     <hr />
 	<% _.each(users, function(user) { %>
 	<ul >
-	<li id = <%= user.get('id') %>>
-	<img id="parent" src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
+	<li id = "showDetails" title = "E-mail:<%= htmlEncode(user.get('email')) %>   Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
+	<img src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
 	</li>
 	</ul>
 	<% }); %>      
@@ -36,24 +37,24 @@
   <script type="text/template" id="edit-user-template">
     <form class="edit-user-form">
       <legend>New User</legend>
-        <label>Name</label>
-        <input name="name" type="text" value="">
+        <label>Name</label>		
+        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
         <label>E-mail</label>
-        <input name="email" type="text" value="">
+        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
         <label>Mobile</label>
-        <input name="mobile" type="text" value="">
+        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
         <hr />
-       <button type="submit" class="btn">Create</button>      
+		<input id ='button' type="submit" name="Create" class="btn" />	     
     </form>
   </script>
+
 
   <script>
     function htmlEncode(value){
       return $('<div/>').text(value).html();
     }
-	    
-</script>
-
+  </script>
+  
     <script src="app/js/collections/users.js"></script>
     <script src="app/js/models/user.js"></script>
     <script src="app/js/router.js"></script>

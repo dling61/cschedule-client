@@ -12,8 +12,35 @@ var router = new Router;
 router.on('route:home', function () {
     // render user list
     userListView.render();
+	
+	$(function() {
+    $( "showDetails" ).tooltip({
+		
+      show: {
+        effect: "slideDown",
+        delay: 250
+      }
+    });   
+  });
+	
 })
-router.on('route:edit', function (id) {
-    userEditView.render({ id: id });
+router.on('route:edit', function () {
+    userEditView.render();
+	
+	$(function() {
+    $( "name,email,mobile" ).tooltip({
+		
+      show: {
+        effect: "slideDown",
+        delay: 250
+      }
+    });   
+  });
+  
+ 
+  
+  
+  
+	
 })
 Backbone.history.start();
