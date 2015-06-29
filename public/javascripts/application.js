@@ -352,6 +352,13 @@ renderCalendar: ->
                       from: start.getTime(),
                       to: end.getTime()
                     },
+                    
+                    One important adjustment, I had to convert the moment object to a Javascript date                       object to get the getTime() function to work.
+                    data: {
+                    from: start.toDate().getTime(),
+                    to: end.toDate().getTime()
+                    }, //data
+
                     */
                     success: function (eventList) {
                       events = []
