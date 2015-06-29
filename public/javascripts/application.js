@@ -340,7 +340,7 @@ renderCalendar: ->
             
              var pool = new PoolMembers(  );
             
-            $("body").prepend("<div id='floatDiv' ><h3 style='margin-top: 3px;'>Food Service Helpers");
+            $("body").prepend("<div id='floatDiv' ><h3 style='margin: 0px 0px 12px 0px;   padding-bottom: 4px; background-color: #bbb;'>Food Service Helpers");
                         
             var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
             
@@ -377,6 +377,7 @@ renderCalendar: ->
                         personDiv.append("<div>" + newEv.title);
                           if (newEv.title === 'Irene')
                               personDiv.append("<div style='color: goldenrod;'>after July");
+                          personDiv.draggable();
                         $("#floatDiv").append(personDiv);
                           
                         return newEv;
