@@ -3,6 +3,7 @@ var UserEditView = Backbone.View.extend({
     el: '.page',
     events: {
         'submit .edit-user-form': 'saveUser',
+  //      'click .delete': 'deleteUser'
     },
     saveUser: function (ev) {
         var userDetails = $(ev.currentTarget).serializeObject();
@@ -17,7 +18,7 @@ var UserEditView = Backbone.View.extend({
     },
     render: function (options) {
         var that = this;
-        if (options.id) {
+     /*   if (options.id) {
             that.user = new User({ id: options.id });
             that.user.fetch({
                 success: function (user) {
@@ -26,9 +27,11 @@ var UserEditView = Backbone.View.extend({
                 }
             })
         } else {
+			
+		*/	
             var template = _.template($('#edit-user-template').html(), { user: null });
             that.$el.html(template);
-        }
+   //     }
     }
 });
 
