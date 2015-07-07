@@ -2,11 +2,12 @@
 
 .page {
   position: absolute;
-  top: 0px;
+  top: 200px;
   right: 0px;
   width: 342px;
   background-color: #eee;
   border: solid;
+  z-index: 999;
 }
 
 .parent .popup {
