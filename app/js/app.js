@@ -13,21 +13,34 @@ router.on('route:home', function () {
     // render user list
     userListView.render();
 	
-	$(function() {
-    $( "showDetails" ).tooltip({
-		
-      show: {
-        effect: "slideDown",
-        delay: 250
-      }
+	$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({html:true});   
+});
+	
+//	$(document).ready(function(){
+//    $('#showDetails').popover({ html: true, placement: "right", effect: "slideDown", delay: 250});   
+//});
+/*
+$(function() {
+    $(document).tooltip({		
+		content: function () {
+              return $(this).prop('title');
+          },		 
     });   
   });
+$(function(){
+		$(document).ready(function(){
+    $('#showDetails').popover({ title: "test" ,html:true});   
+});
+
+});
 	
+*/
 })
 router.on('route:edit', function () {
     userEditView.render();
 	
-	$(function() {
+/*	$(function() {
     $( "name,email,mobile" ).tooltip({
 		
       show: {
@@ -38,7 +51,7 @@ router.on('route:edit', function () {
   });
   
  
-  
+*/  
   
   
 	
