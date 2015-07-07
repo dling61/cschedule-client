@@ -1,5 +1,37 @@
 @CHARSET "UTF-8";
 
+.page {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 342px;
+  background-color: #eee;
+  border: solid;
+}
+
+.parent .popup {
+  display: none;
+}
+
+.parent:hover .popup {
+  display: block;
+}
+
+ul {
+    text-align: left;
+    display:block;
+    list-style-type: none;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+}
+li{
+	font-size:25px;
+	font-weight:bold;
+}
+
+
 body {
     background: rgba(248, 248, 248, 1);
 

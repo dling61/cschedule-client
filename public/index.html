@@ -59,7 +59,10 @@
         
         <br><br>
         <img src="./images/UIdesign.png">
-	</body>
+
+
+        <div class="page"></div>
+</body>
 
 
 <script>
@@ -76,6 +79,51 @@ $(document).ready(function() {
     
    
 </script>
+
+
+
+
+  <script type="text/template" id="user-list-template">
+    <a href="#/new" class="btn btn-primary">New</a>
+    <hr />
+	<% _.each(users, function(user) { %>
+	<ul >
+	<li id = "showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
+	<img src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
+	</li>
+	</ul>
+	<% }); %>      
+  </script>
+  
+  
+
+  <script type="text/template" id="edit-user-template">
+    <form class="edit-user-form">
+      <legend>New User</legend>
+        <label>Name</label>		
+        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
+        <label>E-mail</label>
+        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+        <label>Mobile</label>
+        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
+        <hr />
+		<input id ='button' type="submit" name="Create" class="btn" />	     
+    </form>
+  </script>
+
+
+  <script>
+    function htmlEncode(value){
+      return $('<div/>').text(value).html();
+    }
+  </script>
+  
+    <script src="app/js/collections/users.js"></script>
+    <script src="app/js/models/user.js"></script>
+    <script src="app/js/router.js"></script>
+    <script src="app/js/views/UserEditView.js"></script>
+    <script src="app/js/views/UserListView.js"></script>
+    <script src="app/js/app.js"></script>
 
 
 </html>

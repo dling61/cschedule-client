@@ -100,7 +100,7 @@ $(function(){
                 assignNames = "";
                 for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++ ) {
                     var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                    assignNames += '<div style="margin-top:36px;">' + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
+                    assignNames += '<div class=taskAssignees" style="margin-top:36px;">' + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
                 }
 
                 var newEv = {
@@ -277,6 +277,7 @@ $('#calendar').fullCalendar({
                         
                     events[0].start="2015-06-05 20:30:00";    
                       callback(events);
+                    
                         
                         //$('.poolIcon').click( function(){alert(event)} );
                   }
@@ -288,6 +289,18 @@ $('#calendar').fullCalendar({
             ]
 
             });
+            
+            
+            // WFB  $$$  Need to fix - taskAssignees div not yet in the DOM
+            $(".taskAssignees").droppable({
+              drop: function( event, ui ) {
+                $( this )
+                  .addClass( "ui-state-highlight" )
+                  .find( "p" )
+                    .html( "Dropped!" );
+              }
+            });
+
 /*
 
 
