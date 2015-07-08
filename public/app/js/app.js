@@ -1,7 +1,7 @@
 //REST API Connection
 
 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-    options.url = 'http://apitest1.servicescheduler.net/community/30001' +
+    options.url = 'http://apitest1.servicescheduler.net/' +
         options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 });
 
@@ -12,8 +12,7 @@ var router = new Router;
 
 
     userListView.render();
-/*
-router.on('route:home', function () {
+/* router.on('route:home', function () {
     // render user list
     userListView.render();
 	
@@ -65,6 +64,7 @@ router.on('route:edit', function () {
   
 	
 })
-*/
 
-//WFB Backbone.history.start();
+
+Backbone.history.start();
+*/

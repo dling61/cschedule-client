@@ -1,3 +1,3 @@
 var User = Backbone.Model.extend({
-    urlRoot: '/participantone',
+    urlRoot: 'community/30001/participantone',
 });
