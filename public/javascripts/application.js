@@ -29,9 +29,8 @@ $(function() {
             return false;
         },
 
-
         model: Event,
-        //        url: 'events'
+
         url: 'community/30001/event',
 
 
@@ -109,7 +108,7 @@ $(function() {
 
 
 
-                if (dayIdx == 0) {
+                if ($(".addtaskbtn").length === 0) {
                     var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
                     var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
                     var eventTime = times[dayIdx] + ':' + times[1];
@@ -298,8 +297,6 @@ $(function() {
             });
 
             /*
-
-
             renderCalendar: ->
                   @.$("#calendar").fullCalendar({
                     header: {
@@ -331,13 +328,16 @@ $(function() {
 
 
         },
+        
         addAll: function() {
             //WFB this.el.fullCalendar('addEventSource', this.collection.toJSON())
             // CHENGED TO USE EVENT FUNCTION this.el.fullCalendar('addEventSource', this.collection.toJSON()[0]);
         },
+        
         addOne: function(event) {
             this.el.fullCalendar('renderEvent', event.toJSON());
         },
+        
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
             this.eventView.model = new Event({
@@ -346,8 +346,9 @@ $(function() {
             });
             this.eventView.render();
         },
-        eventClick: function(fcEvent, jsEvent, view) {
 
+        
+        eventClick: function(fcEvent, jsEvent, view) {
             var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
 
             var pool = new PoolMembers();
