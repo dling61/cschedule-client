@@ -10,7 +10,7 @@ $(function(){
                                             
         model: PoolMember,
        
-   url : 'http://apitest1.servicescheduler.net/task/30001/assignmentpool',     
+   url : 'task/30001/assignmentpool',     
         
 
         parse : function(resp, xhr) {
