@@ -96,8 +96,8 @@ $(document).ready(function() {
     <hr />
 	<% _.each(users, function(user) { %>
 	<ul >
-	<li id = "showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
-	<img src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
+	<li class="showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
+	<img class="memberListPic" src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
 	</li>
 	</ul>
 	<% }); %>      
