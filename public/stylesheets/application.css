@@ -56,7 +56,7 @@ body {
 	width: 900px;
 	margin: 0 auto;
   position: relative;
-  top: -63px;
+  top: 10px;
 }
 
 
@@ -72,14 +72,14 @@ body {
 }
 
 .addtaskbtn {
-    color:white; background: grey;
-
-    padding-left: 7px;
-    padding-right: 7px;
-    position: relative;
-    left: 80px;
-    top:  14px;
-    margin-bottom: -14px;
+  font-size: 9pt;
+  color: blue;
+  background: white;
+  padding-left: 7px;
+  padding-right: 7px;
+  position: relative;
+  left: 88px;
+  top: 32px;
 }
 
 .hrtask {
@@ -104,7 +104,7 @@ body {
 #floatDiv {
         position:absolute;
         left:50%;
-        margin-top:190px;
+        margin-top:122px;
         margin-left:-210px;
         width:320px;
         height:140px;

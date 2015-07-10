@@ -110,8 +110,8 @@ $(function() {
                     var tasks = evsC[dayIdx].task;
 
 
-                    $('#event1_title').append('<div    style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
-                    $('#event1_title').append('<button class="addtaskbtn">+ new</button>');
+                    $('#event1_title').append('<div    style="margin-top:0px;">' + eventNm + '  ' + eventTime +  '</div>');
+                    $('#event1_title').append('<a class="addtaskbtn" href="#/newtask">new</a>');
 
                     for (taskid = 0; taskid < tasks.length; taskid++) {
 
@@ -234,7 +234,7 @@ $(function() {
                 eventResize: this.eventDropOrResize,
 
                 hiddenDays:     [0, 1, 2, 3, 4, 6],
-                aspectRatio:    4.7,
+                aspectRatio:    6.5,
                 fixedWeekCount: false,
                 
 
