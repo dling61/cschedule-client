@@ -10,7 +10,7 @@ $(function(){
                                             
         model: PoolMember,
        
-   url : 'http://apitest1.servicescheduler.net/task/30001/assignmentpool',     
+   url : 'task/30001/assignmentpool',     
         
 
         parse : function(resp, xhr) {
@@ -33,7 +33,7 @@ $(function(){
                                             
         model: Event,
 //        url: 'events'
-        url: 'http://apitest1.servicescheduler.net/community/30001/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&',
+        url: 'community/30001/event',
         
 
                      
