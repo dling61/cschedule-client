@@ -63,7 +63,7 @@ body {
 .taskname {
     text-align: left;
     margin-left: 16px;
-    margin-top:  43px;
+    margin-top:  38px;
 }
 
 .taskdescr {
@@ -72,8 +72,14 @@ body {
 }
 
 .addtaskbtn {
-    margin-top:10px; color:white; background: grey;
-    padding-left:14px; padding-right: 14px;
+    color:white; background: grey;
+
+    padding-left: 7px;
+    padding-right: 7px;
+    position: relative;
+    left: 80px;
+    top:  14px;
+    margin-bottom: -14px;
 }
 
 .hrtask {

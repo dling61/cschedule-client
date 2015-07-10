@@ -23,12 +23,6 @@ $(function() {
 
     var Events = Backbone.Collection.extend({
 
-        showpool: function(event, taskID) {
-            alert('Show Pool !');
-            //event.stopPropagation ();
-            return false;
-        },
-
         model: Event,
 
         url: 'community/30001/event',
@@ -95,7 +89,7 @@ $(function() {
                 assignNames = "";
                 for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
                     var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                    assignNames += '<div class=taskAssignees" style="margin-top:36px;">' 
+                    assignNames += '<div class=taskAssignees" style="margin-top:10px;">' 
                         + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
                 }
 
@@ -117,7 +111,7 @@ $(function() {
 
 
                     $('#event1_title').append('<div    style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
-                    $('#event1_title').append('<button class="addtaskbtn">Add a Task</button>');
+                    $('#event1_title').append('<button class="addtaskbtn">+ new</button>');
 
                     for (taskid = 0; taskid < tasks.length; taskid++) {
 
@@ -201,6 +195,9 @@ $(function() {
                     center: 'title',
                     right: 'members' //WFB 'alldays,month,basicWeek,basicDay,members'
                 },
+                
+                timeFormat: '',
+                
                 views: {
                     alldays: {
                         type: 'month',
@@ -212,7 +209,6 @@ $(function() {
 
                         aspectRatio: 1.2,
                         fixedWeekCount: true
-
                     },
                     members: {
                         type: 'month',
@@ -224,29 +220,26 @@ $(function() {
 
                         aspectRatio: 1.2,
                         fixedWeekCount: true
-
                     }
                 },
 
-                selectable: true,
-                selectHelper: true,
-                editable: true,
+                selectable:     true,
+                selectHelper:   true,
+                editable:       true,
                 ignoreTimezone: false,
-                select: this.select,
-                eventClick: this.eventClick,
-                eventDrop: this.eventDropOrResize,
+                
+                select:      this.select,
+                eventClick:  this.eventClick,
+                eventDrop:   this.eventDropOrResize,
                 eventResize: this.eventDropOrResize,
 
-                hiddenDays: [0, 1, 2, 3, 4, 6],
-                aspectRatio: 3.0,
+                hiddenDays:     [0, 1, 2, 3, 4, 6],
+                aspectRatio:    4.7,
                 fixedWeekCount: false,
+                
 
 
-                eventSources: [
-
-                    // your event source
-                    {
-
+                eventSources: [ {// your event source
                         events: function(start, end, timezone, callback) {
                             var newEvents = new Events();
                             newEvents.fetch({ //EventList().fetch({
@@ -278,11 +271,9 @@ $(function() {
                                 }
                             })
                         },
-                        color: 'white', // an option!
-                        textColor: 'black' // an option!
-                    }
-                ]
-
+                        color:     'white',
+                        textColor: 'black'
+                    }]  //eventSources
             });
 
 
