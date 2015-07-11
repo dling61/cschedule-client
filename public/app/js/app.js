@@ -9,13 +9,16 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 var userListView = new UserListView();
 var userEditView = new UserEditView();
 var router = new Router;
+
+
     userListView.render();
-/*
- router.on('route:home', function () {
+/* router.on('route:home', function () {
     // render user list
     userListView.render();
 	
-
+	$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip({html:true});   
+});
 
 
 //	$(document).ready(function(){
