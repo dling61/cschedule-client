@@ -104,7 +104,7 @@ body {
 #floatDiv {
         position:absolute;
         left:50%;
-        margin-top:190px;
+        top:190px;
         margin-left:-210px;
         width:320px;
         height:140px;

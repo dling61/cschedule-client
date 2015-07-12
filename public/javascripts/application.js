@@ -174,6 +174,75 @@ $(function() {
 
 
 
+    var HelpersPoolView = Backbone.View.extend({
+        
+        el: "#floatDiv",
+        collection: PoolMembers,
+        
+        initialize: function() {
+            
+            /*
+            _.bindAll(this);
+
+            this.helpersPoolView = new HelpersPoolView();
+            */
+        },
+
+        events : {
+            'click #closeHelpers' : 'closeHelpersBox'
+        },
+        
+        closeHelpersBox: function(ev) {
+            var helpersDiv = $("#floatDiv").hide();
+            helpersDiv.find(".helperPoolLI").remove();
+            
+        },
+        
+        render: function() {
+            // var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
+
+            var pool = new PoolMembers();
+            pool.fetch({ //EventList().fetch({
+                /*
+                data: {
+                  from: start.getTime(),
+                  to: end.getTime()
+                },
+                    
+                One important adjustment, I had to convert the moment object to a 
+                Javascript date object to get the getTime() function to work.
+                data: {
+                from: start.toDate().getTime(),
+                to: end.toDate().getTime()
+                }, //data
+
+                */
+                success: function(eventList) {
+                    events = [];
+                    events = _.map(eventList.models, function(event) {
+                        var title = event.attributes.username;
+                        var pic = event.attributes.userprofile;
+                        var personDiv = $("<div class='helperPoolLI' style='float:right; margin-left:8px; margin-right:8px;'>");
+
+                        personDiv.append("<img src='" + pic + "'>");
+                        personDiv.append("<div>" + title);
+                        if (title === 'Irene')
+                            personDiv.append("<div style='color: goldenrod;'>after July");
+                        personDiv.draggable();
+                        $("#floatDiv").append(personDiv);
+
+                        //return newEv;
+                    });
+                    $("#floatDiv").show();
+                }
+            });
+
+            //this.eventView.model = this.collection.get(fcEvent.id);
+            //this.eventView.render();
+        }
+    });
+                                          
+                                          
     var EventsView = Backbone.View.extend({
         initialize: function() {
             _.bindAll(this);
@@ -185,8 +254,6 @@ $(function() {
 
             this.eventView = new EventView();
         },
-
-
 
         render: function() {
             this.el.fullCalendar({
@@ -322,7 +389,7 @@ $(function() {
         
         addAll: function() {
             //WFB this.el.fullCalendar('addEventSource', this.collection.toJSON())
-            // CHENGED TO USE EVENT FUNCTION this.el.fullCalendar('addEventSource', this.collection.toJSON()[0]);
+            // CHANGED TO USE EVENT FUNCTION this.el.fullCalendar('addEventSource', this.collection.toJSON()[0]);
         },
         
         addOne: function(event) {
@@ -338,62 +405,12 @@ $(function() {
             this.eventView.render();
         },
 
-        
+
         eventClick: function(fcEvent, jsEvent, view) {
-            var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
-
-            var pool = new PoolMembers();
-
-            $("body").prepend("<div id='floatDiv' ><h3 style='margin: 0px 0px 12px 0px;"
-                              + "padding-bottom: 4px; background-color: #bbb;'>Food Service Helpers");
-
-            var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
-
-            var pool = new PoolMembers();
-
-            pool.fetch({ //EventList().fetch({
-                /*
-                data: {
-                  from: start.getTime(),
-                  to: end.getTime()
-                },
-                    
-                One important adjustment, I had to convert the moment object to a 
-                Javascript date object to get the getTime() function to work.
-                data: {
-                from: start.toDate().getTime(),
-                to: end.toDate().getTime()
-                }, //data
-
-                */
-                success: function(eventList) {
-                    events = []
-                    events = _.map(eventList.models, function(event) {
-                        var newEv = {
-                            title: event.get("title"),
-                            start: new Date(event.get("start")),
-                            //end: new Date(event.get("end")),
-                            //url: event.get("url")
-                        };
-                        newEv.title = event.attributes.username;
-                        newEv.start = event.attributes.userprofile;
-                        var personDiv = $("<div style='float:right; margin-left:8px; margin-right:8px;'>");
-
-                        personDiv.append("<img src='" + newEv.start + "'>");
-                        personDiv.append("<div>" + newEv.title);
-                        if (newEv.title === 'Irene')
-                            personDiv.append("<div style='color: goldenrod;'>after July");
-                        personDiv.draggable();
-                        $("#floatDiv").append(personDiv);
-
-                        return newEv;
-                    });
-                }
-            });
-
-            //this.eventView.model = this.collection.get(fcEvent.id);
-            //this.eventView.render();
+            var helpersPoolView = new HelpersPoolView( {'poolID' : $(jsEvent.toElement).closest(".poolIcon").attr('task-id')} );
+            helpersPoolView.render();
         },
+            
         change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
             var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
