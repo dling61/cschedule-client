@@ -4142,7 +4142,6 @@ Grid.mixin({
 	getEventTimeText: function(range, formatStr, displayEnd) {
 
 		if (formatStr == null) {
-            return ''; //WFB
 			formatStr = this.eventTimeFormat;
 		}
 
@@ -4150,7 +4149,6 @@ Grid.mixin({
 			displayEnd = this.displayEventEnd;
 		}
 
-        
 		if (this.displayEventTime && range.start.hasTime()) {
 			if (displayEnd && range.end) {
 				return this.view.formatRange(range, formatStr);

@@ -36,8 +36,8 @@
         
         <h2 style="color:white; text-align: left; margin-left:20px;">The Church in San Jose</h2>
         
-        <!--hr class="hrtask" style="top: 86px"-->
-        <hr class="hrtask" style="top:108px">
+        <hr class="hrtask" style="top: 86px">
+        <hr class="hrtask" style="top:159px">
         
         <div id="event1_title" style="float:left; margin-left: 36px; margin-top:-11px;">
         </div>
@@ -75,14 +75,6 @@
 
 
 <script>
-$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-    options.url = 'http://apitest1.servicescheduler.net/' +
-    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
-});
-
-
-    
-    
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
@@ -105,8 +97,8 @@ $(document).ready(function() {
     <hr />
 	<% _.each(users, function(user) { %>
 	<ul >
-	<li class="showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
-	<img class="memberListPic" src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
+	<li id = "showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
+	<img src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
 	</li>
 	</ul>
 	<% }); %>      
@@ -140,7 +132,7 @@ $(document).ready(function() {
     <script src="app/js/router.js"></script>
     <script src="app/js/views/UserEditView.js"></script>
     <script src="app/js/views/UserListView.js"></script>
-    <!--script src="app/js/app.js"></script-->
+    <script src="app/js/app.js"></script>
 
 
 </html>

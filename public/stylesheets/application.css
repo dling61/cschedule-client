@@ -2,9 +2,9 @@
 
 .page {
   position: absolute;
-  top: 136px;
+  top: 200px;
   right: 0px;
-  width: 200px;
+  width: 342px;
   background-color: #eee;
   border: solid;
   z-index: 999;
@@ -26,7 +26,6 @@ ul {
     margin-bottom: 1 em;
     margin-left: 0;
     margin-right: 0;
-    -webkit-padding-start: 5px;
 }
 li{
 	font-size:25px;
@@ -63,7 +62,7 @@ body {
 .taskname {
     text-align: left;
     margin-left: 16px;
-    margin-top:  38px;
+    margin-top:  43px;
 }
 
 .taskdescr {
@@ -72,14 +71,8 @@ body {
 }
 
 .addtaskbtn {
-    color:white; background: grey;
-
-    padding-left: 7px;
-    padding-right: 7px;
-    position: relative;
-    left: 80px;
-    top:  14px;
-    margin-bottom: -14px;
+    margin-top:10px; color:white; background: grey;
+    padding-left:14px; padding-right: 14px;
 }
 
 .hrtask {
@@ -114,15 +107,4 @@ body {
       border-color: #bbb;
   box-shadow: 5px 5px 10px darkgrey;
     }
- 
-
-
-.memberListPic {
-    vertical-align:middle;
-    height : 32px;
-    width: 32px;
-}
-
-.showDetails {
-    font-size: 12pt;
-}
+        
