@@ -282,12 +282,12 @@ previous button's border...
 
 .fc .fc-button-group > * { /* extra precedence b/c buttons have margin set to zero */
 	float: left;
-	margin: -132px 0 0 -1px;
+	margin: -188px 0 0 -1px;  /*WFBmargin: -132px 0 0 -1px; */
 }
 
 .fc .fc-button-group > :first-child { /* same */
 	margin-left: 0;
-    margin-top: -132px;
+    margin-top: -188px;  /* WFB -132px */
 }
 
 
@@ -386,7 +386,7 @@ hr.fc-divider {
 	width: 100%;
 	table-layout: fixed;
 	border-collapse: separate; /* WFB collapse; */
-	border-spacing: 8px;
+	border-spacing: 0px;  /* WFB 8px; */
 	font-size: 1em; /* normalize cross-browser */
 
 }
@@ -694,7 +694,7 @@ a.fc-more:hover {
 
 .fc-toolbar {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 0px; /* WFB 1em; */
 }
 
 .fc-toolbar .fc-left {
@@ -702,17 +702,17 @@ a.fc-more:hover {
 }
 
 .fc-toolbar .fc-right {
-	float: right;
+	display:none; /* WFB */
 }
 
 .fc-toolbar .fc-center {
-	display: inline-block;
+	display: none; /*WFB inline-block; */
 }
 
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * { /* extra precedence to override button border margins */
 	float: left;
-	margin-left: .75em;
+	margin-left: 0px; /* WFB.75em; */
 }
 
 /* the first thing within each left/center/right section */

@@ -33,10 +33,10 @@
     <body>
         
         <img src="./images/UIheader.png" width="1154">
-        
-        <h2 style="color:white; text-align: left; margin-left:20px;">The Church in San Jose</h2>
-        
-        <hr class="hrtask" style="top:112px">
+        <h3 style="padding-top: 6px;padding-bottom: 6px; color:white; background-color:
+                    #aaa; text-align: left; margin-left:20px;">The Church in San Jose</h3>
+                
+        <hr class="hrtask" style="top:90px">
         
         <div id="event1_title" style="float:left; margin-left: 36px; margin-top:-11px;">
         </div>
@@ -129,17 +129,16 @@ $(document).ready(function() {
 <script>
  $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     options.url = 'http://apitest1.servicescheduler.net/' +
-    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+                    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
  });
 </script>
 
 
-    <script src="app/js/collections/users.js"></script>
-    <script src="app/js/models/user.js"></script>
-    <script src="app/js/router.js"></script>
-    <script src="app/js/views/UserEditView.js"></script>
-    <script src="app/js/views/UserListView.js"></script>
-    <script src="app/js/app.js"></script>
+<script src="app/js/collections/users.js"></script>
+<script src="app/js/models/user.js"></script>
+<script src="app/js/router.js"></script>
+<script src="app/js/views/UserEditView.js"></script>
+<script src="app/js/views/UserListView.js"></script>
 
 
 </html>
