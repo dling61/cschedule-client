@@ -61,7 +61,7 @@
         <img src="./images/UIdesign.png">
 
 
-        <div class="page"></div>
+        <div class="MemberList"></div>
 </body>
 
 
@@ -81,10 +81,42 @@ $(document).ready(function() {
 </script>
 
 
+<script>
+$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    options.url = 'http://apitest1.servicescheduler.net/' +
+        options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+});
+
+</script>
 
 
   <script type="text/template" id="user-list-template">
-    <a href="#/new" class="btn btn-primary">New</a>
+  
+  <div id= "">
+  <label>E-mail</label>
+        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+  <hr />
+		<input id ='SearchForMember' type="submit" class="btn" />	
+  </div>
+  
+  
+  <form id="edit-user-form" style="display:none">
+      <legend>New User</legend>
+        <label>Name</label>		
+        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
+		<br />
+        <label>E-mail</label>
+        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+		<br />
+        <label>Mobile</label>
+        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
+        <hr />
+		<input id ='button' type="submit" name="Create" class="btn" />	     
+    </form>
+	
+	<br />
+  
+    <a href="#/new" id= "newMember" class="btn btn-primary">New</a>
     <hr />
 	<% _.each(users, function(user) { %>
 	<ul >

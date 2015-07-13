@@ -1,6 +1,6 @@
 
 var UserEditView = Backbone.View.extend({
-    el: '.page',
+    el: '.MemberList',
     events: {
         'submit .edit-user-form': 'saveUser',
   //      'click .delete': 'deleteUser'
