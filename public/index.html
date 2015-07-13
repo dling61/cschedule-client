@@ -61,7 +61,20 @@
         <img src="./images/UIdesign.png">
 
 
+
         <div class="MemberList"></div>
+
+<div id='floatDiv' style='display:none' >
+    <div style='background-color: #bbb; height: 26px; margin-bottom: 8px;   font-weight: bold; padding-top:4px;'>
+          <div style='display:inline-block; margin: 0px 0px 12px 0px;
+          padding-bottom: 4px; font-size: 14pt;'>Food Service Helpers</div>
+          <div id='closeHelpers' style='display:inline-block; position: absolute; right: 5px;'>Close</div>
+    </div>
+</div>
+    
+
+        <div class="page"></div>
+
 </body>
 
 
@@ -150,6 +163,14 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     }
   </script>
   
+<script>
+ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    options.url = 'http://apitest1.servicescheduler.net/' +
+    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+ });
+</script>
+
+
     <script src="app/js/collections/users.js"></script>
     <script src="app/js/models/user.js"></script>
     <script src="app/js/router.js"></script>
