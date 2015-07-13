@@ -14,7 +14,7 @@ var UserListView = Backbone.View.extend({
 		var user = new User();
 		
 		user.set({email: userDetails});
-		user.save();
+	user.save();
 		
 	},
 	

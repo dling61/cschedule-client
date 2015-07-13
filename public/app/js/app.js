@@ -1,7 +1,6 @@
 //REST API Connection
 
 var userListView = new UserListView();
-var userEditView = new UserEditView();
 var router = new Router;
 
 
