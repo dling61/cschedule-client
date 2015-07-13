@@ -72,8 +72,8 @@ body {
 }
 
 .addtaskbtn {
-    color:white; background: grey;
-
+    color: #66f;
+    background: #ddd;
     padding-left: 7px;
     padding-right: 7px;
     position: relative;
