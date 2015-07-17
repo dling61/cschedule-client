@@ -1,0 +1,199 @@
+<html>
+	<head>
+		<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css'/>	
+		<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css'/>
+		<link rel='stylesheet' type='text/css' href='stylesheets/application.css'/>
+		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css'/>
+		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css'/>
+		
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<!--script type='text/javascript' src='javascripts/jquery-1.5.1.min.js'></script-->
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        
+        
+		<!--script type='text/javascript' src='javascripts/jquery-ui-1.8.13.custom.min.js'></script-->	
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+		
+        <script type='text/javascript' src='javascripts/fullcalendar.js'></script>
+        
+        <script type='text/javascript' src='javascripts/underscore.js'></script>
+		<script type='text/javascript' src='javascripts/backbone.js'></script>
+		<script type='text/javascript' src='javascripts/application.js'></script>
+		<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
+		<style type="text/css">
+			.community{
+				width: 100px;
+				height: 100px;
+				border: 1px black;
+				background-color: #eee;
+				margin: 5px;
+				display: inline-block;
+			}
+
+			.nav-body {
+				display: block;
+				border: 1px black;
+			}
+			.new_community_btn {
+				width: 100px;
+				height: 100px;
+				border: 1px black;
+				background-color: #eee;
+				margin: 5px;
+				display: inline;
+				font-size: 10px;
+
+			}
+			.createCommunity {
+              	width: 100px;
+				height: 100px;
+				border: 1px black;
+				background-color: #eee;
+				margin: 5px;
+				font-size: 10px;
+			}
+
+		</style>
+	</head>
+
+    <body>
+
+       <nav class="navbar navbar-default">
+          <div class="container-fluid">
+           <div>
+		       <ul class="nav navbar-nav">
+		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		          		Community <span class="caret"></span></a>
+			          	<ul id="community-drop-down" class="dropdown-menu">
+			            	<li><a href="#">Community1</a></li>
+			            	<li><a href="#">Community2</a></li>
+                         	<li><a href="#">Community3</a></li>
+			          	</ul>
+			        </li>
+			        
+		        	<li><a href="#">CSchedule</a></li>
+		        </ul>
+	        	<ul class="nav navbar-nav navbar-right">
+		           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		           		TonyDing <span class="caret"></span></a>
+		          		<ul id="users-drop-down" class="dropdown-menu">
+				            <li><a href="#">Bill Grek</a></li>
+				            <li><a href="#">Irene</a></li>
+				            <li><a href="#">Mark</a></li>
+						</ul>
+		            </li>
+		        </ul>
+    	</div>
+  		</div>
+	</nav>
+	     
+      
+	            
+ 
+         
+         <div class="container ">
+            <div class="community" >community1 </div>
+	         <div class="community">community2</div>
+	         <div class="community">community3</div>
+            
+         </div>
+
+         <div class="nav-body"></div>
+              <div class="new-community-div">
+                 <div class="container">
+	            <div id="new_community_btn" > 
+	     		   <div class="createCommunity" style="display:none">Create New Community 
+                   <div>Community Name</div>
+		           	<input type="text" id="input"/>
+		           	   <div id="btn-create">
+		           		<button>Create</button>
+		              </div>
+	    		 </div>
+	    	<div>
+	    </div>
+
+			   
+			   <div id="hide-btn">
+			   <button  class="btn btn-default btn-lg" type="button" > + Create new Community</button>
+	          </div>
+			
+        
+        <script type="text/template" id="community-list-template">
+			<% _.each(communities, function(community) { %>
+				<div class="community"> "<%= htmlEncode(community.get('communityname')) %>" </div>
+			<% }); %>  
+  		</script> 
+
+  		  <script type="text/template" id="community-dropdown-template">
+			<% _.each(communities, function(community) { %>
+				<li><a href="#">"<%= htmlEncode(community.get('communityname')) %>" </a></li>
+			<% }); %>  
+  		</script> 
+
+ 
+
+
+		 
+
+		
+          <script>
+		    function htmlEncode(value){
+		      return $('<div/>').text(value).html();
+		    }
+		  </script>
+		  
+		<script>
+
+		function htmlEncode(value){
+		   return $('<div/>').text(value).html();
+		}
+
+		 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+		    options.url = 'http://apitest1.servicescheduler.net/' +
+		                    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+		 });
+		</script>
+
+		  
+		<script>
+		$('document').ready(function(){
+				$("#hide-btn").click(function(){
+					  $('.createCommunity').show();
+					  $('#hide-btn').hide();
+				  });
+
+			  $("#btn-create").click(function(){
+			  	debugger;
+			    	var community = new Community({
+			    		communityname: $('#input').val(),
+			    		desp: "test communityname",
+			    		communityid: "1121111"
+			    	})
+			    		debugger;
+			    	console.log(community.toJSON());
+			    	community.save();
+			    });
+			  
+		})
+			
+
+		</script>
+
+
+		<script src="app/js/collections/users.js"></script>
+		<script src="app/js/models/user.js"></script>
+		<script src="app/js/router.js"></script>
+		<script src="app/js/views/UserEditView.js"></script>
+		<script src="app/js/views/UserListView.js"></script>
+		<script src="app/js/collections/communities.js"></script>
+		<script src="app/js/models/community.js"></script>
+		<script src="app/js/views/CommunityListView.js"></script>
+	</body>
+
+
+</html>
+
