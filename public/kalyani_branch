@@ -1,0 +1,146 @@
+<html>
+	<head>
+		<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css'/>	
+		<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css'/>
+		<link rel='stylesheet' type='text/css' href='stylesheets/application.css'/>
+		
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        
+		<!--script type='text/javascript' src='javascripts/jquery-1.5.1.min.js'></script-->
+        
+        
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        
+        
+		<!--script type='text/javascript' src='javascripts/jquery-ui-1.8.13.custom.min.js'></script-->	
+        
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+        
+		
+        <script type='text/javascript' src='javascripts/fullcalendar.js'></script>
+		
+        
+        <script type='text/javascript' src='javascripts/underscore.js'></script>
+		<script type='text/javascript' src='javascripts/backbone.js'></script>
+		<script type='text/javascript' src='javascripts/application.js'></script>
+	</head>
+
+    <body>
+        
+        <img src="./images/UIheader.png" width="1154">
+        <h3 style="padding-top: 6px;padding-bottom: 6px; color:white; background-color:
+                    #aaa; text-align: left; margin-left:20px;">The Church in San Jose</h3>
+                
+        <hr class="hrtask" style="top:90px">
+        
+        <div id="event1_title" style="float:left; margin-left: 36px; margin-top:-11px;">
+        </div>
+        
+        <div id='calendar' style="display:inline-block"></div>		
+		
+		<div id='eventDialog' class='dialog ui-helper-hidden'>
+			<form>
+				<div>
+					<label>Event name:</label>
+					<input id='title' class="field" type="text"></input>
+				</div>
+				<div>
+					<label>Color:</label>
+					<input id='color' class="field" type="text"></input>
+				</div>
+			</form>
+		</div>
+        
+        <br><br>
+        <img src="./images/UIdesign.png">
+
+
+<div id='floatDiv' style='display:none' >
+    <div style='background-color: #bbb; height: 26px; margin-bottom: 8px;   font-weight: bold; padding-top:4px;'>
+          <div style='display:inline-block; margin: 0px 0px 12px 0px;
+          padding-bottom: 4px; font-size: 14pt;'>Food Service Helpers</div>
+          <div id='closeHelpers' style='display:inline-block; position: absolute; right: 5px;'>Close</div>
+    </div>
+</div>
+    
+
+        <div class="page"></div>
+</body>
+
+
+<script>
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        
+    })
+
+});
+    
+   
+</script>
+
+
+
+
+  <script type="text/template" id="user-list-template">
+    <a href="#/new" class="btn btn-primary">New</a>
+    <hr />
+	<% _.each(users, function(user) { %>
+	<ul >
+	<li id = "showDetails"  data-toggle="tooltip" title ="E-mail:<%= htmlEncode(user.get('email')) %>  Mobile:<%= htmlEncode(user.get('mobile')) %>" >	
+	<img src = '<%= user.get('profile') %>'>  <%= htmlEncode(user.get('name')) %>
+	</li>
+	</ul>
+	<% }); %>      
+  </script>
+  
+  
+
+  <script type="text/template" id="edit-user-template">
+    <form class="edit-user-form">
+      <legend>New User</legend>
+        <label>Name</label>		
+        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
+        <label>E-mail</label>
+        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+        <label>Mobile</label>
+        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
+        <hr />
+		<input id ='button' type="submit" name="Create" class="btn" />	     
+    </form>
+  </script>
+
+
+  <script>
+    function htmlEncode(value){
+      return $('<div/>').text(value).html();
+    }
+  </script>
+  
+<script>
+ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    options.url = 'http://apitest1.servicescheduler.net/' +
+                    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+ });
+</script>
+
+
+<script src="app/js/collections/users.js"></script>
+<script src="app/js/models/user.js"></script>
+<script src="app/js/router.js"></script>
+<script src="app/js/views/UserEditView.js"></script>
+<script src="app/js/views/UserListView.js"></script>
+<script src="app/js/views/CommunityListView.js"></script>
+<script src="app/js/collections/communities.js"></script>
+<script src="app/js/models/community.js"></script>
+
+</html>
