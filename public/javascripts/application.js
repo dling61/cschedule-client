@@ -89,7 +89,7 @@ $(function() {
                 assignNames = "";
                 for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
                     var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                    assignNames += '<div class=taskAssignees" style="margin-top:10px;">' 
+                    assignNames += '<div class="taskAssignees" style="margin-top:10px;">' 
                         + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
                 }
 
@@ -222,9 +222,11 @@ $(function() {
                     events = _.map(eventList.models, function(event) {
                         var title = event.attributes.username;
                         var pic = event.attributes.userprofile;
+                        var id = event.attributes.userid;
+
                         var personDiv = $("<div class='helperPoolLI' style='float:right; margin-left:8px; margin-right:8px;'>");
 
-                        personDiv.append("<img src='" + pic + "'>");
+                        personDiv.append("<img data-id='" + id + "' src='" + pic + "'>");
                         personDiv.append("<div>" + title);
                         if (title === 'Irene')
                             personDiv.append("<div style='color: goldenrod;'>after July");
@@ -330,7 +332,7 @@ $(function() {
                                         return newEv;
                                     });
 
-                                    events[0].start = "2015-06-05 20:30:00";
+                                    events[0].start = "2015-07-03 20:30:00";
                                     callback(events);
 
 
@@ -341,17 +343,6 @@ $(function() {
                         color:     'white',
                         textColor: 'black'
                     }]  //eventSources
-            });
-
-
-            // WFB  $$$  Need to fix - taskAssignees div not yet in the DOM
-            $(".taskAssignees").droppable({
-                drop: function(event, ui) {
-                    $(this)
-                        .addClass("ui-state-highlight")
-                        .find("p")
-                        .html("Dropped!");
-                }
             });
 
             /*
