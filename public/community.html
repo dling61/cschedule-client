@@ -5,7 +5,7 @@
 		<link rel='stylesheet' type='text/css' href='stylesheets/application.css'/>
 		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css'/>
 		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css'/>
-		
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<!--script type='text/javascript' src='javascripts/jquery-1.5.1.min.js'></script-->
         
@@ -161,21 +161,30 @@
 		  
 		<script>
 		$('document').ready(function(){
+			var communityName;
 				$("#hide-btn").click(function(){
 					  $('.createCommunity').show();
 					  $('#hide-btn').hide();
 				  });
 
 			  $("#btn-create").click(function(){
-			  	debugger;
 			    	var community = new Community({
-			    		communityname: $('#input').val(),
+			    		ownerid: 5,
+			    		communityName: $('#input').val(),
 			    		desp: "test communityname",
-			    		communityid: "1121111"
+			    		communityid: 90010
+
 			    	})
-			    		debugger;
 			    	console.log(community.toJSON());
-			    	community.save();
+			    	community.save({},{ 
+			    		success : function () {
+                            alert("you have successfully created community");
+			    	    },
+			    		error: function(arguments){
+                        	alert("error in createing "+ arguments);
+			    	    }
+			    	 });
+
 			    });
 			  
 		})

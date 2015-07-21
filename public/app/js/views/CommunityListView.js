@@ -5,10 +5,9 @@ var CommunityListView = Backbone.View.extend({
         var communities = new Communities();
         communities.fetch({
             success: function (communityList) {
-                debugger;
                 var template1 = _.template($('#community-list-template').html());
                 var template2 = _.template($("#community-dropdown-template").html());
-                debugger;
+                //apply data to template to get html
                 $(".nav-body").html(template1({communities: communities.models}));
                 $("#community-drop-down").html(template2({communities:communities.models}));
             }

@@ -482,8 +482,6 @@ $(function() {
     });
 
 
-
-
     var events = new Events();
     new EventsView({
         el: $("#calendar"),
@@ -493,6 +491,10 @@ $(function() {
 
     var userListView = new UserListView();
     var userEditView = new UserEditView();
-
+    
     userListView.render();
+    
+    var communityListView = new CommunityListView();
+    communityListView.render();
+
 });
