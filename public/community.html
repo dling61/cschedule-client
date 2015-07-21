@@ -168,11 +168,11 @@
 				  });
 
 			  $("#btn-create").click(function(){
-			    	var community = new Community({
+			    	community = new Community({
 			    		ownerid: 5,
 			    		communityName: $('#input').val(),
 			    		desp: "test communityname",
-			    		communityid: 90010
+			    		communityid: 90020
 
 			    	})
 			    	console.log(community.toJSON());
@@ -181,10 +181,9 @@
                             alert("you have successfully created community");
 			    	    },
 			    		error: function(arguments){
-                        	alert("error in createing "+ arguments);
+                        	alert("error in creatiing "+ arguments);
 			    	    }
 			    	 });
-
 			    });
 			  
 		})
