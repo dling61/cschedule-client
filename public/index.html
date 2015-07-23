@@ -56,7 +56,6 @@
     </div>
 </div>
     
-
         <div class="page"></div>
 
 </body>
@@ -82,61 +81,42 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 </script>
 
 
-  <script type="text/template" id="user-list-template">
+<script type="text/template" id="user-list-template">
   
-  <div id= "">
+<div id= "search">
   <label>E-mail</label>
-        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
-  <hr />
-		<input id ='SearchForMember' type="submit" class="btn" />	
-  </div>
+        <input id = "email" name="email" type="text" value=""><hr/>
+		<button id ='searchForMember' >Submit</button>
+</div>
   
-  
-  <form id="edit-user-form" style="display:none">
-      <legend>New User</legend>
+<div id="edit-user-form" style="display:none">
         <label>Name</label>		
-        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
+        <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value="">
 		<br />
         <label>E-mail</label>
-        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+        <input id = "inputEmail" value ="" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
 		<br />
         <label>Mobile</label>
-        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
+        <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
         <hr />
-		<input id ='button' type="submit" name="Create" class="btn" />	     
-    </form>
+		<button id ='addMember' >Submit</button>
+</div>
 	
-	<br />
-  
-    <a href="#/new" id= "newMember" class="btn btn-primary">New</a>
-    <hr />
+	<hr/>
+	
+<div id="display-user-form">
 	<% _.each(participants, function(participant) { %>
 	<ul >
-	<li id = "showDetails" title ="E-mail:<%= htmlEncode(participant.get('email')) %>  Mobile:<%= htmlEncode(participant.get('mobile')) %>" >	
+	<li id =   title ="E-mail:<%= htmlEncode(participant.get('email')) %>  Mobile:<%= htmlEncode(participant.get('mobile')) %>"> 	
 	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>
-	<input id ="deleteParticipant" name= <%= participant.id%> type = "button" value = "Delete" />
+	<button id ="deleteParticipant" value=<%= participant.id%> >Delete</button>
 	</li>
 	</ul>
-	<% }); %>      
-  </script>
+	<% }); %>  
+	</div>    
+</script>
   
-  
-  
-  
-
-  <script type="text/template" id="edit-user-template">
-    <form class="edit-user-form">
-      <legend>New User</legend>
-        <label>Name</label>		
-        <input id = "name" title= "Necessary! Please input your name" name="name" type="text" value="">
-        <label>E-mail</label>
-        <input id = "email" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
-        <label>Mobile</label>
-        <input id = "mobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
-        <hr />
-		<input id ='button' type="submit" name="Create" class="btn" />	     
-    </form>
-  </script>
+ 
 
   <script>
     function htmlEncode(value){

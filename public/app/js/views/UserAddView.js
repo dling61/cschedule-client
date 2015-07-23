@@ -1,19 +1,23 @@
 var UserAddView = Backbone.View.extend({
     el: '.MemberList',
     events: {
-		'click #SearchForMember': 'SearchForMember',
-		'click #newMember' : 'showForm',
+		'click #searchForMember': 'searchForMember',
 		'click #deleteParticipant':'deleteParticipant',
+		'click #addMember':'addMember',
 //		 'submit .edit-user-form': 'saveUser',
 		
   //      'click .delete': 'deleteUser'
     },
 	
-	SearchForMember: function(){
+	searchForMember: function(){
 	var userDetails = $('#email').val();		
 	var users = new Users();		
 	users.fetch({
-		data: $.param({email: userDetails}),				
+		data: $.param({email: userDetails}),		
+		error:function(){
+			$('#edit-user-form').show();
+			$('#inputEmail').val(userDetails);
+		},
 		success: function(data){
 			var participant = new Participant();
 			participant.set({
@@ -30,13 +34,26 @@ var UserAddView = Backbone.View.extend({
     });	
     },
     
+	addMember: function(){
+		var name = $('#inputName').val();
+		var email = $('#inputEmail').val();
+		var mobile = $('#inoutMobile').val();
+		var user = new User();
+		user.set({
+			name: name,
+			email:email,
+			mobile:mobile
+		});
+		user.save();
+	},
+	
+	
 	deleteParticipant: function(ev){
+		var participant = new Participant({id:ev.target.value});
+		participant.destroy();
+		var userListView = new UserListView();
+	    userListView.render(); 
 	},
    
-
-    showForm : function(){
-	   $('#edit-user-form').show();
-	
-    },
 });
  

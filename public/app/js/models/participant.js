@@ -1,5 +1,5 @@
 var Participant = Backbone.Model.extend({ 
-//urlRoot: '/participant',
+urlRoot: 'community/30001/participant',
 	defaults:{
 		userrole:"1",
 		email:'',
