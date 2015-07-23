@@ -1,8 +1,8 @@
 var User = Backbone.Model.extend({ 
-urlRoot: 'creator?action=invite&',
+urlRoot: 'creator/invite',
 	defaults:{
 		email:'',
-		name:'',
+		username:'',
 		mobile:''
 	}
 });	

@@ -84,6 +84,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <script type="text/template" id="user-list-template">
   
 <div id= "search">
+<p>Please input email to search for the participant</p>
   <label>E-mail</label>
         <input id = "email" name="email" type="text" value=""><hr/>
 		<button id ='searchForMember' >Submit</button>
@@ -108,7 +109,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <div id="display-user-form">
 	<% _.each(participants, function(participant) { %>
 	<ul >
-	<li id =   title ="E-mail:<%= htmlEncode(participant.get('email')) %>  Mobile:<%= htmlEncode(participant.get('mobile')) %>"> 	
+	<li  title ="E-mail:<%= htmlEncode(participant.get('email')) %>  Mobile:<%= htmlEncode(participant.get('mobile')) %>"> 	
 	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>
 	<button id ="deleteParticipant" value=<%= participant.id%> >Delete</button>
 	</li>
