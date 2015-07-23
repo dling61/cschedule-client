@@ -86,7 +86,8 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <div id= "search">
 <p>Please input email to search for the participant</p>
   <label>E-mail</label>
-        <input id = "email" name="email" type="text" value=""><hr/>
+        <input id = "email" name="email" type="text" value=""><br>
+		<p id="emaildiv" style="color:red; display:none" >E-mail Format is not correct!</p>
 		<button id ='searchForMember' >Submit</button>
 </div>
   
@@ -95,12 +96,15 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         <label>Name</label>		
         <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value="">
 		<br />
+		<p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
         <label>E-mail</label>
         <input id = "inputEmail" value ="" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
 		<br />
+		<p id="inputEmailFormat" style="display:none;color:red">E-mail Format is not correct!</p>
         <label>Mobile</label>
         <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
         <hr />
+		
 		<button id ='addMember' >Submit</button>
 </div>
 	
