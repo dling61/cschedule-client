@@ -26,8 +26,7 @@ var UserAddView = Backbone.View.extend({
 				email:users.models[0].attributes.email,
 				mobile:users.models[0].attributes.mobile				
 			});	
-			var participants = new Participants();
-	        participants.create(participant);
+			participant.save();			
 	        var userListView = new UserListView();
 	        userListView.render();   
 	   }				
@@ -50,9 +49,13 @@ var UserAddView = Backbone.View.extend({
 	
 	deleteParticipant: function(ev){
 		var participant = new Participant({id:ev.target.value});
-		participant.destroy();
-		var userListView = new UserListView();
-	    userListView.render(); 
+		participant.destroy({
+			success: function(){
+				var userListView = new UserListView();
+	            userListView.render(); 
+			},
+			});
+		
 	},
    
 });
