@@ -501,5 +501,6 @@ $(function() {
     //events.fetch();
 
     var userListView = new UserListView();
+	var userAddView = new UserAddView();
     userListView.render();
 });
