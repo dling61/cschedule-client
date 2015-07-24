@@ -70,8 +70,8 @@ var UserAddView = Backbone.View.extend({
 												 success: function(){
 													 var userListView = new UserListView();
 													 userListView.render();
-												}
-											}
+												 }
+											 }
 							);		
 					   },					
 				   });	
