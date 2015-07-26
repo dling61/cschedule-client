@@ -503,4 +503,5 @@ $(function() {
     var userListView = new UserListView();
 	var userAddView = new UserAddView();
     userListView.render();
+	
 });

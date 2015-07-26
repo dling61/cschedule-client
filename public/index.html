@@ -113,9 +113,17 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <div id="display-user-form">
 	<% _.each(participants, function(participant) { %>
 	<ul >
-	<li  title ="E-mail:<%= htmlEncode(participant.get('email')) %>  Mobile:<%= htmlEncode(participant.get('mobile')) %>"> 	
-	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>
-	<button id ="deleteParticipant" value=<%= participant.id%> >Delete</button>
+	<li id="userPanel"> 	
+	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>	
+	<div id="userDetails" title="Participant Information" style="display:none">
+	<h2><%= htmlEncode(participant.get('name')) %></h2>
+	<p>E-mail:<%= htmlEncode(participant.get('email')) %></p>
+	<p>Mobile:<%= htmlEncode(participant.get('mobile')) %></p>
+	<hr />
+	<button id ="deleteParticipant" value=<%= participant.id%> >Remove From Group</button>
+	</div>
+	
+	
 	</li>
 	</ul>
 	<% }); %>  
