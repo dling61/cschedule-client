@@ -56,6 +56,14 @@
 				margin: 5px;
 				font-size: 10px;
 			}
+			.editCommunity {
+              	width: 100px;
+				height: 100px;
+				border: 1px black;
+				background-color: #eee;
+				margin: 5px;
+				font-size: 10px;
+			}
 
 		</style>
 	</head>
@@ -72,6 +80,7 @@
 			            	<li><a href="#">Community1</a></li>
 			            	<li><a href="#">Community2</a></li>
                          	<li><a href="#">Community3</a></li>
+                         	
 			          	</ul>
 			        </li>
 			        
@@ -94,88 +103,102 @@
       
 	            
  
-         
+         <!-- 
          <div class="container ">
             <div class="community" >community1 </div>
 	         <div class="community">community2</div>
 	         <div class="community">community3</div>
             
-         </div>
+         </div> -->
+         <div class="community-list-view">
 
-         <div class="nav-body"></div>
-              <div class="new-community-div">
-                 <div class="container">
-	            <div id="new_community_btn" > 
-	     		   <div class="createCommunity" style="display:none">Create New Community 
-                   <div>Community Name</div>
-		           	<input type="text" id="input"/>
-		           	   <div id="btn-create">
-		           		<button>Create</button>
-		              </div>
-	    		 </div>
-	    	<div>
-	    </div>
+	        <div class="nav-body"></div>
 
-			   
-			   <div id="hide-btn">
-			   <button  class="btn btn-default btn-lg" type="button" > + Create new Community</button>
-	          </div>
+	        <div class="new-community-div">
+	            <div class="container">
+		            <div id="new_community_btn"> 
+		     		   <div class="createCommunity" style="display:none">Create New Community 
+		                   <div>Community Name</div>
+				           <input type="text" id="input"/>
+				           <button class="btn-create">Create</button>
+		    		 	</div>
+		    		</div>
+		    	</div> 	
+		    </div>
+		    	
+
+			<div class="edit-community-div">
+				<div class="container">
+					<div id="edit_community_btn"> 
+						<div class="editCommunity" style="display:none">Edit Community 
+							<div>communityname</div>
+							<input type="text" id="edit-input"/>
+							<button class="btn-edit-save">save</button>
+							<button class="btn-edit-cancel">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<div class="remove-community" style="display:none">
+				<button class="btn-remove">Remove</button>
+			</div>	
+
 			
+			<button  class="create-btn" type="button" > + Create new Community</button>
+		</div>
+		
+				
         
         <script type="text/template" id="community-list-template">
 			<% _.each(communities, function(community) { %>
-				<div class="community"> "<%= htmlEncode(community.get('communityname')) %>" </div>
+				<div class="community" data-id="<%=community.get('id')%>"> 
+					"<%= htmlEncode(community.get('communityname')) %>" </div>
 			<% }); %>  
   		</script> 
 
   		  <script type="text/template" id="community-dropdown-template">
+  		 
 			<% _.each(communities, function(community) { %>
 				<li><a href="#">"<%= htmlEncode(community.get('communityname')) %>" </a></li>
-			<% }); %>  
+			<% }); %>
+			<button  class="create-community-dropdown-btn" type="button" > + Create New Community</button>
+			  
   		</script> 
 
- 
-
-
-		 
-
-		
-          <script>
-		    function htmlEncode(value){
-		      return $('<div/>').text(value).html();
-		    }
-		  </script>
-		  
 		<script>
+			function htmlEncode(value){
+			   return $('<div/>').text(value).html();
+			}
 
-		function htmlEncode(value){
-		   return $('<div/>').text(value).html();
-		}
-
-		 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-		    options.url = 'http://apitest1.servicescheduler.net/' +
-		                    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
-		 });
+			 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+			    options.url = 'http://apitest1.servicescheduler.net/' +
+			                    options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+			 });
 		</script>
 
 		  
-		<script>
-		$('document').ready(function(){
-			var communityName;
-				$("#hide-btn").click(function(){
+          <script>  
+		/*$('document').ready(function(){
+			var communityname;
+			
+				$(".create-btn").click(function(){
 					  $('.createCommunity').show();
-					  $('#hide-btn').hide();
+					  $('.create-btn').hide();
 				  });
 
-			  $("#btn-create").click(function(){
+                 
+			  $(".btn-create").click(function(){
 			    	community = new Community({
-			    		ownerid: 5,
-			    		communityName: $('#input').val(),
+			    		ownerid: 3,
+			    		communityname: $('#input').val(),
+
 			    		desp: "test communityname",
-			    		communityid: 90020
+			    		communityid: 90031
 
 			    	})
-			    	console.log(community.toJSON());
+                      console.log(community.toJSON());
+			    	
 			    	community.save({},{ 
 			    		success : function () {
                             alert("you have successfully created community");
@@ -184,22 +207,26 @@
                         	alert("error in creatiing "+ arguments);
 			    	    }
 			    	 });
+			    	$('.createCommunity').hide();
+
+			    	//community.save({communityname : "test"});
 			    });
+
 			  
+
+
 		})
 			
-
+*/
 		</script>
 
 
-		<script src="app/js/collections/users.js"></script>
-		<script src="app/js/models/user.js"></script>
-		<script src="app/js/router.js"></script>
-		<script src="app/js/views/UserEditView.js"></script>
-		<script src="app/js/views/UserListView.js"></script>
+
 		<script src="app/js/collections/communities.js"></script>
 		<script src="app/js/models/community.js"></script>
 		<script src="app/js/views/CommunityListView.js"></script>
+		<script src="app/js/views/CommunityEditView.js"></script>
+		<script src="app/js/views/CommunityDeleteView.js"></script>
 	</body>
 
 
