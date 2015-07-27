@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
-.page {
+.MemberList {
   position: absolute;
   top: 136px;
   right: 0px;
-  width: 200px;
+  width: 300px;
   background-color: #eee;
   border: solid;
   z-index: 999;

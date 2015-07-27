@@ -1,16 +1,22 @@
 var UserListView = Backbone.View.extend({
-    el: '.page',
+    el: '.MemberList',
+	events:{
+		'dblclick #userPanel':'showDetails',
+	},
+	
+	showDetails:function(){
+		$('#userDetails').dialog();
+	},
+	
     render: function () {
         var that = this;
-        var users = new Users();
-        users.fetch({
-            success: function (users) {
-                var template = _.template($('#user-list-template').html());
-                //WFB that.$el.html(template({users: users.models}));
-                $(".page").html(template({users: users.models}));
+        var participants = new Participants();
+        participants.fetch({
+            success: function (participants) {
+                var template = _.template($('#user-list-template').html());              
+                $(".MemberList").html(template({participants: participants.models}));
             }
         })
-
     }
-
 });
+

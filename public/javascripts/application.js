@@ -492,7 +492,7 @@ $(function() {
     //events.fetch();
 
     var userListView = new UserListView();
-    var userEditView = new UserEditView();
-
+	var userAddView = new UserAddView();
     userListView.render();
+	
 });

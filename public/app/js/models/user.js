@@ -1,3 +1,8 @@
-var User = Backbone.Model.extend({
-    urlRoot: 'community/30001/participantone',
-});
+var User = Backbone.Model.extend({ 
+urlRoot: 'creator/invite',
+	defaults:{
+		email:'',
+		username:'',
+		mobile:''
+	}
+});	
