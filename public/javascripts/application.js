@@ -1,6 +1,22 @@
 $(function() {
 
 
+    var TaskHelper = Backbone.Model.extend({
+        //url: 'schedules/1070068/onduty/1070000'
+        url: 'task/30001/assignment'
+    });
+        
+    var TaskHelpers = Backbone.Collection.extend({
+
+        model: TaskHelper,
+        url: 'schedules/1070068/onduty/1070000',
+
+        parse: function(resp, xhr) {
+            return resp.apgroup[0].member;
+        }
+    });
+        
+
 
 
     var PoolMember = Backbone.Model.extend();
@@ -89,7 +105,8 @@ $(function() {
                 assignNames = "";
                 for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
                     var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                    assignNames += '<div class="taskAssignees" style="margin-top:10px;">' 
+                    assignNames += '<div class="taskAssignees" data-taskid="' + taskID
+                                    + '" style="margin-top:10px;">' 
                         + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
                 }
 
@@ -224,9 +241,9 @@ $(function() {
                         var pic = event.attributes.userprofile;
                         var id = event.attributes.userid;
 
-                        var personDiv = $("<div class='helperPoolLI' style='float:right; margin-left:8px; margin-right:8px;'>");
+                        var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='float:right; margin-left:8px; margin-right:8px;'>");
 
-                        personDiv.append("<img data-id='" + id + "' src='" + pic + "'>");
+                        personDiv.append("<img src='" + pic + "'>");
                         personDiv.append("<div>" + title);
                         if (title === 'Irene')
                             personDiv.append("<div style='color: goldenrod;'>after July");
@@ -252,11 +269,29 @@ $(function() {
             this.collection.bind('reset', this.addAll);
             this.collection.bind('add', this.addOne);
             this.collection.bind('change', this.change);
+            this.collection.bind('addToTask', this.addToTask);
             this.collection.bind('destroy', this.destroy);
 
             this.eventView = new EventView();
         },
 
+        events : {
+            'dragenter .droparea' : 'tellDrop',
+                'dragenter .droparea' : 'highlightDropZone',
+                'dragleave .droparea' : 'unhighlightDropZone',
+        },
+                                          
+        tellDrop : function(){alert("DROPPED!")},
+        
+            highlightDropZone: function(e) {
+        e.preventDefault();
+        //$(e.currentTarget).addClass('item-drop-zone-highlight')
+    },
+
+    unhighlightDropZone: function(e) {
+        //$(e.currentTarget).removeClass('item-drop-zone-highlight')
+    },
+        
         render: function() {
             this.el.fullCalendar({
                 header: {
@@ -306,6 +341,14 @@ $(function() {
                 aspectRatio:    6.5,
                 fixedWeekCount: false,
                 
+                droppable: true,
+                /*
+                drop: function(date, jsEvent, ui ) {
+                    var droppedID = $(this).data('id');
+                    this.addToTask(date);
+                },
+                */
+
 
 
                 eventSources: [ {// your event source
@@ -334,6 +377,29 @@ $(function() {
 
                                     events[0].start = "2015-07-03 20:30:00";
                                     callback(events);
+                                    
+                                    $(".taskAssignees").droppable({
+                                          drop: function( event, ui ) {
+                                              // this is the elem receiving the dropped ui.draggable elem
+                                            var newHelperID = ui.draggable.data('id');
+                                            var taskID =$(this).data('taskid');
+                                            
+                                            //alert( "Dropped helper " + newHelperID );
+                                              //var taskHelpers = new TaskHelpers();
+                                              //taskHelpers.fetch({ //EventList().fetch({
+                                                  //success: function(eventList) {
+                                            
+                                                    var taskHelper = new TaskHelper(
+                                                                      { 'ownerid': '3',
+                                                                        'eventid': '30001', //taskID
+                                                                         'id': '125' //newHelperID
+                                                                        //'add': [newHelperID]
+                                                                      });
+                                                    taskHelper.save();
+                                                  //}
+                                            //});
+                                        }
+                                    });
 
 
                                     //$('.poolIcon').click( function(){alert(event)} );
@@ -343,6 +409,13 @@ $(function() {
                         color:     'white',
                         textColor: 'black'
                     }]  //eventSources
+            });
+            
+
+            $(".taskAssignees").droppable({
+                  drop: function( event, ui ) {
+                    alert( "Dropped!" );
+                  }
             });
 
             /*
@@ -387,6 +460,32 @@ $(function() {
             this.el.fullCalendar('renderEvent', event.toJSON());
         },
         
+
+        addToTask: function(eventDate) {
+            var personID = (this).data('id');
+            var taskHelpers = new TaskHelpers();
+            var taskHelper = new TaskHelper({id: personID});
+            taskHelpers.add(taskHelper);
+            taskHelpers.save();
+        },
+
+                                                          
+                
+/*
+	$url = 'http://apitest1.servicescheduler.net/schedules/1070068/onduty/1070000';    
+	$method = 'PUT';
+
+        // Please change the data before executing it in the test1 environment
+        // "add" ---- assign participants to the task
+	// "delete"   delete participants from the task
+	$data = json_encode(array(
+		'ownerid'=> '107',
+		'eventid' => '300011',
+        	'add' => array(235, 236),
+		'delete' => array(234)
+        )		
+	);
+*/
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
             this.eventView.model = new Event({
