@@ -114,9 +114,9 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 	<% _.each(participants, function(participant) { %>
 	<ul >
 	<li id="userPanel"> 	
-	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>	
+	<img class="userImg" src = '<%= participant.get('profile') %>'> <div class="userName"> <%= htmlEncode(participant.get('name')) %> </div>	
 	<div id="userDetails" title="Participant Information" style="display:none">
-	<h2><%= htmlEncode(participant.get('name')) %></h2>
+	<%= htmlEncode(participant.get('name')) %>
 	<p>E-mail:<%= htmlEncode(participant.get('email')) %></p>
 	<p>Mobile:<%= htmlEncode(participant.get('mobile')) %></p>
 	<hr />

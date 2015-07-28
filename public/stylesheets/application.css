@@ -131,3 +131,14 @@ body {
 .fc-today-button {
     display: none
 }
+
+.userImg {
+    height: 32px;
+    width:  32px
+}
+
+.userName {
+    font-size: 12pt;
+    font-weight: normal;
+}
+}
