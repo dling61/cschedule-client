@@ -127,3 +127,7 @@ body {
 .showDetails {
     font-size: 12pt;
 }
+
+.fc-today-button {
+    display: none
+}
