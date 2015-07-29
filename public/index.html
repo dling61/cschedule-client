@@ -11,21 +11,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
         <script type='text/javascript' src='javascripts/fullcalendar.js'></script>        
         <script type='text/javascript' src='javascripts/underscore.js'></script>
+        
 		<script type='text/javascript' src='javascripts/backbone.js'></script>
 		<script type='text/javascript' src='javascripts/application.js'></script>
 	</head>
     
     <body>        
         <img src="./images/UIheader.png" width="1154">
-        <h3 style="padding-top: 6px;padding-bottom: 6px; color:white; background-color:
-                    #aaa; text-align: left; margin-left:20px;">The Church in San Jose</h3>
+        <h2 style="padding-top: 6px;padding-bottom: 6px; color:white; background-color:#aaa; text-align: left; padding-left:20px;">The Church in San Jose</h3>
                 
-        <hr class="hrtask" style="top:90px">
-
-        <h2 style="color:white; text-align: left; margin-left:20px;">The Church in San Jose</h2>
-        
-        <hr class="hrtask" style="top: 86px">
-        <hr class="hrtask" style="top:159px">
+        <hr class="hrtask" style="top: 102px">
+        <hr class="hrtask" style="top: 159px">
         
         <div id="event1_title" style="float:left; margin-left: 36px; margin-top:-11px;">
         </div>
@@ -118,7 +114,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 	<% _.each(participants, function(participant) { %>
 	<ul >
 	<li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> class="participant"> 	
-	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>			
+	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>					
 	</li>
 	</ul>
 	<% }); %>  
