@@ -1,11 +1,15 @@
 var UserListView = Backbone.View.extend({
     el: '.MemberList',
 	events:{
-		'dblclick #userPanel':'showDetails',
+		'dblclick .participant':'showDetails',
 	},
 	
-	showDetails:function(){
-		$('#userDetails').dialog();
+	showDetails:function(ev){
+		var participant =$(ev.target).closest('li');
+		var email = $(participant[0]).data('email'); 		
+		var participantView = new ParticipantView();
+		participantView.render(email);
+		$('#participantDialog').dialog();
 	},
 	
     render: function () {

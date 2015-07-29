@@ -117,24 +117,24 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <div id="display-user-form">
 	<% _.each(participants, function(participant) { %>
 	<ul >
-	<li id="userPanel"> 	
-	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>	
-	<div id="userDetails" title="Participant Information" style="display:none">
-	<h2><%= htmlEncode(participant.get('name')) %></h2>
-	<p>E-mail:<%= htmlEncode(participant.get('email')) %></p>
-	<p>Mobile:<%= htmlEncode(participant.get('mobile')) %></p>
-	<hr />
-	<button id ="deleteParticipant" value=<%= participant.id%> >Remove From Group</button>
-	</div>
-	
-	
+	<li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> class="participant"> 	
+	<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>			
 	</li>
 	</ul>
 	<% }); %>  
 	</div>    
 </script>
+
+<script type="text/template" id="display-user-template">
+	<h2><%= user.username %></h2>
+	<p>E-mail:<%= user.email %></p>
+	<p>Mobile:<%= user.mobile %></p>
+	<hr />
+	<button id ="deleteParticipant" value=<%= user.id %> >Remove From Group</button>
+</script>
   
- 
+ <div id="participantDialog" title="Participant Information">
+ </div>
 
   <script>
     function htmlEncode(value){
@@ -153,6 +153,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <script src="app/js/models/community.js"></script-->
 <script src="app/js/collections/participants.js"></script>
 <script src="app/js/models/participant.js"></script>
+<script src="app/js/views/ParticipantView.js"></script>
 
 
 </html>

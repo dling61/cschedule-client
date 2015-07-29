@@ -23,7 +23,7 @@ var UserAddView = Backbone.View.extend({
 				},
 				success: function(data){
 					var participant = new Participant();
-					participant.save({userid:users.models[0].attributes.id,
+					participant.save({id:users.models[0].attributes.id,
 									  name:users.models[0].attributes.username,
 									  email:users.models[0].attributes.email,
 									   mobile:users.models[0].attributes.mobile
@@ -61,7 +61,7 @@ var UserAddView = Backbone.View.extend({
 						data: $.param({email: email}),
 						success:function(data){
 							var participant = new Participant();
-							participant.save({userid:users.models[0].attributes.id,
+							participant.save({id:users.models[0].attributes.id,
 											  name:users.models[0].attributes.username,
 											  email:users.models[0].attributes.email,
 											  mobile:users.models[0].attributes.mobile   
