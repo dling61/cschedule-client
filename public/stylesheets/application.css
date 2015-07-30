@@ -63,6 +63,9 @@ body {
     text-align: left;
     margin-left: 16px;
     margin-top:  38px;
+    
+    font-weight: bold;
+    font-size: 9pt;
 }
 
 .taskdescr {

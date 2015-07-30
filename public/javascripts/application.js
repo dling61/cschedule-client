@@ -343,7 +343,7 @@ $(function() {
                 eventResize: this.eventDropOrResize,
 
                 hiddenDays:     [0, 1, 2, 3, 4, 6],
-                aspectRatio:    6.5,
+                aspectRatio:    4.6,
                 fixedWeekCount: false,
                 
                 droppable: true,
