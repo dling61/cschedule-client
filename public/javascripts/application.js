@@ -54,11 +54,16 @@ $(function() {
 
             function getAssignees(taskID, taskAssignees) {
                 var names = "";
+                var nameLen = 0;
                 taskAssignees.forEach(function(name) {
-                    names += '<div style="float:left; margin-left:10px;text-align: center;"><div><img src=".\\images\\' 
+                    if (nameLen < 1 && name.username.length > 7) {
+                        names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
+                            + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                    } else {
+                        names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img src=".\\images\\' 
                         + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
-
-                    //names += '\n' + name.username;
+                    }
+                    nameLen = name.username.length;
                 });
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
                     + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
