@@ -85,11 +85,11 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <script type="text/template" id="user-list-template">
   
 <div id= "search">
-<p>Please input email to search for the participant</p>
-  <label>E-mail</label>
+<p>Please input an email to search for a participant</p>
+  <label>Email</label>
         <input id = "email" name="email" type="text" value=""><br>
-		<p id="emaildiv" style="color:red; display:none" >E-mail Format is not correct!</p>
-		<button id ='searchForMember' >Submit</button>
+		<p id="emaildiv" style="color:red; display:none" >Email Format is not correct!</p>
+		<button id ='searchForMember' >Search</button>
 </div>
   
 <div id="edit-user-form" style="display:none">
@@ -98,15 +98,15 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value="">
 		<br />
 		<p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
-        <label>E-mail</label>
-        <input id = "inputEmail" value ="" title= "Necessary! Please input your e-mail" name="email" type="text" value="">
+        <label>Email</label>
+        <input id = "inputEmail" value ="" title= "Necessary! Please input your email" name="email" type="text" value="">
 		<br />
-		<p id="inputEmailFormat" style="display:none;color:red">E-mail Format is not correct!</p>
+		<p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
         <label>Mobile</label>
         <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
         <hr />
 		
-		<button id ='addMember' >Submit</button>
+		<button id ='addMember' >Search</button>
 </div>
 	
 	<hr/>
@@ -124,7 +124,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 
 <script type="text/template" id="display-user-template">
 	<h2><%= user.username %></h2>
-	<p>E-mail:<%= user.email %></p>
+	<p>Email:<%= user.email %></p>
 	<p>Mobile:<%= user.mobile %></p>
 	<hr />
 	<button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
