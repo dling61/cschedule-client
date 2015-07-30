@@ -141,4 +141,7 @@ body {
     font-size: 12pt;
     font-weight: normal;
 }
+
+.MemberList li {
+    -webkit-user-select: none;
 }

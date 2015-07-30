@@ -1,7 +1,7 @@
 var UserListView = Backbone.View.extend({
     el: '.MemberList',
 	events:{
-		'dblclick .participant':'showDetails',
+		'dblclick .participant'   : 'showDetails'
 	},
 	
 	showDetails:function(ev){
@@ -10,6 +10,7 @@ var UserListView = Backbone.View.extend({
 		var participantView = new ParticipantView();
 		participantView.render(email);
 		$('#participantDialog').dialog();
+        //ev.preventDefault();
 	},
 	
     render: function () {
