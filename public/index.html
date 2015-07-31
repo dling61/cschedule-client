@@ -5,10 +5,13 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>                
 	        
-        <script type='text/javascript' src='javascripts/underscore.js'></script>
-		<script type='text/javascript' src='javascripts/backbone.js'></script>
+        <!--script type='text/javascript' src='javascripts/underscore.js'></script-->
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js'></script>
+		<!--script type='text/javascript' src='javascripts/backbone.js'></script-->
+		<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone.js'></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+        
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 
         <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css'/>
         <script type='text/javascript' src='javascripts/fullcalendar.js'></script>        
@@ -22,7 +25,7 @@
         <h2 style="padding-top: 6px;padding-bottom: 6px; color:white; background-color:#aaa; text-align: left; padding-left:20px;">The Church in San Jose</h3>
                 
         <hr class="hrtask" style="top: 102px">
-        <hr class="hrtask" style="top: 159px">
+        <hr class="hrtask" style="top: 148px">
         
         <div id="event1_title" style="float:left; margin-left: 36px; margin-top:-11px;">
         </div>
@@ -43,7 +46,7 @@
 		</div>
         
         <br><br>
-        <img src="./images/UIdesign.png">
+        <img style="width:1150px" src="./images/UIdesign.png">
 
 
 
@@ -65,12 +68,12 @@
 $(document).ready(function() {
 
     // page is now ready, initialize the calendar...
-
+/*
     $('#calendar').fullCalendar({
         // put your options and callbacks here
         
     })
-
+*/
 });       
 </script>
 
@@ -91,7 +94,8 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 		<button id ='searchForMember' >Search</button>
 </div>  
 <div id="edit-user-form" style="display:none">
-<p>The email you searched is not existed in our database, please file the form to add it.</p>
+<p>The email you searched is not yet registered with CSchedule.</p>
+<p>Please enter their contact info to invote them to register:</p>
         <label>Name</label>		
         <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value="">
 		<br />
@@ -102,8 +106,10 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 		<p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
         <label>Mobile</label>
         <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type="text" value="">
-        <hr />		
-		<button id ='addMember' >Search</button>
+        <hr />
+		
+		<button id ='addMember' >Add</button>
+
 </div>
 	
 	<hr/>

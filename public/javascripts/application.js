@@ -54,15 +54,26 @@ $(function() {
 
             function getAssignees(taskID, taskAssignees) {
                 var names = "";
+                var nameLen = 0;
                 taskAssignees.forEach(function(name) {
-                    names += '<div style="float:left; margin-left:10px;text-align: center;"><div><img src=".\\images\\' 
+                    if (nameLen < 1 && name.username.length > 7) {
+                        names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
+                            + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                    } else {
+                        names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img src=".\\images\\' 
                         + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
-
-                    //names += '\n' + name.username;
+                    }
+                    nameLen = name.username.length;
                 });
+                
+                if (taskID === '30003') {
+                    names += '<div class="poolIcon" task-id="' + taskID * 1.0 
+                        + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
+                        + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>needed</div></div>';
+                }
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
-                    + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
-                    + '<div><img src=".\\images\\poolIcon.png" height="32" width="32"></div><div>pool</div></div>';
+                + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
+                + '<div><img src=".\\images\\poolIcon.png" height="32" width="32"></div><div>pool</div></div>';
                 names += '<div style="clear:both"></div>';
                 return names;
             }
@@ -262,9 +273,15 @@ $(function() {
     });
                                           
                                           
+
+    
     var EventsView = Backbone.View.extend({
+        
+        //el: '#calendar',
+        //collection: events,
+
         initialize: function() {
-            _.bindAll(this);
+            //_.bindAll(this);
 
             this.collection.bind('reset', this.addAll);
             this.collection.bind('add', this.addOne);
@@ -293,7 +310,7 @@ $(function() {
     },
         
         render: function() {
-            this.el.fullCalendar({
+            $(this.el).fullCalendar({
                 header: {
                     left: 'prev,next,today',
                     center: 'title',
@@ -338,7 +355,7 @@ $(function() {
                 eventResize: this.eventDropOrResize,
 
                 hiddenDays:     [0, 1, 2, 3, 4, 6],
-                aspectRatio:    6.5,
+                aspectRatio:    4.6,
                 fixedWeekCount: false,
                 
                 droppable: true,
@@ -526,7 +543,7 @@ $(function() {
     var EventView = Backbone.View.extend({
         el: $('#eventDialog'),
         initialize: function() {
-            _.bindAll(this);
+            //_.bindAll(this);
         },
         render: function() {
             var buttons = {
@@ -583,14 +600,15 @@ $(function() {
 
 
 
-    var events = new Events();
+    var communityEvents = new Events();
     new EventsView({
         el: $("#calendar"),
-        collection: events
+        collection: communityEvents
     }).render();
     //events.fetch();
 
     var userListView = new UserListView();
+    
 	var userAddView = new UserAddView();
 	var participantView = new ParticipantView();
     userListView.render();
