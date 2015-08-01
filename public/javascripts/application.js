@@ -138,12 +138,12 @@ $(function() {
                     var tasks = evsC[dayIdx].task;
 
 
-                    $('#event1_title').append('<div    style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
+                    $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
                     $('#event1_title').append('<button class="addtaskbtn">+ new</button>');
 
                     for (taskid = 0; taskid < tasks.length; taskid++) {
 
-                        $('#event1_title').append('<div class="taskname">' + '<div>' + tasks[taskid].taskname + '</div>');
+                        $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname + '</div>');
                     }
                 }
 
