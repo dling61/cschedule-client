@@ -159,3 +159,19 @@ body {
 #participantDialog {
     z-index: 1000;
 }
+
+.fc-view-container table {
+    border-spacing: 12px 0px;
+}
+
+.fc-view-container .fc-widget-contentNEW {
+    border: none;
+}
+.fc-view-container .fc-widget-headerNEW {
+    border: none;
+}
+
+
+.fc-day-header.fc-widget-header {
+    padding:14px;
+}

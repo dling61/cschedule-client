@@ -11,6 +11,11 @@ $(function() {
         model: TaskHelper,
         url: 'schedules/1070068/onduty/1070000',
 
+        
+        initializeNEW: function() {
+            this.listenTo(this.model, 'change', this.render);
+        },
+
         parse: function(resp, xhr) {
             return resp.apgroup[0].member;
         }
@@ -355,7 +360,7 @@ $(function() {
                 eventResize: this.eventDropOrResize,
 
                 hiddenDays:     [0, 1, 2, 3, 4, 6],
-                aspectRatio:    4.6,
+                aspectRatio:    3.9,
                 fixedWeekCount: false,
                 
                 droppable: true,

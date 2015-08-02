@@ -282,12 +282,11 @@ previous button's border...
 
 .fc .fc-button-group > * { /* extra precedence b/c buttons have margin set to zero */
 	float: left;
-	margin: -188px 0 0 -1px;  /*WFBmargin: -132px 0 0 -1px; */
+	margin: -170px 0 0 -1px;  /*WFBmargin: -132px 0 0 -1px; */
 }
 
 .fc .fc-button-group > :first-child { /* same */
 	margin-left: 0;
-    margin-top: -188px;  /* WFB -132px */
 }
 
 
@@ -391,10 +390,21 @@ hr.fc-divider {
 
 }
 
-.fc th,
+.fc th {
+	border-style: solid;
+	border-width: 1px;
+    border-top-width: 6px;
+	padding: 0;
+	vertical-align: top;
+    
+    text-align: left;  /* WFB */
+}
+
+
 .fc td {
 	border-style: solid;
 	border-width: 1px;
+    border-top-width: 0px;
 	padding: 0;
 	vertical-align: top;
     
