@@ -598,9 +598,10 @@ $(function() {
     });
 
 
-
-
     var communityEvents = new Events();
+    /* Kalyani 
+	  var events = new Events();
+    */
     new EventsView({
         el: $("#calendar"),
         collection: communityEvents
@@ -613,4 +614,12 @@ $(function() {
 	var participantView = new ParticipantView();
     userListView.render();
 	
+/* Kalyani branch
+    var userEditView = new UserEditView();
+    
+    userListView.render();
+    
+    var communityListView = new CommunityListView();
+    communityListView.render();
+*/
 });
