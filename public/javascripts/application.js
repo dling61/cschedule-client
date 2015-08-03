@@ -11,11 +11,6 @@ $(function() {
         model: TaskHelper,
         url: 'schedules/1070068/onduty/1070000',
 
-        
-        initializeNEW: function() {
-            this.listenTo(this.model, 'change', this.render);
-        },
-
         parse: function(resp, xhr) {
             return resp.apgroup[0].member;
         }
@@ -77,7 +72,7 @@ $(function() {
                         + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>needed</div></div>';
                 }
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
-                + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
+                + '" style=" right: 3px; position: absolute; text-align: center; color: lightgray;">' 
                 + '<div><img src=".\\images\\poolIcon.png" height="32" width="32"></div><div>pool</div></div>';
                 names += '<div style="clear:both"></div>';
                 return names;
@@ -360,7 +355,7 @@ $(function() {
                 eventResize: this.eventDropOrResize,
 
                 hiddenDays:     [0, 1, 2, 3, 4, 6],
-                aspectRatio:    3.9,
+                aspectRatio:    4.1,
                 fixedWeekCount: false,
                 
                 droppable: true,
