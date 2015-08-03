@@ -1,0 +1,18 @@
+[
+	{
+		"id":"person_1",
+		"name":"Jim",
+		"employement": "UI engineer",
+		"company" : "Motorola",
+		
+		"employment_type": "contract"
+	},
+	{
+		"id":"person_2",
+		"name":"John",
+		"employement": "UI developer",
+		"company" : "samsung",
+		"phone":"408-222-1133",
+		"employment_type": "fulltime"
+	}
+]
