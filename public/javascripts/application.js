@@ -2,7 +2,7 @@ $(function() {
 
 
 
-
+/*
     var PoolMember = Backbone.Model.extend();
 
     var PoolMembers = Backbone.Collection.extend({
@@ -172,7 +172,7 @@ $(function() {
     */
 
 
-
+/*
 
     var HelpersPoolView = Backbone.View.extend({
         
@@ -186,7 +186,7 @@ $(function() {
 
             this.helpersPoolView = new HelpersPoolView();
             */
-        },
+  /*      },
 
         events : {
             'click #closeHelpers' : 'closeHelpersBox'
@@ -217,7 +217,7 @@ $(function() {
                 }, //data
 
                 */
-                success: function(eventList) {
+  /*              success: function(eventList) {
                     events = [];
                     events = _.map(eventList.models, function(event) {
                         var title = event.attributes.username;
@@ -318,7 +318,7 @@ $(function() {
                                   to: end.getTime()
                                 },
                                 */
-                                success: function(eventList) {
+   /*                             success: function(eventList) {
                                     events = []
                                     events = _.map(eventList.models, function(event) {
                                         var newEv = {
@@ -374,7 +374,7 @@ $(function() {
                   })
             */
 
-
+/*
 
         },
         
@@ -493,8 +493,11 @@ $(function() {
     var userEditView = new UserEditView();
     
     userListView.render();
+    */
     
     var communityListView = new CommunityListView();
     communityListView.render();
+    //var loggedInuserView = new loggedUserView();
+    //loggedInuserView.render();
 
 });
