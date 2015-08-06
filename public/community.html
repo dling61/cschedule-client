@@ -64,8 +64,85 @@
 				margin: 5px;
 				font-size: 10px;
 			}
+.box {
+  width: 20%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
 
-		</style>
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid orange;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  /*transition: all 0.3s ease-out;*/
+}
+.button:hover {
+  background: orange;
+}
+
+/*.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}*/
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  display: none;
+  opacity: 1;
+}
+
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: orange;
+}
+.popup .content {
+  height: 500px;
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+	</style>
 	</head>
 
 	<body>
@@ -93,7 +170,7 @@
 								<ul id="users-drop-down" class="dropdown-menu">
 									<li><a href="#">Bill Grek</a></li>
 									<li><a href="#">Irene</a></li>
-									<li><a href="#">Mark</a></li>
+									<li><a href="#">Mark</a></li> 
 								</ul>
 							</li>
 						</ul>
@@ -141,20 +218,40 @@
 
 				
 				<button  class="create-btn" type="button" > + Create new Community</button>
-				<button  class="personDetails" type="button" > + DisplaynUSers</button>
+				
 			</div>
 			
 			<!-- community show view -->
-			<div class="community-show" style="display:none">
-				<div class="container">
-					<div class="jumbotron">
-						<h2>communityView</h2>
+				
+		</div> 
+		<div class="community-show" style="display:none">
+			<div class="panel panel-default">
+			<div class="panel-heading">
+				<div>
+					<span id="showName" class="panel-title" style="margin-left:0px"></span>
+					<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a>
+					<button >item1</button>
+					<button>item2</button>
+					<button>Events</button>
+					<button>Agenda</button>
+					<button style="margin-left: 700"> < Show All Members</button>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="community-chat-popup" class="overlay">
+				<div class="popup">
+					<h2>Here i am</h2>
+					<a class="close" href="#">×</a>
+					<div id="chat-content" class="content">
+						<a class="close" href="#">×</a>
 					</div>
 				</div>
 			</div>
-			
-				
 		</div>
+		
+			
 
 		<script type="text/template" id="community-list-template">
 			<% _.each(communities, function(community) { %>
@@ -178,9 +275,16 @@
 			<% _.each(loggedInUsers, function(user) { %>
 				<li><a href="#">"<%= htmlEncode(user.get('name')) %>" </a></li>
 				<% }); %>
-			
 
 		</script> 
+		<script type="text/template" id="chats-template">
+
+			<% _.each(chats, function(chat) { %>
+				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+				<% }); %>
+
+		</script> 
+
 
 
 		<script>
@@ -189,7 +293,9 @@
 			}
 
 			$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-				if(options.url!="persons.json"){
+				if(options.url=="persons.json" || options.url=="chats.json"){
+
+				} else {
 					options.url = 'http://apitest1.servicescheduler.net/' +
 						options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 				}
@@ -211,10 +317,15 @@
 	<script src="app/js/collections/users.js"></script>
 	<script src="app/js/models/user.js"></script>
 	<script src="app/js/router.js"></script>
-	<script src="app/js/views/UserEditView.js"></script>
+	<script src="app/js/views/UserAddView.js"></script>
 	<script src="app/js/views/UserListView.js"></script>
 	<script src="app/js/collections/loggedInUsers.js"></script>
 	<script src="app/js/models/loggedInUser.js"></script>
+	<script src="app/js/models/communityChat.js"></script>
+	<script src="app/js/collections/communityChats.js"></script>
+	<script src="app/js/models/participant.js"></script>
+	<script src="app/js/views/ParticipantView.js"></script>
+	<script src="app/js/collections/participants.js"></script>
 	
 </body>
 

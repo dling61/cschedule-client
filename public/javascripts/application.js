@@ -167,9 +167,7 @@ $(function() {
 
     /*
     $('#calendar').fullCalendar({
-
         eventSources: [
-
             // your event source
             {
                 events: [ // put the array in the `events` property
@@ -190,11 +188,8 @@ $(function() {
                 color: 'black',     // an option!
                 textColor: 'yellow' // an option!
             }
-
             // any other event sources...
-
         ]
-
     });
         
     */
@@ -211,7 +206,6 @@ $(function() {
             
             /*
             _.bindAll(this);
-
             this.helpersPoolView = new HelpersPoolView();
             */
         },
@@ -243,7 +237,6 @@ $(function() {
                 from: start.toDate().getTime(),
                 to: end.toDate().getTime()
                 }, //data
-
                 */
                 success: function(eventList) {
                     events = [];
@@ -489,19 +482,18 @@ $(function() {
                                                           
                 
 /*
-	$url = 'http://apitest1.servicescheduler.net/schedules/1070068/onduty/1070000';    
-	$method = 'PUT';
-
+    $url = 'http://apitest1.servicescheduler.net/schedules/1070068/onduty/1070000';    
+    $method = 'PUT';
         // Please change the data before executing it in the test1 environment
         // "add" ---- assign participants to the task
-	// "delete"   delete participants from the task
-	$data = json_encode(array(
-		'ownerid'=> '107',
-		'eventid' => '300011',
-        	'add' => array(235, 236),
-		'delete' => array(234)
-        )		
-	);
+    // "delete"   delete participants from the task
+    $data = json_encode(array(
+        'ownerid'=> '107',
+        'eventid' => '300011',
+            'add' => array(235, 236),
+        'delete' => array(234)
+        )       
+    );
 */
         select: function(startDate, endDate) {
             this.eventView.collection = this.collection;
@@ -600,7 +592,7 @@ $(function() {
 
     var communityEvents = new Events();
     /* Kalyani 
-	  var events = new Events();
+      var events = new Events();
     */
     new EventsView({
         el: $("#calendar"),
@@ -610,16 +602,13 @@ $(function() {
 
     var userListView = new UserListView();
     
-	var userAddView = new UserAddView();
-	var participantView = new ParticipantView();
-    userListView.render();
-	
-/* Kalyani branch
-    var userEditView = new UserEditView();
-    
+    var userAddView = new UserAddView();
+    var participantView = new ParticipantView();
     userListView.render();
     
     var communityListView = new CommunityListView();
     communityListView.render();
-*/
+    //var loggedInuserView = new loggedUserView();
+    //loggedInuserView.render();
+
 });
