@@ -116,7 +116,7 @@ var layersample = {
     }
 
    
-    function setConversationMetadata(conversationUrl, title, id) {
+    function setConversationMetadata(conversationUrl, title, CId) {
         return $.ajax({
             url: conversationUrl,
             method: "PATCH",
@@ -133,8 +133,8 @@ var layersample = {
                 },
                 {
                     operation: "set",
-                    property: "metadata.id",
-                    value: id                
+                    property: "metadata.CId",
+                    value: CId                
                 }
             ])
         });
@@ -154,6 +154,17 @@ var layersample = {
             method: "GET",
             headers: layersample.headers
         })
+    }
+
+    function checkConExist(conversations, CId) {
+        for(var i=0; i<conversations.length; i++) {
+            if(conversations[i].metadata.CId == CId) {
+                layersample.conversationIndex = i;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
