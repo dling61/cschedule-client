@@ -1,0 +1,26 @@
+[
+	{
+		"id":"person_1",
+		"name":"kalyani",
+		"employement": "UI engineer",
+		"company" : "Motorola",
+		
+		"employment_type": "contract"
+	},
+	{
+		"id":"person_2",
+		"name":"Bill",
+		"employement": "UI developer",
+		"company" : "samsung",
+		"phone":"408-222-1133",
+		"employment_type": "fulltime"
+	},
+	{
+		"id":"person_2",
+		"name":"Bill",
+		"employement": "UI developer",
+		"company" : "samsung",
+		"phone":"408-222-1133",
+		"employment_type": "fulltime"
+	}
+]
