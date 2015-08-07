@@ -1,0 +1,1 @@
+this folder is for some sample codes on messaging or other areas. Those are not the part of web site
