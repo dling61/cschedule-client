@@ -2,6 +2,7 @@ var ParticipantView = Backbone.View.extend({
     el: '#participantDialog',
 	events:{
 		'click #deleteParticipant':'deleteParticipant',
+		'click #updateUser':'updateUser',
 	},
 	
     render: function (email) {
@@ -16,6 +17,18 @@ var ParticipantView = Backbone.View.extend({
         });
 	    
     },
+	
+	updateUser:function(ev){
+		var userUpdate = new UserUpdate();
+		var username = $("#updateusername").html();
+		userUpdate.save({id:ev.target.value,username:username},{
+			success:function(){
+			var userListView = new UserListView();
+			userListView.render();
+			}
+		});
+	},
+	
 	deleteParticipant: function(ev){
 		var participant = new Participant({id:ev.target.value});
 		participant.destroy({

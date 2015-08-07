@@ -6,3 +6,6 @@ urlRoot: 'creator/invite',
 		mobile:''
 	}
 });	
+var UserUpdate = Backbone.Model.extend({
+	urlRoot:'creator',
+});
