@@ -14,8 +14,7 @@ var ParticipantView = Backbone.View.extend({
                 var template = _.template($('#display-user-template').html());              
                 $("#participantDialog").html(template({user:users.models[0].attributes}));				
             }
-        });
-	    
+        });	    
     },
 	
 	updateUser:function(ev){
@@ -39,8 +38,7 @@ var ParticipantView = Backbone.View.extend({
 	            userListView.render(); 
 				$('#participantDialog').dialog('close');
 			},
-			});
-		
+			});		
 	}
 });
 
