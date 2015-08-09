@@ -129,7 +129,7 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 <script type="text/template" id="display-user-template">
 	<h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
 	<p>Email: <%= user.email %></span></p>
-	<p id='updatemobile'>Mobile: <span contenteditable="true"><%= user.mobile %></span></p>
+	Mobile:<span id='updatemobile' contenteditable="true"><%= user.mobile %></span>
 	<hr />
 	<button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
 	<button id ="updateUser" value=<%= user.id %> >Update</button>
