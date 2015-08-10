@@ -38,7 +38,7 @@ var ParticipantView = Backbone.View.extend({
 	            userListView.render(); 
 				$('#participantDialog').dialog('close');
 			},
-			});		
+		});		
 	}
 });
 
