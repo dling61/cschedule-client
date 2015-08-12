@@ -125,6 +125,7 @@ function loadMessages(){
       getConversations()
         .then(function(conversations) {
           if(layersample.conversationUrl == null) {
+            layersample.conversationUrl = conversations[layersample.conversationIndex].url;
             return getOneConversation(conversations[layersample.conversationIndex].url);
           } else {
             return getOneConversation(layersample.conversationUrl);
