@@ -6,15 +6,21 @@
         "dblclick .community": 'deleteCommunity',
         "click .community": 'viewCommunity',
         "click .community-name": 'onEditCommunity',
+        //"blur .community-name": 
         "click .create-btn": 'showCreateCommunity',
         "click .btn-create": 'createNewCommunity',
         "click .btn-edit-cancel": "hideEditCommunity",
-        "click .cancel-create": "hideCreate"
+        "click .cancel-create": "hideCreate",
+         "click .page": "showPage",
       },
 
       initialize: function() {
         // _.bindAll(this);
         this.render();
+      },
+      showPage: function() {
+        $('.page').show();
+
       },
 
     
@@ -112,17 +118,17 @@
       onEditCommunity: function(ev) {
 
         ev.stopPropagation();
-        var communitynamesArray = this.collection.pluck("communityname");
-        var communityId = ev.target.parentElement.getAttribute('data-id');
-        communities = this.collection.where({
-          "id": communityId
-        });
+        // var communitynamesArray = this.collection.pluck("communityname");
+        // var communityId = ev.target.parentElement.getAttribute('data-id');
+        // communities = this.collection.where({
+        //   "id": communityId
+        // });
 
-        var communityEditView = new CommunityEditView({
-          model: communities[0]
-        });
+        // var communityEditView = new CommunityEditView({
+        //   model: communities[0]
+        // });
 
-        communityEditView.render(communitynamesArray);
+        // communityEditView.render(communitynamesArray);
       },
       hideEditCommunity: function() {
         $('.editCommunity').hide();

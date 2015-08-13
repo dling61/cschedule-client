@@ -2,25 +2,33 @@
 	{
 		"id":"person_1",
 		"name":"kalyani",
-		"employement": "UI engineer",
-		"company" : "Motorola",
+		"employement": "UI engineer"
 		
-		"employment_type": "contract"
 	},
 	{
 		"id":"person_2",
 		"name":"Bill",
-		"employement": "UI developer",
-		"company" : "samsung",
-		"phone":"408-222-1133",
-		"employment_type": "fulltime"
+		"employement": "UI developer"
+		
 	},
 	{
-		"id":"person_2",
-		"name":"Bill",
-		"employement": "UI developer",
-		"company" : "samsung",
-		"phone":"408-222-1133",
-		"employment_type": "fulltime"
+		"id":"person_3",
+		"name":"Chao",
+		"employement": "UI developer"
+		
+	},
+	
+	{
+		"id":"person_4",
+		"name":"Bruce",
+		"employement": "UI developer"
+		
+	},
+	{
+		"id":"person_5",
+		"name":"John",
+		"employement": "UI developer"
+		
 	}
+	
 ]
