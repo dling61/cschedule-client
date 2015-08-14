@@ -110,10 +110,7 @@ $(document).ready(function() {
     alert("You've added " + person_list.slice(1, person_list.length) + " to the chat");
   });
 
-  // if(layersample.conversationIndex || layersample.conversationUrl) {
-  //   loadMessages();
-  //   setInterval(loadMessages, 10000);
-  // }
+
   loadMessages();
   setInterval(loadMessages, 5000);
   
@@ -125,6 +122,7 @@ function loadMessages(){
       getConversations()
         .then(function(conversations) {
           if(layersample.conversationUrl == null) {
+            layersample.conversationUrl = conversations[layersample.conversationIndex].url;
             return getOneConversation(conversations[layersample.conversationIndex].url);
           } else {
             return getOneConversation(layersample.conversationUrl);
@@ -139,9 +137,39 @@ function loadMessages(){
             return getMessages(conversation.url);
         })
         .then(function(messages) {
+          if(layersample.msgNum == null) {
+            for(var i=0; i<messages.length; i++) {
+              if(!messages[i].is_unread) {
+                layersample.msgNum = messages.length - i;
+                return;
+              }
+            }            
+          }
+          
+          if(messages.length > layersample.msgNum) {
+            var diff = messages.length - layersample.msgNum;
+            for(var i=0; i<diff; i++) {
+              markAsRead(messages[i].url);
+            }
+            layersample.msgNum = messages.length;
+          }
+
           $("#con_history").empty();
           for(var i=0; i<messages.length; i++) {
-            $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + "</p>");
+            var unread_count = 0;
+            var unread_total = Object.keys(messages[i].recipient_status).length - 1;
+            for(var key in messages[i].recipient_status) {
+              if(messages[i].recipient_status[key] == "read") {
+                unread_count++;
+              }
+            }
+            unread_count = unread_count - 1;
+            if(layersample.config.userId == messages[i].sender.user_id) {
+              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + " (" + unread_count + "/" + unread_total + ")" +"</p>");
+            }
+            else {
+              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + "</p>");
+            }            
           }
         });
     }

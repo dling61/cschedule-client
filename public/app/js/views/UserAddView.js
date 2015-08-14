@@ -4,6 +4,7 @@ var UserAddView = Backbone.View.extend({
 		'click #searchForMember': 'searchForMember',
 		'click #deleteParticipant':'deleteParticipant',
 		'click #addMember':'addMember',
+		'click #cancelAddMember':'cancelAddMember',
     },
 	
 	searchForMember: function(){
@@ -79,7 +80,10 @@ var UserAddView = Backbone.View.extend({
 			});	
 		}
 	},	
-	
+	cancelAddMember:function(){
+		var userListView = new UserListView();
+	    userListView.render(); 
+	},
 	deleteParticipant: function(ev){
 		var participant = new Participant({id:ev.target.value});
 		participant.destroy({

@@ -14,17 +14,18 @@ var ParticipantView = Backbone.View.extend({
                 var template = _.template($('#display-user-template').html());              
                 $("#participantDialog").html(template({user:users.models[0].attributes}));				
             }
-        });
-	    
+        });	    
     },
 	
 	updateUser:function(ev){
 		var userUpdate = new UserUpdate();
 		var username = $("#updateusername").html();
-		userUpdate.save({id:ev.target.value,username:username},{
+		var mobile = $("#updatemobile").html();
+		userUpdate.save({id:ev.target.value,username:username,mobile:mobile},{
 			success:function(){
 			var userListView = new UserListView();
 			userListView.render();
+			$('#participantDialog').dialog('close');
 			}
 		});
 	},
@@ -37,8 +38,7 @@ var ParticipantView = Backbone.View.extend({
 	            userListView.render(); 
 				$('#participantDialog').dialog('close');
 			},
-			});
-		
+		});		
 	}
 });
 
