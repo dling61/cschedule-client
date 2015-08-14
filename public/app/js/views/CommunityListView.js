@@ -129,7 +129,9 @@
         // });
 
         // communityEditView.render(communitynamesArray);
+        debugger;
       },
+      
       hideEditCommunity: function() {
         $('.editCommunity').hide();
 

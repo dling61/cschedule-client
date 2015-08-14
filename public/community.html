@@ -1,4 +1,4 @@
-	<html>
+<html>
 	<head>
 		<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css'/>	
 		<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css'/>
@@ -113,23 +113,19 @@
 		<!-- community show view -->
 		<div class="community-show" style="display:none">
 			<div class="panel panel-default">
-			<div class="panel-heading">
-				<div>
-					<span id="showName" class="panel-title" style="margin-left:0px"></span>
-					<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a>
-					<button  id="message-btn">Message</button>
-					<button >item1</button>
-					<button>item2</button>
-					<button>Events</button>
-					<button>Agenda</button>
-					<button style="margin-left: 700"> < Show All Members</button>
+				<div class="panel-heading">
+					<div>
+						<span id="showName" class="panel-title" style="margin-left:0px"></span>
+						<!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
+						<button  id="message-btn">Message</button>
+						<button >item1</button>
+						<button>item2</button>
+						<button>Events</button>
+						<button>Agenda</button>
+						<button style="margin-left: 700"> < Show All Members</button>
 					</div>
 				</div>
-
 			</div>
-
-	
-	    
 
 			<div id="community-chat-popup" class="overlay">
 				<div class="popup">
@@ -138,8 +134,6 @@
 					</div>
 				</div>
 			</div>
-
-			
 	
 			<div id="chatbox">
 				<div class="cchat">
@@ -150,12 +144,9 @@
 					<div class="chat-text"><textarea style="border-color: blue"></textarea></div>
 				</div>
 				<div id="sendchat"><button>Send</button></div>
-			
 			</div>
 
-            <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                demo messages
-            </button> -->
+
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -164,16 +155,12 @@
 			        <h4 class="modal-title" id="modalLabel">Community Name	</h4>
 			      </div>
 			      <div class="modal-body">
-			      	<div id="chat-messages">
-			      		<ul style="display: -webkit-box">
-			      			<li> kalyani: </li>
-			      			<li> hello </li>
-			      		</ul>
-			      	</div>
+			      	<ul id="chat-messages">
+			      	</ul>
 			      	<div id="recipant-status"></div>
 			        <form>
 			          <div class="form-group">
-			            <label for="message-text" class="control-label">Message:</label>
+			            <!-- <label for="message-text" class="control-label">Message:</label> -->
 			            <textarea class="form-control" id="message-text"></textarea>
 			          </div>
 			        </form>
@@ -185,14 +172,14 @@
 			    </div>
 			  </div>
 			</div>
-   </div>
+   		</div> <!--- end of CommunityView -->
 		
 			
 
 		<script type="text/template" id="community-list-template">
 			<% _.each(communities, function(community) { %>
 				<div class="community" data-id="<%=community.get('id')%>"> 
-					<div class="community-name" contenteditable="true">"<%= htmlEncode(community.get('communityname')) %>" </div>
+					<div id="community-name" contenteditable="true">"<%= htmlEncode(community.get('communityname')) %>" </div>
 				</div>
 			<% }); %>  
 		</script> 
@@ -218,17 +205,10 @@
 		</script> 
      	<script type="text/template" id="message-template">
 			<% _.each(msgs, function(message) { %>
-				<li> Participants = "<%= htmlEncode(message['participants'].join(",")) %>" </li>
+				<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
 			<% }); %>
 		</script>
-
-       <script type="text/template" id="recipent-status-template">
-			<% _.each(stats, function(value, key, list) { %>
-				<li> Recipant-status "<%= htmlEncode(key)%>":"<%= htmlEncode(value) %>" </li>
-			<% }); %>
-
-		</script>
-
+		
 		<script>
 			function htmlEncode(value){
 				return $('<div/>').text(value).html();
@@ -252,7 +232,7 @@
 	   <!--Message Authenticatiion !-->
 	   <script type="text/javascript">
 		   $(document).ready(function(){
-			
+			layersample.config.userId = "kalyani";
 				getNonce()
 
 			      // Use the nonce to get an identity token
@@ -269,6 +249,7 @@
 			      .then(function(sessionToken) {
 			          layersample.headers.Authorization =
 			              'Layer session-token="' + sessionToken + '"';
+
 
 			          // Now we can do stuff, like get a list of conversations
 			          //return getConversations();

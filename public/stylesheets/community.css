@@ -144,6 +144,9 @@
  		display: inline;
  	}
 
+#chat-messages li {
+	list-style: none;
+}
 
 
 

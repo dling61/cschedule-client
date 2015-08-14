@@ -14,8 +14,7 @@
 
 		updateCommunity: function(ev) {
 			
-			
-			var name = $('.editCommunity input')[0].value;
+				var name = $('.editCommunity input')[0].value;
 
 				 if( _.contains(this.communitynames,name)) {
 	              		alert("Enter valid community name,Community name already Exists");
@@ -26,8 +25,10 @@
 		        }
 			
 			$('.editCommunity').hide();
-		},
 
+		},
+			
+			
 		cancelEditCommunity: function() {
 			$('.editCommunity').hide();
 		},
