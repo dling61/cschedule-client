@@ -10,14 +10,16 @@ var UserListView = Backbone.View.extend({
 		var participant =$(ev.target).closest('li');
 		var id = $(participant[0]).data('id');
 		var name = $(participant[0]).data('name');
-		$('#messageDialog').attr("title", "Chat with " + name);	
+		//$('#messageDialog').attr("title", "Chat with " + name);	
 		
 
 			
 		var dialogView = new DialogView();
+        
 		dialogView.render(id,name);
-		$('#messageDialog').dialog();
-		
+		$('#messageDialog').dialog({
+          title: "Chat with " + name
+        });
 		
 		
 		getNonce()
