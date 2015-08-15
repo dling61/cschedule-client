@@ -43,7 +43,7 @@ ul {
     -webkit-padding-start: 5px;
 }
 li{
-	font-size:25px;
+	font-size:14px;
 	font-weight:bold;
 }
 
@@ -51,7 +51,7 @@ li{
 body {
     background: rgba(248, 248, 248, 1);
 
-    margin-top: 40px;
+    margin-top: 0px;
 	text-align: center;
 	font-size: 14px;
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
