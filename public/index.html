@@ -54,24 +54,31 @@
           </div>
     </div>
     </div>
+
+
     <div class="MemberList"></div>
+
+
+    <div id="ParticipantDiv">
+        
+        <div class="sidebar-hide-btn dark-hover "> 
+            <span id="WFBcloseBtn" class="icon-sm icon-rightarrow"></span>
+        </div>
+
+        <div id="participantDialog" title="Participant Information"></div>
+    </div>
+
+
     <div class="page"></div>
+
+
     <div id="participantDialog" title="Participant Information"></div>
+
+
     <div id="messageDialog" ></div>
 </body>
 
-<script>
-$(document).ready(function() {
 
-    // page is now ready, initialize the calendar...
-/*
-    $('#calendar').fullCalendar({
-        // put your options and callbacks here
-        
-    })
-*/
-});       
-</script>
 
 <script>
 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
@@ -82,6 +89,9 @@ $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
 
 
 <script type="text/template" id="user-list-template"> 
+
+
+
 <div id= "search">
 	<p>Please input an email to search for a participant</p>
 	<input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>
@@ -164,7 +174,50 @@ Name:<%= name %>
 <script src="app/js/collections/participants.js"></script>
 <script src="app/js/models/loggedInUser.js"></script> 
 <script src="app/js/collections/loggedInUsers.js"></script>
-<script src="app/js/models/persons.json"></script>
+<!--script src="app/js/models/persons.json"></script-->
 <script src="javascripts/layer.js"></script>
 <script src="app/js/views/DialogView.js"></script>
+
+
+<script>
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+/*
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        
+    })
+*/
+    
+    
+  var slider_widthB = $('.board-widgets').width() - 40;//get width automatically
+        
+    
+  $('.sidebar-hide-btn').click(function() {
+    
+        if(!$(this).is(':animated'))//prevent double click to double margin
+        {
+            $('.board-widgets').animate({"margin-right": '-='+slider_widthB},'slow','easeInQuart');
+            $('#WFBcloseBtn').removeClass('icon-rightarrow');
+            $('#WFBcloseBtn').addClass('icon-leftarrow');
+        }
+  });
+    
+    
+    
+  $('.sidebar-show-btn').click(function() {
+
+    if(!$(this).is(':animated'))//prevent double click to double margin
+        {
+        $('.board-widgets').animate({"margin-right": '+='+slider_widthB},'slow','easeOutBounce');
+        $('#WFBcloseBtn').removeClass('icon-leftarrow');
+        $('#WFBcloseBtn').addClass('icon-rightarrow');
+    }
+  });
+    
+    
+
+});       
+</script>
 </html>

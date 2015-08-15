@@ -108,7 +108,8 @@ $(function() {
                 textColor: 'black' // an option!
             };
 
-            var evsC = evsC[30001];
+            var eventID = 30001;
+            var evsC = evsC[eventID];
             var assignNames = "";
 
             for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
@@ -139,7 +140,7 @@ $(function() {
 
 
                     $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
-                    $('#event1_title').append('<button class="addtaskbtn">+ new</button>');
+                    $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ new</button>');
 
                     for (taskid = 0; taskid < tasks.length; taskid++) {
 
@@ -293,14 +294,14 @@ $(function() {
                                           
         tellDrop : function(){alert("DROPPED!")},
         
-            highlightDropZone: function(e) {
-        e.preventDefault();
-        //$(e.currentTarget).addClass('item-drop-zone-highlight')
-    },
+        highlightDropZone: function(e) {
+            e.preventDefault();
+            //$(e.currentTarget).addClass('item-drop-zone-highlight')
+        },
 
-    unhighlightDropZone: function(e) {
-        //$(e.currentTarget).removeClass('item-drop-zone-highlight')
-    },
+        unhighlightDropZone: function(e) {
+            //$(e.currentTarget).removeClass('item-drop-zone-highlight')
+        },
         
         render: function() {
             $(this.el).fullCalendar({
@@ -362,63 +363,63 @@ $(function() {
 
 
                 eventSources: [ {// your event source
-                        events: function(start, end, timezone, callback) {
-                            var newEvents = new Events();
-                            newEvents.fetch({ //EventList().fetch({
-                                /*
-                                data: {
-                                  from: start.getTime(),
-                                  to: end.getTime()
-                                },
-                                */
-                                success: function(eventList) {
-                                    events = []
-                                    events = _.map(eventList.models, function(event) {
-                                        var newEv = {
-                                            title: event.get("title"),
-                                            start: new Date(event.get("start")),
-                                            //end: new Date(event.get("end")),
-                                            //url: event.get("url")
-                                        };
-                                        newEv.title = event.attributes.events[0].title;
-                                        newEv.start = event.attributes.events[0].start;
-                                        return newEv;
-                                    });
+                    events: function(start, end, timezone, callback) {
+                        var newEvents = new Events();
+                        newEvents.fetch({ //EventList().fetch({
+                            /*
+                            data: {
+                              from: start.getTime(),
+                              to: end.getTime()
+                            },
+                            */
+                            success: function(eventList) {
+                                events = []
+                                events = _.map(eventList.models, function(event) {
+                                    var newEv = {
+                                        title: event.get("title"),
+                                        start: new Date(event.get("start")),
+                                        //end: new Date(event.get("end")),
+                                        //url: event.get("url")
+                                    };
+                                    newEv.title = event.attributes.events[0].title;
+                                    newEv.start = event.attributes.events[0].start;
+                                    return newEv;
+                                });
 
-                                    events[0].start = "2015-07-03 20:30:00";
-                                    callback(events);
-                                    
-                                    $(".taskAssignees").droppable({
-                                          drop: function( event, ui ) {
-                                              // this is the elem receiving the dropped ui.draggable elem
-                                            var newHelperID = ui.draggable.data('id');
-                                            var taskID =$(this).data('taskid');
-                                            
-                                            //alert( "Dropped helper " + newHelperID );
-                                              //var taskHelpers = new TaskHelpers();
-                                              //taskHelpers.fetch({ //EventList().fetch({
-                                                  //success: function(eventList) {
-                                            
-                                                    var taskHelper = new TaskHelper(
-                                                                      { 'ownerid': '3',
-                                                                        'eventid': '30001', //taskID
-                                                                         'id': '125' //newHelperID
-                                                                        //'add': [newHelperID]
-                                                                      });
-                                                    taskHelper.save();
-                                                  //}
-                                            //});
-                                        }
-                                    });
+                                events[0].start = "2015-07-03 20:30:00";
+                                callback(events);
+
+                                $(".taskAssignees").droppable({
+                                      drop: function( event, ui ) {
+                                          // this is the elem receiving the dropped ui.draggable elem
+                                        var newHelperID = ui.draggable.data('id');
+                                        var taskID =$(this).data('taskid');
+
+                                        //alert( "Dropped helper " + newHelperID );
+                                          //var taskHelpers = new TaskHelpers();
+                                          //taskHelpers.fetch({ //EventList().fetch({
+                                              //success: function(eventList) {
+
+                                                var taskHelper = new TaskHelper(
+                                                                  { 'ownerid': '3',
+                                                                    'eventid': '30001', //taskID
+                                                                     'id': '125' //newHelperID
+                                                                    //'add': [newHelperID]
+                                                                  });
+                                                taskHelper.save();
+                                              //}
+                                        //});
+                                    }
+                                });
 
 
-                                    //$('.poolIcon').click( function(){alert(event)} );
-                                }
-                            })
-                        },
-                        color:     'white',
-                        textColor: 'black'
-                    }]  //eventSources
+                                //$('.poolIcon').click( function(){alert(event)} );
+                            }
+                        })
+                    },
+                    color:     'white',
+                    textColor: 'black'
+                }]  //eventSources
             });
             
 
