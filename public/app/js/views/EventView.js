@@ -141,9 +141,15 @@ var Events = Backbone.Collection.extend({
                 $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
                 $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ new</button>');
 
-                for (taskid = 0; taskid < tasks.length; taskid++) {
 
-                    $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname + '</div>');
+                for (taskid = 0; taskid < tasks.length; taskid++) {
+                    
+                    if (taskid === 0)
+                    $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname 
+                                              + '</div>');
+                    else
+                    $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname 
+                                              + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
                 }
             }
 

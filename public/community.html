@@ -115,9 +115,9 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div>
-						<span id="showName" class="panel-title" style="margin-left:0px"></span>
+						<span id="showName" class="panel-title" style="font-weight:bold; margin-left:0px; padding-right:30px;"></span>
 						<!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
-						<button  id="message-btn">Message</button>
+						<button  id="message-btn">Messages</button>
 						<button >item1</button>
 						<button>item2</button>
 						<button>Events</button>
@@ -127,7 +127,7 @@
 				</div>
                     
                 <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
-                    <div id="event1_title" style="float:left; margin-top: 12px;">
+                    <div id="event1_title" style="float:left; margin-top: 0px;">
                     </div>
                     <div id='calendar' style="display:inline-block"></div>
                     
@@ -223,7 +223,7 @@
 		<script type="text/template" id="community-list-template">
 			<% _.each(communities, function(community) { %>
 				<div class="community" data-id="<%=community.get('id')%>"> 
-					<div id="community-name" contenteditable="true">"<%= htmlEncode(community.get('communityname')) %>" </div>
+					<div id="community-name" contenteditable="true"><%= htmlEncode(community.get('communityname')) %> </div>
 				</div>
 			<% }); %>  
 		</script> 
