@@ -91,6 +91,20 @@
         }
       });
       $('#showName').html(this.model.get('communityname'));
+        
+
+      new EventsView({
+            el: $("#calendar"),
+            collection: communityEvents
+      }).render();
+        
+        userListView = new UserListView();
+
+        userAddView = new UserAddView();
+        participantView = new ParticipantView();
+        userListView.render();
+
+
     }
 
   });

@@ -24,7 +24,7 @@
 
 		<script type='text/javascript' src='javascripts/underscore.js'></script>
 		<script type='text/javascript' src='javascripts/backbone.js'></script>
-		<script type='text/javascript' src='javascripts/application.js'></script>
+		<!--script type='text/javascript' src='javascripts/applicationBase.js'></script-->
 		<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
 		<script type='text/javascript' src='javascripts/layer.js'></script>
 		
@@ -125,7 +125,42 @@
 						<button style="margin-left: 700"> < Show All Members</button>
 					</div>
 				</div>
+                    
+                <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
+                    <div id="event1_title" style="float:left; margin-top: 12px;">
+                    </div>
+                    <div id='calendar' style="display:inline-block"></div>
+                    
+
+
+
+                    <div id="ParticipantDiv">
+
+                        <div class="sidebar-hide-btn dark-hover "> 
+                            <span id="WFBcloseBtn" class="icon-sm icon-rightarrow"></span>
+                        </div>
+
+                        <div class="MemberList"></div>
+                    </div>
+
+
+                    <div class="page"></div>
+
+
+                    <div id="participantDialog" title="Participant Information"></div>
+
+
+                    <div id="messageDialog" ></div>
+                </div>
+                    
+
+              
+                    
 			</div>
+                
+                
+                
+                
 
 			<div id="community-chat-popup" class="overlay">
 				<div class="popup">
@@ -208,6 +243,74 @@
 				<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
 			<% }); %>
 		</script>
+            
+            
+            
+            
+        <script type="text/template" id="user-list-template"> 
+
+
+
+        <div id= "search">
+            <p>Please input an email to search for a participant</p>
+            <input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>
+            <p id="emaildiv" style="color:red; display:none" >Email Format is not correct!</p>
+            <button id ='searchForMember' >Search</button>
+        </div> 
+
+        <div id="edit-user-form" style="display:none">
+            <p>The email you searched is not yet registered with CSchedule.</p>
+            <p>Please enter their contact info to invote them to register:</p>
+            <label>Name</label>		
+            <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value=    "">
+            <br />
+            <p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
+            <label>Email</label>
+            <input id = "inputEmail" value ="" title= "Necessary! Please input your email" name="email" type=    "text" value="">
+            <br />
+            <p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
+            <label>Mobile</label>
+            <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type=        "text" value="">
+            <hr />		
+            <button id ='addMember' >Add</button>
+            <button id ='cancelAddMember' >Cancel</button>
+        </div>
+        <hr/>
+
+        <div id="display-user-form">
+            <% _.each(participants, function(participant) { %>
+            <ul >
+            <li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> data-name=<%= htmlEncode(participant.get('name')) %>	 class=        "participant"> 	
+            <img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>					
+            </li>
+            </ul>
+            <% }); %>  
+        </div>    
+        </script>
+
+        <script type="text/template" id="display-user-template">
+            <img src = '<%= user.profile %>'>
+            <h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
+            <p>Email: <%= user.email %></span></p>
+            Mobile:<span id='updatemobile' contenteditable="true"><%= user.mobile %></span>
+            <hr />
+            <button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
+            <button id ="updateUser" value=<%= user.id %> >Update</button>
+        </script>
+
+        <script type="text/template" id="messageBox-template">
+        ID:<%= id%>
+        <br>
+        Name:<%= name %>
+        <br>
+        <input type = text ></input>
+
+        <div id="con_history"></div>
+
+
+        </script>
+
+
 		
 		<script>
 			function htmlEncode(value){
@@ -229,10 +332,38 @@
 				}
 			});
 		</script>
-	   <!--Message Authenticatiion !-->
+            
+	   <!--Message Authentication !-->
+            
+            
+            
 	   <script type="text/javascript">
+           var communityEvents;
+           var communityListView;
+           var userListView;
+           var userAddView;
+           var participantView;
+           
 		   $(document).ready(function(){
-			layersample.config.userId = "kalyani";
+               
+                communityEvents = new Events();
+
+               if (false) {
+                userListView = new UserListView();
+
+                userAddView = new UserAddView();
+                participantView = new ParticipantView();
+                userListView.render();
+               }
+
+                communityListView = new CommunityListView();
+                communityListView.render();
+                //var loggedInuserView = new loggedUserView();
+                //loggedInuserView.render();
+
+
+               
+			     layersample.config.userId = "kalyani";
 				getNonce()
 
 			      // Use the nonce to get an identity token
@@ -274,6 +405,8 @@
 	<script src="app/js/collections/communityChats.js"></script>
 	<script src="app/js/models/participant.js"></script>
 	<script src="app/js/views/ParticipantView.js"></script>
+	<script src="app/js/views/EventView.js"></script>
+	<script src="app/js/views/DialogView.js"></script>
 	<script src="app/js/collections/participants.js"></script>
 </body>
 
