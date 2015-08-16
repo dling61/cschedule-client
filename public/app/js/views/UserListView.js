@@ -78,6 +78,7 @@ var UserListView = Backbone.View.extend({
             success: function (gParticipants) {
                 var template = _.template($('#user-list-template').html());              
                 $(".MemberList").html(template({participants: gParticipants.models}));
+				$('.participant').draggable();
             }
         })
     }

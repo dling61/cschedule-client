@@ -33,6 +33,7 @@ var UserAddView = Backbone.View.extend({
 										  success: function(){
 											  var userListView = new UserListView();
 											  userListView.render();
+											  $('.participant').draggable();
 										  }
 									 }
 				  );				         
@@ -71,6 +72,7 @@ var UserAddView = Backbone.View.extend({
 												 success: function(){
 													 var userListView = new UserListView();
 													 userListView.render();
+													 $('.participant').draggable();
 												 }
 											 }
 							);		

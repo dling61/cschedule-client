@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="backbone.js"></script>
+</head>
+<body>
+<h1>Login and Register</h1>
+
+<div id="loginAndRegisterPanel">
+</div>
+
+
+<script type="text/template" id="user-login-template"> 
+<div id="userLogin">
+<label>Email</label>
+        <input id = "loginEmail" name="email" type="text" value=""><br> 
+<label>Password</label>
+        <input id = "loginPassword" name="password" type="password"  value=""><br> 
+<button id ='submitForLogin' >Log in</button>
+<button id ='showRegisterForm' >Register</button>
+<button id ='showResetPasswordForm' >Forgot password</button>
+</div>
+
+<div id="resetPassword" style="display:none">
+<p>Please input your email to reset password</p>
+<label>Email</label>
+        <input id = "resetEmail" name="email" type="text" value=""><br> 
+<button id ='sumbitForResetPassword' >Sumbit</button>
+</div>
+
+<div id="userRegister" style="display:none">
+<label>Email</label>
+        <input id = "registerEmail" name="email"  type="text" value=""><br> 
+<label>Username</label>
+        <input id = "registerUserName" name="username"  type="text" value=""><br>
+<label>Password</label>
+        <input id = "registerPassword" name="password" type="password" value=""><br> 
+<label>Mobile(Optional)</label>
+        <input id = "registerMobile" name="mobile" type="number" value=""><br> 		
+<button id ='submitForRegister' >Register</button>
+<button id ='showLoginForm' >Back to Login</button>
+</div>
+</script>
+
+
+<script>
+$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+    options.url = 'http://apitest1.servicescheduler.net/' +
+        options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+});
+</script>
+
+
+<script src="application.js"></script>
+
+
+
+
+</body>
+</html>

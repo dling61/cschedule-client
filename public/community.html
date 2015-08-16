@@ -277,15 +277,15 @@
             <p>The email you searched is not yet registered with CSchedule.</p>
             <p>Please enter their contact info to invote them to register:</p>
             <label>Name</label>		
-            <input id = "inputName" title= "Necessary! Please input your name" name="name" type="text" value=    "">
+            <input id = "inputName" placeholder="Required" name="name" type="text" value="">
             <br />
             <p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
             <label>Email</label>
-            <input id = "inputEmail" value ="" title= "Necessary! Please input your email" name="email" type=    "text" value="">
+            <input id = "inputEmail" value ="" placeholder="Required" name="email" type="text" value="">
             <br />
             <p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
             <label>Mobile</label>
-            <input id = "inputMobile" title= "Optional! Please input your phone number"name="mobile" type=        "text" value="">
+            <input id = "inputMobile" placeholder="Optional" name="mobile" type="text" value="">
             <hr />		
             <button id ='addMember' >Add</button>
             <button id ='cancelAddMember' >Cancel</button>
@@ -295,7 +295,7 @@
         <div id="display-user-form">
             <% _.each(participants, function(participant) { %>
             <ul >
-            <li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> data-name=<%= htmlEncode(participant.get('name')) %>	 class=        "participant"> 	
+            <li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> data-name=<%= htmlEncode(participant.get('name')) %>	 class="participant"> 	
             <img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>					
             </li>
             </ul>
