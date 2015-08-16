@@ -73,11 +73,11 @@ var UserListView = Backbone.View.extend({
 	
     render: function () {
         var that = this;
-        var participants = new Participants();
-        participants.fetch({
-            success: function (participants) {
+        gParticipants = new Participants();
+        gParticipants.fetch({
+            success: function (gParticipants) {
                 var template = _.template($('#user-list-template').html());              
-                $(".MemberList").html(template({participants: participants.models}));
+                $(".MemberList").html(template({participants: gParticipants.models}));
             }
         })
     }
