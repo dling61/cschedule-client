@@ -247,6 +247,12 @@
 				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
 			<% }); %>
 		</script> 
+
+		<script type="text/template" id="reQres-template">
+			<% _.each(chats, function(chat) { %>
+				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+			<% }); %>
+		</script> 
      	<script type="text/template" id="message-template">
 			<% _.each(msgs, function(message) { %>
 				<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
@@ -352,6 +358,7 @@
            var userListView;
            var userAddView;
            var participantView;
+           var gEventsView;
            
 		   $(document).ready(function(){
                
@@ -416,7 +423,9 @@
 	<script src="app/js/views/ParticipantView.js"></script>
 	<script src="app/js/views/EventView.js"></script>
 	<script src="app/js/views/DialogView.js"></script>
+	<script src="app/js/views/ReQResView.js"></script>
 	<script src="app/js/collections/participants.js"></script>
+        
 </body>
 
 

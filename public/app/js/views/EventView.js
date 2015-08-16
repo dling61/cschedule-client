@@ -1,5 +1,7 @@
 
 
+
+
 var TaskHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
     url: 'task/30001/assignment'
@@ -145,10 +147,10 @@ var Events = Backbone.Collection.extend({
                 for (taskid = 0; taskid < tasks.length; taskid++) {
                     
                     if (taskid === 0)
-                    $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname 
+                    $('#event1_title').append('<div class="taskname" contenteditable="false">' + tasks[taskid].taskname 
                                               + '</div>');
                     else
-                    $('#event1_title').append('<div class="taskname" contenteditable="true">' + '<div>' + tasks[taskid].taskname 
+                    $('#event1_title').append('<div class="taskname" contenteditable="false">'  + tasks[taskid].taskname 
                                               + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
                 }
             }
@@ -295,8 +297,26 @@ var EventsView = Backbone.View.extend({
         'dragenter .droparea' : 'tellDrop',
             'dragenter .droparea' : 'highlightDropZone',
             'dragleave .droparea' : 'unhighlightDropZone',
+        'click .numcircle' : 'viewMessaging'
     },
+    
+    viewMessaging : function() {
+        
+      this.chats = new CommunityChats();
+      this.chats.fetch({
+        success: function(chatlist) {
+          var template4 = _.template($("#chats-template").html());
+          $('#chat-content').html(template4({
+            chats: chatlist.models
+          }));
 
+          $('#chat-content').html('.close-popup');
+          $('#community-chat-popup').show();
+        }
+      });
+    },
+    
+    
     tellDrop : function(){alert("DROPPED!")},
 
     highlightDropZone: function(e) {
@@ -394,6 +414,11 @@ var EventsView = Backbone.View.extend({
                             events[0].start = "2015-07-03 20:30:00";
                             callback(events);
 
+                            $('.numcircle').click( function(){
+                                //alert(event)
+                                gEventsView.viewMessaging();
+                            } );
+
                             $(".taskAssignees").droppable({
                                   drop: function( event, ui ) {
                                       // this is the elem receiving the dropped ui.draggable elem
@@ -433,6 +458,7 @@ var EventsView = Backbone.View.extend({
                 alert( "Dropped!" );
               }
         });
+        
 
         /*
         renderCalendar: ->

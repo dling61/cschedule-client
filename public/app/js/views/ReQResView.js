@@ -1,4 +1,4 @@
-  var CommunityView = Backbone.View.extend({
+  var ReQResView = Backbone.View.extend({
     el: '.community-show',
 
     currentConversation: null,
@@ -74,10 +74,6 @@
 
     render: function() {
       var that = this;
-        //name = this.model.get('communityname');
-
-      $('.community-show').show();
-      $('#cbody').hide();
         
       this.chats = new CommunityChats();
       this.chats.fetch({
@@ -90,22 +86,7 @@
           $('#chat-content').html('.close-popup');
         }
       });
-      $('#showName').html(this.model.get('communityname'));
         
-
-      gEventsView = new EventsView({
-            el: $("#calendar"),
-            collection: communityEvents
-      });
-        gEventsView.render();
-        
-        userListView = new UserListView();
-
-        userAddView = new UserAddView();
-        participantView = new ParticipantView();
-        userListView.render();
-
-
     }
 
   });
