@@ -164,12 +164,17 @@ function loadMessages(){
               }
             }
             unread_count = unread_count - 1;
+            
+            var msg_time = new Date(messages[i].sent_at);
+            var msg_timeString = msg_time.toTimeString().split(' ')[0];
+            var msg_dateString = msg_time.toDateString();
+
             if(layersample.config.userId == messages[i].sender.user_id) {
-              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + " (" + unread_count + "/" + unread_total + ")" +"</p>");
+              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + " (" + unread_count + "/" + unread_total + ")" + "</br>" + msg_timeString + " " + msg_dateString + "</p>");
             }
             else {
-              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + "</p>");
-            }            
+              $("#con_history").append("<p>" + messages[i].sender.user_id + ": " + messages[i].parts[0].body + "</br>" + msg_timeString + " " + msg_dateString +  "</p>");
+            }             
           }
         });
     }
