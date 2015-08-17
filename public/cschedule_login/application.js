@@ -81,8 +81,8 @@ var LoginAndRegisterView = Backbone.View.extend({
 		var mobile = $("#registerMobile").val();
 		var userRegister = new UserRegister();
 		userRegister.save({email:email,username:username,password:password,mobile:mobile},{
-			success:function(){
-				alert("Register success!");
+			success:function(response){
+				alert("Register success! You name is "+response.attributes.username+". You id is "+response.attributes.ownerid+". You email is "+response.attributes.email+" .");
 			},
 			error:function(){
 				alert("Register fail!");
