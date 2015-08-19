@@ -161,12 +161,9 @@
 
                     <div id="messageDialog" ></div>
                 </div>
-                    
-
-              
-                    
+                   
 			</div>
-                
+            <div id="show-tasks">Show Tasks</div>    
                 
                 
                 
@@ -259,7 +256,11 @@
 			<% }); %>
 		</script>
             
-            
+            <script type="text/template" id="events-template">
+			<% _.each(events, function(message) { %>
+				<li><%= message.%>: <%= htmlEncode(message.parts[0].body) %></li>
+			<% }); %>
+		</script>
             
             
         <script type="text/template" id="user-list-template"> 
@@ -364,10 +365,12 @@
 		   var gLatestCommunityId;
 		   var gLatestEventId;
 		   var gLatestTaskId;
+		   var gLoginUser;
+
            
 		   $(document).ready(function(){
-               
-                communityEvents = new Events();
+		   		gLoginUser = JSON.parse(localStorage.getItem("login_user"));
+               	communityEvents = new Events();
 
                if (false) {
                 userListView = new UserListView();
@@ -384,7 +387,7 @@
 
 
                
-			     layersample.config.userId = "kalyani";
+			     layersample.config.userId = gLoginUser.username;//"kalyani";
 				getNonce()
 
 			      // Use the nonce to get an identity token
@@ -430,7 +433,9 @@
 	<script src="app/js/views/DialogView.js"></script>
 	<script src="app/js/views/ReQResView.js"></script>
 	<script src="app/js/collections/participants.js"></script>
-        
+    <script src="app/js/models/task.js"></script> 
+    <script src="app/js/collections/tasks.js"></script>  
+    <script src="app/js/views/TaskView.js"></script>
 </body>
 
 
