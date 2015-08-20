@@ -22,8 +22,7 @@ var UserRegister = Backbone.Model.extend({
 	}
 });
 
-
-
+var user_details;
 var LoginAndRegisterView = Backbone.View.extend({
 	el:'#loginAndRegisterPanel',
 	events:{
@@ -41,6 +40,11 @@ var LoginAndRegisterView = Backbone.View.extend({
 		userLogin.save({email:email,password:password},{
 			success: function(response){
 				alert("Login success! "+response.attributes.username+". You id is "+response.attributes.ownerid+". You email is "+response.attributes.email+" .");
+				gLoginUser = response.attributes;
+				user_details = JSON.stringify(gLoginUser);
+				localStorage.setItem("login_user" , user_details);
+                window.location = '../community.html';
+				
 			},
 			error:function(){
 				alert("Login error!");

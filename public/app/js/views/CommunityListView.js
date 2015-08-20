@@ -82,7 +82,7 @@
           alert("Enter valid community name,Community name already Exists");
         } else {
           community = new Community({
-            ownerid: 2,
+            ownerid: gLoginUser.ownerid, // same as login user id
             communityname: $('#input').val(),
 
             desp: "test communityname",
@@ -168,7 +168,7 @@
         this.collection.fetch({
 
           data: $.param({
-            ownerid: 3
+            ownerid: gLoginUser.ownerid //user id 
           }),
           success: function(communityList) {
 
