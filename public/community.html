@@ -370,7 +370,12 @@
            
 		   $(document).ready(function(){
 		   		gLoginUser = JSON.parse(localStorage.getItem("login_user"));
-		   		debugger;
+		   		//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0","eventid":"0","participantgroupid":"0"}"
+		   		gLoginUserId = gLoginUser.ownerid;
+		   		gLatestCommunityId = gLoginUser.communityid;
+		   		gLatestEventId = gLoginUser.eventid;
+		   		gLatestTaskId = gLoginUser.taskid;
+
                	communityEvents = new Events();
 
                if (false) {
@@ -439,6 +444,7 @@
     <script src="app/js/views/TaskView.js"></script>
     <script src="app/js/views/EventView.js"></script>
     <script src="app/js/collections/Events.js"></script>
+    <script src="app/js/collections/assignes.js"></script>
 </body>
 
 

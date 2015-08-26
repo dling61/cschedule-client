@@ -55,37 +55,23 @@
 
 
       viewCommunity: function(ev) {
-        var communityId = ev.target.getAttribute('data-id');
-        var communities = this.collection.where({
-          "id": communityId
-        });
+        var communityView,
+          communityId = ev.target.getAttribute('data-id'),
+          communities = this.collection.where({
+            "id": communityId
+          });
 
-
-        //var name = communities[0].get('communityname');
-
-         var communityView = new CommunityView({
+        communityView = new CommunityView({
           model: communities[0]
         });
 
         communityView.render();
 
-        //Test code for Events parsing
-        var eventsC = new EventsC();
+        var eventView =  new EventsViewC();
 
-        eventsC.fetch({
-          success: function(events) {
-
-               var taskm = new Task(); 
-                taskm = events.models[0].attributes.task[0];
-                debugger;
-              
-          }
-
-        })
-
-
-        //Test code for Events parsing
+        eventView.render();
         
+
       },
 
       createNewCommunity: function() {
