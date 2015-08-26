@@ -68,9 +68,24 @@
         });
 
         communityView.render();
-        // $('.community-show').show();
-        // $('#cbody').hide();
-        // $('#showName').html(name);
+
+        //Test code for Events parsing
+        var eventsC = new EventsC();
+
+        eventsC.fetch({
+          success: function(events) {
+
+               var taskm = new Task(); 
+                taskm = events.models[0].attributes.task[0];
+                debugger;
+              
+          }
+
+        })
+
+
+        //Test code for Events parsing
+        
       },
 
       createNewCommunity: function() {

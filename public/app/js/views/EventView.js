@@ -167,7 +167,6 @@ var Events = Backbone.Collection.extend({
 
         //Object {events: Array[3], color: "black", textColor: "yellow"}
         //Object {title: "event1", start: "2015-05-02"}
-
         return eventsC; //[evAry[0]]  ;
     },
 });
@@ -295,8 +294,8 @@ var EventsView = Backbone.View.extend({
 
     events : {
         'dragenter .droparea' : 'tellDrop',
-            'dragenter .droparea' : 'highlightDropZone',
-            'dragleave .droparea' : 'unhighlightDropZone',
+        'dragenter .droparea' : 'highlightDropZone',
+        'dragleave .droparea' : 'unhighlightDropZone',
         'click .numcircle' : 'viewMessaging'
     },
     

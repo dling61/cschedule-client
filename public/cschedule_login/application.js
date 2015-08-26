@@ -39,6 +39,7 @@ var LoginAndRegisterView = Backbone.View.extend({
 		var userLogin = new UserLogin();
 		userLogin.save({email:email,password:password},{
 			success: function(response){
+				debugger;
 				alert("Login success! "+response.attributes.username+". You id is "+response.attributes.ownerid+". You email is "+response.attributes.email+" .");
 				gLoginUser = response.attributes;
 				user_details = JSON.stringify(gLoginUser);
