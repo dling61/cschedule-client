@@ -32,7 +32,7 @@ var EventsViewC = Backbone.View.extend({
               });//end of events
 
 
-              // render events view code:: or do whatever
+              // render events view code:: 
           }
         });
 

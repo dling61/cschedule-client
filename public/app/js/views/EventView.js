@@ -1,7 +1,3 @@
-
-
-
-
 var TaskHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
     url: 'task/30001/assignment'
@@ -167,6 +163,7 @@ var Events = Backbone.Collection.extend({
 
         //Object {events: Array[3], color: "black", textColor: "yellow"}
         //Object {title: "event1", start: "2015-05-02"}
+
         return eventsC; //[evAry[0]]  ;
     },
 });
@@ -198,7 +195,6 @@ $('#calendar').fullCalendar({
         // any other event sources...
     ]
 });
-
 */
 
 
@@ -237,7 +233,6 @@ var HelpersPoolView = Backbone.View.extend({
               from: start.getTime(),
               to: end.getTime()
             },
-
             One important adjustment, I had to convert the moment object to a 
             Javascript date object to get the getTime() function to work.
             data: {
@@ -294,8 +289,8 @@ var EventsView = Backbone.View.extend({
 
     events : {
         'dragenter .droparea' : 'tellDrop',
-        'dragenter .droparea' : 'highlightDropZone',
-        'dragleave .droparea' : 'unhighlightDropZone',
+            'dragenter .droparea' : 'highlightDropZone',
+            'dragleave .droparea' : 'unhighlightDropZone',
         'click .numcircle' : 'viewMessaging'
     },
     

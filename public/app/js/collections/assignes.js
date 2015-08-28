@@ -4,7 +4,7 @@ var AssignesC = Backbone.Collection.extend({
 
 	model: AssignesM,
 
-    url: 'community/30001/event',
+    //url: 'community/30001/event',
     
     parse: function(resp, xhr) {
         //debugger;

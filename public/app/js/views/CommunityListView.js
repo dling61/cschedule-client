@@ -67,11 +67,42 @@
 
         communityView.render();
 
-        var eventView =  new EventsViewC();
+        // var eventView =  new EventsView();
 
-        eventView.render();
+        // eventView.render();
         
 
+
+        //Test code for Events parsing
+        var eventsC = new EventsC();
+        eventsC.fetch({
+          success: function(events) {
+              var taskm, assignmentm, tasksC, assignmentC;
+              //parsing events to approximate collections(taks assignees)
+              
+              _.each(events.models, function(event){
+                  event.tasks = [];
+                  _.each(event.get("task"), function(taskAttributes){
+                      taskm = new Task(taskAttributes);
+                      taskm.set("event-id",event.get("eventid"));
+                      taskm.assignees = [];
+                      _.each(taskAttributes.assignment, function(assignmentAttr){
+                          assignmentm = new AssignesM(assignmentAttr);
+                          assignmentm.set("task-id", taskm.get("taskid"));
+                          taskm.assignees.push(assignmentm);
+                       }); //end of assignees
+                       event.tasks.push(taskm);
+                  });//end of taks
+              });//end of events
+
+            
+            //code to be used in view
+            
+          }
+        });
+
+        //Test code for Events parsing
+        
       },
 
       createNewCommunity: function() {
@@ -130,7 +161,7 @@
         // });
 
         // communityEditView.render(communitynamesArray);
-        debugger;
+        
       },
       
       hideEditCommunity: function() {
@@ -157,6 +188,8 @@
         this.users = new loggedInUsers();
         this.users.fetch({
           success: function(users) {
+            
+            $("#gUser-diplay").append("Cyndi"); //= gLoginUserName;
             var template3 = _.template($("#users-dropdown-template").html());
             $("#users-drop-down").html(template3({
               loggedInUsers: users.models
@@ -169,7 +202,7 @@
         this.collection.fetch({
 
           data: $.param({
-            ownerid: gLoginUser.ownerid //user id 
+            ownerid: gLoginUser.ownerid   //user id 
           }),
           success: function(communityList) {
 

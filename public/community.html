@@ -51,8 +51,14 @@
 							<li><a href="#">CSchedule</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								TonyDing <span class="caret"></span></a>
+						
+							<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<span id="gUser-display">TonyDing </span>
+								<span class="caret">
+									
+								</span>
+								</a>
 								<ul id="users-drop-down" class="dropdown-menu">
 									<li><a href="#">Bill Grek</a></li>
 									<li><a href="#">Irene</a></li>
@@ -366,6 +372,7 @@
 		   var gLatestEventId;
 		   var gLatestTaskId;
 		   var gLoginUser;
+		   var gLoginUserName;
 
            
 		   $(document).ready(function(){
@@ -375,8 +382,11 @@
 		   		gLatestCommunityId = gLoginUser.communityid;
 		   		gLatestEventId = gLoginUser.eventid;
 		   		gLatestTaskId = gLoginUser.taskid;
+		   		gLoginUserName = gLoginUser.username;
 
-               	communityEvents = new Events();
+		   		//replace user name in community page
+
+               	communityEvents = new EventsC();
 
                if (false) {
                 userListView = new UserListView();
@@ -444,7 +454,7 @@
     <script src="app/js/views/TaskView.js"></script>
     <script src="app/js/views/EventView.js"></script>
     <script src="app/js/collections/Events.js"></script>
-    <script src="app/js/collections/assignes.js"></script>
+    <script src="app/js/collections/Events.js"></script>
 </body>
 
 
