@@ -291,9 +291,13 @@ var EventsView = Backbone.View.extend({
         'dragenter .droparea' : 'tellDrop',
             'dragenter .droparea' : 'highlightDropZone',
             'dragleave .droparea' : 'unhighlightDropZone',
-        'click .numcircle' : 'viewMessaging'
+        'click .numcircle' : 'viewMessaging',
+        'click #eventName' : 'editEventName'
     },
-    
+    editEventName : function() {
+        alert('hi');
+    },
+
     viewMessaging : function() {
         
       this.chats = new CommunityChats();
@@ -559,6 +563,107 @@ $data = json_encode(array(
 
 
 var EventView = Backbone.View.extend({
+    el: $('#eventView'),
+    events : {
+        'click #eventName' : 'editEventName',
+        'click #eventLocation' : 'editEventLocation',
+        'click #eventHost' : 'editEventHost'
+    },
+    editEventName : function(ev) {
+        // var that = this;
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventName').dialog({
+            modal: true,
+            title: 'Edit Event Name',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+    editEventLocation : function(ev) {
+        // var that = this;
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventLocation').dialog({
+            modal: true,
+            title: 'Edit Event Location',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+
+    editEventHost : function(ev) {
+        // var that = this;
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventHost').dialog({
+            modal: true,
+            title: 'Edit Event Host',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+
+    initialize: function() {
+        //_.bindAll(this);
+        // this.model = 
+    },
+    render: function() {
+    },
+    open: function() {
+        $('#editEventNameFLD').val(this.event.get('eventname'));
+        $('#editEventLocationFLD').val(this.event.get('location'));
+        $('#editEventHostFLD').val(this.event.get('host'));
+        // this.$('#color').val(this.model.get('color'));
+    },
+    save: function() {
+        this.event.set({
+            'eventname': $('#editEventNameFLD').val(),
+            'location': $('#editEventLocationFLD').val(),
+            'host': $('#editEventHostFLD').val()
+            // 'color': this.$('#color').val()
+        });
+
+        this.model.save({}, {
+            patch: true,
+            success: this.close
+        });
+        // myModel.save(data, {patch:true}) 
+
+    },
+});
+
+var editEventView = Backbone.View.extend({
     el: $('#eventDialog'),
     initialize: function() {
         //_.bindAll(this);
