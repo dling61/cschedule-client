@@ -97,7 +97,12 @@
             el: $("#calendar"),
             collection: communityEvents
       });
+      gEventView = new EventView({
+            el: $("#eventView"),
+            // collection: communityEvents
+      });
         gEventsView.render();
+        gEventView.render();
         
         userListView = new UserListView();
 
