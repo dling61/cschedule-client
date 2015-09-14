@@ -166,9 +166,48 @@
 
 
                     <div id="messageDialog" ></div>
+                    
+                    
+                    <div class="modal fade" id="helperpool" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="taskHelperLabel">Task Name	</h4>
+                          </div>
+                          <div class="modal-body">
+                            <ul id="helper-list">
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    
+                    <div class="ReqChat">
+                        <img height=200 src="./images/ReqChat.png">
+                    </div>
+
+                    <div class="ReqRes" >
+                        <div>
+                            <div style="display: inline-block; width: 10%;
+    margin-right: 6px;"> 
+                                <img class="face" height=22 src="./images/Bill.png">
+                            </div>
+                            <div style="display: inline-block; width: 74%;">
+                                <div class="reqtype">You need a swap on
+                                </div>
+                                <div class="dateLarge">Saturday, Sept 12
+                                </div>
+                            </div>
+                        </div>
+                        <img height=200 src="./images/ReqRes.png">
+                    </div>
                 </div>
                    
 			</div>
+            
+            
             <div id="show-tasks">Show Tasks</div>    
                 
                 
@@ -219,6 +258,9 @@
 			    </div>
 			  </div>
 			</div>
+            
+            
+            
    		</div> <!--- end of CommunityView -->
 		
 			
@@ -332,6 +374,12 @@
 
         </script>
 
+        
+
+
+            
+            
+            
 
 		
 		<script>
@@ -366,6 +414,7 @@
            var participantView;
            var gEventsView;
 		   var gParticipants;
+           var gTaskHelpers;
 		 
 		   var gLoginUserId;
 		   var gLatestCommunityId;
@@ -400,11 +449,49 @@
                 communityListView.render();
                 //var loggedInuserView = new loggedUserView();
                 //loggedInuserView.render();
+               
+                //gTaskHelpers = new TaskHelpers();
+
+
+
+			     layersample.config.userId = gLoginUser.username;//"kalyani";
+
+               
+
+              var slider_widthB = $('#ParticipantDiv').width() - 40;//get width automatically
+
+
+              $('.sidebar-hide-btn').click(function() {
+
+                    if(!$(this).is(':animated'))//prevent double click to double margin
+                    {
+                        $('#ParticipantDiv').animate({"margin-right": '-='+slider_widthB},'slow','easeInQuart');
+                        $('#WFBcloseBtn').removeClass('icon-rightarrow');
+                        $('#WFBcloseBtn').addClass('icon-leftarrow');
+                    }
+              });
+
+
+
+              $('.sidebar-show-btn').click(function() {
+
+                if(!$(this).is(':animated'))//prevent double click to double margin
+                    {
+                    $('#ParticipantDiv').animate({"margin-right": '+='+slider_widthB},'slow','easeOutBounce');
+                    $('#WFBcloseBtn').removeClass('icon-leftarrow');
+                    $('#WFBcloseBtn').addClass('icon-rightarrow');
+                }
+              });
 
 
                
-			     layersample.config.userId = gLoginUser.username;//"kalyani";
-				getNonce()
+               
+               
+			     layersample.config.userId = "kalyani";
+               
+               /*
+
+				getNonce();
 
 			      // Use the nonce to get an identity token
 			      .then(function(nonce) {
@@ -425,7 +512,7 @@
 			          // Now we can do stuff, like get a list of conversations
 			          //return getConversations();
 			      })
-
+                  */
 			});
 		</script>
 
