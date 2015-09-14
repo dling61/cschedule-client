@@ -1,18 +1,17 @@
 var TaskHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
-    url: 'task/30001/assignment'
+    urlRoot: 'taskhelper'
 });
 
 var TaskHelpers = Backbone.Collection.extend({
 
     model: TaskHelper,
-    url: 'schedules/1070068/onduty/1070000',
+    //url: 'taskhelper',  // 'schedules/1070068/onduty/1070000',
 
     parse: function(resp, xhr) {
         return resp.apgroup[0].member;
     }
 });
-
 
 
 
@@ -52,7 +51,12 @@ var Events = Backbone.Collection.extend({
         function getAssignees(taskID, taskAssignees) {
             var names = "";
             var nameLen = 0;
+            
             taskAssignees.forEach(function(name) {
+                var curUser = gParticipants.where({
+                  "id": name.userid
+                }); 
+                
                 if (nameLen < 1 && name.username.length > 7) {
                     names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
                         + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
@@ -78,6 +82,8 @@ var Events = Backbone.Collection.extend({
 
         var evAry = [];
         var evsC = resp.event;
+        
+        this.add(evsC[30001][0]);
 
         var events = {
             events: [ // put the array in the `events` property
@@ -165,6 +171,7 @@ var Events = Backbone.Collection.extend({
         //Object {title: "event1", start: "2015-05-02"}
 
         return eventsC; //[evAry[0]]  ;
+        //return evsC; //[evAry[0]]  ;
     },
 });
 
@@ -224,6 +231,9 @@ var HelpersPoolView = Backbone.View.extend({
     },
 
     render: function() {
+        
+      $('#taskHelperLabel').html('Kitchen'); //WFB this.model.get('communityname'));
+      $('#helperpool').modal('show');
         // var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
 
         var pool = new PoolMembers();
@@ -424,12 +434,29 @@ var EventsView = Backbone.View.extend({
                                       //taskHelpers.fetch({ //EventList().fetch({
                                           //success: function(eventList) {
 
+                                      
+                                      
+                    var taskHelper = new TaskHelper(
+                                                                  {
+'taskhelperid' : 10001,                                                            'ownerid': '3',
+'taskid': taskID,
+'userid': '125', //newHelperID
+'status': 'A'
+                //'add': [newHelperID]
+        });              
+                                      
+                                      
+/*                                    
                                             var taskHelper = new TaskHelper(
                                                               { 'ownerid': '3',
                                                                 'eventid': '30001', //taskID
                                                                  'id': '125' //newHelperID
                                                                 //'add': [newHelperID]
                                                               });
+                                                              
+*/
+                                      
+                                      
                                             taskHelper.save();
                                           //}
                                     //});
