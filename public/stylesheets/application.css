@@ -10,6 +10,42 @@
   z-index: 999;
 }
 
+
+
+.ReqChat {
+  position: absolute;
+  bottom:0px;
+  left: 0px;
+  width: 160px;
+  border: none;
+  z-index: 1001;
+}
+
+.ReqRes {
+  position: absolute;
+  bottom:0px;
+  left: 186px;
+  width: 160px;
+  border: none;
+  z-index: 1001;
+}
+
+.ReqRes .face {
+    height: 20px;
+    margin-top: -12px;
+    margin-right: 3px;
+}
+
+.ReqRes .reqtype {
+    font-size: 6pt;
+    text-align: left;
+}
+.ReqRes .dateLarge {
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: left;
+}
+
 span.numcircle {
   background: #77c;
   border-radius: 0.8em;
