@@ -448,17 +448,19 @@
 		   var gLatestCommunityId;
 		   var gLatestEventId;
 		   var gLatestTaskId;
+		   var gLatestTaskHelperId;
 		   var gLoginUser;
 		   var gLoginUserName;
 
            
 		   $(document).ready(function(){
 		   		gLoginUser = JSON.parse(localStorage.getItem("login_user"));
-		   		//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0","eventid":"0","participantgroupid":"0"}"
+		   		//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0", "taskhelperid", "eventid":"0","participantgroupid":"0"}"
 		   		gLoginUserId = gLoginUser.ownerid;
 		   		gLatestCommunityId = gLoginUser.communityid;
 		   		gLatestEventId = gLoginUser.eventid;
 		   		gLatestTaskId = gLoginUser.taskid;
+				gLatestTaskHelperId = gLoginUser.taskhelperid;
 		   		gLoginUserName = gLoginUser.username;
 
 		   		//replace user name in community page
