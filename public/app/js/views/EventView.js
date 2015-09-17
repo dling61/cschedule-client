@@ -586,6 +586,169 @@ $data = json_encode(array(
 
 
 var EventView = Backbone.View.extend({
+    el: $('#eventView'),
+    events : {
+        'click #eventName' : 'editEventName',
+        'click #eventTime' : 'editEventTime',
+        'click #eventRepeat' : 'editEventRepeat',
+        'click #eventLocation' : 'editEventLocation',
+        'click #eventHost' : 'editEventHost'
+    },
+    editEventName : function(ev) {
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventName').dialog({
+            modal: true,
+            title: 'Edit Event Name',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+
+    editEventTime : function(ev) {
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $( "#editEventStartDTFLD, #editEventEndDTFLD" ).datetimepicker({
+            format: 'm/d/Y H:i',
+            step: 30
+        });
+
+
+        $('#editEventTime').dialog({
+            modal: true,
+            title: 'Edit Event Time',
+            buttons: buttons,
+            open: this.open,
+            width: 450
+        });
+    },
+
+    editEventRepeat : function(ev) {
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $( "#editEventRU" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+
+        $('#editEventRepeat').dialog({
+            modal: true,
+            title: 'Edit Repeating Settings',
+            buttons: buttons,
+            open: this.open,
+            width: 450
+        });
+    },
+
+    editEventLocation : function(ev) {
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventLocation').dialog({
+            modal: true,
+            title: 'Edit Event Location',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+
+    editEventHost : function(ev) {
+        var eventId = ev.target.getAttribute('data-id');
+        this.event = communityEvents.where({
+            "id": eventId
+        });
+
+        var buttons = {
+            'Save': this.save,
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        };
+
+        $('#editEventHost').dialog({
+            modal: true,
+            title: 'Edit Event Host',
+            buttons: buttons,
+            open: this.open
+        });
+    },
+
+    initialize: function() {
+        //_.bindAll(this);
+        // this.model = 
+    },
+    render: function() {
+    },
+    open: function() {
+        $('#editEventNameFLD').val(this.event.get('eventname'));
+        $('#editEventLocationFLD').val(this.event.get('location'));
+        $('#editEventHostFLD').val(this.event.get('host'));
+        $('#editEventStartDTFLD').val(this.event.get('startdatetime'));
+        $('#editEventEndDTFLD').val(this.event.get('enddatetime'));
+        $('#editEventTzFLD').val(this.event.get('tzid'));
+        // this.$('#color').val(this.model.get('color'));
+    },
+    save: function() {
+        this.event.set({
+            'eventname': $('#editEventNameFLD').val(),
+            'location': $('#editEventLocationFLD').val(),
+            'host': $('#editEventHostFLD').val(),
+            'startdatetime': $('#editEventStartDTFLD').val(),
+            'enddatetime': $('#editEventEndDTFLD').val(),
+            'tzid': $('#editEventTzFLD').val()
+            // 'color': this.$('#color').val()
+        });
+
+        this.model.save({}, {
+            patch: true,
+            success: this.close
+        });
+        // myModel.save(data, {patch:true}) 
+
+    },
+});
+
+var editEventView = Backbone.View.extend({
     el: $('#eventDialog'),
     initialize: function() {
         //_.bindAll(this);

@@ -13,8 +13,7 @@
 
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-		 <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
-
+		<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 
 		<!--script type='text/javascript' src='javascripts/jquery-ui-1.8.13.custom.min.js'></script-->	
 
@@ -133,19 +132,42 @@
 					</div>          
 				</div>
                     
+        <br>
         <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
           <div id="eventView">
-            <span style="font-weight:bold; position:absolute; left:250px; font-size:14px" class="eventEdit" id="eventName" data-id="30001">Game Against SJSU</span>
-            <span class="glyphicon glyphicon-map-marker"></span>
+            <span style="font-weight:bold; position:absolute; left:50px; font-size:14px" class="eventEdit" id="eventName" data-id="30001">Team Practice</span>
+            <span class="glyphicon glyphicon-time"></span>
+            <span style="padding:0 5px;" id="eventTime" data-id="30001">7PM - 9:30PM (Pacific Time)</span>
+            <span class="glyphicon glyphicon-retweet" style="padding-left:50px;"></span>
+            <span style="padding:0 5px;" id="eventRepeat" data-id="30001">Every Saturday</span>
+            <span class="glyphicon glyphicon-map-marker" style="padding-left:50px;"></span>
             <span style="padding:0 5px;" id="eventLocation" data-id="30001">500 El Camino Real, Santa Clara, CA 95053</span>
             <span class="glyphicon glyphicon-user" style="padding-left:50px;"></span>
             <span style="padding:0 5px;" id="eventHost" data-id="30001">John Smith</span>
-          </div>
+          </div><br>
 
 
 
           <div id="editEventName" style="display:none;"> 
-            <input type="text" value="Game Against SJSU" id="editEventNameFLD">
+            <input type="text" value="Team Practice" id="editEventNameFLD">
+          </div>
+          <div id="editEventTime" style="display:none;">
+            <input type="hidden" autofocus="autofocus"> 
+            Start: <input type="text" value="05/20/2015 19:00" id="editEventStartDTFLD"><br>
+            End: <input type="text" value="09/20/2015 21:30" id="editEventEndDTFLD"><br>
+            Time Zone: <input type="text" value="Pacific Time" id="editEventTzFLD"> 
+          </div>
+          <div id="editEventRepeat" style="display:none;">
+            <input type="hidden" autofocus="autofocus"> 
+            Repeat Every: <input type="text" value="1 week"><br>
+            On: <input type="checkbox" value="Sun"> Sun
+                <input type="checkbox" value="Mon"> Mon
+                <input type="checkbox" value="Tue"> Tue 
+                <input type="checkbox" value="Wed"> Wed 
+                <input type="checkbox" value="Thu"> Thu  
+                <input type="checkbox" value="Fri"> Fri 
+                <input type="checkbox" value="Sat" checked> Sat<br> 
+            Repeat Until: <input type="text" value="01/20/2016" id="editEventRU">           
           </div>
           <div id="editEventLocation" style="display:none;"> 
             <input type="text" value="500 El Camino Real, Santa Clara, CA 95053" id="editEventLocationFLD">
@@ -574,6 +596,8 @@
     <script src="app/js/collections/Events.js"></script>
 </body>
 
+<link rel="stylesheet" type="text/css" href="stylesheets/jquery.datetimepicker.css">
+<script src="javascripts/jquery.datetimepicker.js"></script>
 
 </html>
 
