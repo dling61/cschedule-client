@@ -142,7 +142,7 @@ var Events = Backbone.Collection.extend({
                 var tasks = evsC[dayIdx].task;
 
 
-                $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
+                //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
                 $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ new</button>');
 
 
