@@ -746,7 +746,7 @@ var EventView = Backbone.View.extend({
             'host': $('#editEventHostFLD').val(),
             'startdatetime': $('#editEventStartDTFLD').val(),
             'enddatetime': $('#editEventEndDTFLD').val(),
-            'tzid': $('#editEventTzFLD').val()
+            'tzid': $('#editEventTzFLD').val(),
 
             'host': $('#editEventHostFLD').val()
 
