@@ -398,8 +398,9 @@ $(function() {
                                               //success: function(eventList) {
 
                                                 var taskHelper = new TaskHelper(
-                                                                  { 'ownerid': '3',
-                                                                    'eventid': '30001', //taskID
+                                                                  {
+'id' : 123,                                                                    'ownerid': '3',
+                                                                    'eventid': taskID,
                                                                      'id': '125' //newHelperID
                                                                     //'add': [newHelperID]
                                                                   });

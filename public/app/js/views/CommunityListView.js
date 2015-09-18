@@ -106,11 +106,14 @@
       },
 
       createNewCommunity: function() {
+          
+          //WFB
         var communitynamesArray = this.collection.pluck("communityname"),
+         
           communityName = $('#input').val(),
           community;
 
-        if (_.contains(communitynamesArray, communityName)) {
+        if ( _.contains(communitynamesArray, communityName)) {
           alert("Enter valid community name,Community name already Exists");
         } else {
           community = new Community({
@@ -197,6 +200,8 @@
           }
         });
 
+          
+          
         this.collection = new Communities();
 
         this.collection.fetch({
@@ -218,6 +223,7 @@
 
           }
         })
+        
       },
 
 

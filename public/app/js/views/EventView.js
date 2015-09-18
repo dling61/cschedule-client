@@ -301,9 +301,13 @@ var EventsView = Backbone.View.extend({
         'dragenter .droparea' : 'tellDrop',
             'dragenter .droparea' : 'highlightDropZone',
             'dragleave .droparea' : 'unhighlightDropZone',
-        'click .numcircle' : 'viewMessaging'
+        'click .numcircle' : 'viewMessaging',
+        'click #eventName' : 'editEventName'
     },
-    
+    editEventName : function() {
+        alert('hi');
+    },
+
     viewMessaging : function() {
         
       this.chats = new CommunityChats();
@@ -589,12 +593,15 @@ var EventView = Backbone.View.extend({
     el: $('#eventView'),
     events : {
         'click #eventName' : 'editEventName',
+
         'click #eventTime' : 'editEventTime',
         'click #eventRepeat' : 'editEventRepeat',
+
         'click #eventLocation' : 'editEventLocation',
         'click #eventHost' : 'editEventHost'
     },
     editEventName : function(ev) {
+
         var eventId = ev.target.getAttribute('data-id');
         this.event = communityEvents.where({
             "id": eventId
@@ -614,6 +621,7 @@ var EventView = Backbone.View.extend({
             open: this.open
         });
     },
+
 
     editEventTime : function(ev) {
         var eventId = ev.target.getAttribute('data-id');
@@ -672,6 +680,7 @@ var EventView = Backbone.View.extend({
     },
 
     editEventLocation : function(ev) {
+
         var eventId = ev.target.getAttribute('data-id');
         this.event = communityEvents.where({
             "id": eventId
@@ -693,6 +702,7 @@ var EventView = Backbone.View.extend({
     },
 
     editEventHost : function(ev) {
+
         var eventId = ev.target.getAttribute('data-id');
         this.event = communityEvents.where({
             "id": eventId
@@ -726,16 +736,20 @@ var EventView = Backbone.View.extend({
         $('#editEventStartDTFLD').val(this.event.get('startdatetime'));
         $('#editEventEndDTFLD').val(this.event.get('enddatetime'));
         $('#editEventTzFLD').val(this.event.get('tzid'));
-        // this.$('#color').val(this.model.get('color'));
+
     },
     save: function() {
         this.event.set({
             'eventname': $('#editEventNameFLD').val(),
             'location': $('#editEventLocationFLD').val(),
+
             'host': $('#editEventHostFLD').val(),
             'startdatetime': $('#editEventStartDTFLD').val(),
             'enddatetime': $('#editEventEndDTFLD').val(),
             'tzid': $('#editEventTzFLD').val()
+
+            'host': $('#editEventHostFLD').val()
+
             // 'color': this.$('#color').val()
         });
 
