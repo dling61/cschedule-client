@@ -234,7 +234,17 @@ body {
     content: "\f025"
 }
 
-.sidebar-hide-btn {
+#sidebar-hide-btn {
+    height: 52px;
+    left: -32px;
+    overflow: hidden;
+    position: absolute;
+    text-decoration: none;
+    top: 0px;
+    z-index: 6;
+    width: 32px;
+}
+#sidebar-show-btn {
     height: 52px;
     left: -32px;
     overflow: hidden;

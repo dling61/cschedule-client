@@ -6,28 +6,24 @@
 		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css'/>
 		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css'/>
 		<link rel='stylesheet' type='text/css' href='stylesheets/community.css'/>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<!--script type='text/javascript' src='javascripts/jquery-1.5.1.min.js'></script-->
-
-		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-		<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
-
-		<!--script type='text/javascript' src='javascripts/jquery-ui-1.8.13.custom.min.js'></script-->	
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-
+		<link rel="stylesheet" type="text/css" href="stylesheets/jquery.datetimepicker.css">
+		<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css'>
+		<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css'>
+		
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+		<script src='http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js'></script>
+		
 		<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
-
 		<script type='text/javascript' src='javascripts/underscore.js'></script>
 		<script type='text/javascript' src='javascripts/backbone.js'></script>
-		<!--script type='text/javascript' src='javascripts/applicationBase.js'></script-->
 		<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
 		<script type='text/javascript' src='javascripts/layer.js'></script>
 		
+		<!--script type='text/javascript' src='javascripts/applicationBase.js'></script-->
+		<!--script type='text/javascript' src='javascripts/jquery-1.5.1.min.js'></script-->
+		<!--script type='text/javascript' src='javascripts/jquery-ui-1.8.13.custom.min.js'></script-->	
 	</head>
 
 	<body>
@@ -44,20 +40,16 @@
 									<li><a href="#">Community1</a></li>
 									<li><a href="#">Community2</a></li>
 									<li><a href="#">Community3</a></li>
-
 								</ul>
 							</li>
-
 							<li><a href="#">CSchedule</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
 						
+						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<span id="gUser-display">TonyDing </span>
-								<span class="caret">
-									
-								</span>
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									<span id="gUser-display">TonyDing </span>
+									<span class="caret"> </span>
 								</a>
 								<ul id="users-drop-down" class="dropdown-menu">
 									<li><a href="#">Bill Grek</a></li>
@@ -74,9 +66,7 @@
 		<div id="cbody">	
 			<!-- community list view div -->
 			<div class="community-list-view">
-
 				<div class="nav-body"></div>
-
 				<div class="new-community-div">
 					<div class="container">
 						<div id="new_community_btn"> 
@@ -89,7 +79,6 @@
 						</div>
 					</div> 	
 				</div>
-
 
 				<div class="edit-community-div">
 					<div class="container">
@@ -107,466 +96,385 @@
 				<div class="remove-community" style="display:none">
 					<button class="btn-remove">Remove</button>
 				</div>	
-
 				
-				<button  class="create-btn" type="button" > + Create new Community</button>
-				
-			</div>
-				
+				<button  class="create-btn" type="button" > + Create new Community</button>				
+			</div>				
 		</div> 
-		</div>
+	</div>
 
-		<!-- community show view -->
-		<div class="community-show" style="display:none">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div>
-						<span id="showName" class="panel-title" style="font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
-						<!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
-						<button  id="message-btn">Messages</button>
-						<button >item1</button>
-						<button>item2</button>
-						<button>Events</button>
-						<button>Agenda</button>
-						<!--button style="margin-left: 700"> < Show All Members</button-->
-					</div>          
+	<!-- community show view -->
+	<div class="community-show" style="display:none">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div>
+					<span id="showName" class="panel-title" style="font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
+					<!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
+					<button  id="message-btn">Messages</button>
+					<button >item1</button>
+					<button>item2</button>
+					<button>Events</button>
+					<button>Agenda</button>
+					<!--button style="margin-left: 700"> < Show All Members</button-->
+				</div>          
+			</div>         
+			<br>
+			
+			<div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
+				<div id="eventView">
+					<span style="font-weight:bold; position:absolute; left:50px; font-size:14px" class="eventEdit" id="eventName" data-id="30001">Team Practice</span>
+					<span class="glyphicon glyphicon-time"></span>
+					<span style="padding:0 5px;" id="eventTime" data-id="30001">7PM - 9:30PM (Pacific Time)</span>
+					<span class="glyphicon glyphicon-retweet" style="padding-left:50px;"></span>
+					<span style="padding:0 5px;" id="eventRepeat" data-id="30001">Every Saturday</span>
+					<span class="glyphicon glyphicon-map-marker" style="padding-left:50px;"></span>
+					<span style="padding:0 5px;" id="eventLocation" data-id="30001">500 El Camino Real, Santa Clara, CA 95053</span>
+					<span class="glyphicon glyphicon-user" style="padding-left:50px;"></span>
+					<span style="padding:0 5px;" id="eventHost" data-id="30001">John Smith</span>
+				</div><br>
+
+				<div id="editEventName" style="display:none;"> 
+					<input type="text" value="Team Practice" id="editEventNameFLD">
 				</div>
-                    
-        <br>
-        <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
-          <div id="eventView">
-            <span style="font-weight:bold; position:absolute; left:50px; font-size:14px" class="eventEdit" id="eventName" data-id="30001">Team Practice</span>
-            <span class="glyphicon glyphicon-time"></span>
-            <span style="padding:0 5px;" id="eventTime" data-id="30001">7PM - 9:30PM (Pacific Time)</span>
-            <span class="glyphicon glyphicon-retweet" style="padding-left:50px;"></span>
-            <span style="padding:0 5px;" id="eventRepeat" data-id="30001">Every Saturday</span>
-            <span class="glyphicon glyphicon-map-marker" style="padding-left:50px;"></span>
-            <span style="padding:0 5px;" id="eventLocation" data-id="30001">500 El Camino Real, Santa Clara, CA 95053</span>
-            <span class="glyphicon glyphicon-user" style="padding-left:50px;"></span>
-            <span style="padding:0 5px;" id="eventHost" data-id="30001">John Smith</span>
-          </div><br>
+				<div id="editEventTime" style="display:none;">
+					<input type="hidden" autofocus="autofocus"> 
+					Start: <input type="text" value="05/20/2015 19:00" id="editEventStartDTFLD"><br>
+					End: <input type="text" value="09/20/2015 21:30" id="editEventEndDTFLD"><br>
+					Time Zone: <input type="text" value="Pacific Time" id="editEventTzFLD"> 
+				</div>
+				<div id="editEventRepeat" style="display:none;">
+					<input type="hidden" autofocus="autofocus"> 
+					Repeat Every: <input type="text" value="1 week"><br>
+					On: <input type="checkbox" value="Sun"> Sun
+						<input type="checkbox" value="Mon"> Mon
+						<input type="checkbox" value="Tue"> Tue 
+						<input type="checkbox" value="Wed"> Wed 
+						<input type="checkbox" value="Thu"> Thu  
+						<input type="checkbox" value="Fri"> Fri 
+						<input type="checkbox" value="Sat" checked> Sat<br> 
+					Repeat Until: <input type="text" value="01/20/2016" id="editEventRU">           
+				</div>
+				<div id="editEventLocation" style="display:none;"> 
+					<input type="text" value="500 El Camino Real, Santa Clara, CA 95053" id="editEventLocationFLD">
+				</div>
+				<div id="editEventHost" style="display:none;" id="editEventHostFLD"> 
+					<input type="text" value="John Smith">
+				</div>
 
-
-
-          <div id="editEventName" style="display:none;"> 
-            <input type="text" value="Team Practice" id="editEventNameFLD">
-          </div>
-          <div id="editEventTime" style="display:none;">
-            <input type="hidden" autofocus="autofocus"> 
-            Start: <input type="text" value="05/20/2015 19:00" id="editEventStartDTFLD"><br>
-            End: <input type="text" value="09/20/2015 21:30" id="editEventEndDTFLD"><br>
-            Time Zone: <input type="text" value="Pacific Time" id="editEventTzFLD"> 
-          </div>
-          <div id="editEventRepeat" style="display:none;">
-            <input type="hidden" autofocus="autofocus"> 
-            Repeat Every: <input type="text" value="1 week"><br>
-            On: <input type="checkbox" value="Sun"> Sun
-                <input type="checkbox" value="Mon"> Mon
-                <input type="checkbox" value="Tue"> Tue 
-                <input type="checkbox" value="Wed"> Wed 
-                <input type="checkbox" value="Thu"> Thu  
-                <input type="checkbox" value="Fri"> Fri 
-                <input type="checkbox" value="Sat" checked> Sat<br> 
-            Repeat Until: <input type="text" value="01/20/2016" id="editEventRU">           
-          </div>
-          <div id="editEventLocation" style="display:none;"> 
-            <input type="text" value="500 El Camino Real, Santa Clara, CA 95053" id="editEventLocationFLD">
-          </div>
-          <div id="editEventHost" style="display:none;" id="editEventHostFLD"> 
-            <input type="text" value="John Smith">
-          </div>
-
-
-
-          <div id="event1_title" style="float:left; margin-top: 30px;"></div>
-          <div id='calendar' style="display:inline-block"></div>
+				<div id="event1_title" style="float:left; margin-top: 30px;"></div>
+				<div id='calendar' style="display:inline-block"></div>
             
-
-          <div id='floatDiv' style='display:none' >
-            <div style='background-color: #bbb; height: 26px; margin-bottom: 8px;   font-weight: bold; padding-top:4px;'>
-              <div style='display:inline-block; margin: 0px 0px 12px 0px;
-                padding-bottom: 4px; font-size: 14pt;'>Food Service Helpers
-              </div>
-              <div id='closeHelpers' style='display:inline-block; position: absolute; right: 5px;'>
-                Close
-              </div>
-            </div>
-          </div>
-
-          <div id="ParticipantDiv">
-
-            <div class="sidebar-hide-btn dark-hover "> 
-                <span id="WFBcloseBtn" class="icon-sm icon-rightarrow"></span>
-            </div>
-
-            <div class="MemberList"></div>
-          </div>
-
-
-          <div class="page"></div>
-
-
-          <div id="participantDialog" title="Participant Information"></div>
-
-          <div id="messageDialog" ></div>
-
-
-                    <div id="messageDialog" ></div>
-                    
-                    
-                    <div class="modal fade" id="helperpool" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="taskHelperLabel">Task Name	</h4>
-                          </div>
-                          <div class="modal-body">
-                            <ul id="helper-list">
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    
-                    <div class="ReqChat">
-                        <img height=200 src="./images/ReqChat.png">
-                    </div>
-
-                    <div class="ReqRes" >
-                        <div>
-                            <div style="display: inline-block; width: 10%;
-    margin-right: 6px;"> 
-                                <img class="face" height=22 src="./images/Bill.png">
-                            </div>
-                            <div style="display: inline-block; width: 74%;">
-                                <div class="reqtype">You need a swap on
-                                </div>
-                                <div class="dateLarge">Saturday, Sept 12
-                                </div>
-                            </div>
-                        </div>
-                        <img height=200 src="./images/ReqRes.png">
-                    </div>
-                </div>
-
-      </div>
-
-                   
-			</div>
-            
-            
-            <div id="show-tasks">Show Tasks</div>    
-                
-                
-                
-
-			<div id="community-chat-popup" class="overlay">
-				<div class="popup">
-					<div id="chat-content" class="content">
-						<a id="close" href="#">×</a>
+				<div id='floatDiv' style='display:none' >
+					<div style='background-color: #bbb; height: 26px; margin-bottom: 8px;   font-weight: bold; padding-top:4px;'>
+						<div style='display:inline-block; margin: 0px 0px 12px 0px; padding-bottom: 4px; font-size: 14pt;'>Food Service Helpers	</div>
+						<div id='closeHelpers' style='display:inline-block; position: absolute; right: 5px;'> Close </div>
 					</div>
 				</div>
+
+   				<div id="ParticipantDiv">
+					<div id="sidebar-hide-btn" class="dark-hover icon-sm icon-rightarrow"> </div>
+					<div class="MemberList"> </div>
+				</div>
+
+				<div class="page"> </div>
+				<div id="participantDialog" title="Participant Information"> </div>
+				<div id="messageDialog" > </div>
+				<div id="messageDialog" > </div>
+				
+				<div class="modal fade" id="helperpool" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="taskHelperLabel">Task Name </h4>
+							</div>
+							<div class="modal-body">
+								<ul id="helper-list"> </ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+                    
+				<div class="ReqChat">
+					<img height=200 src="./images/ReqChat.png">
+				</div>
+
+				<div class="ReqRes" >
+					<div>
+						<div style="display: inline-block; width: 10%; margin-right: 6px;"> 
+							<img class="face" height=22 src="./images/Bill.png">
+						</div>
+						<div style="display: inline-block; width: 74%;">
+							<div class="reqtype">You need a swap on </div>
+							<div class="dateLarge">Saturday, Sept 12 </div>
+						</div>
+					</div>
+					<img height=200 src="./images/ReqRes.png">
+				</div>
 			</div>
+		</div>
+	</div>
+
+    <div id="show-tasks">Show Tasks</div>            
+
+	<div id="community-chat-popup" class="overlay">
+		<div class="popup">
+			<div id="chat-content" class="content">
+				<a id="close" href="#">×</a>
+			</div>
+		</div>
+	</div>
 	
-			<div id="chatbox">
-				<div class="cchat">
-					<h5>CommunityName </h5>
-					  <a class="close" href="#"> X </a>
-					 
-					<div id="displayconversations"style="width:60px"></div>
-					<div class="chat-text"><textarea style="border-color: blue"></textarea></div>
-				</div>
-				<div id="sendchat"><button>Send</button></div>
+	<div id="chatbox">
+		<div class="cchat">
+			<h5>CommunityName </h5>
+			<a class="close" href="#"> X </a> 
+			<div id="displayconversations"style="width:60px"> </div>
+			<div class="chat-text">
+				<textarea style="border-color: blue"></textarea>
 			</div>
+		</div>
+		<div id="sendchat">
+			<button>Send </button>
+		</div>
+	</div>
 
-
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="modalLabel">Community Name	</h4>
-			      </div>
-			      <div class="modal-body">
-			      	<ul id="chat-messages">
-			      	</ul>
-			      	<div id="recipant-status"></div>
-			        <form>
-			          <div class="form-group">
-			            <!-- <label for="message-text" class="control-label">Message:</label> -->
-			            <textarea class="form-control" id="message-text"></textarea>
-			          </div>
-			        </form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" id= "send_btn">Send message</button>
-			      </div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+	    <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			    <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">Community Name </h4>
 			    </div>
-			  </div>
-			</div>
-            
-            
-            
-   		</div> <!--- end of CommunityView -->
-		
-			
-
-		<script type="text/template" id="community-list-template">
-			<% _.each(communities, function(community) { %>
-				<div class="community" data-id="<%=community.get('id')%>"> 
-					<div id="community-name" contenteditable="true"><%= htmlEncode(community.get('communityname')) %> </div>
+				<div class="modal-body">
+					<ul id="chat-messages"> </ul>
+					<div id="recipant-status"> </div>
+					<form>
+						<div class="form-group">
+							<!-- <label for="message-text" class="control-label">Message:</label> -->
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
 				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id= "send_btn">Send message</button>
+				</div>
+			</div>
+	    </div>
+	</div>         
+    <!--- end of CommunityView -->			
+
+	<script type="text/template" id="community-list-template">
+		<% _.each(communities, function(community) { %>
+			<div class="community" data-id="<%=community.get('id')%>"> 
+				<div id="community-name" contenteditable="true"><%= htmlEncode(community.get('communityname')) %> </div>
+			</div>
+		<% }); %>  
+	</script> 
+
+	<script type="text/template" id="community-dropdown-template">
+		<% _.each(communities, function(community) { %>
+			<li><a href="#">"<%= htmlEncode(community.get('communityname')) %>" </a></li>
+			<% }); %>
+		<button  class="create-community-dropdown-btn" type="button" > + Create New Community</button>
+	</script> 
+
+	<script type="text/template" id="users-dropdown-template">
+		<% _.each(loggedInUsers, function(user) { %>
+			<li><a href="#">"<%= htmlEncode(user.get('name')) %>" </a></li>
+		<% }); %>
+	</script> 
+
+	<script type="text/template" id="chats-template">
+		<% _.each(chats, function(chat) { %>
+			<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+		<% }); %>
+	</script> 
+
+	<script type="text/template" id="reQres-template">
+		<% _.each(chats, function(chat) { %>
+			<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+		<% }); %>
+	</script> 
+	
+	<script type="text/template" id="message-template">
+		<% _.each(msgs, function(message) { %>
+			<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
+		<% }); %>
+	</script>
+		
+	<script type="text/template" id="events-template">
+		<% _.each(events, function(message) { %>
+			<li><%= message.%>: <%= htmlEncode(message.parts[0].body) %></li>
+		<% }); %>
+	</script>
+		
+	<script type="text/template" id="user-list-template"> 
+		<div id= "search">
+			<p>Please input an email to search for a participant</p>
+			<input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>
+			<p id="emaildiv" style="color:red; display:none" >Email Format is not correct!</p>
+			<button id ='searchForMember' >Search</button>
+		</div> 
+
+		<div id="edit-user-form" style="display:none">
+			<p>The email you searched is not yet registered with CSchedule.</p>
+			<p>Please enter their contact info to invote them to register:</p>
+			<label>Name</label>		
+			<input id = "inputName" placeholder="Required" name="name" type="text" value="">
+			<br />
+			<p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
+			<label>Email</label>
+			<input id = "inputEmail" value ="" placeholder="Required" name="email" type="text" value="">
+			<br />
+			<p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
+			<label>Mobile</label>
+			<input id = "inputMobile" placeholder="Optional" name="mobile" type="text" value="">
+			<hr />		
+			<button id ='addMember' >Add</button>
+			<button id ='cancelAddMember' >Cancel</button>
+		</div>
+		<hr/>
+
+		<div id="display-user-form">
+			<% _.each(participants, function(participant) { %>
+			<ul >
+			<li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> data-name=<%= htmlEncode(participant.get('name')) %>	 class="participant"> 	
+			<img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>					
+			</li>
+			</ul>
 			<% }); %>  
-		</script> 
+		</div>    
+    </script>
 
-		<script type="text/template" id="community-dropdown-template">
-			<% _.each(communities, function(community) { %>
-				<li><a href="#">"<%= htmlEncode(community.get('communityname')) %>" </a></li>
-				<% }); %>
-			<button  class="create-community-dropdown-btn" type="button" > + Create New Community</button>
-		</script> 
+	<script type="text/template" id="display-user-template">
+		<img src = '<%= user.profile %>'>
+		<h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
+		<p>Email: <%= user.email %></span></p>
+		Mobile:<span id='updatemobile' contenteditable="true"><%= user.mobile %></span>
+		<hr />
+		<button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
+		<button id ="updateUser" value=<%= user.id %> >Update</button>
+	</script>
 
-		<script type="text/template" id="users-dropdown-template">
-
-			<% _.each(loggedInUsers, function(user) { %>
-				<li><a href="#">"<%= htmlEncode(user.get('name')) %>" </a></li>
-			<% }); %>
-		</script> 
-
-		<script type="text/template" id="chats-template">
-			<% _.each(chats, function(chat) { %>
-				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
-			<% }); %>
-		</script> 
-
-		<script type="text/template" id="reQres-template">
-			<% _.each(chats, function(chat) { %>
-				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
-			<% }); %>
-		</script> 
-     	<script type="text/template" id="message-template">
-			<% _.each(msgs, function(message) { %>
-				<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
-			<% }); %>
-		</script>
-            
-            <script type="text/template" id="events-template">
-			<% _.each(events, function(message) { %>
-				<li><%= message.%>: <%= htmlEncode(message.parts[0].body) %></li>
-			<% }); %>
-		</script>
-            
-            
-        <script type="text/template" id="user-list-template"> 
-
-
-
-        <div id= "search">
-            <p>Please input an email to search for a participant</p>
-            <input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>
-            <p id="emaildiv" style="color:red; display:none" >Email Format is not correct!</p>
-            <button id ='searchForMember' >Search</button>
-        </div> 
-
-        <div id="edit-user-form" style="display:none">
-            <p>The email you searched is not yet registered with CSchedule.</p>
-            <p>Please enter their contact info to invote them to register:</p>
-            <label>Name</label>		
-            <input id = "inputName" placeholder="Required" name="name" type="text" value="">
-            <br />
-            <p id="nameDiv" style="display:none;color:red">Name is necessary!</p>
-            <label>Email</label>
-            <input id = "inputEmail" value ="" placeholder="Required" name="email" type="text" value="">
-            <br />
-            <p id="inputEmailFormat" style="display:none;color:red">Email Format is not correct!</p>
-            <label>Mobile</label>
-            <input id = "inputMobile" placeholder="Optional" name="mobile" type="text" value="">
-            <hr />		
-            <button id ='addMember' >Add</button>
-            <button id ='cancelAddMember' >Cancel</button>
-        </div>
-        <hr/>
-
-        <div id="display-user-form">
-            <% _.each(participants, function(participant) { %>
-            <ul >
-            <li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get('email')) %> data-name=<%= htmlEncode(participant.get('name')) %>	 class="participant"> 	
-            <img src = '<%= participant.get('profile') %>'>  <%= htmlEncode(participant.get('name')) %>					
-            </li>
-            </ul>
-            <% }); %>  
-        </div>    
-        </script>
-
-        <script type="text/template" id="display-user-template">
-            <img src = '<%= user.profile %>'>
-            <h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
-            <p>Email: <%= user.email %></span></p>
-            Mobile:<span id='updatemobile' contenteditable="true"><%= user.mobile %></span>
-            <hr />
-            <button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
-            <button id ="updateUser" value=<%= user.id %> >Update</button>
-        </script>
-
-        <script type="text/template" id="messageBox-template">
+	<script type="text/template" id="messageBox-template">
         ID:<%= id%>
         <br>
         Name:<%= name %>
         <br>
         <input type = text ></input>
-
         <div id="con_history"></div>
+	</script>
+	
+	<script>
+		function htmlEncode(value){
+			return $('<div/>').text(value).html();
+		}
 
-
-        </script>
-
-        
-
-
-            
-            
-            
-
-		
-		<script>
-			function htmlEncode(value){
-				return $('<div/>').text(value).html();
+		$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+			var apiLayerRegex = /^https:\/\/api.layer.com\/.*/,
+				jsonFileRegex = /^.*json$/,
+				layerIdentityRegex = /^https:\/\/layer-identity-provider.herokuapp.com\/.*/;
+			if(apiLayerRegex.test(options.url) || layerIdentityRegex.test(options.url)){
+			} else if(jsonFileRegex.test(options.url)) {
+			} else {
+				options.url = 'http://apitest1.servicescheduler.net/' +
+					options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 			}
-
-			$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-				var apiLayerRegex = /^https:\/\/api.layer.com\/.*/,
-				    jsonFileRegex = /^.*json$/,
-				    layerIdentityRegex = /^https:\/\/layer-identity-provider.herokuapp.com\/.*/;
-
-				if(apiLayerRegex.test(options.url) || layerIdentityRegex.test(options.url)){
-  
-				} else if(jsonFileRegex.test(options.url)){
-
-				}else {
-					options.url = 'http://apitest1.servicescheduler.net/' +
-						options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
-				}
-			});
-		</script>
+		});
+	</script>
             
-	   <!--Message Authentication !-->
-	   
-       <!-- Global Variables  !-->	   
-	   <script type="text/javascript">
-           var communityEvents;
-           var communityListView;
-           var userListView;
-           var userAddView;
-           var participantView;
-           var gEventsView;
-           var gEventView;
-		   var gParticipants;
-           var gTaskHelpers;
-		 
-		   var gLoginUserId;
-		   var gLatestCommunityId;
-		   var gLatestEventId;
-		   var gLatestTaskId;
-		   var gLatestTaskHelperId;
-		   var gLoginUser;
-		   var gLoginUserName;
-
+	<!--Message Authentication !-->
+   
+	<!-- Global Variables  !-->	   
+	<script type="text/javascript">
+		var communityEvents;
+		var communityListView;
+		var userListView;
+		var userAddView;
+		var participantView;
+		var gEventsView;
+		var gEventView;
+		var gParticipants;
+		var gTaskHelpers;
+	 
+		var gLoginUserId;
+		var gLatestCommunityId;
+		var gLatestEventId;
+		var gLatestTaskId;
+		var gLatestTaskHelperId;
+		var gLoginUser;
+		var gLoginUserName;
            
-		   $(document).ready(function(){
-		   		gLoginUser = JSON.parse(localStorage.getItem("login_user"));
-		   		//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0", "taskhelperid", "eventid":"0","participantgroupid":"0"}"
-		   		gLoginUserId = gLoginUser.ownerid;
-		   		gLatestCommunityId = gLoginUser.communityid;
-		   		gLatestEventId = gLoginUser.eventid;
-		   		gLatestTaskId = gLoginUser.taskid;
-				gLatestTaskHelperId = gLoginUser.taskhelperid;
-		   		gLoginUserName = gLoginUser.username;
+		$(document).ready(function() {
+		   	gLoginUser = JSON.parse(localStorage.getItem("login_user"));
+		   	//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0", "taskhelperid", "eventid":"0","participantgroupid":"0"}"
+		   	gLoginUserId = gLoginUser.ownerid;
+		   	gLatestCommunityId = gLoginUser.communityid;
+		   	gLatestEventId = gLoginUser.eventid;
+		   	gLatestTaskId = gLoginUser.taskid;
+			gLatestTaskHelperId = gLoginUser.taskhelperid;
+		   	gLoginUserName = gLoginUser.username;
 
-		   		//replace user name in community page
+		   	//replace user name in community page
 
-               	communityEvents = new EventsC();
+            communityEvents = new EventsC();
 
-               if (false) {
+			if(false) {
                 userListView = new UserListView();
-
                 userAddView = new UserAddView();
                 participantView = new ParticipantView();
-                userListView.render();
-               }
+				userListView.render();
+			}
 
-                communityListView = new CommunityListView();
-                communityListView.render();
-                //var loggedInuserView = new loggedUserView();
-                //loggedInuserView.render();
+            communityListView = new CommunityListView();
+            communityListView.render();
+            //var loggedInuserView = new loggedUserView();
+            //loggedInuserView.render();
                
-                gTaskHelpers = new TaskHelpers();
-
-
-
-			     layersample.config.userId = gLoginUser.username;//"kalyani";
-
+            gTaskHelpers = new TaskHelpers();
+			layersample.config.userId = gLoginUser.username;//"kalyani";
+			layersample.config.userId = "kalyani";
                
-
-              var slider_widthB = $('#ParticipantDiv').width() - 40;//get width automatically
-
-
-              $('.sidebar-hide-btn').click(function() {
-
-                    if(!$(this).is(':animated'))//prevent double click to double margin
-                    {
-                        $('#ParticipantDiv').animate({"margin-right": '-='+slider_widthB},'slow','easeInQuart');
-                        $('#WFBcloseBtn').removeClass('icon-rightarrow');
-                        $('#WFBcloseBtn').addClass('icon-leftarrow');
-                    }
-              });
-
-
-
-              $('.sidebar-show-btn').click(function() {
-
-                if(!$(this).is(':animated'))//prevent double click to double margin
-                    {
-                    $('#ParticipantDiv').animate({"margin-right": '+='+slider_widthB},'slow','easeOutBounce');
-                    $('#WFBcloseBtn').removeClass('icon-leftarrow');
-                    $('#WFBcloseBtn').addClass('icon-rightarrow');
-                }
-              });
-
-
-               
-               
-               
-			     layersample.config.userId = "kalyani";
-               
-               /*
-
+			/*
 				getNonce();
-
-			      // Use the nonce to get an identity token
-			      .then(function(nonce) {
-			          return getIdentityToken(nonce);
-			      })
-
-			      // Use the identity token to get a session
-			      .then(function(identityToken) {
-			          return getSession(identityToken);
-			      })
-
-			      // Store the sessionToken so we can use it in the header for our requests
-			      .then(function(sessionToken) {
-			          layersample.headers.Authorization =
-			              'Layer session-token="' + sessionToken + '"';
-
-
-			          // Now we can do stuff, like get a list of conversations
-			          //return getConversations();
-			      })
-                  */
-			});
-		</script>
+				// Use the nonce to get an identity token
+				.then(function(nonce) {
+					return getIdentityToken(nonce);
+				})
+				// Use the identity token to get a session
+				.then(function(identityToken) {
+					return getSession(identityToken);
+				})
+			    // Store the sessionToken so we can use it in the header for our requests
+			    .then(function(sessionToken) {
+					layersample.headers.Authorization = 'Layer session-token="' + sessionToken + '"';
+			        // Now we can do stuff, like get a list of conversations
+			        //return getConversations();
+			    })
+            */
+		});
+		
+		var slider_widthB = $('#ParticipantDiv').width();//get width automatically
+		$('#sidebar-hide-btn').click(function() {
+			if(this.getAttribute('id') == 'sidebar-hide-btn') {
+				$('#ParticipantDiv').animate({"margin-right": '-='+slider_widthB},'slow','easeInQuart');
+				$('#sidebar-hide-btn').removeClass('icon-rightarrow');
+				$('#sidebar-hide-btn').addClass('icon-leftarrow');
+				$('#sidebar-hide-btn').attr('id','sidebar-show-btn');
+			} else {
+				$('#ParticipantDiv').animate({"margin-right": '+='+slider_widthB},'slow','easeOutBounce');
+				$('#sidebar-hide-btn').removeClass('icon-leftarrow');
+				$('#sidebar-hide-btn').addClass('icon-rightarrow');
+				$('#sidebar-show-btn').attr('id','sidebar-hide-btn');
+			}
+		});
+	</script>
 
 	<script src="app/js/collections/communities.js"></script>
 	<script src="app/js/models/community.js"></script>
@@ -594,10 +502,7 @@
     <script src="app/js/views/EventView.js"></script>
     <script src="app/js/collections/Events.js"></script>
     <script src="app/js/collections/Events.js"></script>
+	<script src="javascripts/jquery.datetimepicker.js"></script>
 </body>
-
-<link rel="stylesheet" type="text/css" href="stylesheets/jquery.datetimepicker.css">
-<script src="javascripts/jquery.datetimepicker.js"></script>
-
 </html>
 
