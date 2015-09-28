@@ -87,9 +87,9 @@
                       taskm.set("event-id",event.get("eventid"));
                       taskm.assignees = [];
                       _.each(taskAttributes.assignment, function(assignmentAttr){
-                          assignmentm = new AssignesM(assignmentAttr);
-                          assignmentm.set("task-id", taskm.get("taskid"));
-                          taskm.assignees.push(assignmentm);
+                          // assignmentm = new AssignesM(assignmentAttr);
+                          // assignmentm.set("task-id", taskm.get("taskid"));
+                          // taskm.assignees.push(assignmentm);
                        }); //end of assignees
                        event.tasks.push(taskm);
                   });//end of taks

@@ -110,6 +110,11 @@
         participantView = new ParticipantView();
         userListView.render();
 
+        gEventView = new EventView();
+        gEventView.render();
+
+        var x = new eventDialogView();
+        x.render();
 
     }
 

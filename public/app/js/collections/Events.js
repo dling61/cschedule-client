@@ -1,4 +1,10 @@
-var EventM = Backbone.Model.extend();
+var EventM = Backbone.Model.extend({
+  urlRoot: 'event',
+  // save: function(attrs, options) {
+  //   options.patch = true;
+  //   Backbone.Model.prototype.save.call(this, attrs, options);
+  // }   
+});
 
 var EventsC = Backbone.Collection.extend({
 
@@ -10,6 +16,7 @@ var EventsC = Backbone.Collection.extend({
     // collection. The default implementation is just to pass it through.
     parse: function(resp, xhr) {
         //debugger;
+        console.log(resp.event["30001"]);
         return resp.event["30001"]; //[evAry[0]]  ;
     }    //parse end
 
