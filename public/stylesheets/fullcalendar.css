@@ -729,7 +729,8 @@ a.fc-more:hover {
 /* button layering (for border precedence) */
 
 .fc-toolbar button {
-	position: relative;
+	/* WFB position: relative; */
+    right: -1092px;
 }
 
 .fc-toolbar .fc-state-hover,
