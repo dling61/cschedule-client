@@ -1,4 +1,43 @@
-    var CommunityListView = Backbone.View.extend({
+
+
+// http://myapp.com/javascripts/jst.js
+//var window;
+
+window.JST = {};
+
+window.JST['person/contact'] = _.template(
+    "<div class='contact'><%= name %> ..."
+);
+
+window.JST['person/edit'] = _.template(
+    "<form method='post'><input type..."
+);
+
+
+window.JST['community/list'] = _.template(
+      '<% _.each(communities, function(community) { %>'
+    + '			<div class="community" data-id="<%=community.get("id")%>"> '
+    + '				<div id="community-name" contenteditable="true">'
+    + '                 <%=  htmlEncode(community.get("communityname")) %> </div>'
+    + '			</div>'
+    + '		<% }); %>'
+);
+
+
+/*
+
+
+		<script type="text/template" id="community-dropdown-template">
+			<% _.each(communities, function(community) { %>
+				<li><a href="#">"<%= htmlEncode(community.get('communityname')) %>" </a></li>
+				<% }); %>
+			<button  class="create-community-dropdown-btn" type="button" > + Create New Community</button>
+		</script> 
+*/
+
+
+
+var CommunityListView = Backbone.View.extend({
 
       el: '.community-list-view',
 
@@ -211,16 +250,24 @@
           }),
           success: function(communityList) {
 
-            var template1 = _.template($('#community-list-template').html());
-            var template2 = _.template($("#community-dropdown-template").html());
+            //var template1 = _.template($('#community-list-template').html());
+            //var template2 = _.template($("#community-dropdown-template").html());
 
+              
+//var html = JST['person/edit']();
+
+//var dict = { name: "Jason", email: "j.smith@gmail.com" };
+              var template1 = JST['community/list']; //(dict);
+              
+              
             $(".nav-body").html(template1({
               communities: that.collection.models
             }));
+              /* WFB
             $("#community-drop-down").html(template2({
               communities: that.collection.models
             }));
-
+            */
           }
         })
         

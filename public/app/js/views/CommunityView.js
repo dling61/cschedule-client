@@ -1,4 +1,59 @@
-  var CommunityView = Backbone.View.extend({
+  
+
+
+/*
+
+          
+
+			<div id="community-chat-popup" class="overlay">
+				<div class="popup">
+					<div id="chat-content" class="content">
+						<a id="close" href="#">×</a>
+					</div>
+				</div>
+			</div>
+	
+			<div id="chatbox">
+				<div class="cchat">
+					<h5>CommunityName </h5>
+					  <a class="close" href="#"> X </a>
+					 
+					<div id="displayconversations"style="width:60px"></div>
+					<div class="chat-text"><textarea style="border-color: blue"></textarea></div>
+				</div>
+				<div id="sendchat"><button>Send</button></div>
+			</div>
+
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="modalLabel">Community Name	</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<ul id="chat-messages">
+			      	</ul>
+			      	<div id="recipant-status"></div>
+			        <form>
+			          <div class="form-group">
+			            <!-- <label for="message-text" class="control-label">Message:</label> -->
+			            <textarea class="form-control" id="message-text"></textarea>
+			          </div>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" id= "send_btn">Send message</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+            
+*/            
+
+var CommunityView = Backbone.View.extend({
     el: '.community-show',
 
     currentConversation: null,

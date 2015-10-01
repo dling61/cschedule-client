@@ -397,8 +397,8 @@ var EventsView = Backbone.View.extend({
 
             eventSources: [ {// your event source
                 events: function(start, end, timezone, callback) {
-                    var newEvents = new Events();
-                    newEvents.fetch({ //EventList().fetch({
+                    gFetchedEvents = new Events();
+                    gFetchedEvents.fetch({ //EventList().fetch({
                         /*
                         data: {
                           from: start.getTime(),
@@ -586,7 +586,7 @@ $data = json_encode(array(
     }
 });
 
-window.JST = {};
+//window.JST = {};
 
 window.JST['eventView'] = _.template(
     "<span id='eventName' data-id='30002'><%= event.get('eventname') %></span>" + 
