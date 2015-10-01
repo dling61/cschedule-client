@@ -31,6 +31,17 @@ var PoolMembers = Backbone.Collection.extend({
 
 
 
+
+var BaseEvent = Backbone.Model.extend();
+
+var BaseEvents = Backbone.Collection.extend({
+
+    model: BaseEvent,
+});
+
+
+
+
 var Event = Backbone.Model.extend();
 
 var Events = Backbone.Collection.extend({
@@ -144,7 +155,7 @@ var Events = Backbone.Collection.extend({
 
 
                 //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
-                $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ new</button>');
+                $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
 
 
                 for (taskid = 0; taskid < tasks.length; taskid++) {
@@ -210,7 +221,8 @@ $('#calendar').fullCalendar({
 
 var HelpersPoolView = Backbone.View.extend({
 
-    el: "#floatDiv",
+    //el: "#floatDiv",
+    //el: "#helperpool",
     collection: PoolMembers,
 
     initialize: function() {
@@ -222,7 +234,7 @@ var HelpersPoolView = Backbone.View.extend({
     },
 
     events : {
-        'click #closeHelpers' : 'closeHelpersBox'
+        //'click #closeHelpers' : 'closeHelpersBox'
     },
 
     closeHelpersBox: function(ev) {
@@ -233,8 +245,13 @@ var HelpersPoolView = Backbone.View.extend({
 
     render: function() {
         
-      $('#taskHelperLabel').html('Kitchen'); //WFB this.model.get('communityname'));
-      $('#helperpool').modal('show');
+      //$('#taskHelperLabel').html('Kitchen'); //WFB this.model.get('communityname'));
+      //$('#helperpool').modal('show');
+        
+        
+        
+      
+        
         // var poolID = $(jsEvent.toElement).closest(".poolIcon").attr('task-id');
 
         var pool = new PoolMembers();
@@ -265,11 +282,29 @@ var HelpersPoolView = Backbone.View.extend({
                     if (title === 'Irene')
                         personDiv.append("<div style='color: goldenrod;'>after July");
                     personDiv.draggable();
-                    $("#floatDiv").append(personDiv);
+                    //$("#floatDiv").append(personDiv);
+                    $("#helperpool").append(personDiv);
 
                     //return newEv;
+                    
+
+
+
+
+                  $('#helperpool').dialog({
+                        draggable: true,
+                        resizable: true,
+                        show: 'fade',
+                        hide: 'fade',
+                        modal: false,
+                        width:  380,
+                        height: 150,
+                        title: 'Ride Service helpers',
+                        //buttons: buttons,
+                        //open: this.open
+                    });
                 });
-                $("#floatDiv").show();
+                // WFB  $("#floatDiv").show();
             }
         });
 
