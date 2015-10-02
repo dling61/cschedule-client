@@ -25,6 +25,7 @@
     <!-- load external html 'templates' part1/2 -->
 		<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
     <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
+    <link rel="import" id="ParticipantDiv" href="app/tmpl/ParticipantsView.tpl.html">
 	</head>
 
 	<body>
@@ -152,20 +153,8 @@
           <div id='calendar' style="display:inline-block"></div>
             
 
-          <div id="ParticipantDiv">
-
-            <div class="sidebar-hide-btn dark-hover "> 
-                <span id="WFBcloseBtn" class="icon-sm icon-rightarrow"></span>
-            </div>
-
-            <div class="MemberList"></div>
-          </div>
-
 
           <div class="page"></div>
-
-
-          <div id="participantDialog" title="Participant Information"></div>
 
           <div id="messageDialog" ></div>
 
@@ -242,8 +231,6 @@ margin-right: 6px;">
             
         <script type="text/template" id="user-list-template"> 
 
-
-
         <div id= "search">
             <p>Please input an email to search for a participant</p>
             <input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>
@@ -280,7 +267,6 @@ margin-right: 6px;">
             <% }); %>  
         </div>    
         </script>
-
         <script type="text/template" id="display-user-template">
             <img src = '<%= user.profile %>'>
             <h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
@@ -303,15 +289,15 @@ margin-right: 6px;">
 
         </script>
 
-        
-
   <!-- load external html 'templates' part2/2 -->
   <script>
     var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
     var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
+    var createParticipantsView = document.querySelector("#ParticipantDiv").import.querySelector('#ParticipantDiv');
 
     document.body.appendChild(editEventView.cloneNode(true));
     document.body.appendChild(createEventView.cloneNode(true));
+    document.body.appendChild(createParticipantsView.cloneNode(true));
   </script>         
             
             
