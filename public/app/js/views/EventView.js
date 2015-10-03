@@ -49,7 +49,7 @@ var Events = Backbone.Collection.extend({
     model: Event,
 
     url: 'community/30001/event',
-    //url: 'community/1234/event',
+    //url: 'getevents.json',
 
 
 
@@ -380,6 +380,7 @@ var EventsView = Backbone.View.extend({
                 right: 'members' //WFB 'alldays,month,basicWeek,basicDay,members'
             },
 
+            columnFormat: 'ddd MMM D',
             timeFormat: '',
 
             views: {

@@ -4,8 +4,7 @@
 window.JST['participants/panel'] = _.template(
 
 '        <div id= "search">'
-+ '            <p>Please input an email to search for a participant</p>'
-+ '            <input id = "email" name="email" placeholder="Enter e-mail" type="text" value=""><br>'
++ '            <input id = "email" name="email" placeholder="Enter user e-mail" type="text" style="margin-top:8px"><br>'
 + '            <p id="emaildiv" style="color:red; display:none" >Email Format is not correct!</p>'
 + '            <button id ="searchForMember" >Search</button>'
 + '        </div> '
@@ -27,7 +26,7 @@ window.JST['participants/panel'] = _.template(
 + '            <button id ="addMember" >Add</button>'
 + '            <button id ="cancelAddMember" >Cancel</button>'
 + '        </div>'
-+ '        <hr/>'
+
 
 + '        <div id="display-user-form">'
 + '            <% _.each(participants, function(participant) { %>'
