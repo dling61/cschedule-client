@@ -141,32 +141,21 @@
             </div>
 
             <br>
+            
             <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
                 <div id="eventView"></div>
                 <br>
-
-
-
-
-
                 <div id="event1_title" style="float:left; margin-top: 0px;"></div>
+
                 <div id='calendar' style="display:inline-block"></div>
 
-
-
                 <div class="page"></div>
-
-
-
-
 
                 <div id="messageDialog"></div>
 
                 <div id="helperpool"> </div>
 
-
-
-
+                
                 <div class="ReqChat">
                     <img height=200 src="./images/ReqChat.png">
                 </div>
@@ -196,10 +185,6 @@ margin-right: 6px;">
 
 
         <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>
-
-
-
-
 
     </div>
     <!--- end of CommunityView -->
@@ -278,26 +263,16 @@ margin-right: 6px;">
 
 
         $(document).ready(function() {
-            gLoginUser = JSON.parse(localStorage.getItem("login_user"));
-            gLoginUserId = gLoginUser.ownerid;
-            gLatestCommunityId = gLoginUser.communityid;
-            gLatestEventId = gLoginUser.eventid;
-            gLatestTaskId = gLoginUser.taskid;
-            gLatestTaskHelperId = gLoginUser.taskhelperid;
-            gLoginUserName = gLoginUser.username;
+            gLoginUser      = JSON.parse(localStorage.getItem("login_user"));
+            gLoginUserId         = gLoginUser.ownerid;
+            gLatestCommunityId   = gLoginUser.communityid;
+            gLatestEventId       = gLoginUser.eventid;
+            gLatestTaskId        = gLoginUser.taskid;
+            gLatestTaskHelperId  = gLoginUser.taskhelperid;
+            gLoginUserName       = gLoginUser.username;
+            
 
-            //replace user name in community page
-
-            communityEvents = new EventsC();
-
-            if (false) {
-                userListView = new UserListView();
-
-                userAddView = new UserAddView();
-                participantView = new ParticipantView();
-                userListView.render();
-            }
-
+            communityEvents   = new EventsC();
             communityListView = new CommunityListView();
             communityListView.render();
 
