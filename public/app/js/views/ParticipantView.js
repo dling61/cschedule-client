@@ -1,3 +1,32 @@
+/*    
+window.JST['user/edit'] = _.template(
+
+);
+
+
+    <script type="text/template" id="display-user-template">
+        <img src = '<%= user.profile %>'>
+        <h2 id= 'updateusername' contenteditable="true" contenteditable="true"><%= user.username %></h2>
+        <p>Email: <%= user.email %></span></p>
+        Mobile:<span id='updatemobile' contenteditable="true"><%= user.mobile %></span>
+        <hr />
+        <button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
+        <button id ="updateUser" value=<%= user.id %> >Update</button>
+    </script>
+
+    <script type="text/template" id="messageBox-template">
+    ID:<%= id%>
+    <br>
+    Name:<%= name %>
+    <br>
+    <input type = text ></input>
+
+    <div id="con_history"></div>
+
+
+    </script>
+*/
+
 var ParticipantView = Backbone.View.extend({
     el: '#participantDialog',
 	events:{

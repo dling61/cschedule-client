@@ -67,7 +67,7 @@ var CommunityListView = Backbone.View.extend({
         var that = this;
         alert("Are you sure you want to deleteCommunity");
 
-        var communityId = ev.target.getAttribute('data-id');
+        var communityId = ev.target.getAttribute('data-id');  // ev.target.data('id')
         communities = that.collection.where({
           "id": communityId
         });
