@@ -1,413 +1,387 @@
 <html>
-	<head>
-		<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css'/>	
-		<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css'/>
-		<link rel='stylesheet' type='text/css' href='stylesheets/application.css'/>
-		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css'/>
-		<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css'/>
-		<link rel='stylesheet' type='text/css' href='stylesheets/community.css'/>
-    <link rel='stylesheet' type='text/css' href='stylesheets/event.css'/>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-		<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-		<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
-		<script type='text/javascript' src='javascripts/underscore.js'></script>
-		<script type='text/javascript' src='javascripts/backbone.js'></script>
-		
-		<script type='text/javascript' src='javascripts/layer.js'></script>
+<head>
+<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/community.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
+<script type='text/javascript' src='javascripts/underscore.js'></script>
+<script type='text/javascript' src='javascripts/backbone.js'></script>
+
+<script type='text/javascript' src='javascripts/layer.js'></script>
+    
+
+<!-- load external html 'templates' part1/2 -->
+<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
+<link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
+<link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
+</head>
+
+<body>
 
 
-    <!-- load external html 'templates' part1/2 -->
-		<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
-    <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
-    <link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
-	</head>
 
-	<body>
-        
-        
-        
-	<div class="page">
-        
-        
-		<!-- header div-->
-		<div id="cheader">
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div>
-						<ul class="nav navbar-nav">
-							<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <div class="page">
+
+
+        <!-- header div-->
+        <div id="cheader">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 								Community <span class="caret"></span></a>
-								<ul id="community-drop-down" class="dropdown-menu">
-									<li><a href="#">Community1</a></li>
-									<li><a href="#">Community2</a></li>
-									<li><a href="#">Community3</a></li>
+                                <ul id="community-drop-down" class="dropdown-menu">
+                                    <li><a href="#">Community1</a></li>
+                                    <li><a href="#">Community2</a></li>
+                                    <li><a href="#">Community3</a></li>
 
-								</ul>
-							</li>
+                                </ul>
+                            </li>
 
-							<li><a href="#">CSchedule</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-						
-							<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<span id="gUser-display">TonyDing </span>
-								<span class="caret">
+                            <li><a href="#">CSchedule</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span id="gUser-display">TonyDing </span>
+                                    <span class="caret">
 									
 								</span>
-								</a>
-								<ul id="users-drop-down" class="dropdown-menu">
-									<li><a href="#">Bill Grek</a></li>
-									<li><a href="#">Irene</a></li>
-									<li><a href="#">Mark</a></li> 
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
-        
-        
-        
-		<!-- Body div-->
-		<div id="cbody">	
-            
-			<!-- community list view div -->
-			<div class="community-list-view">
-
-				<div class="nav-body"></div>
-
-				<div class="new-community-div">
-					<div class="container">
-						<div id="new_community_btn"> 
-							<div class="createCommunity" style="display:none">Create New Community 
-								<div>Community Name</div>
-								<input type="text" id="input"/>
-								<button class="btn-create">Create</button>
-								<button class="cancel-create">Cancel</button>
-							</div>
-						</div>
-					</div> 	
-				</div>
-
-
-				<div class="edit-community-div">
-					<div class="container">
-						<div id="edit_community_btn"> 
-							<div class="editCommunity" style="display:none">Edit Community 
-								<div>communityname</div>
-								<input type="text" id="edit-input"/>
-								<button class="btn-edit-save">save</button>
-								<button class="btn-edit-cancel">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>	
-
-				<div class="remove-community" style="display:none">
-					<button class="btn-remove">Remove</button>
-				</div>	
-
-				
-				<button  class="create-btn" type="button" > + Create new Community</button>
-				
-			</div>
-				
-		</div> 
-		</div>
-
-		<!-- community show view -->
-		<div class="community-show" style="display:none">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div>
-						<span id="showName" class="panel-title" style="font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
-						<!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
-						<button  id="message-btn">Messages</button>
-						<button >item1</button>
-						<button>item2</button>
-						<button>Events</button>
-						<button>Agenda</button>
-						<!--button style="margin-left: 700"> < Show All Members</button-->
-					</div>          
-				</div>
-                    
-        <br>
-        <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
-          <div id="eventView"></div><br>
-
-
-
-          
-
-
-
-          <div id="event1_title" style="float:left; margin-top: 0px;"></div>
-          <div id='calendar' style="display:inline-block"></div>
-            
-
-
-          <div class="page"></div>
-            
-            
-
-
-
-          <div id="messageDialog" ></div>
-
-          <div id="helperpool" > </div>
-
-
-
-                    
-            <div class="ReqChat">
-                <img height=200 src="./images/ReqChat.png">
-            </div>
-
-            <div class="ReqRes" >
-                <div>
-                    <div style="display: inline-block; width: 10%;
-margin-right: 6px;"> 
-                        <img class="face" height=22 src="./images/Bill.png">
+                                </a>
+                                <ul id="users-drop-down" class="dropdown-menu">
+                                    <li><a href="#">Bill Grek</a></li>
+                                    <li><a href="#">Irene</a></li>
+                                    <li><a href="#">Mark</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                    <div style="display: inline-block; width: 74%;">
-                        <div class="reqtype">You need a swap on
-                        </div>
-                        <div class="dateLarge">Saturday, Sept 12
+                </div>
+            </nav>
+        </div>
+
+
+
+        <!-- Body div-->
+        <div id="cbody">
+
+            <!-- community list view div -->
+            <div class="community-list-view">
+
+                <div class="nav-body"></div>
+
+                <div class="new-community-div">
+                    <div class="container">
+                        <div id="new_community_btn">
+                            <div class="createCommunity" style="display:none">Create New Community
+                                <div>Community Name</div>
+                                <input type="text" id="input" />
+                                <button class="btn-create">Create</button>
+                                <button class="cancel-create">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <img height=200 src="./images/ReqRes.png">
+
+
+                <div class="edit-community-div">
+                    <div class="container">
+                        <div id="edit_community_btn">
+                            <div class="editCommunity" style="display:none">Edit Community
+                                <div>communityname</div>
+                                <input type="text" id="edit-input" />
+                                <button class="btn-edit-save">save</button>
+                                <button class="btn-edit-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="remove-community" style="display:none">
+                    <button class="btn-remove">Remove</button>
+                </div>
+
+
+                <button class="create-btn" type="button"> + Create new Community</button>
+
             </div>
+
+        </div>
+    </div>
+
+    <!-- community show view -->
+    <div class="community-show" style="display:none">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div>
+                    <span id="showName" class="panel-title" style="font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
+                    <!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
+                    <button id="message-btn">Messages</button>
+                    <button>item1</button>
+                    <button>item2</button>
+                    <button>Events</button>
+                    <button>Agenda</button>
+                    <!--button style="margin-left: 700"> < Show All Members</button-->
+                </div>
+            </div>
+
+            <br>
+            <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
+                <div id="eventView"></div>
+                <br>
+
+
+
+
+
+                <div id="event1_title" style="float:left; margin-top: 0px;"></div>
+                <div id='calendar' style="display:inline-block"></div>
+
+
+
+                <div class="page"></div>
+
+
+
+
+
+                <div id="messageDialog"></div>
+
+                <div id="helperpool"> </div>
+
+
+
+
+                <div class="ReqChat">
+                    <img height=200 src="./images/ReqChat.png">
+                </div>
+
+                <div class="ReqRes">
+                    <div>
+                        <div style="display: inline-block; width: 10%;
+margin-right: 6px;">
+                            <img class="face" height=22 src="./images/Bill.png">
+                        </div>
+                        <div style="display: inline-block; width: 74%;">
+                            <div class="reqtype">You need a swap on
+                            </div>
+                            <div class="dateLarge">Saturday, Sept 12
+                            </div>
+                        </div>
+                    </div>
+                    <img height=200 src="./images/ReqRes.png">
+                </div>
+            </div>
+
         </div>
 
-      </div>
-      
-      <div id="eventDialogView" style ="width: 6%"><button id="createBtn">+ Event</button></div>
-            
-            
-            <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>    
-                
-                
-      
-            
-            
-   		</div> <!--- end of CommunityView -->
-		
+        <div id="eventDialogView" style="width: 6%">
+            <button id="createBtn">+ Event</button>
+        </div>
 
-		<script type="text/template" id="users-dropdown-template">
 
-			<% _.each(loggedInUsers, function(user) { %>
-				<li><a href="#">"<%= htmlEncode(user.get('name')) %>" </a></li>
-			<% }); %>
-		</script> 
+        <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>
 
-		<script type="text/template" id="chats-template">
-			<% _.each(chats, function(chat) { %>
-				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
-			<% }); %>
-		</script> 
 
-		<script type="text/template" id="reQres-template">
-			<% _.each(chats, function(chat) { %>
-				<li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
-			<% }); %>
-		</script> 
-     	<script type="text/template" id="message-template">
-			<% _.each(msgs, function(message) { %>
-				<li><%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %></li>
-			<% }); %>
-		</script>
-            
-            <script type="text/template" id="events-template">
-			<% _.each(events, function(message) { %>
-				<li><%= message.%>: <%= htmlEncode(message.parts[0].body) %></li>
-			<% }); %>
-		</script>
-            
-        
 
-  <!-- load external html 'templates' part2/2 -->
-  <script>
-    var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
-    var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-    var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
 
-    document.body.appendChild(editEventView.cloneNode(true));
-    document.body.appendChild(createEventView.cloneNode(true));
-    document.body.appendChild(createParticipantsView.cloneNode(true));
-  </script>         
-            
-            
 
-		
-		<script>
-			function htmlEncode(value){
-				return $('<div/>').text(value).html();
-			}
+    </div>
+    <!--- end of CommunityView -->
 
-			$.ajaxPrefilter(function (options, originalOptions, jqXHR) {
-				var apiLayerRegex = /^https:\/\/api.layer.com\/.*/,
-				    jsonFileRegex = /^.*json$/,
-				    layerIdentityRegex = /^https:\/\/layer-identity-provider.herokuapp.com\/.*/;
 
-				if(apiLayerRegex.test(options.url) || layerIdentityRegex.test(options.url)){
-  
-				} else if(jsonFileRegex.test(options.url)){
+    <script type="text/template" id="users-dropdown-template">
 
-				}else {
-					options.url = 'http://apitest1.servicescheduler.net/' +
-						options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
-				}
-			});
-		</script>
-            
+        <% _.each(loggedInUsers, function(user) { %>
+            <li><a href="#">"<%= htmlEncode(user.get('name')) %>" </a></li>
+            <% }); %>
+    </script>
 
-	<!--Message Authentication !-->
-   
-	<!-- Global Variables  !-->	   
-	<script type="text/javascript">
+    <script type="text/template" id="chats-template">
+        <% _.each(chats, function(chat) { %>
+            <li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+            <% }); %>
+    </script>
+
+    <script type="text/template" id="reQres-template">
+        <% _.each(chats, function(chat) { %>
+            <li><a href="#">"<%= htmlEncode(chat.get('message')) %>" </a></li>
+            <% }); %>
+    </script>
+    <script type="text/template" id="message-template">
+        <% _.each(msgs, function(message) { %>
+            <li>
+                <%= message.sender.user_id%>:
+                    <%= htmlEncode(message.parts[0].body) %>
+            </li>
+            <% }); %>
+    </script>
+
+    <script type="text/template" id="events-template">
+        <% _.each(events, function(message) { %>
+            <li>
+                <%= message.%>:
+                    <%= htmlEncode(message.parts[0].body) %>
+            </li>
+            <% }); %>
+    </script>
+
+
+
+    <!-- load external html 'templates' part2/2 -->
+    <script>
+        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
+        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
+        var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
+
+        document.body.appendChild(editEventView.cloneNode(true));
+        document.body.appendChild(createEventView.cloneNode(true));
+        document.body.appendChild(createParticipantsView.cloneNode(true));
+    </script>
+
+    
+    <!-- Global Variables  !-->
+    <script type="text/javascript">
         var gFetchedEvents;
-		var communityEvents;
-		var communityListView;
-		var userListView;
-		var userAddView;
-		var participantView;
-		var gEventsView;
-		var gEventView;
-		var gParticipants;
-		var gTaskHelpers;
-	 
-		var gLoginUserId;
-		var gLatestCommunityId;
-		var gLatestEventId;
-		var gLatestTaskId;
-		var gLatestTaskHelperId;
-		var gLoginUser;
-		var gLoginUserName;
+        var communityEvents;
+        var communityListView;
+        var userListView;
+        var userAddView;
+        var participantView;
+        var gEventsView;
+        var gEventView;
+        var gParticipants;
+        var gTaskHelpers;
 
-           
-		   $(document).ready(function(){
-		   		gLoginUser = JSON.parse(localStorage.getItem("login_user"));
-		   		//"{"email":"122@yahoo.com","password":"123","ownerid":"122","username":"Bill","communityid":"0","taskid":"0", "taskhelperid", "eventid":"0","participantgroupid":"0"}"
-		   		gLoginUserId = gLoginUser.ownerid;
-		   		gLatestCommunityId = gLoginUser.communityid;
-		   		gLatestEventId = gLoginUser.eventid;
-		   		gLatestTaskId = gLoginUser.taskid;
-				  gLatestTaskHelperId = gLoginUser.taskhelperid;
-		   		gLoginUserName = gLoginUser.username;
+        var gLoginUserId;
+        var gLatestCommunityId;
+        var gLatestEventId;
+        var gLatestTaskId;
+        var gLatestTaskHelperId;
+        var gLoginUser;
+        var gLoginUserName;
 
-		   		//replace user name in community page
 
-               	communityEvents = new EventsC();
+        $(document).ready(function() {
+            gLoginUser = JSON.parse(localStorage.getItem("login_user"));
+            gLoginUserId = gLoginUser.ownerid;
+            gLatestCommunityId = gLoginUser.communityid;
+            gLatestEventId = gLoginUser.eventid;
+            gLatestTaskId = gLoginUser.taskid;
+            gLatestTaskHelperId = gLoginUser.taskhelperid;
+            gLoginUserName = gLoginUser.username;
 
-               if (false) {
+            //replace user name in community page
+
+            communityEvents = new EventsC();
+
+            if (false) {
                 userListView = new UserListView();
 
                 userAddView = new UserAddView();
                 participantView = new ParticipantView();
                 userListView.render();
-               }
+            }
 
-                communityListView = new CommunityListView();
-                communityListView.render();
-                //var loggedInuserView = new loggedUserView();
-                //loggedInuserView.render();
-               
-                //gTaskHelpers = new TaskHelpers();
+            communityListView = new CommunityListView();
+            communityListView.render();
 
+            layersample.config.userId = gLoginUser.username; //"kalyani";
+            layersample.config.userId = "kalyani";
 
+            /*
+              getNonce();
 
-			     layersample.config.userId = gLoginUser.username;//"kalyani";
+              // Use the nonce to get an identity token
+              .then(function(nonce) {
+                  return getIdentityToken(nonce);
+              })
 
-               
+              // Use the identity token to get a session
+              .then(function(identityToken) {
+                  return getSession(identityToken);
+              })
 
-               
-               
-               
-			     layersample.config.userId = "kalyani";
-               
-               /*
-
-				getNonce();
-
-			      // Use the nonce to get an identity token
-			      .then(function(nonce) {
-			          return getIdentityToken(nonce);
-			      })
-
-			      // Use the identity token to get a session
-			      .then(function(identityToken) {
-			          return getSession(identityToken);
-			      })
-
-			      // Store the sessionToken so we can use it in the header for our requests
-			      .then(function(sessionToken) {
-			          layersample.headers.Authorization =
-			              'Layer session-token="' + sessionToken + '"';
+              // Store the sessionToken so we can use it in the header for our requests
+              .then(function(sessionToken) {
+                  layersample.headers.Authorization =
+                      'Layer session-token="' + sessionToken + '"';
 
 
-			          // Now we can do stuff, like get a list of conversations
-			          //return getConversations();
-			      })
-                  */
-			});
-		</script>
-        
-        <script>
-        
+                  // Now we can do stuff, like get a list of conversations
+                  //return getConversations();
+              })
+            */
+        });
+    </script>
 
-
-        var slider_widthB = $('#ParticipantDiv').width();//get width automatically
+    
+    
+    <script>
+        var slider_widthB = $('#ParticipantDiv').width(); //get width automatically
         $('#sidebar-hide-btn').click(function() {
-            if(this.getAttribute('id') == 'sidebar-hide-btn') {
-                $('#ParticipantDiv').animate({"margin-right": '-='+slider_widthB},'slow','easeInQuart');
+            if (this.getAttribute('id') == 'sidebar-hide-btn') {
+                $('#ParticipantDiv').animate({
+                    "margin-right": '-=' + slider_widthB
+                }, 'slow', 'easeInQuart');
                 $('#sidebar-hide-btn').removeClass('icon-rightarrow');
                 $('#sidebar-hide-btn').addClass('icon-leftarrow');
-                $('#sidebar-hide-btn').attr('id','sidebar-show-btn');
+                $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
             } else {
-                $('#ParticipantDiv').animate({"margin-right": '+='+slider_widthB},'slow','easeOutBounce');
+                $('#ParticipantDiv').animate({
+                    "margin-right": '+=' + slider_widthB
+                }, 'slow', 'easeOutBounce');
                 $('#sidebar-hide-btn').removeClass('icon-leftarrow');
                 $('#sidebar-hide-btn').addClass('icon-rightarrow');
-                $('#sidebar-show-btn').attr('id','sidebar-hide-btn');
+                $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
             }
         });
-        </script>
+    </script>
 
-	<script src="app/js/collections/communities.js"></script>
-	<script src="app/js/models/community.js"></script>
-	<script src="app/js/views/CommunityListView.js"></script>
-	<script src="app/js/views/CommunityEditView.js"></script>
-	<script src="app/js/views/CommunityView.js"></script>
-	<script src="app/js/collections/users.js"></script>
-	<script src="app/js/models/user.js"></script>
-	<script src="app/js/router.js"></script>
-	<script src="app/js/views/UserAddView.js"></script>
-	<script src="app/js/views/UserListView.js"></script>
-	<script src="app/js/collections/loggedInUsers.js"></script>
-	<script src="app/js/models/loggedInUser.js"></script>
-	<script src="app/js/models/communityChat.js"></script>
-	<script src="app/js/collections/communityChats.js"></script>
-	<script src="app/js/models/participant.js"></script>
-	<script src="app/js/views/ParticipantView.js"></script>
-	<script src="app/js/views/EventsView.js"></script>
-	<script src="app/js/views/DialogView.js"></script>
-	<script src="app/js/views/ReQResView.js"></script>
-	<script src="app/js/collections/participants.js"></script>
-  <script src="app/js/models/task.js"></script> 
-  <script src="app/js/collections/tasks.js"></script>  
-  <script src="app/js/views/TaskView.js"></script>
-  <script src="app/js/views/EventView.js"></script>
-  <script src="app/js/collections/Events.js"></script>
-  <script src="app/js/models/eventDialog.js"></script>
-  <script src="app/js/views/eventDialogView.js"></script>
+    <script type='text/javascript' src="utils/ajaxutil.js"></script>
+
+    <script src="app/js/collections/communities.js"></script>
+    <script src="app/js/models/community.js"></script>
+    <script src="app/js/views/CommunityListView.js"></script>
+    <script src="app/js/views/CommunityEditView.js"></script>
+    <script src="app/js/views/CommunityView.js"></script>
+    <script src="app/js/collections/users.js"></script>
+    <script src="app/js/models/user.js"></script>
+    <script src="app/js/router.js"></script>
+    <script src="app/js/views/UserAddView.js"></script>
+    <script src="app/js/views/UserListView.js"></script>
+    <script src="app/js/collections/loggedInUsers.js"></script>
+    <script src="app/js/models/loggedInUser.js"></script>
+    <script src="app/js/models/communityChat.js"></script>
+    <script src="app/js/collections/communityChats.js"></script>
+    <script src="app/js/models/participant.js"></script>
+    <script src="app/js/views/ParticipantView.js"></script>
+    <script src="app/js/views/EventsView.js"></script>
+    <script src="app/js/views/DialogView.js"></script>
+    <script src="app/js/views/ReQResView.js"></script>
+    <script src="app/js/collections/participants.js"></script>
+    <script src="app/js/models/task.js"></script>
+    <script src="app/js/collections/tasks.js"></script>
+    <script src="app/js/views/TaskView.js"></script>
+    <script src="app/js/views/EventView.js"></script>
+    <script src="app/js/collections/Events.js"></script>
+    <script src="app/js/models/eventDialog.js"></script>
+    <script src="app/js/views/eventDialogView.js"></script>
 </body>
 
 <!-- please leave the following two lines here -->
@@ -415,4 +389,3 @@ margin-right: 6px;">
 <script src="javascripts/jquery.datetimepicker.js"></script>
 
 </html>
-
