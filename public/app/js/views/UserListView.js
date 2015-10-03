@@ -125,7 +125,7 @@ var UserListView = Backbone.View.extend({
                 //$(".MemberList").html(template({participants: gParticipants.models}));
                 $(".MemberList").html(template);
 				//WFB must fix $('.participant').draggable();
-                //$("#ParticipantDiv").css({display: "block"});
+                $("#ParticipantDiv").css("display", "block");
             }
         })
     }
