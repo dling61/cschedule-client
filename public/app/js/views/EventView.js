@@ -134,7 +134,7 @@ var Events = Backbone.Collection.extend({
                 var taskID = evsC[dayIdx].task[taskIdx].taskid;
                 assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                 + '" style="margin-top:10px;">' 
-                    + getAssignees(taskID, evsC[dayIdx].task[taskIdx].assignment) + '</div>';
+                    + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper) + '</div>';
             }
 
             var newEv = {
