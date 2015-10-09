@@ -418,7 +418,7 @@ var EventsView = Backbone.View.extend({
             eventDrop:   this.eventDropOrResize,
             eventResize: this.eventDropOrResize,
 
-            hiddenDays:     [0, 1, 2, 3, 4, 6],
+            hiddenDays:     [0, 1, 2, 3, 4, 5],
             aspectRatio:    4.1,
             fixedWeekCount: false,
 
@@ -456,7 +456,7 @@ var EventsView = Backbone.View.extend({
                                 return newEv;
                             });
 
-                            events[0].start = "2015-07-03 20:30:00";
+                            events[0].start = "2015-10-10 20:30:00";
                             callback(events);
 
                             $('.numcircle').click( function(){
