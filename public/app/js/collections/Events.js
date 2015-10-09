@@ -16,7 +16,7 @@ var EventsC = Backbone.Collection.extend({
     // collection. The default implementation is just to pass it through.
     parse: function(resp, xhr) {
         //debugger;
-        console.log(resp.event["30001"]);
+        // console.log(resp.event["30001"]);
         return resp.event["30001"]; //[evAry[0]]  ;
     }    //parse end
 
