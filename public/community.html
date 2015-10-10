@@ -29,7 +29,7 @@
 <link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
 </head>
 
-<body>
+<body style="background-color: #88aaee">
 
 
 
@@ -38,7 +38,7 @@
 
         <!-- header div-->
         <div id="cheader">
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default" style="background-color: #4488dd;">
                 <div class="container-fluid">
                     <div>
                         <ul class="nav navbar-nav">
@@ -104,9 +104,10 @@
                         <div id="edit_community_btn">
                             <div class="editCommunity" style="display:none">Edit Community
                                 <div>communityname</div>
-                                <input type="text" id="edit-input" />
-                                <button class="btn-edit-save">save</button>
-                                <button class="btn-edit-cancel">Cancel</button>
+                                <div style="float:right">
+                                    <button class="btn-edit-save">save</button>
+                                    <button class="btn-edit-cancel">Cancel</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,25 +126,23 @@
     </div>
 
     <!-- community show view -->
-    <div class="community-show" style="display:none">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+    <div class="community-show" style="display:none; background-color: #88aaee;">
+        <div class="panel panel-default" style="background-color: #88aaee; ">
+            <div class="panel-heading" style="background-color: #88aaee; height: 50px;">
                 <div>
-                    <span id="showName" class="panel-title" style="font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
+                    <span id="showName" class="panel-title" style="font-size: 14pt; color: white; font-weight:bold; position:absolute; left:32px; padding-right:30px;"></span>
+                </div>
+                <div style="position: absolute; display: inline-block;">
                     <!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
-                    <button id="message-btn">Messages</button>
-                    <button>item1</button>
-                    <button>item2</button>
-                    <button>Events</button>
-                    <button>Agenda</button>
-                    <!--button style="margin-left: 700"> < Show All Members</button-->
+                    <button id="message-btn">+ Create Event</button>
+                    <button>Participants</button>
                 </div>
             </div>
 
             <br>
             
             <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
-                <div id="eventView"></div>
+                <div id="eventView" style="background-color: #4444FE; color: white;"></div>
                 <br>
                 <div id="event1_title" style="float:left; margin-top: 53px;"></div>
 
@@ -162,8 +161,7 @@
 
                 <div class="ReqRes">
                     <div>
-                        <div style="display: inline-block; width: 10%;
-margin-right: 6px;">
+                        <div style="display: inline-block; width: 10%; margin-right: 6px;">
                             <img class="face" height=22 src="./images/Bill.png">
                         </div>
                         <div style="display: inline-block; width: 74%;">

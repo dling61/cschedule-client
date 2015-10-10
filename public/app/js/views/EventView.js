@@ -435,6 +435,9 @@ var EventsView = Backbone.View.extend({
 
 
             eventSources: [ {// your event source
+                color:     'white',
+                textColor: 'black',
+
                 events: function(start, end, timezone, callback) {
                     gFetchedEvents = new Events();
                     gFetchedEvents.fetch({ //EventList().fetch({
@@ -471,47 +474,21 @@ var EventsView = Backbone.View.extend({
                                     var newHelperID = ui.draggable.data('id');
                                     var taskID =$(this).data('taskid');
 
-                                    //alert( "Dropped helper " + newHelperID );
-                                      //var taskHelpers = new TaskHelpers();
-                                      //taskHelpers.fetch({ //EventList().fetch({
-                                          //success: function(eventList) {
+                                var taskHelper = new TaskHelper({
+                                    'taskhelperid' : 10001,
+                                    'ownerid': '3',
+                                    'taskid': taskID,
+                                    'userid': '125', //newHelperID
+                                    'status': 'A'
+                                                    //'add': [newHelperID]
+                                });              
 
-                                      
-                                      
-                    var taskHelper = new TaskHelper(
-                                                                  {
-'taskhelperid' : 10001,                                                            'ownerid': '3',
-'taskid': taskID,
-'userid': '125', //newHelperID
-'status': 'A'
-                //'add': [newHelperID]
-        });              
-                                      
-                                      
-/*                                    
-                                            var taskHelper = new TaskHelper(
-                                                              { 'ownerid': '3',
-                                                                'eventid': '30001', //taskID
-                                                                 'id': '125' //newHelperID
-                                                                //'add': [newHelperID]
-                                                              });
-                                                              
-*/
-                                      
-                                      
-                                            taskHelper.save();
-                                          //}
-                                    //});
+                                taskHelper.save();
                                 }
                             });
-
-
-                            //$('.poolIcon').click( function(){alert(event)} );
                         }
                     })
-                },
-                color:     'white',
-                textColor: 'black'
+                }
             }]  //eventSources
         });
 
