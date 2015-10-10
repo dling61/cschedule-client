@@ -287,7 +287,7 @@ previous button's border...
 
 .fc .fc-button-group > :first-child { /* same */
 	margin-left: 0;
-    margin-top: -188px;  /* WFB -132px */
+    margin-top: -175px;  /* WFB -132px */
 }
 
 

@@ -1320,11 +1320,15 @@ function formatDate(date, formatStr) {
 
 
 function formatDateWithChunks(date, chunks) {
-	var s = '';
+	var s = ''; //'\<div\>';
 	var i;
 
 	for (i=0; i<chunks.length; i++) {
 		s += formatDateWithChunk(date, chunks[i]);
+        if (i===0)
+            s+= "\n";
+        //else if (i===4)
+            //s+= '\</div\>';
 	}
 
 	return s;

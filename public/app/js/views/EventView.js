@@ -96,6 +96,7 @@ var Events = Backbone.Collection.extend({
         var evsC = resp.event;
         
         this.add(evsC[30001][0]);
+        this.add(evsC[30001][1]);
 
         var events = {
             events: [ // put the array in the `events` property
@@ -125,6 +126,7 @@ var Events = Backbone.Collection.extend({
 
         var eventID = 30001;
         var evsC = evsC[eventID];
+        
         var assignNames = "";
 
         for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
@@ -380,7 +382,7 @@ var EventsView = Backbone.View.extend({
                 right: 'members' //WFB 'alldays,month,basicWeek,basicDay,members'
             },
 
-            columnFormat: 'ddd MMM D',
+            columnFormat: 'dddd MMM D',
             timeFormat: '',
 
             views: {
@@ -442,21 +444,20 @@ var EventsView = Backbone.View.extend({
                           to: end.getTime()
                         },
                         */
-                        success: function(eventList) {
+                        success: function(collection, response, options) {
                             events = []
-                            events = _.map(eventList.models, function(event) {
+                            events = _.map(collection.models[0].attributes.events, function(event) {
                                 var newEv = {
-                                    title: event.get("title"),
-                                    start: new Date(event.get("start")),
+                                    title: event.title, //get("title"),
+                                    start: new Date(event.start),
                                     //end: new Date(event.get("end")),
                                     //url: event.get("url")
                                 };
-                                newEv.title = event.attributes.events[0].title;
-                                newEv.start = event.attributes.events[0].start;
+                                //newEv.title = event.attributes.events[0].title;
+                                //newEv.start = event.attributes.events[0].start;
                                 return newEv;
                             });
 
-                            events[0].start = "2015-10-10 20:30:00";
                             callback(events);
 
                             $('.numcircle').click( function(){
