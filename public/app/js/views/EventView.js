@@ -60,7 +60,7 @@ var Events = Backbone.Collection.extend({
 
 
 
-        function getAssignees(taskID, taskAssignees) {
+        function getAssignees(taskID, taskAssignees, numNeeded) {
             var names = "";
             var nameLen = 0;
             
@@ -79,7 +79,7 @@ var Events = Backbone.Collection.extend({
                 nameLen = name.username.length;
             });
 
-            if (taskID === '30003') {
+            for (var i=taskAssignees.length; i < numNeeded; i++) {
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
                     + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
                     + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>needed</div></div>';
@@ -134,9 +134,10 @@ var Events = Backbone.Collection.extend({
             assignNames = "";
             for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
                 var taskID = evsC[dayIdx].task[taskIdx].taskid;
+                var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
                 assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                 + '" style="margin-top:10px;">' 
-                    + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper) + '</div>';
+                    + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
             }
 
             var newEv = {
