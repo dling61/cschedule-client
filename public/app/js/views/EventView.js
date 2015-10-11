@@ -82,7 +82,7 @@ var Events = Backbone.Collection.extend({
             for (var i=taskAssignees.length; i < numNeeded; i++) {
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
                     + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
-                    + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>needed</div></div>';
+                    + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>need</div></div>';
             }
             /*
             names += '<div class="poolIcon" task-id="' + taskID * 1.0 
