@@ -1,6 +1,7 @@
 #eventName {
   font-size:18px;
-  font-weight:bold; 
+    font-family: Avenir;
+    font-weight: heavy;
   position:absolute; 
   left:50px; 
 }
