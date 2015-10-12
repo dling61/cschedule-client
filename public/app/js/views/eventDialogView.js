@@ -19,11 +19,6 @@ var eventDialogView = Backbone.View.extend({
             }
         };
 
-        $( "#createEventStartDTFLD, #createEventEndDTFLD" ).datetimepicker({
-            format: 'Y-m-d H:i',
-            step: 30
-        });
-
         $('#createEventDialog').dialog({
             draggable: true,
             resizable: true,
@@ -34,9 +29,22 @@ var eventDialogView = Backbone.View.extend({
             height: 600,
             title: 'Create an Event',
             buttons: buttons,
-            open: this.open
+            open: this.open,
+            close: this.reset
         });
+
         $('.back-btn').hide();
+
+        $( "#createOneEventStartDTFLD, #createOneEventEndDTFLD, #createReEventStartDTFLD, #createReEventEndDTFLD" )
+        .datetimepicker({
+            format: 'Y-m-d H:i',
+            step: 30
+        });
+
+        $( "#createEventRS" ).datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
     },
 
     initialize: function() {
@@ -44,6 +52,30 @@ var eventDialogView = Backbone.View.extend({
         
     },
     render: function() {
+        //save the sever settings into global variable gServerSetting
+        gSeverSetting = new serverSetting();
+        $.when(gSeverSetting).done(function() {
+            gSeverSetting.fetch({
+                success: function(settings) {
+                    var tzSettings = settings.attributes.timezones;
+                    var alertSettings = settings.attributes.alerts;
+                    $.each(tzSettings, function (i, tz) {
+                        $('#timezone-one, #timezone-re, #editEventTzFLD').append($('<option>', { 
+                            value: tz.id,
+                            text : tz.displayname 
+                        }));
+                    });
+                    $.each(alertSettings, function (i, alert) {
+                        $('#alert-one, #alert-re').append($('<option>', { 
+                            value: alert.id,
+                            text : alert.aname 
+                        }));
+                    });
+                }
+            });
+        });
+        
+
         $(document).ready(function() {
             $('a[data-id=tab-1]').click(function() {
                 $('.back-btn').hide();
@@ -53,21 +85,18 @@ var eventDialogView = Backbone.View.extend({
                 $('.back-btn').show();
             });
 
-            $('.radio-btn').on('click', function(){
-                $('.radio-btn').prop('checked', false);
-                $(this).prop('checked', true);
-                if($('#radio-rp').prop('checked') == true) {
-                    $('#createEventRepeat').removeClass('dialog-hide');
-                    $('#createEventRepeat').addClass('dialog-show');
-                    $('#createEventRS').datepicker({
-                        changeMonth: true,
-                        changeYear: true
-                    });
-                } else {
-                    $('#createEventRepeat').removeClass('dialog-show');
-                    $('#createEventRepeat').addClass('dialog-hide');
-                }
+            $('.radio-btn-one').click(function() {
+                $('.radio-btn-re').prop('checked', false);
+                $('#createEventOneTime').removeClass('dialog-hide');
+                $('#createEventRepeat').addClass('dialog-hide');
             });
+
+            $('.radio-btn-re').click(function() {
+                $('.radio-btn-one').prop('checked', false);
+                $('#createEventRepeat').removeClass('dialog-hide');
+                $('#createEventOneTime').addClass('dialog-hide');
+            });
+
             $('#addNewTask').click(function() {
                 console.log('under development');
             });
@@ -95,5 +124,10 @@ var eventDialogView = Backbone.View.extend({
         if(currTabNo == 3) {
             $('.next-btn').children().html('Publish');
         }
+    },
+    reset: function() {
+        $('a[data-id=tab-1]').trigger('click');
+        $( "#create-tab-list a" ).children('.glyphicon-ok').remove();
     }
+
 });

@@ -134,7 +134,9 @@
                 </div>
                 <div style="position: absolute; display: inline-block; right: 6px;">
                     <!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
-                    <button id="message-btn">+ Create Event</button>
+                    <span id="eventDialogView">
+                      <button id="createBtn">+ Create Event</button>
+                    </span>
                     <button>Participants</button>
                 </div>
             </div>
@@ -176,11 +178,6 @@
             </div>
 
         </div>
-
-        <div id="eventDialogView" style="width: 6%">
-            <button id="createBtn">+ Event</button>
-        </div>
-
 
         <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>
 
@@ -259,6 +256,8 @@
         var gLoginUser;
         var gLoginUserName;
 
+        var gSeverSetting;
+
 
         $(document).ready(function() {
             gLoginUser      = JSON.parse(localStorage.getItem("login_user"));
@@ -273,6 +272,9 @@
             communityEvents   = new EventsC();
             communityListView = new CommunityListView();
             communityListView.render();
+
+            var createEvent = new eventDialogView();
+            createEvent.render();
 
             layersample.config.userId = gLoginUser.username; //"kalyani";
             layersample.config.userId = "kalyani";

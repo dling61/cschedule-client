@@ -168,9 +168,6 @@ var CommunityView = Backbone.View.extend({
         gEventView = new EventView();
         gEventView.render();
 
-        var x = new eventDialogView();
-        x.render();
-
     }
 
   });

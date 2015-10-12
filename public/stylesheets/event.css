@@ -18,6 +18,10 @@
   width: 360;
 }
 
+#editEventTzFLD {
+  width: 70%;
+}
+
 .ui-tabs-vertical { width: 55em;}
 .ui-tabs-vertical .ui-tabs-nav { padding: .2em .1em .2em .2em; float: left; width: 15em; }
 .ui-tabs-vertical .ui-tabs-nav li { clear: left; width: 100%; border: 0 !important; margin: 0 -1px .2em 0; background: transparent;}
@@ -30,7 +34,7 @@
 #create-tab-list .ui-tabs-nav { padding-left: 0px; background: transparent; border: 0; } 
 .first-tab { padding-top: 30px !important;}
 #create-tab-list {pointer-events: none; user-select: none; -webkit-user-select: none;}
-.col-lg-4, .left-pos {
+.col-lg-4, .col-lg-5, .left-pos {
   text-align: left;
 }
 
@@ -38,15 +42,16 @@
   display: none;
 }
 
-.dialog-show {
-  display: block;
-}
-
-#createEventRepeat {
+.createEventRepeatSetting {
   border: solid 1px;
   padding: 10px 20px;
+  margin: 15px 0 5px 0;
 }
 
 .glyphicon-ok {
   margin-right: 5px;
+}
+
+select {
+  /*width: 400px;*/
 }

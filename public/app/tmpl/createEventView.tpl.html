@@ -2,20 +2,14 @@
   <div id="tabs-create">
     <ul id="create-tab-list">
       <li><a href="#basic" data-id="tab-1" class="first-tab">Basic Info</a></li>
-      <li><a href="#task" class="createEventTab" data-id="tab-2">Tasks (optional)</a></li>
-      <li><a href="#repeatition" class="createEventTab" data-id="tab-3">Repeatition Settings</a></li>
+      <li><a href="#timeLoc" class="createEventTab" data-id="tab-2">Time & Location</a></li>
+      <li><a href="#task" class="createEventTab" data-id="tab-3">Tasks (optional)</a></li>
       <li><a href="#preview" class="createEventTab" data-id="tab-4">Preview & Publish</a></li>
     </ul>
     <div id="basic" class="row">
       <h3 class="col-lg-4 left-pos">Basic Info</h3><br><br><br><br> 
       <span class="col-lg-4">Event Name:*</span> <input class="col-lg-8" type="text" placeholder="eg. Monthly Potluck"><br>
       <span class="col-lg-4">Description:</span> <input class="col-lg-8" type="text" placeholder="Brief introduction about this event"><br>
-      <span class="col-lg-4">Start:*</span> <input class="col-lg-8" type="text" placeholder="Pick a start datetime" id="createEventStartDTFLD"><br> 
-      <span class="col-lg-4">End:*</span> <input class="col-lg-8" type="text" placeholder="Pick an end datetime" id="createEventEndDTFLD"><br>
-      <span class="col-lg-4">Time Zone:*</span> <input class="col-lg-8" type="text" value="Pacific Time"><br>
-      <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address"><br>
-      <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name"><br>
-      <span class="col-lg-4">Alert:*</span> <input class="col-lg-8" type="text" value="24 hours before">
     </div>
     <div id="task" class="row">
       <h3 class="col-lg-6 left-pos">Task (optional)</h3><br><br><br><br>
@@ -26,24 +20,44 @@
       <br><br><br><br>
       <button class="col-lg-4" id="addNewTask">+ Add Another Task</button> 
     </div>
-    <div id="repeatition">
-      <h3 class="col-lg-6 left-pos">Repeatition Settings</h3><br><br><br><br>
-      <span class="col-lg-8 left-pos"><input type="radio" class="radio-btn"> This is a one-time event.</span><br> 
-      <span class="col-lg-8 left-pos"><input type="radio" class="radio-btn" id="radio-rp"> This is a repeating event.</span><br>
+    <div id="timeLoc">
+      <h3 class="col-lg-6 left-pos">Time & Location</h3><br><br><br><br>
+      <span class="col-lg-8 left-pos"><input type="radio" class="radio-btn-one" checked> This is a one-time event.</span><br> 
+      <span class="col-lg-8 left-pos"><input type="radio" class="radio-btn-re"> This is a repeating event.</span><br>
 
-      <br><br>
-      <div id="createEventRepeat" class="col-lg-8 dialog-hide">
-        <input type="hidden" autofocus="autofocus"> 
-        Repeat Every: <input type="text" value="1 week"><br>
-        On: <input type="checkbox" value="Sun"> Sun
-            <input type="checkbox" value="Mon"> Mon
-            <input type="checkbox" value="Tue"> Tue 
-            <input type="checkbox" value="Wed"> Wed 
-            <input type="checkbox" value="Thu"> Thu  
-            <input type="checkbox" value="Fri"> Fri 
-            <input type="checkbox" value="Sat"> Sat<br> 
-        Repeat Until: <input type="text" placeholder="mm/dd/yyyy" id="createEventRS">           
+      <br>
+      <div id="createEventOneTime">
+        <span class="col-lg-4">Start:*</span> <input class="col-lg-8" type="text" placeholder="Pick a start datetime" id="createOneEventStartDTFLD"><br> 
+        <span class="col-lg-4">End:*</span> <input class="col-lg-8" type="text" placeholder="Pick an end datetime" id="createOneEventEndDTFLD"><br>
+        <span class="col-lg-4">Time Zone:*</span> 
+        <select id="timezone-one"></select><br>
+        <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address"><br>
+        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name"><br>
+        <span class="col-lg-4">Alert:*</span> <select class="col-lg-8" id="alert-one"></select>
       </div>
+      <div id="createEventRepeat" class="dialog-hide">
+        <span class="col-lg-4">Start:*</span> <input class="col-lg-8" type="text" placeholder="Pick a start datetime" id="createReEventStartDTFLD"><br> 
+        <span class="col-lg-4">End:*</span> <input class="col-lg-8" type="text" placeholder="Pick an end datetime" id="createReEventEndDTFLD"><br>
+        <span class="col-lg-4">Time Zone:*</span>
+        <select id="timezone-re">
+        </select><br>
+        <div class="createEventRepeatSetting">
+          <input type="hidden" autofocus="autofocus"> 
+          Repeat Every: <input type="text" value="1 week"><br>
+          On: <input type="checkbox" value="Sun"> Sun
+              <input type="checkbox" value="Mon"> Mon
+              <input type="checkbox" value="Tue"> Tue 
+              <input type="checkbox" value="Wed"> Wed 
+              <input type="checkbox" value="Thu"> Thu  
+              <input type="checkbox" value="Fri"> Fri 
+              <input type="checkbox" value="Sat"> Sat<br> 
+          Repeat Until: <input type="text" placeholder="mm/dd/yyyy" id="createEventRS">
+        </div>
+        
+        <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address"><br>
+        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name"><br>
+        <span class="col-lg-4">Alert:*</span> <select class="col-lg-8" id="alert-re"></select>           
+      </div><br>
     </div>
     <div id="preview">
       <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.</p>
