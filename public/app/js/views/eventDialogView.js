@@ -16,6 +16,11 @@ var eventDialogView = Backbone.View.extend({
               text: 'Next',
               class: 'next-btn',
               click: this.next
+            },
+            "publish" : {
+              text: 'Publish',
+              class: 'publish-btn',
+              click: this.save
             }
         };
 
@@ -34,6 +39,7 @@ var eventDialogView = Backbone.View.extend({
         });
 
         $('.back-btn').hide();
+        $('.publish-btn').hide();
 
         $( "#createOneEventStartDTFLD, #createOneEventEndDTFLD, #createReEventStartDTFLD, #createReEventEndDTFLD" )
         .datetimepicker({
@@ -79,6 +85,7 @@ var eventDialogView = Backbone.View.extend({
         $(document).ready(function() {
             $('a[data-id=tab-1]').click(function() {
                 $('.back-btn').hide();
+                $('.publish-btn').hide();
             });
 
             $('.createEventTab').on('click', function() {
@@ -111,7 +118,8 @@ var eventDialogView = Backbone.View.extend({
         var preTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]) - 1;
         $('a[data-id=tab-' + preTabNo + ']').children('.glyphicon-ok').remove();
         $('a[data-id=tab-' + preTabNo + ']').trigger('click');
-        $('.next-btn').children().html('Next');
+        $('.next-btn').css('display', 'inline');
+        $('.publish-btn').hide();
     },
     next: function() {
         // alert('next');
@@ -122,12 +130,47 @@ var eventDialogView = Backbone.View.extend({
             $('a[data-id=tab-' + nextTabNo + ']').trigger('click');
         }       
         if(currTabNo == 3) {
-            $('.next-btn').children().html('Publish');
+            $('.next-btn').css('display', 'none');
+            $('.publish-btn').show();
         }
+
     },
     reset: function() {
         $('a[data-id=tab-1]').trigger('click');
         $( "#create-tab-list a" ).children('.glyphicon-ok').remove();
+    },
+
+    save: function() {
+        var param = {
+            "ownerid": gLoginUser.ownerid,
+            "communityid": 30001,
+            "eventid": getNextObjectId(gLoginUser.ownerid, gLatestEventId),
+            "eventname": $('#createEventNameFLD').val(),
+            "desp": $('#createEventDescripFLD').val(),
+            "startdatetime": $('#createOneEventStartDTFLD').val(),
+            "enddatetime": $('#createOneEventEndDTFLD').val(),
+            "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
+            "alert": parseInt($('#alert-one').find(':selected').attr('value')),
+            "location": $('#createEventLocFLD').val(),
+            "host": $('#createEventHostFLD').val(),
+            "beventid": "0"
+        };
+
+        var newEvent = new EventM(param);
+        newEvent.save({}, {
+            success: function() {
+                           
+            },
+            error: function() {
+                gLatestEventId = param.eventid;
+                var tmp = JSON.parse(localStorage.login_user);
+                tmp.eventid = param.eventid;
+                localStorage.login_user = JSON.stringify(tmp);
+                alert('Publish succeeds');
+            }
+        });
+
+        
     }
 
 });

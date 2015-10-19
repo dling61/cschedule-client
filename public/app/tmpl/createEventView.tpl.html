@@ -8,8 +8,8 @@
     </ul>
     <div id="basic" class="row">
       <h3 class="col-lg-4 left-pos">Basic Info</h3><br><br><br><br> 
-      <span class="col-lg-4">Event Name:*</span> <input class="col-lg-8" type="text" placeholder="eg. Monthly Potluck"><br>
-      <span class="col-lg-4">Description:</span> <input class="col-lg-8" type="text" placeholder="Brief introduction about this event"><br>
+      <span class="col-lg-4">Event Name:*</span> <input class="col-lg-8" type="text" placeholder="eg. Monthly Potluck" id="createEventNameFLD" required><br>
+      <span class="col-lg-4">Description:</span> <input class="col-lg-8" type="text" placeholder="Brief introduction about this event" id="createEventDescripFLD"><br>
     </div>
     <div id="task" class="row">
       <h3 class="col-lg-6 left-pos">Task (optional)</h3><br><br><br><br>
@@ -31,8 +31,8 @@
         <span class="col-lg-4">End:*</span> <input class="col-lg-8" type="text" placeholder="Pick an end datetime" id="createOneEventEndDTFLD"><br>
         <span class="col-lg-4">Time Zone:*</span> 
         <select id="timezone-one"></select><br>
-        <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address"><br>
-        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name"><br>
+        <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address" id="createEventLocFLD"><br>
+        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name" id="createEventHostFLD"><br>
         <span class="col-lg-4">Alert:*</span> <select class="col-lg-8" id="alert-one"></select>
       </div>
       <div id="createEventRepeat" class="dialog-hide">
@@ -55,11 +55,12 @@
         </div>
         
         <span class="col-lg-4">Location:*</span> <input class="col-lg-8" type="text" placeholder="Address"><br>
-        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name"><br>
+        <span class="col-lg-4">Host:</span> <input class="col-lg-8" type="text" placeholder="Type a participant's name" ><br>
         <span class="col-lg-4">Alert:*</span> <select class="col-lg-8" id="alert-re"></select>           
       </div><br>
     </div>
     <div id="preview">
+      <!-- TBD: display Preview & Publish -->
       <p>Vivamus suscipit tortor eget felis porttitor volutpat. Cras ultricies ligula sed magna dictum porta. Vivamus suscipit tortor eget felis porttitor volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.</p>
     </div>
   </div>

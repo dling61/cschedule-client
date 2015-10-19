@@ -17,14 +17,15 @@ var EventM = Backbone.Model.extend({
 var EventsC = Backbone.Collection.extend({
 
     model: EventM,
-
+  
+    // TBD: replace 30001 with accurate community id
     url: 'community/30001/event',
 
     // **parse** converts a response into a list of models to be added to the
     // collection. The default implementation is just to pass it through.
     parse: function(resp, xhr) {
         //debugger;
-        // console.log(resp.event["30001"]);
+        // console.log(resp.event);
         return resp.event["30001"]; //[evAry[0]]  ;
     }    //parse end
 
