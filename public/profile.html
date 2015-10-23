@@ -116,20 +116,20 @@
 				transfH = cvsSave.height;
 			//If it goes out of bounds because the area of the saveImage canvas is too big
 			if (originX < 0) {
-				transfX = -originX/zoom; //Show whitespace, comment out to stop at edge
+				//transfX = -originX/zoom; //Show whitespace, comment out to stop at edge
 				originX = 0;
 			}
 			if (originY < 0) {
-				transfY = -originY/zoom; //Show whitespace, comment out to stop at edge
+				//transfY = -originY/zoom; //Show whitespace, comment out to stop at edge
 				originY = 0;
 			}
 			if (img.width < originX + originW) {
-				transfW = (img.width - originX)/zoom;	//Show whitespace
-				//originX = img.width - originW;		//Switch code to stop at edge
+				//transfW = (img.width - originX)/zoom;	//Show whitespace
+				originX = img.width - originW;		//Switch code to stop at edge
 			}
 			if (img.height < originY + originH) {
-				transfH = (img.height - originY)/zoom;	//Show whitespace
-				//originY = img.height - originH;		//Switch code to stop at edge
+				//transfH = (img.height - originY)/zoom;	//Show whitespace
+				originY = img.height - originH;		//Switch code to stop at edge
 			}
 			//Clears the saveImage canvas
 			ctxSave.clearRect(0, 0, cvsSave.width, cvsSave.height);
