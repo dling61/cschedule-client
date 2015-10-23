@@ -3,6 +3,9 @@
 <head>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta content="utf-8" http-equiv="encoding">
+	<script src="Resources/jquery.js"></script>
+	<script src="Resources/underscore.js"></script>
+	<script src="Resources/backbone.js"></script>
 	<style>
 		/* Displaying the canvas */
 		#uploadImg {	
@@ -18,11 +21,12 @@
 		}
 	</style>
 </head>
+
 <body id="body">
-	
 	<canvas id="uploadImg" width="500" height="500">Drag the image over this canvas</canvas>
 	<canvas id="saveImg" width="100" height="100">This will be the image that is saved</canvas>
 	<button id="saveButton">Click to save the image</button>
+	<input type="file" accept="image/*" id="uploadBtn">
 	
 	<script>
 	//make image better looking (enhance)
@@ -64,27 +68,38 @@
 	
 	//Handles dropped image (currently reading all drops in entire body)
 	//Can use jquery to get drop zone instead of document.getElementById("body")
-	document.getElementById("body").addEventListener("drop", function(e){
-		var files = e.dataTransfer.files;
+	//Current problem with calculating maxZoom -> can set img data first
+	//Problem is that img.src is loading too slow for the code
+	//If an image has been loaded, check for that
+	var loadImage = function(e) {
+		var files = e.target.files;			//For input
+		if (typeof files == "undefined") {
+			files = e.dataTransfer.files;	//For drag and drop
+		}
 		if (files.length > 0) {
 			var file = files[0];
 			if (typeof FileReader !== "undefined" && file.type.indexOf("image") != -1) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
 					img.src = e.target.result;
-					//Sets the upper boundary of zoom for Firefox's sake
-					zoom = 1;
-					maxZoom = img.width/cvsSave.width;
-					if (maxZoom > img.height/cvsSave.height) {
-						maxZoom = img.height/cvsSave.height;
-					}
 				};
 				reader.readAsDataURL(file);
 			}
 		}
 		e.preventDefault();
+	};
+	document.getElementById("body").addEventListener("drop", loadImage, false);
+	document.getElementById("uploadBtn").addEventListener("change", loadImage, false);
+	
+	//Sets the upper boundary of zoom for Firefox's sake AFTER image loads
+	img.addEventListener("load", function(){
+		zoom = 1;
+		maxZoom = img.width/cvsSave.width;
+		if (maxZoom > img.height/cvsSave.height) {
+			maxZoom = img.height/cvsSave.height;
+		}
 	}, false);
-
+	
 	//Follows the mouse on the upload canvas and displays in the save canvas
 	//Uses other form in order to use when zooming in
 	var selectImg = function(e) {
@@ -122,9 +137,9 @@
 			ctxSave.drawImage(img, originX, originY, originW, originH, transfX, transfY, transfW, transfH);
 		}
 	};
-	//Add the event listener
+	//Listens for mouse movement on the upload canvas
 	cvsUpld.addEventListener("mousemove", selectImg);	
-
+	
 	//Zooms in and out, boundaries are for firefox
 	cvsUpld.addEventListener("wheel", function(e) {
 		if (e.deltaY < 0){
@@ -148,11 +163,22 @@
 	}, false);
 	
 	//Saves the image as a quadrilateral png
-	saveButton.addEventListener("click", function(e) {
-		window.open(cvsSave.toDataURL("image/png"));
-		e.preventDefault();
-	}, false);
-	</script>
+	$("#saveButton").click(function() {
+		var data = cvsSave.toDataURL("image/png");
+		var image = data.replace('data:image/png;base64,', '');
+		var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"34"}';
+		$.ajax({
+            type: 'POST',
+            url: 'http://apitest1.servicescheduler.net/creator/upload?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&',
+            data: imgJSON,
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function() {
+                alert('Image saved!');
+            }
+        });
+	});
+	</script>	
 </body>
 
 
