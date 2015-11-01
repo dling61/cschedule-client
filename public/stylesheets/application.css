@@ -410,3 +410,20 @@ display: inline;
 #chat-messages li {
 list-style: none;
 }
+
+
+
+/* Profile Picture Update Popup Box */
+#participant-show {
+	display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 50%;
+	border: 1px solid #dedede;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+	background: rgba(0,0,0,0.8);
+	margin: 8px 22px 8px 22px;
+	z-index: 9999999;
+}			
