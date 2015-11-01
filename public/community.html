@@ -26,6 +26,23 @@
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
 <link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
+<link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
+
+<style>
+	#participant-show {
+		display: block;
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 50%;
+		border: 1px solid #dedede;
+		border-radius: 4px;
+		box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+		background: rgba(0,0,0,0.8);
+		margin: 8px 22px 8px 22px;
+		z-index: 9999999;
+	}				
+</style>
 </head>
 
 <body style="background-color: #88aaee">
@@ -54,7 +71,7 @@
                             <li><a href="#">CSchedule</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-
+							<button id="EditProfileBTN">EditProfileBTN</button>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <span id="gUser-display">TonyDing </span>
@@ -132,7 +149,7 @@
                     <span id="showName" class="panel-title" style="font-size: 14pt; color: white; font-weight:bolder; font-family: Avenir; position:absolute; left:32px; padding-right:30px;"></span>
                 </div>
                 <div style="position: absolute; display: inline-block; right: 6px;">
-                    <!--<a class="button chatbutton" href="#ommunity-chat-popup">Chat</a> -->
+                    <!--<a class="button chatbutton" href="#community-chat-popup">Chat</a> -->
                     <span id="eventDialogView">
                       <button id="createBtn">+ Create Event</button>
                     </span>
@@ -182,7 +199,8 @@
 
     </div>
     <!--- end of CommunityView -->
-
+	<!--- editparticipantdialog-->
+	<div id="participant-show" style="display:none"></div>
 
     <script type="text/template" id="users-dropdown-template">
 
@@ -227,10 +245,12 @@
         var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
         var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
+		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
 
         document.body.appendChild(editEventView.cloneNode(true));
         document.body.appendChild(createEventView.cloneNode(true));
         document.body.appendChild(createParticipantsView.cloneNode(true));
+		document.body.appendChild(editParticipantView.cloneNode(true));
     </script>
 
     
@@ -325,6 +345,16 @@
                 $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
             }
         });
+		
+		$('#EditProfileBTN').click(function(){
+			if ($("#participant-show").children().length == 0) {
+				participantView = new ParticipantView();
+				participantView.render();
+			}	
+			$("#participant-show").toggle( "slow", function() {
+			// Animation complete.
+			});
+		});
     </script>
 
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
