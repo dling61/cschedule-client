@@ -185,8 +185,8 @@ var ParticipantView = Backbone.View.extend({
 		var profilePic = gLoginUserId + ".png";
 		userUpdate.save({id:ev.target.value,username:username,mobile:mobile,profile:profilePic},{
 			success:function(){
-				var userListView = new UserListView();
-				userListView.render();
+				var participantsListView = new ParticipantsListView();
+				participantsListView.render();
 				$('#participantDialog').dialog('close');
 			}
 		});
@@ -196,8 +196,8 @@ var ParticipantView = Backbone.View.extend({
 		var participant = new Participant({id:ev.target.value});
 		participant.destroy({
 			success: function(){
-				var userListView = new UserListView();
-	            userListView.render(); 
+				var participantsListView = new ParticipantsListView();
+	            participantsListView.render(); 
 				$('#participantDialog').dialog('close');
 			},
 		});		

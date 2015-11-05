@@ -7,10 +7,19 @@
 	<button id ="deleteParticipant" value=<%= user.id %> >Remove</button>
 	<button id ="updateUser" value=<%= user.id %> >Update</button>
 	<!---Profile-->
-	<!---<div id="popupList">-->
-		<canvas id="uploadImg" width="500" height="500">Drag the image over this canvas</canvas>
-		<canvas id="saveImg" width="100" height="100">This will be the image that is saved</canvas>
-		<button id="saveButton">Click to save the image</button>
-		<input type="file" accept="image/*" id="uploadBtn">
-	<!---</div>-->
+	<label>Name</label>
+	<input id="inputName" placeholder="Name" name="name" type="text" value="">
+	<br>
+	<p id="nameDiv" style="display:none;color:red">Please enter a name.</p>
+	<label>Email</label>
+	<input id="inputEmail" value ="" placeholder="Email" name="email" type="text" value="">
+	<br>
+	<p id="inputEmailFormat" style="display:none;color:red">Please enter a valid email address.</p>
+	<label>Mobile</label>
+	<input id="inputMobile" placeholder="Mobile" name="mobile" type="text" value="">
+	<br>
+	<canvas id="uploadImg" width="500" height="500">Drag the image over this canvas</canvas>
+	<canvas id="saveImg" width="100" height="100">This will be the image that is saved</canvas>
+	<button id="saveButton">Click to save the image</button>
+	<input type="file" accept="image/*" id="uploadBtn">
 </div>

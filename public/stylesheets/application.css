@@ -417,7 +417,7 @@ list-style: none;
 #participant-show {
 	display: block;
 	position: fixed;
-	top: 0;
+	top: 2%;
 	right: 0;
 	width: 50%;
 	border: 1px solid #dedede;
@@ -427,3 +427,13 @@ list-style: none;
 	margin: 8px 22px 8px 22px;
 	z-index: 9999999;
 }			
+
+/**/
+#editProfileImage {
+	float: left;
+	text-align:center;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-size: 100% 100%;
+}

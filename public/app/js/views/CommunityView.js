@@ -159,11 +159,11 @@ var CommunityView = Backbone.View.extend({
         gEventsView.render();
         gEventView.render();
         
-        userListView = new UserListView();
+        participantsListView = new ParticipantsListView();
 
         userAddView = new UserAddView();
         participantView = new ParticipantView();
-        userListView.render();
+        participantsListView.render();
 
         gEventView = new EventView();
         gEventView.render();

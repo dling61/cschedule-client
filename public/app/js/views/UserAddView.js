@@ -31,8 +31,8 @@ var UserAddView = Backbone.View.extend({
 									 },
 									 {
 										  success: function(){
-											  var userListView = new UserListView();
-											  userListView.render();
+											  var participantsListView = new ParticipantsListView();
+											  participantsListView.render();
 											  $('.participant').draggable();
 										  }
 									 }
@@ -70,8 +70,8 @@ var UserAddView = Backbone.View.extend({
 											 },
 											 {
 												 success: function(){
-													 var userListView = new UserListView();
-													 userListView.render();
+													 var participantsListView = new ParticipantsListView();
+													 participantsListView.render();
 													 $('.participant').draggable();
 												 }
 											 }
@@ -83,15 +83,15 @@ var UserAddView = Backbone.View.extend({
 		}
 	},	
 	cancelAddMember:function(){
-		var userListView = new UserListView();
-	    userListView.render(); 
+		var participantsListView = new ParticipantsListView();
+	    participantsListView.render(); 
 	},
 	deleteParticipant: function(ev){
 		var participant = new Participant({id:ev.target.value});
 		participant.destroy({
 			success: function(){
-				var userListView = new UserListView();
-	            userListView.render(); 
+				var participantsListView = new ParticipantsListView();
+	            participantsListView.render(); 
 			},
 			});
 		

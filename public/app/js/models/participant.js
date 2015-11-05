@@ -5,6 +5,7 @@ urlRoot: 'community/30001/participant',
 		email:'',
 		name:'',
 		mobile:'',
+		profile:'',
 		userid:''
 	}
 });	
