@@ -70,10 +70,10 @@ var Events = Backbone.Collection.extend({
                 }); 
                 
                 if (nameLen < 1 && name.username.length > 7) {
-                    names += '<div class="assignedHelper" style="float:left;   text-align: center;"><div><img src=".\\images\\' 
+                    names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
                         + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
                 } else {
-                    names += '<div class="assignedHelper" style="float:left; margin-left:10px; text-align: center;"><div><img src=".\\images\\' 
+                    names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img src=".\\images\\' 
                     + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
                 }
                 nameLen = name.username.length;
@@ -129,16 +129,41 @@ var Events = Backbone.Collection.extend({
         var eventID = 30001;
         var evsC = evsC[eventID];
         
+        
+        //parsing events to approximate collections(task assignees)
+        
+        var taskm, assignmentm, tasksC, assignmentC;
+        gEvents = []; gTasks = []; gTaskAssignees = []; gTaskHelpers = [];
+
+          _.each(evsC, function(event){
+              gEvents.push(event);
+              _.each(event.task, function(taskAttributes){
+                  taskAttributes.eventid = event.eventid;
+                  taskm = new Task(taskAttributes);
+                  gTasks.push(taskm);
+                  _.each(taskAttributes.taskhelper, function(assignmentAttr){
+                      assignmentAttr.taskid = taskm.get('taskid');
+                      assignmentAttr.eventid = event.eventid;
+                      assignmentm = new TaskHelper(assignmentAttr);
+                      gTaskAssignees.push(assignmentm);
+                      
+                      // taskm.assignees.push(assignmentm);
+                   }); //end of assignees
+                   // event.tasks.push(taskm);
+              });//end of taks
+          });//end of events
+
+
+        
         var assignNames = "";
 
         for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
 
             assignNames = "";
             for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
-                var taskID    = evsC[dayIdx].task[taskIdx].taskid;
-                var eventid   = evsC[dayIdx].task[taskIdx].taskid;
-                var numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
-                assignNames += '<div class="taskAssignees" data-taskid="' + taskID + '" data-eventid="' + eventid
+                var taskID = evsC[dayIdx].task[taskIdx].taskid;
+                var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
+                assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                 + '" style="margin-top:10px;">' 
                     + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
             }
@@ -309,8 +334,6 @@ var HelpersPoolView = Backbone.View.extend({
                         //buttons: buttons,
                         //open: this.open
                     });
-                    $('#helperpool').css('overflow', 'visible');
-                    $('#helperpool').parent().css('overflow', 'visible');
                 });
                 // WFB  $("#floatDiv").show();
             }
@@ -475,29 +498,23 @@ var EventsView = Backbone.View.extend({
                             } );
 
                             $(".taskAssignees").droppable({
-                                drop: function( event, ui ) {
+                                  drop: function( event, ui ) {
                                       // this is the elem receiving the dropped ui.draggable elem
                                     var newHelperID = ui.draggable.data('id');
-                                    var taskID  =$(this).data('taskid');
-                                    var eventID =$(this).data('eventid');
+                                    var taskID =$(this).data('taskid');
 
-                                    var taskHelper = new TaskHelper({
-                                        'taskhelperid' : 10001,
-                                        'ownerid': '3',
-                                        'eventid': eventID,
-                                        'taskid':  taskID,
-                                        'userid': '125', //newHelperID
-                                        'status': 'A'
-                                                        //'add': [newHelperID]
-                                    });              
+                                var taskHelper = new TaskHelper({
+                                    'taskhelperid' : 10001,
+                                    'ownerid': '3',
+                                    'taskid': taskID,
+                                    'userid': '125', //newHelperID
+                                    'status': 'A'
+                                                    //'add': [newHelperID]
+                                });              
 
-                                    taskHelper.save(null, {
-                                        success: function (model, response) {
-                                            console.log("successful drop");
-                                        }
-                                    });
+                                taskHelper.save();
                                 }
-                            })
+                            });
                         }
                     })
                 }
@@ -511,21 +528,6 @@ var EventsView = Backbone.View.extend({
               }
         });
         
-        $(".assignedHelper").contextmenu({
-            delegate: ".hasmenu",
-            menu: [
-                {title: "Remove", cmd: "remove"},
-                {title: "Requestswap"},
-                {title: "More", children: [
-                    {title: "Busy", cmd: "swap1"},
-                    {title: "Prefer", cmd: "swap2"}
-                    ]}
-                ],
-            select: function(event, ui) {
-                alert("select " + ui.cmd + " on " + ui.target.text());
-            }
-        });
-
 
         /*
         renderCalendar: ->
