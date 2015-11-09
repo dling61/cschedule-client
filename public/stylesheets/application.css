@@ -437,3 +437,17 @@ list-style: none;
 	border-radius: 25px;
 	background-size: 100% 100%;
 }
+
+.helperPoolImg {
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	background-size: 100% 100%;
+}
+
+.assigneeImg {
+	width: 32px;
+	height: 32px;
+	border-radius: 16px;
+	background-size: 100% 100%;
+}

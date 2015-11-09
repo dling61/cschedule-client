@@ -73,8 +73,8 @@ var Events = Backbone.Collection.extend({
                     names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
                         + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
                 } else {
-                    names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img src=".\\images\\' 
-                    + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                    names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img class="assigneeImg" src="' 
+                    + name.userprofile + '"></div><div>' + name.username + '</div></div>';
                 }
                 nameLen = name.username.length;
             });
@@ -306,9 +306,9 @@ var HelpersPoolView = Backbone.View.extend({
                     var pic = event.attributes.userprofile;
                     var id = event.attributes.userid;
 
-                    var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='float:right; margin-left:8px; margin-right:8px;'>");
+                    var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='float:right; z-index:9000; margin-left:8px; margin-right:8px;'>");
 
-                    personDiv.append("<img src='" + pic + "'>");
+                    personDiv.append("<img class='helperPoolImg' src='" + pic + "'>");
                     personDiv.append("<div>" + title);
                     if (title === 'Irene')
                         personDiv.append("<div style='color: goldenrod;'>after July");
@@ -328,12 +328,15 @@ var HelpersPoolView = Backbone.View.extend({
                         show: 'fade',
                         hide: 'fade',
                         modal: false,
-                        width:  380,
+                        width:  400,
                         height: 150,
+                      //overflow: 'visible',
                         title: 'Ride Service helpers',
                         //buttons: buttons,
                         //open: this.open
                     });
+                    
+                    $('.ui-dialog').css('overflow','visible');
                 });
                 // WFB  $("#floatDiv").show();
             }
@@ -504,7 +507,8 @@ var EventsView = Backbone.View.extend({
                                     var taskID =$(this).data('taskid');
 
                                 var taskHelper = new TaskHelper({
-                                    'taskhelperid' : 10001,
+                                    'taskhelperid' : 100013,
+                                    'eventid': 30001,
                                     'ownerid': '3',
                                     'taskid': taskID,
                                     'userid': '125', //newHelperID
