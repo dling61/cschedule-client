@@ -192,12 +192,16 @@ var Events = Backbone.Collection.extend({
                 for (taskid = 0; taskid < tasks.length; taskid++) {
                     
                     if (taskid === 0)
-                    $('#event1_title').append('<div class="taskname" contenteditable="false">' + tasks[taskid].taskname 
+                    $('#event1_title').append('<div class="taskname" data-taskid="' + taskid + ' contenteditable="false">' + tasks[taskid].taskname 
                                               + '</div>');
                     else
-                    $('#event1_title').append('<div class="taskname" contenteditable="false">'  + tasks[taskid].taskname 
+                    $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + ' contenteditable="false">'  + tasks[taskid].taskname 
                                               + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
                 }
+                $('.taskname').click( function(fcEvent, jsEvent, view) {
+                    var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
+                    helpersPoolView.render();
+                });
             }
 
         }
