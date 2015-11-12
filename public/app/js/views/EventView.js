@@ -157,6 +157,7 @@ var Events = Backbone.Collection.extend({
         
         var assignNames = "";
 
+        
         for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
 
             assignNames = "";
@@ -192,10 +193,10 @@ var Events = Backbone.Collection.extend({
                 for (taskid = 0; taskid < tasks.length; taskid++) {
                     
                     if (taskid === 0)
-                    $('#event1_title').append('<div class="taskname" data-taskid="' + taskid + ' contenteditable="false">' + tasks[taskid].taskname 
+                    $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
                                               + '</div>');
                     else
-                    $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + ' contenteditable="false">'  + tasks[taskid].taskname 
+                    $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
                                               + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
                 }
                 $('.taskname').click( function(fcEvent, jsEvent, view) {
@@ -305,12 +306,16 @@ var HelpersPoolView = Backbone.View.extend({
             */
             success: function(eventList) {
                 events = [];
+                
+                var popup_helpers = $("<div id='helper_pool0' style='padding-top: 18px; background: #edd;'>");
+                $("#event_task0").append(popup_helpers);
+                
                 events = _.map(eventList.models, function(event) {
                     var title = event.attributes.username;
                     var pic = event.attributes.userprofile;
                     var id = event.attributes.userid;
 
-                    var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='float:right; z-index:9000; margin-left:8px; margin-right:8px;'>");
+                    var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='display:inline-block; z-index:9000; margin-left:8px; margin-right:8px;'>");
 
                     personDiv.append("<img class='helperPoolImg' src='" + pic + "'>");
                     personDiv.append("<div>" + title);
@@ -318,14 +323,18 @@ var HelpersPoolView = Backbone.View.extend({
                         personDiv.append("<div style='color: goldenrod;'>after July");
                     personDiv.draggable();
                     //$("#floatDiv").append(personDiv);
-                    $("#helperpool").append(personDiv);
+                    //$("#helperpool").append(personDiv);
+                    
+                    $("#helper_pool0").append(personDiv);
+                    
+                    
 
                     //return newEv;
                     
 
 
 
-
+/*
                   $('#helperpool').dialog({
                         draggable: true,
                         resizable: true,
@@ -341,6 +350,7 @@ var HelpersPoolView = Backbone.View.extend({
                     });
                     
                     $('.ui-dialog').css('overflow','visible');
+*/                    
                 });
                 // WFB  $("#floatDiv").show();
             }
