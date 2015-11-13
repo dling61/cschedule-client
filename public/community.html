@@ -1,388 +1,778 @@
+<!DOCTYPE html>
 <html>
-
 <head>
-<link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="javascripts/backbone.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
-<script type='text/javascript' src='javascripts/underscore.js'></script>
-<script type='text/javascript' src='javascripts/backbone.js'></script>
 
-<script type='text/javascript' src='javascripts/layer.js'></script>
+    <meta name="viewport" content="width=device-width">   
     
+    <!-- Insert to your webpage before the </head> -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- load external html 'templates' part1/2 -->
-<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
-<link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
-<link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
-<link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
-<link rel="import" id="participantListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
-</head>
+   <!-- <script src="carouselengine/jquery.js"></script>-->
+    <script src="javascripts/carouselengine/amazingcarousel.js"></script>
+    <link rel="stylesheet" type="text/css" href="javascripts/carouselengine/initcarousel-1.css">
+    <script src="javascripts/carouselengine/initcarousel-1.js"></script>
 
-<body style="background-color: #88aaee">
-
-
-
-    <div class="page">
+ <script src="font/assets/jquery.revealing.js"></script>
+<link rel="stylesheet" href="font/assets/revealing.css">
+    <link rel="stylesheet" href="font/assets/main.css">
 
 
-        <!-- header div-->
-        <div id="cheader">
-            <nav class="navbar navbar-default" style="background-color: #4488dd;">
-                <div class="container-fluid">
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									Community 
-									<span class="caret"></span>
-								</a>
-                                <ul id="community-drop-down" class="dropdown-menu">
-                                    <li><a href="#">Community1</a></li>
-                                    <li><a href="#">Community2</a></li>
-                                    <li><a href="#">Community3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">CSchedule</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-							<div id="editProfileImage"></div>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span id="gUser-display">TonyDing </span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul id="users-drop-down" class="dropdown-menu">
-                                    <li><a href="#">Bill Grek</a></li>
-                                    <li><a href="#">Irene</a></li>
-                                    <li><a href="#">Mark</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<script
+src="http://maps.googleapis.com/maps/api/js">
+</script> <!-- End of head section HTML codes -->
+<script>
+var myCenter=new google.maps.LatLng(37.400777, -121.925147);
 
+function initialize()
+{
+var mapProp = {
+  center:myCenter,
+  zoom:11,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
 
-        <!-- Body div-->
-        <div id="cbody">
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-            <!-- community list view div -->
-            <div class="community-list-view">
+var marker=new google.maps.Marker({
+  position:myCenter,
+  });
 
-                <div class="nav-body"></div>
+marker.setMap(map);
+}
 
-                <div class="new-community-div">
-                    <div class="container">
-                        <div id="new_community_btn">
-                            <div class="createCommunity" style="display:none">Create New Community
-                                <div>Community Name</div>
-                                <input type="text" id="input" />
-                                <button class="btn-create">Create</button>
-                                <button class="cancel-create">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
-
-                <div class="edit-community-div">
-                    <div class="container">
-                        <div id="edit_community_btn">
-                            <div class="editCommunity" style="display:none">Edit Community
-                                <div>communityname</div>
-                                <div style="float:right">
-                                    <button class="btn-edit-save">save</button>
-                                    <button class="btn-edit-cancel">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="remove-community" style="display:none">
-                    <button class="btn-remove">Remove</button>
-                </div>
-
-
-                <button class="create-btn" type="button"> + Create new Community</button>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- community show view -->
-    <div class="community-show" style="display:none; background-color: #88aaee;">
-        <div class="panel panel-default" style="background-color: #88aaee; ">
-            <div class="panel-heading" style="background-color: #88aaee; height: 50px;">
-                <div>
-                    <span id="showName" class="panel-title" style="font-size: 14pt; color: white; font-weight:bolder; font-family: Avenir; position:absolute; left:32px; padding-right:30px;"></span>
-                </div>
-                <div style="position: absolute; display: inline-block; right: 6px;">
-                    <!--<a class="button chatbutton" href="#community-chat-popup">Chat</a> -->
-                    <span id="eventDialogView">
-                      <button id="createBtn">+ Create Event</button>
-                    </span>
-                    <button>Participants</button>
-                </div>
-            </div>
-
-            <br>
-            
-            <div class="panel panel-default" style="margin-left: 36px; margin-top:0px;">
-                <div id="eventView" style="background-color: #4444FE; color: white; height: 48px; padding-top: 12px;"></div>
-                <br>
-                <div id="event1_title" style="float:left; margin-top: 53px;"></div>
-
-                <div id='calendar' style="display:inline-block"></div>
-
-                <div class="page"></div>
-
-                <div id="messageDialog"></div>
-
-                <div id="helperpool"> </div>
-
-                
-                <div class="ReqChat">
-                    <img height=200 src="./images/ReqChat.png">
-                </div>
-
-                <div class="ReqRes">
-                    <div>
-                        <div style="display: inline-block; width: 10%; margin-right: 6px;">
-                            <img class="face" height=22 src="./images/Bill.png">
-                        </div>
-                        <div style="display: inline-block; width: 74%;">
-                            <div class="reqtype">You need a swap on
-                            </div>
-                            <div class="dateLarge">Saturday, Sept 12
-                            </div>
-                        </div>
-                    </div>
-                    <img height=200 src="./images/ReqRes.png">
-                </div>
-            </div>
-
-        </div>
-
-        <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>
-
-    </div>
-    <!--- end of CommunityView -->
-	<!--- editparticipantdialog-->
-	<div id="participant-show" style="display:none"></div>
-
-    <script type="text/template" id="users-dropdown-template">
-        <% _.each(loggedInUsers, function(user) { %>
-            <li><a href="#">"<%= htmlEncode(user.get("name")) %>" </a></li>
-        <% }); %>
-    </script>
-    <script type="text/template" id="chats-template">
-        <% _.each(chats, function(chat) { %>
-            <li><a href="#">"<%= htmlEncode(chat.get("message")) %>" </a></li>
-        <% }); %>
-    </script>
-    <script type="text/template" id="reQres-template">
-        <% _.each(chats, function(chat) { %>
-            <li><a href="#">"<%= htmlEncode(chat.get("message")) %>" </a></li>
-        <% }); %>
-    </script>
-    <script type="text/template" id="message-template">
-        <% _.each(msgs, function(message) { %>
-            <li>
-                <%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %>
-            </li>
-        <% }); %>
-    </script>
-
-    <script type="text/template" id="events-template">
-        <% _.each(events, function(message) { %>
-            <li>
-                <%= message.%>: <%= htmlEncode(message.parts[0].body) %>
-            </li>
-        <% }); %>
-    </script>
-
-
-
-    <!-- load external html 'templates' part2/2 -->
-    <script>
-        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
-        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-        var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
-		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
-
-        document.body.appendChild(editEventView.cloneNode(true));
-        document.body.appendChild(createEventView.cloneNode(true));
-        document.body.appendChild(createParticipantsView.cloneNode(true));
-		document.body.appendChild(editParticipantView.cloneNode(true));
-    </script>
-
-    
-    <!-- Global Variables  !-->
-    <script type="text/javascript">
-        var gFetchedEvents;
-        var communityEvents;
-
-        var communityListView;
-        var gParticipantsListView;
-        var userAddView;
-        var participantView;
-        var gEventsView;
-        var gEventView;
-        
-        var gEvents;
-        var gParticipants;
-        var gTasks;
-        var gTaskAssignees;
-        var gTaskHelpers;
-
-        var gLoginUserId;
-        
-        var gLatestCommunityId;
-        var gLatestEventId;
-        var gLatestTaskId;
-        var gLatestTaskHelperId;
-        var gLoginUser;
-        var gLoginUserName;
-		var gSelectedCommunityId;
-		
-        var gSeverSetting;
-
-
+<script>
         $(document).ready(function() {
-            gLoginUser			= JSON.parse(localStorage.getItem("login_user"));
-            gLoginUserId         = gLoginUser.ownerid;
-            gLatestCommunityId   = gLoginUser.communityid;
-            gLatestEventId       = gLoginUser.eventid;
-            gLatestTaskId        = gLoginUser.taskid;
-            gLatestTaskHelperId  = gLoginUser.taskhelperid;
-            gLoginUserName       = gLoginUser.username;
-			gSelectedCommunityId = 
+            // build blocs
+            var blocs = Array.apply(null, Array(20)).map(function() {
+                 $('.fancy-blocks').append($('<div class="bloc"></div>'));
+            });
+
+            // initialize
+            $('.fancy-title, .fancy-quote').revealing();
+            $('.fancy-blocks').revealing({
+                tokenizer: function(node) {
+                    if ($(node).children('.bloc').length) {
+                        $(node).children('.bloc').wrap('<span></span>');
+                        return [node];
+                    }
+
+                    return null;
+                }
+            });
+
+            // run the initial animation
+            setTimeout(function() {
+                $('.revealing').revealing('show');
+            }, 300);
+
+            // replay
+            $('.play').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+
+                // only replay the targeted elements
+                $(target).find('.revealing').revealing('reset');
+                setTimeout(function() {
+                    $(target).find('.revealing').revealing('show');
+                }, 100);
+            });
+        });
+    </script>
+</head>
+<style>
+body{
+    height: 100%;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+#navheader{
+    background-color:rgba(0, 0, 0, 0.7);
+    font-size: 22px;
+    text-align: center;
+    font-family: Century Gothic, sans-serif;
+    text-shadow:1px 1px 4px black;
+    letter-spacing: 2px;
+    box-shadow: 0px 0px 3px 0px black;
+    padding-left: 3%;
+    font-variant: small-caps;
+    z-index: 300;
+    position: absolute;
+    width: 100%;
+    top:0;
+    border-radius: 0px;
+    
+}
+#navheader ul{
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-right: 10%;
+    width: 90%;
+
+}
+
+#navheader li{
+height: 55px;
+min-width: 125px;
+
+    width: 20%;
+    opacity: 0.7;
+    text-align: center;
+    
+    }
+#mainbar{
+    width: 100%;
+    text-align: center;
+}
+
+
+#navheader li:hover{
+    text-decoration: none;
+    opacity: 1;
+}
+#navheader a{
+    color:white;
+
+} li.community{
+    opacity: 1;
+}
+#navheader a{
+    color:white;
+
+}
+li:hover{
+    text-decoration: none;
+    opacity: 1;
+}
+.mainbody{
+    width: 100%;
+
+    height: 100%;
+}
+blockquote {
+background-color: transparent;
+border: none;
+}
+.coverpic img{
+    width: 100%;
+}
+
+.schedule{
+    padding-top: 1%;
+    font-family: Century Gothic, sans-serif;
+    letter-spacing: 7px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-variant: small-caps;
+    text-shadow:1px 1px 3px black;
+    background-image:url(images/wave.png);
+    opacity: 0.9;
+
+}
+.schedule img{
+   margin-top: 10px;
+   opacity: 0.5;
+   width: 3%;
+
+}
+.schedule img:hover{
+    opacity: 0.6;
+}
+
+#amazingcarousel-container-1{
+     max-height: 1000px;
+ 
+    width: 80%;
+    position: relative;
+    float: left;    
+}
+#amazingcarousel-1{
+    
+
+    padding-bottom: 2%;
+    padding-top: 2%; 
+    position:relative;
+    margin:0px auto 0px;
+    box-shadow: 0px 0px 10px 0px silver;
+   }
+.amazingcarousel-image{
+    box-shadow: 0px 0px 5px 0px silver;
+}
+.event{
+    width: 100%;
+    text-align: center;
+}
+.newevent{
+    float: left;
+    color: black;
+    height: 400px;
+    text-align: center;
+    font-size: 20px;
+    width: 18%;
+    padding-top: 2%;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    font-family: Century Gothic, sans-serif;
+    text-shadow:1px 1px 3px silver;
+   
+    }
+.newevent img{
+    width:30%;
+
+    opacity: 0.5;
+
+}
+.contain{
+
+    text-align: center;
+}
+.newevent td{
+    width: 120px;
+    height: 70px;
+   
+    text-align: left;
+}
+.newevent img:hover{
+    opacity: 1;
+}
+#googleMap{
+    width: 100%;
+    clear: both;
+    height:380px;
+    box-shadow:1px 1px 8px 1px silver;
+    
+    }
+.detail{
+    color: black;
+      letter-spacing: 1px;
+    font-variant: small-caps;
+    font-family: Century Gothic, sans-serif;
+    text-shadow:1px 1px 3px silver;
+    font-size: 17px;
+    padding: 1%;
+    opacity: 0.8;
+}
+.detail td{
+}
+.test{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    clear:both;
+}
+.calender{
+  width: 100%;
+  box-shadow: 0px 0px 5px 0px silver;
+  padding-top: 2%;
+  padding-bottom: 2%;
+      color: black;
+      letter-spacing: 1px;
+    font-variant: small-caps;
+    font-family: Century Gothic, sans-serif;
+    text-shadow:1px 1px 3px silver;
+    font-size: 20px;
+}
+.calender img{
+    width: 25px;
+    padding-right: 2px;
+    opacity: 0.8;
+}
+.calender a, .calender a:hover{
+    text-decoration: none;
+    color: black;
+}
+.instruction{
+    text-align: center;
+      width: 100%;
+  box-shadow: 0px 0px 5px 0px silver;
+padding-top: 3%;
+      color: black;
+      letter-spacing: 1px;
+    font-family: Century Gothic, sans-serif;
+    text-shadow:1px 1px 3px silver;
+    font-size: 14px;
+    padding-left: 10%;
+     padding-right: 10%;
+     line-height: 35px;
+}
+#loginAndRegisterPanel{
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 50%;
+    color: #f0f0f0;
+    text-align: center;
+    top:20%;
+    left:25%;
+    min-height: 420px;
+    max-height: 600px;
+    position: fixed;
+    font-size: 19px;
+    font-family: Century Gothic, sans-serif;
+    font-variant: small-caps;
+    overflow: scroll;
+    z-index: 300;
+    display: none;
+    
+}
+#userLogin input, #userRegister input{
+    width: 100%;
+    height: 40px;
+    border-radius: 2px;
+    border: none;
+    color: black;
+    font-size: 17px;
+    font-family: Copperplate / Copperplate Gothic Light, sans-serif;
+    font-variant: small-caps;
+    
+}
+#userLogin td, #userRegister td{
+    
+    padding-top: 4%;
+    padding-bottom: 4%;
+    width: 70%;
+    text-align: center;
+    font-family: Copperplate / Copperplate Gothic Light, sans-serif;
+    height: 60px;
+    
+    
+}
+#userLogin td.pass, #userRegister td.pass{
+    width: 140px;
+    text-align: center;
+    
+}
+#userLogin, #userRegister{
+
+    width: 100%;
+    text-align: center;
+    height: 90px;
+}
+#userLogin button.support{
+    border:none;
+
+    color:white;
+    width: 20%;
+    text-align: center;
+    text-transform: lowercase;
+    font-variant: normal;
+    font-size: 10px;
+    text-decoration: underline;
+    font-family: verdana;
+    font-style: italic;
+    background:transparent;
+
+}
+#userLogin button.request, #resetPassword button.request, #userRegister button.request{
+    border:none;
+
+    color:white;
+    width: 20%;
+        text-align: center;
+        height: 40px;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 25px;
+    font-size: 15px;
+    background: black;
+    border-radius: 4px;
+        font-family: Century Gothic, sans-serif;
+    font-variant: small-caps;
+
+}
+
+
+
+.action{
+    padding: 3%;
+    font-size: 25px;
+}
+#loginAndRegisterPanel a, #loginAndRegisterPanel a:hover{
+    color: white;
+    text-decoration: none;
+}
+a.request{
+    text-decoration: none;
+}
+  @keyframes cf3FadeInOut {
+  0% {
+  opacity:1;
+}
+45% {
+opacity:1;
+}
+55% {
+opacity:0;
+}
+100% {
+opacity:0;
+}
+}
+#cf{
+    
+}
+.amazingcarousel-image img{
+animation-name: cf3FadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 6s;
+animation-direction: alternate;
+}
+.chalk{
+    background-image: url(images/team4.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+.footer{
+    clear: both;
+    width: 100%;
+    height: auto;
+    padding-top: 1%;
+    background: black;
+    text-align: center;
+    color:silver;
+    font-family: Century Gothic, sans-serif;
+    font-size: 12px;    
+    box-shadow: 2px 2px 6px 1px black;
+
+}
+.icon img{
+    width: 25px;
+    height: 25px;
+    margin-left: 8%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.extra{
+    color: silver;
+    font-size: 15px;
+    padding-top: 2%;
+    padding-bottom: 3%;
+    width: 30%;
+    height: auto;
+    display: inline-block;
+}
+</style>
+<script>
+$(document).ready(function(){
+     $('html, body').animate({
+        scrollTop: $("#mainbar").offset().top
+    });
+  // $(".schedule").hide();
+    $("#title").hide();
+    $(".schedule").delay("slow").animate({
+        height:'220px',
+    },"slow");
+
+ $("#title").show(2000);
+$("#title").animate({
+        opacity: '1',
+    },2000);
+
+
+
+    $("#maps").click(function(){
+
+    $('html, body').animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 1500);
+    return true;
+        });
+
+        $("#drop").click(function(){
+
+    $('html, body').animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 1500);
+    return true;
+        });
+});
+</script>
+
+<script>
+function pop(x)
+{
+    document.getElementById("loginAndRegisterPanel").style.display="block";
+
+    /*
+    document.getElementById('continue').disabled=true;
+    document.getElementById('checkbox').checked=false;
+    document.getElementById("popbox").style.display="block"
+    */
+    
+    if(x.innerHTML=="join us")
+{
+    //document.getElementById("login").style.display="none";
+    document.getElementById("userRegister").style.display="block";
+    document.getElementById("userRegister").style.height="500px";
+    document.getElementById("userLogin").style.display="none";
+    
+    }
+
+}
+
+function hide()
+{
+    document.getElementById("loginAndRegisterPanel").style.display="none";
+}
+</script>
+<body>
+
+
+<div style="margin:0px auto;" class="mainbody">
+<div class="coverpic">
+        <img src="images/test.jpg" style="box-shadow:1px 1px 6px 1px silver"/>
+        <div class="schedule">
+           
+           <div id="title" style="opacity:0">
+            <div style="font-size:50px;line-height: 90%"> check your<br>event</div>
+                <div style="font-size:20px"><br>have fun with us</div>
+               <a href="#event" ><img src="images/drop.ico" id="drop"></img></a>
+           </div>
             
+    </div>
+        <img src="images/test2.jpg" style="box-shadow:1px 1px 6px 1px silver"/>
+</div>
 
-            communityEvents   = new EventsC();
-            communityListView = new CommunityListView();
-            communityListView.render();
-
-            var createEvent = new eventDialogView();
-            createEvent.render();
-
-            layersample.config.userId = gLoginUser.username; //"kalyani";
-            layersample.config.userId = "kalyani";
-
-            /*
-              getNonce();
-
-              // Use the nonce to get an identity token
-              .then(function(nonce) {
-                  return getIdentityToken(nonce);
-              })
-
-              // Use the identity token to get a session
-              .then(function(identityToken) {
-                  return getSession(identityToken);
-              })
-
-              // Store the sessionToken so we can use it in the header for our requests
-              .then(function(sessionToken) {
-                  layersample.headers.Authorization =
-                      'Layer session-token="' + sessionToken + '"';
-
-
-                  // Now we can do stuff, like get a list of conversations
-                  //return getConversations();
-              })
-            */
-			
-			/* Load Profile Image */
-			$('#editProfileImage').css('background-image','url(' + gLoginUser.profile + ')');
-        });
-    </script>
-
+    </div>
+<nav class="navbar navbar-inverse" style="height:55px" id="navheader">
+    <div class="container-fluid">
     
-    
-    <script>
-        var slider_widthB = $('#ParticipantDiv').width(); //get width automatically
-        $('#sidebar-hide-btn').click(function() {
-            if (this.getAttribute('id') == 'sidebar-hide-btn') {
-                $('#ParticipantDiv').animate({
-                    "margin-right": '-=' + slider_widthB
-                }, 'slow', 'easeInQuart');
-                $('#sidebar-hide-btn').removeClass('icon-rightarrow');
-                $('#sidebar-hide-btn').addClass('icon-leftarrow');
-                $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-            } else {
-                $('#ParticipantDiv').animate({
-                    "margin-right": '+=' + slider_widthB
-                }, 'slow', 'easeOutBounce');
-                $('#sidebar-hide-btn').removeClass('icon-leftarrow');
-                $('#sidebar-hide-btn').addClass('icon-rightarrow');
-                $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            }
-        });
-		
-		$('#editProfileImage').click(function(){
-			if ($("#participant-show").children().length == 0) {
-				participantView = new ParticipantView();
-				participantView.render();
-			}	
-			$("#participant-show").toggle( "slow", function() {
-				// Animation complete.
-			});
-		});
-    </script>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainbar" style="float:left;width:45px">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="mainbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="home.html" >log out</a></li>
+                <li style="opacity:1"><a href="#" style="opacity:1">community</a></li>        
+                <li><a href="home.html">home</a></li>
+                <li><a href="#phone" id="download">download</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">help <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li style="background:white"><a href="#">My GitHub</a></li>
+                        <li style="background:white"><a href="#">My BitBucket</a></li>
+                    </ul>
+                </li>
+                
+            </ul>   
+        </div>
 
-    <script type='text/javascript' src="utils/ajaxutil.js"></script>
-    <script type='text/javascript' src="utils/common.js"></script>
 
-    <script src="app/js/collections/communities.js"></script>
-    <script src="app/js/models/community.js"></script>
-    <script src="app/js/views/CommunityListView.js"></script>
-    <script src="app/js/views/CommunityEditView.js"></script>
-    <script src="app/js/views/CommunityView.js"></script>
-    <script src="app/js/collections/users.js"></script>
-    <script src="app/js/models/user.js"></script>
-    <script src="app/js/router.js"></script>
-    <script src="app/js/views/UserAddView.js"></script>
-    <script src="app/js/views/ParticipantsListView.js"></script>
-    <script src="app/js/collections/loggedInUsers.js"></script>
-    <script src="app/js/models/loggedInUser.js"></script>
-    <script src="app/js/models/communityChat.js"></script>
-    <script src="app/js/collections/communityChats.js"></script>
-    <script src="app/js/models/participant.js"></script>
-    <script src="app/js/views/ParticipantView.js"></script>
-    <script src="app/js/views/EventsView.js"></script>
-    <script src="app/js/views/DialogView.js"></script>
-    <script src="app/js/views/ReQResView.js"></script>
-    <script src="app/js/collections/participants.js"></script>
-    <script src="app/js/models/taskHelper.js"></script>
-    <script src="app/js/collections/taskHelpers.js"></script>
-    <script src="app/js/models/task.js"></script>
-    <script src="app/js/collections/tasks.js"></script>
-    <script src="app/js/views/TaskView.js"></script>
-    <script src="app/js/views/EventView.js"></script>
-    <script src="app/js/collections/Events.js"></script>
-    <script src="app/js/models/eventDialog.js"></script>
-    <script src="app/js/views/eventDialogView.js"></script>
+</nav>
+
+
+    <div class="large">
+<div class="contain">
+    <div class="detail">
+        <table style="width:70%;margin-left:15%">
+        <tr><td>7pm - 9:30pm (pacific time)</td>
+       <td> wednesday nov 4th 2015 </td>
+       <td> 55 river oaks pl, san sose, 95134 <u><a href="#googleMap" style="color:black" id="maps">get direction</a></u></td>
+   </tr>
+    </table>
+    </div>
+    <div class="newevent" id="event">
+        <table style="height:80%">
+            <tr ><td style="text-align:center"><a href="#"><img src="images/plus.png" style="width:70%;opacity:1"></img></a></td>
+                <td style="font-size:25px">new task</td>
+            </tr>
+                 <tr ><td style="text-align:center"><a href="#"><img src="images/food.png"></img></a></td>
+                <td>food service</td>
+            </tr>
+                        <tr ><td style="text-align:center"><a href="#"><img src="images/meet.png"></img></a></td>
+                <td>meeting</td>
+            </tr>
+                        <tr ><td style="text-align:center"><a href="#"><img src="images/clean.png"></img></a></td>
+                <td>clean</td>
+            </tr>
+ 
+            
+        </table>
+    </div>
+<!-- Insert to your webpage where you want to display the carousel -->
+<div id="amazingcarousel-container-1">
+
+            
+    <div id="amazingcarousel-1" >
+        <div class="amazingcarousel-list-container">
+            <ul class="amazingcarousel-list">
+
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image" style="background-image: url(images/bg1.png)">
+    <a href="images/dance-and-studio-phtoography-tips-3-lightbox.jpg" title="dance-and-studio-phtoography-tips-3"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/team1.jpg"  alt="dance-and-studio-phtoography-tips-3" /></a></div>
+<div class="amazingcarousel-title">dance-and-studio-phtoography-tips-3</div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image" style="background-image: url(images/bg2.png)">
+    <a href="images/Nikon-School-travel-landscape-CR-new-rep-lightbox.jpg" title="Nikon-School-travel-landscape-CR-new-rep"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/team2.jpg"  alt="Nikon-School-travel-landscape-CR-new-rep" /></a></div>
+<div class="amazingcarousel-title">Nikon-School-travel-landscape-CR-new-rep</div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image" style="background-image: url(images/bg3.png)">
+    <a href="images/order_7092-lightbox.jpg" title="order_7092"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/team3.jpg"  alt="order_7092" /></a></div>
+<div class="amazingcarousel-title">order_7092</div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image" style="background-image: url(images/bg4.png)">
+    <a href="images/studio-photo-cat-in-snow-with-young-girl-lightbox.jpg" title="studio-photo-cat-in-snow-with-young-girl"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/team5.jpg"  alt="studio-photo-cat-in-snow-with-young-girl" /></a></div>
+<div class="amazingcarousel-title">studio-photo-cat-in-snow-with-young-girl</div>                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image" style="background-image: url(images/bg1.png)">
+    <a href="images/music-library-casual-meeting-space-lightbox.jpg" title="music-library-casual-meeting-space"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/team6.jpg"  alt="music-library-casual-meeting-space" /></a></div>
+<div class="amazingcarousel-title">music-library-casual-meeting-space</div>                    </div>
+                </li>
+            </ul>
+            <div class="amazingcarousel-prev"></div>
+            <div class="amazingcarousel-next"></div>
+        </div>
+        <div class="amazingcarousel-nav"></div>
+    </div>
+</div>
+</div>
+<div class="test"></div>
+<!-- End of body section HTML codes -->
+<div class="instruction">
+    <b>INSTRUCTION</b><br>
+    Center on the city’s east side was filled with players.
+
+True, it wasn’t a group of young wanna-be’s and middle-aged never-were’s “getting a run in” like perhaps a rare 70-plus degree day in early November would’ve had 30 years ago, but it was a group of young kids who were on the court for a very special reason.<br>
+
+Purdue University, the Fort Wayne Parks and Recreation Department and Managed Health Services collaborated to restore the outdoor court behind the recreation center as part of the Purdue Cardinal Community Hoops Program. The program centers on the philanthropic efforts of former Boilermaker great Brian Cardinal, who was on hand to sign autographs, shake hands and shoot a few baskets.
+</div>
+<div id="googleMap"></div>
+<div class="chalk">
+
+
+</div>
+<div class="footer">
+    <div class="icon">
+        <a href="#">
+        <img src="images/facebook.png"></img>
+        <img src="images/google.png"></img>
+        <img src="images/wechat.png"></img>
+        <img src="images/in.png"></img>
+    </a>
+    </div>
+    <div class="extra">
+        Employee Portal<br>
+        Blackboard<br>
+        Purdue Today<br>
+        myMail<br>
+        Outlook<br>
+        myPurdue<br>
+    </div>
+    <div class="extra">
+        Shop<br>
+        Calendar<br>
+        Libraries<br>
+        Information Technology<br>
+        Tuition Calculator<br>
+        Center for Healthy Living<br>
+    </div>
+        <div class="extra">
+    Faculty and Staff<br>
+    Careers<br>
+    Physical Facilities<br>
+    Directory<br>
+    Campus Map<br>
+    Construction<br>
+    </div>
+<br>
+    @All rights reserved | 2015
+</div>
+
+
+
+</div>
+<div id="loginAndRegisterPanel" >
+
+</div>
+
+
+<script type="text/template" id="user-login-template"> 
+<div id="userLogin">
+<div class="action">log in cschedule here<a href="#"><img src="images/close.png" style="float:right;width:30px" onclick="hide()"></img></a></div>
+
+<center><table>
+<tr>
+<td class="pass"><label>email:</label></td>
+        <td><input id = "loginEmail" name="email" type="text" value="" placeholder="username"><br> </td>
+        </tr>
+<tr><td class="pass"><label>password:</label></td>
+       <td> <input id = "loginPassword" name="password" type="password"  value="" placeholder="password"><br> </td>
+ </tr>
+
+</table>
+</center>
+<button class="support" id ='showResetPasswordForm' ><a href="#">forgot password?</a></button>
+<button  class="support" id ='showRegisterForm' ><a href="#">register</button></a><br>
+<button class="request"id ='submitForLogin' ><a href="#">log in</a></button>
+<button class="request" id ='cancel' onclick="hide()"><a href="#">cancel</a></button>
+<div style="width:100%; padding-top:2%">if you have any questions, please contact our technical support team</div>
+</div>
+
+<div id="resetPassword" style="display:none">
+<p>Please input your email to reset password</p>
+<label>Email</label>
+        <input id = "resetEmail" name="email" type="text" value=""><br> 
+<button class="request" id ='sumbitForResetPassword' ><a href="#">sumbit</a></button>
+</div>
+
+<div id="userRegister" style="display:none">
+<div class="action">welcome to register at cschedule<a href="#"><img src="images/close.png" style="float:right;width:30px" onclick="hide()"></img></a></div>
+<center>
+<table>
+<tr>
+<td class="pass"><label>email:</label></td>
+       <td > <input id = "registerEmail" name="email"  type="text" value=""><br> </td>
+  </tr>
+
+<tr>
+<td class="pass"><label>username:</label></td>
+       <td> <input id = "registerUserName" name="username"  type="text" value=""><br></td>
+ </tr>
+<tr>
+<td class="pass"><label>password:</label></td>
+ <td> <input id = "registerPassword" name="password" type="password" value=""><br> </td>
+ </tr>
+
+<tr>
+<td class="pass">
+<label>mobile(optional):</label></td>
+  <td> <input id = "registerMobile" name="mobile" type="number" value=""><br> </td>
+  </tr>
+ </table>
+</center>
+<button class="request"id ='submitForRegister' >register</button>
+<button class="request"id ='showLoginForm' >back to login</button>
+<div style="width:100%">if you have any questions, please contact our technical support team</div>
+</div>
+
+</script>
+
+<script src="app/js/views/loginView.js"></script>
+<script type='text/javascript' src="utils/ajaxutil.js"></script>
 </body>
-
-<!-- please leave the following two lines here -->
-<link rel="stylesheet" type="text/css" href="stylesheets/jquery.datetimepicker.css">
-<script src="javascripts/jquery.datetimepicker.js"></script>
-
 </html>
