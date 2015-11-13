@@ -44,7 +44,7 @@ var LoginAndRegisterView = Backbone.View.extend({
 				gLoginUser = response.attributes;
 				user_details = JSON.stringify(gLoginUser);
 				localStorage.setItem("login_user" , user_details);
-                window.location = '../community.html';
+                window.location = '../public/community.html';
 				
 			},
 			error:function(){
@@ -88,7 +88,9 @@ var LoginAndRegisterView = Backbone.View.extend({
 		userRegister.save({email:email,username:username,password:password,mobile:mobile},{
 			success:function(response){
 				alert("Register success! You name is "+response.attributes.username+". You id is "+response.attributes.ownerid+". You email is "+response.attributes.email+" .");
+				  window.location = '../public/community.html';
 			},
+
 			error:function(){
 				alert("Register fail!");
 			}
