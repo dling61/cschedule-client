@@ -1,4 +1,4 @@
-<div id="participantsListTemplate">
+<template id="participantsListTemplate">
     <div id="search">
 		<input id="email" name="email" placeholder="Enter user e-mail" type="text" style="margin-top:8px"><br>
 		<p id="emaildiv" style="color:red; display:none">Please enter a valid email address.</p>
@@ -23,13 +23,5 @@
 		<button id="cancelAddMember">Cancel</button>
 	</div>
 
-	<div id="display-user-form">
-		<% _.each(participants, function(participant) { %>
-		<ul >
-		<li data-id=<%= participant.id%> data-email=<%= htmlEncode(participant.get("email")) %> data-name=<%= htmlEncode(participant.get("name")) %> class="participant">
-			<img src='<%= participant.get("profile") %>'>  <%= htmlEncode(participant.get("name")) %>		
-		</li>
-		</ul>
-		<% }); %> 
-	</div> 
-</div>
+	<div id="display-user-form"> </div> 
+</template>
