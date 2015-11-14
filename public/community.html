@@ -7,6 +7,16 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 <script src="javascripts/backbone.js"></script>
 
+<<<<<<< HEAD
+=======
+<!-- load external html 'templates' part1/2 -->
+<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
+<link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
+<link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
+<link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
+<link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
+</head>
+>>>>>>> 36edc459a5ad844b302fa4c636f4ffbaeccb2b63
 
     <meta name="viewport" content="width=device-width">   
     
@@ -491,6 +501,7 @@ $("#title").animate({
 
         $("#drop").click(function(){
 
+<<<<<<< HEAD
     $('html, body').animate({
         scrollTop: $( $.attr(this, 'href') ).offset().top
     }, 1500);
@@ -539,6 +550,24 @@ function hide()
                 <div style="font-size:20px"><br>have fun with us</div>
                <a href="#event" ><img src="images/drop.ico" id="drop"></img></a>
            </div>
+=======
+    <!-- community show view -->
+    <div class="community-show" style="display:none; background-color: #88aaee;">
+        <div class="panel panel-default" style="background-color: #88aaee; ">
+            <div class="panel-heading" style="background-color: #88aaee; height: 50px;">
+                <div>
+                    <span id="showName" class="panel-title" style="font-size: 14pt; color: white; font-weight:bolder; font-family: Avenir; position:absolute; left:32px; padding-right:30px;"></span>
+                </div>
+                <div style="position: absolute; display: inline-block; right: 6px;">
+                    <!--<a class="button chatbutton" href="#community-chat-popup">Chat</a> -->
+                    <span id="eventDialogView">
+                      <button id="createBtn">+ Create Event</button>
+                    </span>
+                </div>
+            </div>
+
+            <br>
+>>>>>>> 36edc459a5ad844b302fa4c636f4ffbaeccb2b63
             
     </div>
         <img src="images/test2.jpg" style="box-shadow:1px 1px 6px 1px silver"/>
@@ -573,7 +602,93 @@ function hide()
         </div>
 
 
+<<<<<<< HEAD
 </nav>
+=======
+    </div>
+    <!--- end of CommunityView -->
+	<!--- editparticipantdialog-->
+	<div id="participant-show" style="display:none"></div>
+
+    <script type="text/template" id="users-dropdown-template">
+        <% _.each(loggedInUsers, function(user) { %>
+            <li><a href="#">"<%= htmlEncode(user.get("name")) %>" </a></li>
+        <% }); %>
+    </script>
+    <script type="text/template" id="chats-template">
+        <% _.each(chats, function(chat) { %>
+            <li><a href="#">"<%= htmlEncode(chat.get("message")) %>" </a></li>
+        <% }); %>
+    </script>
+    <script type="text/template" id="reQres-template">
+        <% _.each(chats, function(chat) { %>
+            <li><a href="#">"<%= htmlEncode(chat.get("message")) %>" </a></li>
+        <% }); %>
+    </script>
+    <script type="text/template" id="message-template">
+        <% _.each(msgs, function(message) { %>
+            <li>
+                <%= message.sender.user_id%>: <%= htmlEncode(message.parts[0].body) %>
+            </li>
+        <% }); %>
+    </script>
+
+    <script type="text/template" id="events-template">
+        <% _.each(events, function(message) { %>
+            <li>
+                <%= message.%>: <%= htmlEncode(message.parts[0].body) %>
+            </li>
+        <% }); %>
+    </script>
+
+
+
+    <!-- load external html 'templates' part2/2 -->
+    <script>
+        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
+        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
+        var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
+		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
+		var createParticipantsListView = document.querySelector("#participantsListViewTpl").import.querySelector('#participantsListTemplate');
+
+        document.body.appendChild(editEventView.cloneNode(true));
+        document.body.appendChild(createEventView.cloneNode(true));
+        document.body.appendChild(createParticipantsView.cloneNode(true));
+		document.body.appendChild(editParticipantView.cloneNode(true));
+		document.body.appendChild(createParticipantsListView.cloneNode(true));
+    </script>
+
+    
+    <!-- Global Variables  !-->
+    <script type="text/javascript">
+        var gFetchedEvents;
+        var communityEvents;
+
+        var communityListView;
+        var gParticipantsListView;
+        var userAddView;
+        var participantView;
+        var gEventsView;
+        var gEventView;
+        
+        var gEvents;
+        var gParticipants;
+        var gTasks;
+        var gTaskAssignees;
+        var gTaskHelpers;
+
+        var gLoginUserId;
+        
+        var gLatestCommunityId;
+        var gLatestEventId;
+        var gLatestTaskId;
+        var gLatestTaskHelperId;
+        var gLoginUser;
+        var gLoginUserName;
+		var gSelectedCommunityId;
+		
+        var gSeverSetting;
+>>>>>>> 36edc459a5ad844b302fa4c636f4ffbaeccb2b63
 
 
     <div class="large">
@@ -607,6 +722,7 @@ function hide()
 <!-- Insert to your webpage where you want to display the carousel -->
 <div id="amazingcarousel-container-1">
 
+<<<<<<< HEAD
             
     <div id="amazingcarousel-1" >
         <div class="amazingcarousel-list-container">
@@ -772,5 +888,110 @@ Purdue University, the Fort Wayne Parks and Recreation Department and Managed He
 
 <script src="app/js/views/loginView.js"></script>
 <script type='text/javascript' src="utils/ajaxutil.js"></script>
+=======
+            communityEvents   = new EventsC();
+            communityListView = new CommunityListView();
+            communityListView.render();
+
+            var createEvent = new eventDialogView();
+            createEvent.render();
+
+            layersample.config.userId = gLoginUser.username; //"kalyani";
+            layersample.config.userId = "kalyani";
+
+            /*
+              getNonce();
+
+              // Use the nonce to get an identity token
+              .then(function(nonce) {
+                  return getIdentityToken(nonce);
+              })
+
+              // Use the identity token to get a session
+              .then(function(identityToken) {
+                  return getSession(identityToken);
+              })
+
+              // Store the sessionToken so we can use it in the header for our requests
+              .then(function(sessionToken) {
+                  layersample.headers.Authorization =
+                      'Layer session-token="' + sessionToken + '"';
+
+
+                  // Now we can do stuff, like get a list of conversations
+                  //return getConversations();
+              })
+            */
+			
+			/* Load Profile Image */
+			$('#editProfileImage').css('background-image','url(' + gLoginUser.profile + ')');
+        });
+    </script>
+
+    
+    
+    <script>
+        var slider_widthB = $('#ParticipantDiv').width(); //get width automatically
+        $('#sidebar-hide-btn').click(function() {
+            if (this.getAttribute('id') == 'sidebar-hide-btn') {
+                $('#ParticipantDiv').animate({
+					width: 0
+                }, 'slow', 'easeInQuart');
+                $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
+            } else {
+                $('#ParticipantDiv').animate({
+                    width: '+=' + slider_widthB
+                }, 'slow', 'easeOutBounce');
+                $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
+            }
+			$(".MemberList").toggle( "fast", function() {
+				// Animation complete.
+			});
+		});
+		
+		$('#editProfileImage').click(function(){
+			if ($("#participant-show").children().length == 0) {
+				participantView = new ParticipantView();
+				participantView.render();
+			}	
+			$("#participant-show").toggle( "fast", function() {
+				// Animation complete.
+			});
+		});
+    </script>
+
+    <script type='text/javascript' src="utils/ajaxutil.js"></script>
+    <script type='text/javascript' src="utils/common.js"></script>
+
+    <script src="app/js/collections/communities.js"></script>
+    <script src="app/js/models/community.js"></script>
+    <script src="app/js/views/CommunityListView.js"></script>
+    <script src="app/js/views/CommunityEditView.js"></script>
+    <script src="app/js/views/CommunityView.js"></script>
+    <script src="app/js/collections/users.js"></script>
+    <script src="app/js/models/user.js"></script>
+    <script src="app/js/router.js"></script>
+    <script src="app/js/views/UserAddView.js"></script>
+    <script src="app/js/views/ParticipantsListView.js"></script>
+    <script src="app/js/collections/loggedInUsers.js"></script>
+    <script src="app/js/models/loggedInUser.js"></script>
+    <script src="app/js/models/communityChat.js"></script>
+    <script src="app/js/collections/communityChats.js"></script>
+    <script src="app/js/models/participant.js"></script>
+    <script src="app/js/views/ParticipantView.js"></script>
+    <script src="app/js/views/EventsView.js"></script>
+    <script src="app/js/views/DialogView.js"></script>
+    <script src="app/js/views/ReQResView.js"></script>
+    <script src="app/js/collections/participants.js"></script>
+    <script src="app/js/models/taskHelper.js"></script>
+    <script src="app/js/collections/taskHelpers.js"></script>
+    <script src="app/js/models/task.js"></script>
+    <script src="app/js/collections/tasks.js"></script>
+    <script src="app/js/views/TaskView.js"></script>
+    <script src="app/js/views/EventView.js"></script>
+    <script src="app/js/collections/Events.js"></script>
+    <script src="app/js/models/eventDialog.js"></script>
+    <script src="app/js/views/eventDialogView.js"></script>
+>>>>>>> 36edc459a5ad844b302fa4c636f4ffbaeccb2b63
 </body>
 </html>
