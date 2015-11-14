@@ -140,7 +140,7 @@ var ParticipantView = Backbone.View.extend({
 		}, false);
 
 		//Saves the image as a quadrilateral png
-		$("#saveButton").click(function() {
+		$("#saveButton").click(function(user) {
 			var data = cvsSave.toDataURL("image/png");
 			var image = data.replace('data:image/png;base64,', '');
 			var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + gLoginUserId + '"}';
@@ -151,7 +151,12 @@ var ParticipantView = Backbone.View.extend({
 				contentType: 'application/json',
 				dataType: 'json',
 				complete: function(xhr) {
-					alert(xhr.status);
+					if (xhr.status == 200) {
+						$('#editProfileImage').css('background-image','url(' + data + ')');
+						$("#participant-show").toggle( "slow", function() {	});
+					} else {
+						alert("Image not uploaded");
+					}
 				}
 			});
 		});
