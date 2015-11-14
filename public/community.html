@@ -27,7 +27,7 @@
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
 <link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
 <link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
-<link rel="import" id="participantListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
+<link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
 </head>
 
 <body style="background-color: #88aaee">
@@ -224,11 +224,13 @@
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
         var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
 		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
+		var createParticipantsListView = document.querySelector("#participantsListViewTpl").import.querySelector('#participantsListTemplate');
 
         document.body.appendChild(editEventView.cloneNode(true));
         document.body.appendChild(createEventView.cloneNode(true));
         document.body.appendChild(createParticipantsView.cloneNode(true));
 		document.body.appendChild(editParticipantView.cloneNode(true));
+		document.body.appendChild(createParticipantsListView.cloneNode(true));
     </script>
 
     
@@ -320,27 +322,26 @@
         $('#sidebar-hide-btn').click(function() {
             if (this.getAttribute('id') == 'sidebar-hide-btn') {
                 $('#ParticipantDiv').animate({
-                    "margin-right": '-=' + slider_widthB
+					width: 0
                 }, 'slow', 'easeInQuart');
-                $('#sidebar-hide-btn').removeClass('icon-rightarrow');
-                $('#sidebar-hide-btn').addClass('icon-leftarrow');
                 $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
             } else {
                 $('#ParticipantDiv').animate({
-                    "margin-right": '+=' + slider_widthB
+                    width: '+=' + slider_widthB
                 }, 'slow', 'easeOutBounce');
-                $('#sidebar-hide-btn').removeClass('icon-leftarrow');
-                $('#sidebar-hide-btn').addClass('icon-rightarrow');
                 $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
             }
-        });
+			$(".MemberList").toggle( "fast", function() {
+				// Animation complete.
+			});
+		});
 		
 		$('#editProfileImage').click(function(){
 			if ($("#participant-show").children().length == 0) {
 				participantView = new ParticipantView();
 				participantView.render();
 			}	
-			$("#participant-show").toggle( "slow", function() {
+			$("#participant-show").toggle( "fast", function() {
 				// Animation complete.
 			});
 		});
