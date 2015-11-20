@@ -410,7 +410,7 @@ list-style: none;
 /* Container for Participant List */
 #ParticipantDiv {
   position: absolute;
-  top: 165px;
+  top: 240px;
   right: 0px;
   width: 180px;
   background-color: #eee;
