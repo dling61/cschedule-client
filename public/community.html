@@ -326,12 +326,12 @@
 			slider_widthB = $('#ParticipantDiv').width(); 
 			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
 			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-			$(".MemberList").toggle( "fast", function() {});
+			$(".participantList").toggle( "fast", function() {});
 		});
 		$('body').on('click','#sidebar-show-btn', function() {
 			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
             $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            $(".MemberList").toggle( "fast", function() {});
+            $(".participantList").toggle( "fast", function() {});
 		});
 		
 		$('#editProfileImage').click(function(){

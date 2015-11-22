@@ -1,5 +1,5 @@
 var UserAddView = Backbone.View.extend({
-    el: '.MemberList',
+    el: '.participantList',
     events: {
 		'click #searchForMember': 'searchForMember',
 		'click #deleteParticipant':'deleteParticipant',

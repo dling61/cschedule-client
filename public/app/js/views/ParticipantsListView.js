@@ -1,5 +1,5 @@
 var ParticipantsListView = Backbone.View.extend({
-    el: '.MemberList',
+    el: '.participantList',
 	events:{
 		'dblclick.participant':'showDetails',
 		'click.participant':'messageBox'
