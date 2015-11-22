@@ -1,18 +1,3 @@
-
-    /*
-	<script type="text/template" id="messageBox-template">
-    ID:<%= id%>
-    <br>
-    Name:<%= name %>
-    <br>
-    <input type = text ></input>
-
-    <div id="con_history"></div>
-
-
-    </script>
-	*/
-
 var ParticipantView = Backbone.View.extend({
     el: '#participantDialog',
 	events:{
@@ -167,6 +152,7 @@ var ParticipantView = Backbone.View.extend({
 		var template = _.template($('#editParticipantDialog').html());    
 		$("#participant-show").html(template({user: user.attributes}));
 		//$("#participant-show").show();
+		console.log("yes");
 		this.initImageAreas();
 		/*
         var that = this;

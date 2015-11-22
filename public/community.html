@@ -25,8 +25,9 @@
 <!-- load external html 'templates' part1/2 -->
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
-<link rel="import" id="participantEditViewTpl" href="app/tmpl/ParticipantEditView.tpl.html">
-<link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
+<link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
+<link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
+<link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
 </head>
 
 <body style="background-color: #88aaee">
@@ -228,10 +229,10 @@
 			var t = document.querySelector(importID),
 				t = t.import.querySelector(templateID),
 				t = t.content.cloneNode(true);
-			$('body').append(t);
+			return t;
 		}
-		//loadTemplate("#participantsListViewTpl","#participantsListTemplate");
-		loadTemplate("#participantEditViewTpl","#participantEditViewTemplate");
+		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+		$("body").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
     </script>
 
     
@@ -356,8 +357,8 @@
     <script src="app/js/collections/users.js"></script>
     <script src="app/js/models/user.js"></script>
     <script src="app/js/router.js"></script>
+	<script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/views/UserAddView.js"></script>
-    <script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/collections/loggedInUsers.js"></script>
     <script src="app/js/models/loggedInUser.js"></script>
     <script src="app/js/models/communityChat.js"></script>
