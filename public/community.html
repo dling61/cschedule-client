@@ -25,8 +25,7 @@
 <!-- load external html 'templates' part1/2 -->
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
-<link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
-<link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
+<link rel="import" id="participantEditViewTpl" href="app/tmpl/ParticipantEditView.tpl.html">
 <link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
 </head>
 
@@ -183,7 +182,6 @@
     </div>
     <!--- end of CommunityView -->
 	<!--- editparticipantdialog-->
-	<div id="participant-show" style="display:none"></div>
 
     <script type="text/template" id="users-dropdown-template">
         <% _.each(loggedInUsers, function(user) { %>
@@ -222,15 +220,18 @@
     <script>
         var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-        var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
-		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
-		var createParticipantsListView = document.querySelector("#participantsListViewTpl").import.querySelector('#participantsListTemplate');
 
         document.body.appendChild(editEventView.cloneNode(true));
         document.body.appendChild(createEventView.cloneNode(true));
-        document.body.appendChild(createParticipantsView.cloneNode(true));
-		document.body.appendChild(editParticipantView.cloneNode(true));
-		document.body.appendChild(createParticipantsListView.cloneNode(true));
+		
+		function loadTemplate(importID, templateID) {
+			var t = document.querySelector(importID),
+				t = t.import.querySelector(templateID),
+				t = t.content.cloneNode(true);
+			$('body').append(t);
+		}
+		//loadTemplate("#participantsListViewTpl","#participantsListTemplate");
+		loadTemplate("#participantEditViewTpl","#participantEditViewTemplate");
     </script>
 
     
@@ -320,22 +321,17 @@
     
     
     <script>
-        var slider_widthB = $('#ParticipantDiv').width(); //get width automatically
-        $('#sidebar-hide-btn').click(function() {
-            if (this.getAttribute('id') == 'sidebar-hide-btn') {
-                $('#ParticipantDiv').animate({
-					width: 0
-                }, 'slow', 'easeInQuart');
-                $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-            } else {
-                $('#ParticipantDiv').animate({
-                    width: '+=' + slider_widthB
-                }, 'slow', 'easeOutBounce');
-                $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            }
-			$(".MemberList").toggle( "fast", function() {
-				// Animation complete.
-			});
+		var slider_widthB;
+        $('body').on('click','#sidebar-hide-btn', function() {
+			slider_widthB = $('#ParticipantDiv').width(); 
+			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
+			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
+			$(".MemberList").toggle( "fast", function() {});
+		});
+		$('body').on('click','#sidebar-show-btn', function() {
+			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
+            $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
+            $(".MemberList").toggle( "fast", function() {});
 		});
 		
 		$('#editProfileImage').click(function(){

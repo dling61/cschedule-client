@@ -146,7 +146,7 @@ var ParticipantView = Backbone.View.extend({
 			var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + gLoginUserId + '"}';
 			$.ajax({
 				type: 'POST',
-				url: 'creator/upload?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&',
+				url: 'creator/upload',
 				data: imgJSON,
 				contentType: 'application/json',
 				dataType: 'json',
@@ -176,7 +176,6 @@ var ParticipantView = Backbone.View.extend({
           	success: function (users) {
                 var template = _.template($('#display-user-template').html());    
                 $("#participantDialog").html(template({user:users.models[0].attributes}));	
-				this.initImageAreas();
             }
         });	    
 		*/
