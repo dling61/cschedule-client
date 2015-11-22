@@ -149,10 +149,10 @@ var ParticipantView = Backbone.View.extend({
 	
     render: function (email) {
 		var user = gParticipants.findWhere({id: gLoginUserId}); 
-		var template = _.template($('#editParticipantDialog').html());    
-		$("#participant-show").html(template({user: user.attributes}));
+		$("#editProfileImage").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
+		//var template = _.template($('#participant-show').html());    
+		//$("#participant-show").html(template({user: user.attributes}));
 		//$("#participant-show").show();
-		console.log("yes");
 		this.initImageAreas();
 		/*
         var that = this;

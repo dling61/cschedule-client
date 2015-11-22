@@ -232,7 +232,8 @@
 			return t;
 		}
 		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
-		$("body").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
+		
+		
     </script>
 
     
@@ -335,12 +336,15 @@
             $(".participantList").toggle( "fast", function() {});
 		});
 		
-		$('#editProfileImage').click(function(){
-			if ($("#participant-show").children().length == 0) {
+		$('#editProfileImage').click(function(e){
+			if( e.target != this ) {
+				return;
+			} 
+			if ($("#editProfileImage").children().length == 0) {
 				participantView = new ParticipantView();
 				participantView.render();
 			}	
-			$("#participant-show").toggle( "fast", function() {
+			$("#participant-show").toggle( "fast", function() { 
 				// Animation complete.
 			});
 		});
