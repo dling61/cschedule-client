@@ -337,13 +337,16 @@
 		});
 		
 		$('#editProfileImage').click(function(e){
-			if( e.target != this ) {
+			//So that this function does not affect its children
+			if (e.target != this) {
 				return;
 			} 
+			//Create new if doesn't exist
 			if ($("#editProfileImage").children().length == 0) {
 				participantView = new ParticipantView();
 				participantView.render();
-			}	
+			}
+			//Hide and show
 			$("#participant-show").toggle( "fast", function() { 
 				// Animation complete.
 			});

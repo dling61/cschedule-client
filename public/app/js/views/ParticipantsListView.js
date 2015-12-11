@@ -7,7 +7,7 @@ var ParticipantsListView = Backbone.View.extend({
 	},
 		
 	messageBox: function(ev) {
-		//alert("Yes message box");
+		alert("Yes message box");
 		var participant = $(ev.target).closest('li'),
 			id = $(participant[0]).data('id'),
 			name = $(participant[0]).data('name');
@@ -51,7 +51,7 @@ var ParticipantsListView = Backbone.View.extend({
 	
 	
 	showDetails: function(ev) {
-		//alert("Yes show details");
+		alert("Yes show details");
 		var participant =$(ev.target).closest('li');
 		var email = $(participant[0]).data('email'); 		
 		var participantView = new ParticipantView();

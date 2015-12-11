@@ -149,9 +149,13 @@ var ParticipantView = Backbone.View.extend({
 	
     render: function (email) {
 		var user = gParticipants.findWhere({id: gLoginUserId}); 
+		
 		$("#editProfileImage").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
-		//var template = _.template($('#participant-show').html());    
-		//$("#participant-show").html(template({user: user.attributes}));
+		
+		//It works!!! The user info is implemented into the correct place!
+		var template = _.template($('#participant-show').html());    
+		$("#participant-show").html(template({user: user.attributes}));
+		
 		//$("#participant-show").show();
 		this.initImageAreas();
 		/*
