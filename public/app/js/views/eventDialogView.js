@@ -7,8 +7,13 @@ var eventDialogView = Backbone.View.extend({
     eventCreateDialog : function(event) {
         // console.log("hi");
         var buttons = {
+             "save" : {
+              text: 'Save as Draft',
+              class: 'save-btn',
+              click: this.draft
+            },
             "back" : {
-              text: 'Back',
+              text: 'Previous',
               class: 'back-btn',
               click: this.back
             },
@@ -17,6 +22,7 @@ var eventDialogView = Backbone.View.extend({
               class: 'next-btn',
               click: this.next
             },
+
             "publish" : {
               text: 'Publish',
               class: 'publish-btn',
@@ -30,7 +36,7 @@ var eventDialogView = Backbone.View.extend({
             show: 'fade',
             hide: 'fade',
             modal: false,
-            width: 950,
+            width: 930,
             height: 600,
             title: 'Create an Event',
             buttons: buttons,
@@ -40,6 +46,7 @@ var eventDialogView = Backbone.View.extend({
 
         $('.back-btn').hide();
         $('.publish-btn').hide();
+        
 
         $( "#createOneEventStartDTFLD, #createOneEventEndDTFLD, #createReEventStartDTFLD, #createReEventEndDTFLD" )
         .datetimepicker({
@@ -90,6 +97,7 @@ var eventDialogView = Backbone.View.extend({
 
             $('.createEventTab').on('click', function() {
                 $('.back-btn').show();
+
             });
 
             $('.radio-btn-one').click(function() {
@@ -117,6 +125,8 @@ var eventDialogView = Backbone.View.extend({
         // alert('back');
         var preTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]) - 1;
         $('a[data-id=tab-' + preTabNo + ']').children('.glyphicon-ok').remove();
+        $('a[data-id=tab-' + preTabNo + ']').css("background-color","silver");
+        $('a[data-id=tab-' + (preTabNo+1) + ']').css("background-color","transparent");
         $('a[data-id=tab-' + preTabNo + ']').trigger('click');
         $('.next-btn').css('display', 'inline');
         $('.publish-btn').hide();
@@ -126,7 +136,9 @@ var eventDialogView = Backbone.View.extend({
         var currTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]);
         var nextTabNo = currTabNo + 1;
         if(currTabNo < 4) {
-            $('a[data-id=tab-' + (nextTabNo - 1) + ']').prepend('<span class="glyphicon glyphicon-ok"><span>');
+             $('a[data-id=tab-' + (nextTabNo -1) + ']').css("background-color","transparent");
+            $('a[data-id=tab-' + (nextTabNo) + ']').css("background-color","silver");
+            $('a[data-id=tab-' + (nextTabNo - 1) + ']').prepend('');
             $('a[data-id=tab-' + nextTabNo + ']').trigger('click');
         }       
         if(currTabNo == 3) {
