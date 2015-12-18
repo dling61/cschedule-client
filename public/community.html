@@ -4,6 +4,7 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
@@ -25,9 +26,9 @@
 <!-- load external html 'templates' part1/2 -->
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
-<link rel="import" id="ParticipantViewTpl" href="app/tmpl/ParticipantsView.tpl.html">
-<link rel="import" id="editParticipantView" href="app/tmpl/ParticipantView.tpl.html">
-<link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
+<link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
+<link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
+<link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
 </head>
 
 <body style="background-color: #88aaee">
@@ -183,7 +184,6 @@
     </div>
     <!--- end of CommunityView -->
 	<!--- editparticipantdialog-->
-	<div id="participant-show" style="display:none"></div>
 
     <script type="text/template" id="users-dropdown-template">
         <% _.each(loggedInUsers, function(user) { %>
@@ -222,15 +222,19 @@
     <script>
         var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-        var createParticipantsView = document.querySelector("#ParticipantViewTpl").import.querySelector('#ParticipantDiv');
-		var editParticipantView = document.querySelector("#editParticipantView").import.querySelector('#editParticipantDialog');
-		var createParticipantsListView = document.querySelector("#participantsListViewTpl").import.querySelector('#participantsListTemplate');
 
         document.body.appendChild(editEventView.cloneNode(true));
         document.body.appendChild(createEventView.cloneNode(true));
-        document.body.appendChild(createParticipantsView.cloneNode(true));
-		document.body.appendChild(editParticipantView.cloneNode(true));
-		document.body.appendChild(createParticipantsListView.cloneNode(true));
+		
+		function loadTemplate(importID, templateID) {
+			var t = document.querySelector(importID),
+				t = t.import.querySelector(templateID),
+				t = t.content.cloneNode(true);
+			return t;
+		}
+		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+		
+		
     </script>
 
     
@@ -258,6 +262,7 @@
         var gLatestEventId;
         var gLatestTaskId;
         var gLatestTaskHelperId;
+		var gLatestParticipantId;
         var gLoginUser;
         var gLoginUserName;
 		var gSelectedCommunityId;
@@ -272,6 +277,7 @@
             gLatestEventId       = gLoginUser.eventid;
             gLatestTaskId        = gLoginUser.taskid;
             gLatestTaskHelperId  = gLoginUser.taskhelperid;
+			gLatestParticipantId = gLoginUser.participantid;
             gLoginUserName       = gLoginUser.username;
 			gSelectedCommunityId = 
             
@@ -318,30 +324,31 @@
     
     
     <script>
-        var slider_widthB = $('#ParticipantDiv').width(); //get width automatically
-        $('#sidebar-hide-btn').click(function() {
-            if (this.getAttribute('id') == 'sidebar-hide-btn') {
-                $('#ParticipantDiv').animate({
-					width: 0
-                }, 'slow', 'easeInQuart');
-                $('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-            } else {
-                $('#ParticipantDiv').animate({
-                    width: '+=' + slider_widthB
-                }, 'slow', 'easeOutBounce');
-                $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            }
-			$(".MemberList").toggle( "fast", function() {
-				// Animation complete.
-			});
+		var slider_widthB;
+        $('body').on('click','#sidebar-hide-btn', function() {
+			slider_widthB = $('#ParticipantDiv').width(); 
+			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
+			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
+			$(".participantList").toggle( "fast", function() {});
+		});
+		$('body').on('click','#sidebar-show-btn', function() {
+			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
+            $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
+            $(".participantList").toggle( "fast", function() {});
 		});
 		
-		$('#editProfileImage').click(function(){
-			if ($("#participant-show").children().length == 0) {
+		$('#editProfileImage').click(function(e){
+			//So that this function does not affect its children
+			if (e.target != this) {
+				return;
+			} 
+			//Create new if doesn't exist
+			if ($("#editProfileImage").children().length == 0) {
 				participantView = new ParticipantView();
 				participantView.render();
-			}	
-			$("#participant-show").toggle( "fast", function() {
+			}
+			//Hide and show
+			$("#participant-show").toggle( "fast", function() { 
 				// Animation complete.
 			});
 		});
@@ -349,6 +356,7 @@
 
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
     <script type='text/javascript' src="utils/common.js"></script>
+	<script type='text/javascript' src="utils/imageUtils.js"></script>
 
     <script src="app/js/collections/communities.js"></script>
     <script src="app/js/models/community.js"></script>
@@ -358,8 +366,8 @@
     <script src="app/js/collections/users.js"></script>
     <script src="app/js/models/user.js"></script>
     <script src="app/js/router.js"></script>
+	<script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/views/UserAddView.js"></script>
-    <script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/collections/loggedInUsers.js"></script>
     <script src="app/js/models/loggedInUser.js"></script>
     <script src="app/js/models/communityChat.js"></script>

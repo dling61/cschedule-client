@@ -6,5 +6,4 @@ var DialogView = Backbone.View.extend({
 		var template = _.template($('#messageBox-template').html());
 		$('#messageDialog').html(template({id:id,name:name}));
 	},
-	
 });

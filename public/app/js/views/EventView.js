@@ -307,8 +307,15 @@ var HelpersPoolView = Backbone.View.extend({
             success: function(eventList) {
                 events = [];
                 
-                var popup_helpers = $("<div id='helper_pool0' style='padding-top: 18px; background: #edd;'>");
-                $("#event_task0").append(popup_helpers);
+                
+                var helpers_overlay = $("<div id='helpers_pool' style='margin-top: 146px; width: 280px;'>");
+                $("#eventView").append(helpers_overlay);
+                
+                var top_arrow = $("<div class='arrow-up' style='margin-left: 30px'></div>");
+                $("#helpers_pool").append( top_arrow );
+
+                var popup_helpers = $("<div id='helper_pool0' style='padding-top: 18px; padding-bottom: 8px; background: black;'>");
+                $("#helpers_pool").append(popup_helpers);
                 
                 events = _.map(eventList.models, function(event) {
                     var title = event.attributes.username;
@@ -318,7 +325,7 @@ var HelpersPoolView = Backbone.View.extend({
                     var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='display:inline-block; z-index:9000; margin-left:8px; margin-right:8px;'>");
 
                     personDiv.append("<img class='helperPoolImg' src='" + pic + "'>");
-                    personDiv.append("<div>" + title);
+                    personDiv.append("<div style='color:white; text-align: center'>" + title);
                     if (title === 'Irene')
                         personDiv.append("<div style='color: goldenrod;'>after July");
                     personDiv.draggable();

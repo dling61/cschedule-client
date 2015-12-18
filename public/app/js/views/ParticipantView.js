@@ -1,18 +1,3 @@
-
-    /*
-	<script type="text/template" id="messageBox-template">
-    ID:<%= id%>
-    <br>
-    Name:<%= name %>
-    <br>
-    <input type = text ></input>
-
-    <div id="con_history"></div>
-
-
-    </script>
-	*/
-
 var ParticipantView = Backbone.View.extend({
     el: '#participantDialog',
 	events:{
@@ -146,7 +131,7 @@ var ParticipantView = Backbone.View.extend({
 			var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + gLoginUserId + '"}';
 			$.ajax({
 				type: 'POST',
-				url: 'creator/upload?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&',
+				url: 'creator/upload',
 				data: imgJSON,
 				contentType: 'application/json',
 				dataType: 'json',
@@ -164,8 +149,13 @@ var ParticipantView = Backbone.View.extend({
 	
     render: function (email) {
 		var user = gParticipants.findWhere({id: gLoginUserId}); 
-		var template = _.template($('#editParticipantDialog').html());    
+		
+		$("#editProfileImage").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
+		
+		//It works!!! The user info is implemented into the correct place!
+		var template = _.template($('#participant-show').html());    
 		$("#participant-show").html(template({user: user.attributes}));
+		
 		//$("#participant-show").show();
 		this.initImageAreas();
 		/*
@@ -176,7 +166,6 @@ var ParticipantView = Backbone.View.extend({
           	success: function (users) {
                 var template = _.template($('#display-user-template').html());    
                 $("#participantDialog").html(template({user:users.models[0].attributes}));	
-				this.initImageAreas();
             }
         });	    
 		*/
