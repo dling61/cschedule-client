@@ -62,8 +62,7 @@ var ParticipantsListView = Backbone.View.extend({
 	
     render: function () {
 		//var self = this;
-		gParticipants = new Participants();
-		gParticipants.fetch({
+		gParticipants = new Participants().fetch({
             success: function (gParticipants) {
 				$.each(gParticipants.models, function(p) {
 					participant = gParticipants.models[p];
