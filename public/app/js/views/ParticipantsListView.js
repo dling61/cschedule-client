@@ -2,10 +2,11 @@ var ParticipantsListView = Backbone.View.extend({
     el: '.participantList',
 
 	events: {
-		'dblclick .participant' : 'showDetails',
-		'click .participant' : 'messageBox'
+		/*'dblclick .participant' : 'showDetails',
+		'click .participant' : 'messageBox'*/
 	},
-		
+	
+	/*
 	messageBox: function(ev) {
 		alert("Yes message box");
 		var participant = $(ev.target).closest('li'),
@@ -47,9 +48,9 @@ var ParticipantsListView = Backbone.View.extend({
 		.then(function(conversation) {
 			layersample.conversationUrl = conversation.url;
 		});
-	},
+	},*/
 	
-	
+	/*
 	showDetails: function(ev) {
 		alert("Yes show details");
 		var participant =$(ev.target).closest('li');
@@ -58,11 +59,15 @@ var ParticipantsListView = Backbone.View.extend({
 		participantView.render(email);
 		$('#participantDialog').dialog();
         //ev.preventDefault();
-	},
+	}, */
 	
     render: function () {
-		//var self = this;
 		gParticipants = new Participants()
+		$('<ul>' +
+			'<li>' +
+				'<img src = images/plus.png> Add Participant' +
+			'</li>' + 
+		'</ul>').appendTo('#display-user-form');
 		gParticipants.fetch({
             success: function (gParticipants) {
 				$.each(gParticipants.models, function(p) {

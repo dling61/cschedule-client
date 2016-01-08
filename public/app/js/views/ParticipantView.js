@@ -10,7 +10,7 @@ var ParticipantView = Backbone.View.extend({
 		$("#editProfileImage").append(loadTemplate("#participantEditViewTpl","#participantEditViewTemplate"));
 		var template = _.template($('#participant-show').html());    
 		$("#participant-show").html(template({user: user.attributes}));
-		initImageAreas();
+		addImageEvents();
     }, 
 	
 	updateUser:function(ev){
