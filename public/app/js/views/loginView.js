@@ -44,7 +44,8 @@ var LoginAndRegisterView = Backbone.View.extend({
 				gLoginUser = response.attributes;
 				user_details = JSON.stringify(gLoginUser);
 				localStorage.setItem("login_user" , user_details);
-                window.location = '../public/community.html';
+                //window.location = '../public/community.html';
+				window.location = './community.html'
 				
 			},
 			error:function(){

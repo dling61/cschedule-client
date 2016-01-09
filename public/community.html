@@ -4,14 +4,11 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
@@ -328,22 +325,25 @@
 			slider_widthB = $('#ParticipantDiv').width(); 
 			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
 			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-			$(".participantList").toggle( "fast", function() {});
+			$("#participantsList").toggle( "fast", function() {});
 		});
 		$('body').on('click','#sidebar-show-btn', function() {
 			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
             $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            $(".participantList").toggle( "fast", function() {});
+            $("#participantsList").toggle( "fast", function() {});
 		});
 		
 		$('#editProfileImage').click(function(e){
-			if( e.target != this ) {
+			//So that this function does not affect its children
+			if (e.target != this) {
 				return;
 			} 
+			//Create new if doesn't exist
 			if ($("#editProfileImage").children().length == 0) {
 				participantView = new ParticipantView();
 				participantView.render();
-			}	
+			}
+			//Hide and show
 			$("#participant-show").toggle( "fast", function() { 
 				// Animation complete.
 			});
@@ -352,6 +352,7 @@
 
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
     <script type='text/javascript' src="utils/common.js"></script>
+	<script type='text/javascript' src="utils/imageUtils.js"></script>
 
     <script src="app/js/collections/communities.js"></script>
     <script src="app/js/models/community.js"></script>
