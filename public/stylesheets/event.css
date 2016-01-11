@@ -40,8 +40,8 @@
 
 background-color: #F8F8F8 ;
 width: 100%;
-height: auto;
 display: none;
+height: auto;
 z-index: 1000;
 }
 #basic table, #task table{
