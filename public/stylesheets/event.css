@@ -41,6 +41,8 @@
 background-color: #F8F8F8 ;
 width: 100%;
 height: auto;
+display: none;
+z-index: 1000;
 }
 #basic table, #task table{
   width: 100%;
@@ -224,10 +226,6 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 #radio1{
   font-weight: bold;
   color: #34629A;
-}
-
-.dialog-hide {
-  display: block;
 }
 
 .createEventRepeatSetting {
