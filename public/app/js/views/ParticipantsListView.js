@@ -82,7 +82,7 @@ var ParticipantsListView = Backbone.View.extend({
 							' data-email=' + participant.get('email') +
 							' data-name=' + participant.get('name') +
 							' class=participant>' + 
-							'<img src=' + participant.get('profile') + '> ' + 
+							'<img src=' + participant.get('profile') + 'class=arrowSlideDown> ' + 
 							participant.get('name') +
 						'</li>' + 
 					'</ul>').appendTo('#display-user-form');
