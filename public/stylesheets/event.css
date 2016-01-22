@@ -35,12 +35,13 @@
   margin:0px; 
   border-radius: 0px;
   width: 100%;
+  display: none;
 }
 #createEventDialog{
 
 background-color: #F8F8F8 ;
 width: 100%;
-display: none;
+display: block;
 height: auto;
 z-index: 1000;
 }
