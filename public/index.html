@@ -13,12 +13,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>-->
-    <!--<script src="carouselengine/jquery.js"></script>-->
-    <script src="javascripts/carouselengine/amazingcarousel.js"></script>
-    <link rel="stylesheet" type="text/css" href="javascripts/carouselengine/initcarousel-1.css">
-    <script src="javascripts/carouselengine/initcarousel-1.js"></script>
 
     <link rel="stylesheet" type="text/css" href="javascripts/engine2/style.css" />
+
+    	<link rel="stylesheet" type="text/css" href="javascripts/engine3/style.css" />
+	<script type="text/javascript" src="javascripts/engine3/jquery.js"></script>
  
 <!-- End WOWSlider.com HEAD section -->
 </head>
@@ -33,6 +32,8 @@ height: auto;
 margin-bottom: 1%;
 width: 90%;
 padding-left:15%;
+
+max-height: 500px;
    }
 #navheader{
 	background-color:rgba(0, 0, 0, 0.7);
@@ -367,8 +368,7 @@ min-width: 125px;
 	font-size: 19px;
 	font-family: Century Gothic, sans-serif;
 	font-variant: small-caps;
-	overflow-x:hidden;
-	overflow-y:auto;
+	overflow: scroll;
 	z-index: 300;
 	display: none;
 	
@@ -629,11 +629,6 @@ function change()
 			— led by some of the top professors in the world — prepare students for all different walks of life. 
 			We empower our students to move the world forward.
 
-			<?php
-			date_default_timezone_set('America/Los_Angeles');
-			$date=date("d.m.Y");
-			echo "<p class=date>* the news is updated on $date</p>";
-			?>
 		</div>
 			download<br>
 			<div class="download" >
@@ -719,58 +714,21 @@ function change()
 		A. I feel CSSAC has focused on providing professional development opportunities for clerical and service staff, 
 		and making grant and scholarship funds available to help people advance.
 	</div>
-<div id="amazingcarousel-container-1">
-
-            
-    <div id="amazingcarousel-1" >
-        <div class="amazingcarousel-list-container">
-
-            <ul class="amazingcarousel-list">
-
-                <li class="amazingcarousel-item">
-                    <div class="amazingcarousel-item-container">
-<div class="amazingcarousel-image"><a href="images/dance-and-studio-phtoography-tips-3-lightbox.jpg" title="dance-and-studio-phtoography-tips-3"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/dance-and-studio-phtoography-tips-3.jpg"  alt="dance-and-studio-phtoography-tips-3" /></a></div>
-<div class="amazingcarousel-title">dance-and-studio-phtoography-tips-3</div>                    </div>
-                </li>
-                <li class="amazingcarousel-item">
-                    <div class="amazingcarousel-item-container">
-<div class="amazingcarousel-image"><a href="images/Nikon-School-travel-landscape-CR-new-rep-lightbox.jpg" title="Nikon-School-travel-landscape-CR-new-rep"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/Nikon-School-travel-landscape-CR-new-rep.jpg"  alt="Nikon-School-travel-landscape-CR-new-rep" /></a></div>
-<div class="amazingcarousel-title">Nikon-School-travel-landscape-CR-new-rep</div>                    </div>
-                </li>
-                <li class="amazingcarousel-item">
-                    <div class="amazingcarousel-item-container">
-<div class="amazingcarousel-image"><a href="images/order_7092-lightbox.jpg" title="order_7092"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/order_7092.jpg"  alt="order_7092" /></a></div>
-<div class="amazingcarousel-title">order_7092</div>                    </div>
-                </li>
-                <li class="amazingcarousel-item">
-                    <div class="amazingcarousel-item-container">
-<div class="amazingcarousel-image"><a href="images/studio-photo-cat-in-snow-with-young-girl-lightbox.jpg" title="studio-photo-cat-in-snow-with-young-girl"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/studio-photo-cat-in-snow-with-young-girl.jpg"  alt="studio-photo-cat-in-snow-with-young-girl" /></a></div>
-<div class="amazingcarousel-title">studio-photo-cat-in-snow-with-young-girl</div>                    </div>
-                </li>
-                <li class="amazingcarousel-item">
-                    <div class="amazingcarousel-item-container">
-<div class="amazingcarousel-image"><a href="images/music-library-casual-meeting-space-lightbox.jpg" title="music-library-casual-meeting-space"  class="html5lightbox" data-group="amazingcarousel-1" data-width="960" data-height="720" ><img src="images/music-library-casual-meeting-space.jpg"  alt="music-library-casual-meeting-space" /></a></div>
-<div class="amazingcarousel-title">music-library-casual-meeting-space</div>                    </div>
-                </li>
-            </ul>
-            <div class="amazingcarousel-prev"></div>
-            <div class="amazingcarousel-next"></div>
-             <div class="amazingcarousel-nav"></div>
-        </div>
-       
-       
-    </div> 
-</div>
-<p style="font-size:16px;letter-spacing:2px;">example for the cschedule chatbox</p>
 </div>
 
-	<div class="street_view" style="background-image:url(street.jpg);background-repeat:no-repeat;background-size: 100% 100%;">
-		<!--<div class="street-up">change your idea</div>
-		<div class="street">make difference today</div>
-		<div class="street-down">create new trend</div>-->
-	</div>
+<div id="wowslider-container3">
+<div class="ws_images"><ul>
+		<li><img src="images/data3/images/1.jpg" id="wows1_0"/></li>
+		<li><img src="images/data3/images/2.jpg" id="wows1_1"/></li>
+		<li><img src="images/data3/images/3.jpg"  id="wows1_2"/></li>
+		<li><img src="images/data3/images/4.jpg" id="wows1_3"/></li>
+		<li><img src="images/data3/images/5.jpg" id="wows1_4"/></li>
+	</ul></div>
+<div class="ws_shadow"></div>
+</div>	
+<script type="text/javascript" src="javascripts/engine3/wowslider.js"></script>
+<script type="text/javascript" src="javascripts/engine3/script.js"></script>
 
-</div>
 
 <div class="footer">
 	<div class="icon">
