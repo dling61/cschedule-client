@@ -5,10 +5,25 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/slider.css' />
+
+<!--<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />-->
+
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
 
+<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
+-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery.dropdown.css" />
+<script type="text/javascript" src="javascripts/jquery.dropdown.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
@@ -17,8 +32,6 @@
 <script type='text/javascript' src='javascripts/backbone.js'></script>
 
 <script type='text/javascript' src='javascripts/layer.js'></script>
-<link type="text/css" rel="stylesheet" href="stylesheets/jquery.dropdown.css" />
-<script type="text/javascript" src="javascripts/jquery.dropdown.js"></script>
     
 
 <!-- load external html 'templates' part1/2 -->
@@ -85,7 +98,8 @@ body{
 
 
         <!-- header div-->
-       <!-- <div id="cheader">
+        
+        <!--<div id="cheader">
             <nav class="navbar navbar-default" style="background-color: #4488dd;">
                 <div class="container-fluid">
                     <div>
@@ -121,7 +135,7 @@ body{
                 </div>
             </nav>
         </div>-->
-               <div class="navheader">
+       <div class="navheader">
             <div class="dropdown-community">
                 <a href="#" data-jq-dropdown="#jq-dropdown-1">Community</a>
                 <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip">
@@ -210,13 +224,12 @@ body{
                     <!--<a class="button chatbutton" href="#community-chat-popup">Chat</a> -->
                     <span id="eventDialogView">
                       <button id="createBtn" onclick="showDialog()">+ Create Event</button>
-                      <script>
-                      function showDialog(){
-                       // alert("works");
-                        document.getElementById("tabs-create").style.display="block";
-                      }
-                      </script>
                     </span>
+                    <script>
+                    function myFunction() {
+            document.getElementById("tabs-create").style.display = "block";
+        }
+                    </script>
                 </div>
             </div>
 
@@ -248,7 +261,7 @@ body{
                         <div style="display: inline-block; width: 74%;">
                             <div class="reqtype">You need a swap on
                             </div>
-                            <div class="dateLarge">Saturday, Sept 12
+                            <div class="dateLarge">Saturday, December 19
                             </div>
                         </div>
                     </div>
@@ -262,6 +275,18 @@ body{
 
     </div>
     <!--- end of CommunityView -->
+	
+	
+	<!-- Slider -->
+	<div id="sliderBox">
+		<div id="arrowUp"></div>
+		<div id="blackBox">
+			<div>You haven't inputted anything</div>
+		</div>
+	</div>
+	<!-- End Slider -->
+
+	
 	<!--- editparticipantdialog-->
 
     <script type="text/template" id="users-dropdown-template">
@@ -301,19 +326,18 @@ body{
     <script>
         var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-
+        
         document.body.appendChild(editEventView.cloneNode(true));
         document.body.appendChild(createEventView.cloneNode(true));
-		
+        
 		function loadTemplate(importID, templateID) {
-			var t = document.querySelector(importID),
-				t = t.import.querySelector(templateID),
-				t = t.content.cloneNode(true);
-			return t;
-		}
-		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
-		
-		
+ 			var t = document.querySelector(importID),
+ 				t = t.import.querySelector(templateID),
+ 				t = t.content.cloneNode(true);
+ 			return t;
+ 		}
+ 		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+		//Can be used to load slider: $("#blackBox").html(loadTemplate(importID, templateID));
     </script>
 
     
@@ -408,34 +432,35 @@ body{
 			slider_widthB = $('#ParticipantDiv').width(); 
 			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
 			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-			$(".participantList").toggle( "fast", function() {});
+			$("#participantsList").toggle( "fast", function() {});
 		});
 		$('body').on('click','#sidebar-show-btn', function() {
 			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
             $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            $(".participantList").toggle( "fast", function() {});
+            $("#participantsList").toggle( "fast", function() {});
 		});
 		
 		$('#editProfileImage').click(function(e){
-			//So that this function does not affect its children
-			if (e.target != this) {
-				return;
-			} 
-			//Create new if doesn't exist
-			if ($("#editProfileImage").children().length == 0) {
+ 			//So that this function does not affect its children
+ 			if (e.target != this) {
+ 				return;
+ 			} 
+ 			//Create new if doesn't exist
+ 			if ($("#editProfileImage").children().length == 0) {
 				participantView = new ParticipantView();
-				participantView.render();
-			}
-			//Hide and show
-			$("#participant-show").toggle( "fast", function() { 
-				// Animation complete.
-			});
-		});
+  				participantView.render();
+ 			}
+ 			//Hide and show
+ 			$("#participant-show").toggle( "fast", function() { 
+  				// Animation complete.
+  			});
+  		});
     </script>
 
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
     <script type='text/javascript' src="utils/common.js"></script>
 	<script type='text/javascript' src="utils/imageUtils.js"></script>
+	<script type='text/javascript' src="utils/sliderUtils.js"></script>
 
     <script src="app/js/collections/communities.js"></script>
     <script src="app/js/models/community.js"></script>
@@ -445,8 +470,8 @@ body{
     <script src="app/js/collections/users.js"></script>
     <script src="app/js/models/user.js"></script>
     <script src="app/js/router.js"></script>
-	<script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/views/UserAddView.js"></script>
+    <script src="app/js/views/ParticipantsListView.js"></script>
     <script src="app/js/collections/loggedInUsers.js"></script>
     <script src="app/js/models/loggedInUser.js"></script>
     <script src="app/js/models/communityChat.js"></script>
