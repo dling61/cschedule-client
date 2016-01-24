@@ -13,11 +13,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>-->
-
-    <link rel="stylesheet" type="text/css" href="javascripts/engine2/style.css" />
-
     	<link rel="stylesheet" type="text/css" href="javascripts/engine3/style.css" />
 	<script type="text/javascript" src="javascripts/engine3/jquery.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="javascripts/engine2/style.css" />
  
 <!-- End WOWSlider.com HEAD section -->
 </head>
@@ -359,7 +359,8 @@ min-width: 125px;
 	font-size: 19px;
 	font-family: Century Gothic, sans-serif;
 	font-variant: small-caps;
-	overflow: scroll;
+	overflow-x:hidden;
+	overflow-y:auto;
 	z-index: 300;
 	display: none;
 	
@@ -443,6 +444,20 @@ min-width: 125px;
 a.request{
 	text-decoration: none;
 }
+
+
+
+      #carousel {
+        width:100%;
+        height:300px;
+        
+        
+        overflow:hidden;
+      }
+      #carousel img {
+        visibility:hidden; /* hide images until carousel can handle them */
+        cursor:pointer; /* otherwise it's not as obvious items can be clicked */
+      }
 	</style>
 <script>
 
@@ -471,6 +486,12 @@ $( document ).ready(function() {
     }, 500);
     return false;});
 				
+		
+
+});
+	</script>
+	<script>
+
 function bright(x)
 {
 	x.style.opacity=1;
@@ -524,9 +545,6 @@ function change()
     	document.getElementById('signup-next').style.display="block";
     }
 */
-});
-
-});
 </script>
 
 <body>
@@ -644,7 +662,7 @@ function change()
 <div class="ws_images"><ul>
 		<li><img src="images/data1/images/2.jpg" alt="2" title="2" id="wows1_0"/></li>
 		<li><img src="images/data1/images/7.jpg" alt="7" title="7" id="wows1_1"/></li>
-		<li><img src="images/data1/images/9.jpg"  title="9" id="wows1_2"/></li>
+		<li><img src="images/data1/images/9.jpg" alt="http://wowslider.net/" title="9" id="wows1_2"/></li>
 		<li><img src="images/data1/images/13.jpg" alt="13" title="13" id="wows1_3"/></li>
 	</ul></div>
 <div class="ws_shadow"></div>
@@ -688,8 +706,8 @@ function change()
 		A. I feel CSSAC has focused on providing professional development opportunities for clerical and service staff, 
 		and making grant and scholarship funds available to help people advance.
 	</div>
-</div>
 
+</div>
 <div id="wowslider-container3">
 <div class="ws_images"><ul>
 		<li><img src="images/data3/images/1.jpg" id="wows1_0"/></li>
@@ -703,6 +721,16 @@ function change()
 <script type="text/javascript" src="javascripts/engine3/wowslider.js"></script>
 <script type="text/javascript" src="javascripts/engine3/script.js"></script>
 
+<p style="font-size:16px;letter-spacing:2px;">example for the cschedule chatbox</p>
+</div>
+
+	<div class="street_view" style="background-image:url(street.jpg);background-repeat:no-repeat;background-size: 100% 100%;">
+		<!--<div class="street-up">change your idea</div>
+		<div class="street">make difference today</div>
+		<div class="street-down">create new trend</div>-->
+	</div>
+
+</div>
 
 <div class="footer">
 	<div class="icon">
