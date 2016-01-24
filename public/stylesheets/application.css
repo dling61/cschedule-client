@@ -224,9 +224,7 @@ body {
     content: "\f025"
 }
 
-.ui-dialog {
-    box-shadow: 5px 5px 10px darkgrey;
-}
+
 
 /* moved from community.css   */
 .community{
