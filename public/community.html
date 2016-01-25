@@ -6,16 +6,8 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/flyout.css' />
-
-<!--<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
-<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />-->
-
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
 
-<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script type='text/javascript' src='javascripts/bootstrap.min.js'></script>
--->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -427,19 +419,7 @@ body{
     
     
     <script>
-		var slider_widthB;
-        $('body').on('click','#sidebar-hide-btn', function() {
-			slider_widthB = $('#ParticipantDiv').width(); 
-			$('#ParticipantDiv').animate({width: 0}, 'slow', 'easeInQuart');
-			$('#sidebar-hide-btn').attr('id', 'sidebar-show-btn');
-			$("#participantsList").toggle( "fast", function() {});
-		});
-		$('body').on('click','#sidebar-show-btn', function() {
-			$('#ParticipantDiv').animate({width: '+=' + slider_widthB}, 'slow', 'easeOutBounce');
-            $('#sidebar-show-btn').attr('id', 'sidebar-hide-btn');
-            $("#participantsList").toggle( "fast", function() {});
-		});
-		
+		//Popup for image edit
 		$('#editProfileImage').click(function(e){
  			//So that this function does not affect its children
  			if (e.target != this) {
