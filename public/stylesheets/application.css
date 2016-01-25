@@ -187,12 +187,7 @@ body {
     -webkit-user-select: none;
 }
 
-#display-user-form li {
-    font-size: 10pt;
-}
-#display-user-form img {
-    height: 32px;;
-}
+
 
 #participantDialog {
     z-index: 1000;

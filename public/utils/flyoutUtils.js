@@ -1,7 +1,7 @@
 /***************************************** //
 // This Javascript file is created to hold //
 // the different general utilities that    //
-// affect sliders.                         //
+// affect flyouts.                         //
 // *****************************************/
 
 // Allows a sliderbox to be inserted after any element with  class="arrowSlideDown"
@@ -15,5 +15,5 @@ $("html").on("click", ".arrowSlideDown", function(e) {
 	// add the locations as css and toggle the display on and off
 	$("#arrowUp").css({top:topPos, left:lefPos});
 	// insert the sliderBox after the clicked item and display it
-	$("#sliderBox").insertAfter(e.target).toggle();
+	$("#flyoutBox").insertAfter(e.target).toggle();
 });

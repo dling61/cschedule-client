@@ -46,6 +46,14 @@
   z-index: 9;
 }
 
+/* Sizes in Participant List*/
+#display-user-form li {
+    font-size: 10pt;
+}
+#display-user-form img {
+    height: 32px;;
+}
+
 /* Participant List Sidebar Button */
 #sidebar-hide-btn {
     height: 52px;

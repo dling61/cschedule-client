@@ -1,22 +1,22 @@
 /*********************************** //
 // This CSS file is created to hold  //
 // the CSS of all styles related to  //
-// the slider.                       //
+// the flyout.                       //
 // ***********************************/
 
-/* The container of the slider */
-#sliderBox {
+/* The container of the flyout */
+#flyoutBox {
 	position: fixed;
 	display: none;
 }
-/* Creates an up arrow for the slider */
+/* Creates an up arrow for the flyout */
 #arrowUp {
 	position: fixed;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-bottom: 5px solid #333333;
 }
-/* Slider contents display */
+/* Flyout contents display */
 #blackBox {
 	position: relative;
 	top: 4px;
