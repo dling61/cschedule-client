@@ -17,12 +17,14 @@ var ParticipantsListView = Backbone.View.extend({
 			parListWidth = $('#ParticipantListDiv').width(); 
 			$('#ParticipantListDiv').animate({width: 0}, 'slow', 'easeInQuart');
 			$('#parListHideBtn').attr('id', 'parListShowBtn');
-			$("#parList").toggle( "fast", function() {});
+			$("#parListTopBar").toggle();
+			$("#parList").toggle();
 		});
 		$('body').on('click','#parListShowBtn', function() {
 			$('#ParticipantListDiv').animate({width: '+=' + parListWidth}, 'slow', 'easeOutBounce');
             $('#parListShowBtn').attr('id', 'parListHideBtn');
-            $("#parList").toggle( "fast", function() {});
+			$("#parListTopBar").toggle();
+            $("#parList").toggle();
 		});
 	},
 	
@@ -100,7 +102,7 @@ var ParticipantsListView = Backbone.View.extend({
 							'<img src=' + participant.get('profile') + 'class=arrowSlideDown> ' + 
 							participant.get('name') +
 						'</li>' + 
-					'</ul>').appendTo('#display-user-form');
+					'</ul>').appendTo('#parList');
 				});
 				$("#ParticipantListDiv").css("display", "block");
 			}
