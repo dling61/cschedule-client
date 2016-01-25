@@ -1,6 +1,11 @@
 var ParticipantsListView = Backbone.View.extend({
     el: '#participantsList',
 
+	initialize: function () {
+		gParticipants = new Participants();
+		this.render();
+	},
+	
 	events: {
 		/*'dblclick .participant' : 'showDetails',
 		'click .participant' : 'messageBox'*/
@@ -62,7 +67,7 @@ var ParticipantsListView = Backbone.View.extend({
 	}, */
 	
     render: function () {
-		gParticipants = new Participants()
+		
 		$('<ul>' +
 			'<li>' +
 				'<img src = images/plus.png> Add Participant' +
@@ -77,7 +82,7 @@ var ParticipantsListView = Backbone.View.extend({
 							' data-email=' + participant.get('email') +
 							' data-name=' + participant.get('name') +
 							' class=participant>' + 
-							'<img src=' + participant.get('profile') + '> ' + 
+							'<img src=' + participant.get('profile') + 'class=arrowSlideDown> ' + 
 							participant.get('name') +
 						'</li>' + 
 					'</ul>').appendTo('#display-user-form');

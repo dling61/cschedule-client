@@ -104,7 +104,7 @@ var CommunityListView = Backbone.View.extend({
           model: communities[0]
         });
 
-        communityView.render();
+        //communityView.render();
 
         // var eventView =  new EventsView();
 

@@ -187,12 +187,7 @@ body {
     -webkit-user-select: none;
 }
 
-#display-user-form li {
-    font-size: 10pt;
-}
-#display-user-form img {
-    height: 32px;;
-}
+
 
 #participantDialog {
     z-index: 1000;
@@ -224,9 +219,7 @@ body {
     content: "\f025"
 }
 
-.ui-dialog {
-    box-shadow: 5px 5px 10px darkgrey;
-}
+
 
 /* moved from community.css   */
 .community{

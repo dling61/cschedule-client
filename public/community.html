@@ -5,6 +5,7 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/flyout.css' />
 
 <!--<link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/bootstrap.min.css' />-->
@@ -226,7 +227,7 @@ body{
                     </span>
                     <script>
                     function myFunction() {
-            document.getElementById("createEventDialog").style.display = "block";
+            document.getElementById("tabs-create").style.display = "block";
         }
                     </script>
                 </div>
@@ -274,6 +275,18 @@ body{
 
     </div>
     <!--- end of CommunityView -->
+	
+	
+	<!-- Flyout -->
+	<div id="flyoutBox">
+		<div id="arrowUp"></div>
+		<div id="blackBox">
+			<div>You haven't inputted anything</div>
+		</div>
+	</div>
+	<!-- End Flyout -->
+
+	
 	<!--- editparticipantdialog-->
 
     <script type="text/template" id="users-dropdown-template">
@@ -324,6 +337,7 @@ body{
  			return t;
  		}
  		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+		//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
     </script>
 
     
@@ -446,6 +460,7 @@ body{
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
     <script type='text/javascript' src="utils/common.js"></script>
 	<script type='text/javascript' src="utils/imageUtils.js"></script>
+	<script type='text/javascript' src="utils/flyoutUtils.js"></script>
 
     <script src="app/js/collections/communities.js"></script>
     <script src="app/js/models/community.js"></script>
