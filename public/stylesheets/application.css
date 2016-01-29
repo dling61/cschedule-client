@@ -222,37 +222,57 @@ body {
 
 
 /* moved from community.css   */
-.community{
-	width: 100px;
-	height: 100px;
-	border: 1px black;
-	background-color: #eee;
-	margin: 5px;
-	display: inline-block;
+.community {
+  width: 300px;
+  height: 200px;
+  border: 1px black;
+  border-radius: 4px;
+  background-color: #eee;
+  margin: 5px;
+  display: inline-block;
+  -webkit-box-shadow: 0px 0px 10px 0px;
+}
+
+.community:hover {
+  background-color: #ccd9ff;
 }
 
 .nav-body {
 	display: block;
 	border: 1px black;
 }
-.new_community_btn {
-	width: 100px;
-	height: 100px;
-	border: 1px black;
-	background-color: #eee;
-	margin: 5px;
-	display: inline;
-	font-size: 10px;
 
+.new_community_btn {
+  width: 100px;
+  height: 100px;
+  border: 1px black;
+  border-radius: 4px;
+  background-color: #eee;
+  margin: 5px;
+  display: inline;
+  font-size: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px;
 }
+
+.new_community_btn:hover {
+  background-color: #ccd9ff;
+}
+
 .createCommunity {
-	width: 100px;
-	height: 100px;
-	border: 1px black;
-	background-color: #eee;
-	margin: 5px;
-	font-size: 10px;
+  width: 300px;
+  height: 200px;
+  border: 1px black;
+  background-color: #eee;
+  border-radius: 4px;
+  margin: 5px;
+  font-size: 10px;
+  -webkit-box-shadow: 0px 0px 10px 0px;
 }
+
+.createcommunity:hover {
+  background-color: #ccd9ff;
+}
+
 .editCommunity {
 	width: 100px;
 	height: 100px;
@@ -273,17 +293,18 @@ body {
 }
 
 .button {
-font-size: 1em;
-padding: 10px;
-color: #fff;
-border: 2px solid orange;
-border-radius: 20px/50px;
-text-decoration: none;
-cursor: pointer;
-/*transition: all 0.3s ease-out;*/
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid orange;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  /*transition: all 0.3s ease-out;*/
 }
+
 .button:hover {
-background: orange;
+  background: orange;
 }
 
 /*.overlay:target {
@@ -292,83 +313,83 @@ opacity: 1;
 }*/
 
 .overlay {
-position: absolute;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-background: rgba(0, 0, 0, 0.7);
-transition: opacity 500ms;
-display: none;
-opacity: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  display: none;
+  opacity: 1;
 }
 
-
 .popup {
-margin: 450;
-margin-right: inherit;
-padding: 99px;
-background: #fff;
-border-radius: 5px;
-width: 30%;
-position: relative;
-
-
-transition: all 5s ease-in-out;
+  margin: 450;
+  margin-right: inherit;
+  padding: 99px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
 }
 
 .popup h5 {
-margin-top: 0;
-color: #333;
-font-family: Tahoma, Arial, sans-serif;
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
 }
 .cchat .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
 
-position: absolute;
-top: 30px;
-right: 30px;
-transition: all 200ms;
-font-size: 30px;
-font-weight: bold;
-text-decoration: none;
-color: #333;
-}
 .cchat .close:hover {
-color: orange;
+  color: orange;
 }
+
 .cchat .content {
-height: 500px;
-max-height: 30%;
-overflow: auto;
+  height: 500px;
+  max-height: 30%;
+  overflow: auto;
 }
+
 #chatbox{
-width:200px;
-height:200px;
-background:grey;
-position:absolute;
-left:90%;
-margin-left:-100px;
-top:-200px;
-margin-top:-100px;
+  width:200px;
+  height:200px;
+  background:grey;
+  position:absolute;
+  left:90%;
+  margin-left:-100px;
+  top:-200px;
+  margin-top:-100px;
 }
 
 .chat-text{
-top: 90px;
-position: inherit;
-bottom: 10px
+  top: 90px;
+  position: inherit;
+  bottom: 10px
+}
 
-}
 #sendchat{
-position: absolute;
-bottom: 10px;
-left: 124px;
+  position: absolute;
+  bottom: 10px;
+  left: 124px;
 }
+
 .chatbox .cchat ul .ulclass li{
-display: inline;
+  display: inline;
 }
 
 #chat-messages li {
-list-style: none;
+  list-style: none;
 }
 
 
@@ -423,4 +444,142 @@ list-style: none;
 	border-bottom: 10px solid transparent; 
 	
 	border-right:10px solid blue; 
+}
+
+/* These are new css added on 01/15/2016 */
+body{
+  margin: auto;
+}
+
+.navheader{
+  background-color: #4488dd;
+  height: auto;
+  padding-top: 1%;
+  /*padding-bottom: 3%;*/
+  padding-left: 2%;
+  padding-right: 3%;
+  border-bottom: 1px solid white;
+  font-size: 15px;
+}
+
+.dropdown-community{
+  text-align: left;
+  display: inline-block;
+  float: left;
+}
+.navtitle{
+  text-align: center;
+  display: inline-block;
+  float: center;
+  padding-left: 3%;
+  position: relative;
+  width: 500px;
+  margin:auto;
+}
+
+.navtitle img{
+  height: 40px;
+}
+
+.navtitle span{
+  text-align: center;
+}
+
+.profile-pic{
+  text-align: right;
+  float: right;
+  display: inline-block;
+  padding-right: 50px;
+}
+.profile-pic img{
+  width: 4%;
+  display: inline-block;
+  float: right;
+  padding-top: 0;
+
+}
+.navheader a{
+  text-decoration: none;
+  color: black;
+}
+
+.navheader a:hover{
+  text-decoration: none;
+  color: black;
+}
+
+.navmailbox {
+  text-align: right;
+  float: right;
+  display: inline-block;
+}
+
+.mailbox {
+  position: absolute;
+  right:0;
+  height: auto;
+  /*padding-top: 1%;
+  padding-bottom: 3%;
+  padding-left: 2%;*/
+  padding-right: 3%;
+  font-size: 25px;
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+}
+
+.jq-dropdown-menu li{
+  
+ }
+
+.dropdownbtn {
+  padding: 8px 16px;
+  border-color: white;
+  border: 1px solid #FFFFFF;
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 100%;
+  color: white;
+}
+
+.logotext {
+  color: white;
+  bottom: 0;
+  left: 50%;
+  opacity: .8;
+  width: 5pc;
+  font-size: 20px;
+}
+
+.logoimg {
+
+}
+
+.logoholder {
+  bottom: 0;
+  height: 30px;
+  left: 50%;
+  width: 10px;
+}
+
+.create-btn {
+  width: 300px;
+  height: 200px;
+  border: 1px black;
+  border-radius: 4px;
+  background-color: #eee;
+  margin: 5px;
+  display: inline-block;
+  -webkit-box-shadow: 0px 0px 10px 0px;
+}
+
+.logoutbtn {
+  background-color: yellow;
+  border-radius: 4px;
+  height: auto;
+  padding: 3%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  font-size: bold 12px;
 }
