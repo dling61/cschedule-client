@@ -583,3 +583,35 @@ body{
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
   font-size: bold 12px;
 }
+
+
+/* Font Awesome css */
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../font/fontawesome-webfont.eot?v=4.5.0');
+  src: 
+    url('../font/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), 
+    url('../font/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), 
+    url('../font/fontawesome-webfont.woff?v=4.5.0') format('woff'), 
+    url('../font/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), 
+    url('../font/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-envelope-o:before {
+  content: "\f003";
+}
+
+.fa-caret-down:before {
+  content:"\f0d7"
+}
