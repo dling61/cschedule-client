@@ -36,26 +36,34 @@
 }
 
 /* Container for Participant List */
-#ParticipantDiv {
-  position: absolute;
-  top: 240px;
-  right: 0px;
-  width: 180px;
-  background-color: #eee;
-  border: solid;
-  z-index: 9;
+#ParticipantListDiv {
+	position: absolute;
+	top: 15%;
+	height: 85%;
+	right: 0;
+	width: 20%;
+	background-color: #eee;
+	z-index: 9;
+}
+#parListTopBar {
+	text-align: left;
+	color: #FFFFFF;
+	font-size: 14px;
+	padding: 3%;
+	background: #34629A;
+	
 }
 
 /* Sizes in Participant List*/
-#display-user-form li {
+#parList li {
     font-size: 10pt;
 }
-#display-user-form img {
+#parList img {
     height: 32px;;
 }
 
 /* Participant List Sidebar Button */
-#sidebar-hide-btn {
+#parListHideBtn {
     height: 52px;
     left: -32px;
     overflow: hidden;
@@ -68,7 +76,7 @@
 	background-size: 100% 100%;
 	transform: scale(-1, 1);
 }
-#sidebar-show-btn {
+#parListShowBtn {
     height: 52px;
     left: -32px;
     overflow: hidden;

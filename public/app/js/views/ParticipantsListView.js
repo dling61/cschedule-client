@@ -1,5 +1,5 @@
 var ParticipantsListView = Backbone.View.extend({
-    el: '#participantsList',
+    el: '#parList',
 
 	initialize: function () {
 		gParticipants = new Participants();
@@ -9,6 +9,23 @@ var ParticipantsListView = Backbone.View.extend({
 	events: {
 		/*'dblclick .participant' : 'showDetails',
 		'click .participant' : 'messageBox'*/
+	},
+	
+	addEvent: function(){
+		var parListWidth;
+        $('body').on('click','#parListHideBtn', function() {
+			parListWidth = $('#ParticipantListDiv').width(); 
+			$('#ParticipantListDiv').animate({width: 0}, 'slow', 'easeInQuart');
+			$('#parListHideBtn').attr('id', 'parListShowBtn');
+			$("#parListTopBar").toggle();
+			$("#parList").toggle();
+		});
+		$('body').on('click','#parListShowBtn', function() {
+			$('#ParticipantListDiv').animate({width: '+=' + parListWidth}, 'slow', 'easeOutBounce');
+            $('#parListShowBtn').attr('id', 'parListHideBtn');
+			$("#parListTopBar").toggle();
+            $("#parList").toggle();
+		});
 	},
 	
 	/*
@@ -85,11 +102,12 @@ var ParticipantsListView = Backbone.View.extend({
 							'<img src=' + participant.get('profile') + 'class=arrowSlideDown> ' + 
 							participant.get('name') +
 						'</li>' + 
-					'</ul>').appendTo('#display-user-form');
+					'</ul>').appendTo('#parList');
 				});
-				$("#ParticipantDiv").css("display", "block");
+				$("#ParticipantListDiv").css("display", "block");
 			}
 		}); 
+		this.addEvent();
     }
 	
 
