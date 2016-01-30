@@ -84,12 +84,6 @@ var ParticipantsListView = Backbone.View.extend({
 	}, */
 	
     render: function () {
-		
-		$('<ul>' +
-			'<li>' +
-				'<img src = images/plus.png> Add Participant' +
-			'</li>' + 
-		'</ul>').appendTo('#display-user-form');
 		gParticipants.fetch({
             success: function (gParticipants) {
 				$.each(gParticipants.models, function(p) {
@@ -99,7 +93,7 @@ var ParticipantsListView = Backbone.View.extend({
 							' data-email=' + participant.get('email') +
 							' data-name=' + participant.get('name') +
 							' class=participant>' + 
-							'<img src=' + participant.get('profile') + 'class=arrowSlideDown> ' + 
+							'<img src=' + participant.get('profile') + 'class=arrowFlyout> ' + 
 							participant.get('name') +
 						'</li>' + 
 					'</ul>').appendTo('#parList');
@@ -107,6 +101,11 @@ var ParticipantsListView = Backbone.View.extend({
 				$("#ParticipantListDiv").css("display", "block");
 			}
 		}); 
+		var user = [
+			{id: 123}
+		];
+		var template = _.template( $("#parList").html(), {user} );
+		$("#parList").before(template);
 		this.addEvent();
     }
 	

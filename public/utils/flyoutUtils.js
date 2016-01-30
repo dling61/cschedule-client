@@ -4,9 +4,9 @@
 // affect flyouts.                         //
 // *****************************************/
 
-// Allows a sliderbox to be inserted after any element with  class="arrowSlideDown"
+// Allows a sliderbox to be inserted after any element with  class="arrowFlyout"
 // Place things into the sliderBox by using $('#blackBox').html('insert here');
-$("html").on("click", ".arrowSlideDown", function(e) {
+$("html").on("click", ".arrowFlyout", function(e) {
 	var rect = e.target.getBoundingClientRect()
 	// target height + distance from top + desired distance from target 
 	var topPos = e.target.offsetHeight + rect.top + 2;

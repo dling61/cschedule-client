@@ -45,6 +45,7 @@
 	background-color: #eee;
 	z-index: 9;
 }
+/* Top of container */
 #parListTopBar {
 	text-align: left;
 	color: #FFFFFF;
@@ -53,13 +54,27 @@
 	background: #34629A;
 	
 }
-
-/* Sizes in Participant List*/
+/* List in container */
+/* Removing inherited css */
+#parList ul{
+	margin: 0;
+	padding: 0;
+}
+/* ParticipantList font size */
 #parList li {
     font-size: 10pt;
+	padding: 3%;	
 }
+/* Hover */
+#parList li:hover {
+	background-color: grey;
+}
+/* ParticipantList image size */
 #parList img {
-    height: 32px;;
+    height: 32px;
+	border-radius: 50%;
+	border: 3px solid blue;
+	vertical-align: middle;
 }
 
 /* Participant List Sidebar Button */
