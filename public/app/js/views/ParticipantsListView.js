@@ -101,11 +101,6 @@ var ParticipantsListView = Backbone.View.extend({
 				$("#ParticipantListDiv").css("display", "block");
 			}
 		}); 
-		var user = [
-			{id: 123}
-		];
-		var template = _.template( $("#parList").html(), {user} );
-		$("#parList").before(template);
 		this.addEvent();
     }
 	
