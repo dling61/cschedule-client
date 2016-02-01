@@ -45,11 +45,14 @@ display: block;
 height: auto;
 z-index: 1000;
 }
-#basic table, #task table{
+#basic table{
   width: 100%;
   height: auto;
-  margin-top: 2%;
-  height: auto;
+  margin-top: 1%;
+  }
+  #task table{
+  width: 100%;
+  height: auto;  
   }
  #createEventDialog td{
   padding-bottom: 1%;
@@ -197,8 +200,10 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 }
 #task .participants{
    border: 1px solid #E8E8E8;
-  height: 200px;
-  width: 200px;
+  min-height: 200px;
+  height: auto;
+  width: 220px;
+
 }
 #task .arrow{
   background-image: url(images/arrow.png);
@@ -206,14 +211,25 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
   height: 20px;
 }
 #addNewTask{
-  border:1px dotted silver;
+  text-align: left;
   width: 100%;
-  padding: 3%;
+  border: none;
+  padding: 1%;
   font-family: Century Gothic, sans-serif;
   font-size: 16px;
   background: transparent;
   left:0px;
+  color:  #34629A;
  }
+#addNewTask:before{
+  content: '\2295';
+  padding: 2%;
+    color:  #34629A;
+  }
+  #addNewTask:hover{
+    cursor: pointer;
+  }
+
  #preview .schedule{
   width: 100%;
   height: 80%;
@@ -239,4 +255,52 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
      padding: 2%;
      margin-top: 2%;
 
+}
+
+#gallery li{
+  width: 100px;
+    font-weight: normal;
+  padding: 3%;
+  text-transform: uppercase;
+
+}
+#trash{
+  font-weight: normal;
+  padding: 3%;
+  text-transform: uppercase;
+}
+#gallery li:hover{
+  cursor: move;
+}
+.discussion{
+  text-align: left;
+  font-size: 15px;
+  padding: 1% 2%;
+  color:white;
+  background-color: #34629A;
+}
+.event-body{
+  text-align: left;
+  padding: 2%;
+  min-height: 100px;
+  height: auto;
+  background-color: #F8F8F8;
+}
+.eventlist{
+  width: 30%;
+  box-shadow: 0px 0px 4px 0px silver;
+}
+.eventlist li{
+  text-align: left;
+  font-weight: normal;
+  padding: 10% 2%;
+  border-bottom: 1px dashed #e8e8e8;
+}
+.eventlist, .event-schedule{
+  background-color: white;
+  min-height: 250px;
+  display: inline-block;
+}
+.event-schedule{
+  width: 69%;
 }
