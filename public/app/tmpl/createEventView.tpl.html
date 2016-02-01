@@ -8,11 +8,57 @@
     </ul>
 
       <div id="preview">
-        <div class="title">Preview</div>
-      <!-- TBD: display Preview & Publish -->
-     <div class="schedule">
+        <div class="title">Preview & Publish</div>
+        <div class="eventbody" style="width:95%">
+          <div class="discussion">Assignment Discussion</div>
+          <div class="event-body">
+            <div class="eventlist">
+              <ul>
+                <li>Add task</li>
+                <li>Food service</li>
+                <li>Ride service</li>
+                <li>Cleaning</li>
+              </ul>
+            </div><!-- end event list -->
 
-     </div>
+            <div class="event-schedule">    
+<!-- Insert to your webpage where you want to display the carousel -->
+<div id="amazingcarousel-container-1">
+    <div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
+        <div class="amazingcarousel-list-container">
+            <ul class="amazingcarousel-list">
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="images/33674_51111_4378_jxHSY.svol-lightbox.png"  class="html5lightbox" data-group="amazingcarousel-1"><img src="images/33674_51111_4378_jxHSY.svol.png"  /></a></div>
+                   </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="images/42371_66853_4378_iF303.svol-lightbox.png"  class="html5lightbox" data-group="amazingcarousel-1"><img src="images/42371_66853_4378_iF303.svol.png"  /></a></div>
+                   </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="images/liKr9fahGUqA-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="images/liKr9fahGUqA.jpg"  /></a></div>
+                    </div>
+                </li>
+                <li class="amazingcarousel-item">
+                    <div class="amazingcarousel-item-container">
+<div class="amazingcarousel-image"><a href="images/IMG_2389-lightbox.jpg" class="html5lightbox" data-group="amazingcarousel-1"><img src="images/IMG_2389.jpg"   /></a></div>
+                 </div>
+                </li>
+            </ul>
+            <div class="amazingcarousel-prev"></div>
+            <div class="amazingcarousel-next"></div>
+        </div>
+    </div>
+</div>
+<!-- End of body section HTML codes -->
+            </div><!-- end event scehdule -->
+          </div>
+        </div>
+      <!-- TBD: display Preview & Publish -->
+
     </div>
 
     <div id="basic" >
@@ -30,18 +76,46 @@
       <div class="eventbody">
       <table><tr>
       <td class="t1">Task Name:* &nbsp;</td> <td><input type="text" placeholder=" eg. Food Service"></input></td></tr>
-      <td class="t1">Description: &nbsp;</td> <td valign="top"><textarea class="des"rows="5" type="text" placeholder=" Brief introduction about the task"></textarea></td></tr>
-       <td class="t1">No. of Helpers Needed: &nbsp;</td> <td><input type="number" placeholder="00" style="width:10%;text-align:center"></input></td></tr>
+      <td class="t1">Description: &nbsp;</td> <td valign="top"><textarea class="des"rows="3" type="text" placeholder=" Brief introduction about the task"></textarea></td></tr>
+       <td class="t1">No. of Helpers: &nbsp;</td> <td><input type="number" placeholder="00" style="width:10%;text-align:center"></input></td></tr>
      </table>
      <table><tr>
-      <td class="t1" valign="top">Assignment Pool: &nbsp;&nbsp; </td><td class="t1"valign="top"><textarea class="pool" type="text" placeholder=" Participants"></textarea></td>
-      <td>move</td>
-      <td><div class="participants"></div></td></tr>
+      <td class="t1" valign="top">Helper Pool: &nbsp;&nbsp; </td>
+
+      <td style="width:10px">
+        <div class="participants" id="trash">
+          pool
+        </div></td>
+      <td style="width:50px">move</td>
+      <td style="width:200px">
+        <div class="participants" >
+          <!--<div id="p1">Participant 1</div>
+          <div id="p2">Participant 2</div>
+          <div id="p3">Participant 3</div>-->
+          <ul id="gallery" >
+  <li >
+    WenJuan Li
+  </li>
+
+  <li >
+    JingRan
+  </li>
+
+  <li>
+    Tony
+  </li>
+
+  <li >
+    Bill
+  </li>
+</ul>
+        </div></td></tr>
       </table>
-    </div>
-      <div style="margin:4%;width:40%"> 
-        <button id="addNewTask">+ Add Another Task</button> 
+            <div style="width:40%"> 
+        <button id="addNewTask">Add Another Task</button> 
       </div>
+    </div>
+
     
     </div>
 
@@ -77,6 +151,84 @@
         document.getElementById("radio2").style.fontWeight="bold";
 
       }
+
+        $(function() {
+    // there's the gallery and the trash
+    var $gallery = $( "#gallery" ),
+      $trash = $( "#trash" );
+ 
+    // let the gallery items be draggable
+    $( "li", $gallery ).draggable({
+      cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+      revert: "invalid", // when not dropped, the item will revert back to its initial position
+      containment: "document",
+      helper: "clone",
+      cursor: "move"
+    });
+ 
+    // let the trash be droppable, accepting the gallery items
+    $trash.droppable({
+      accept: "#gallery > li",
+
+      drop: function( event, ui ) {
+        deleteImage( ui.draggable );
+      }
+    });
+ 
+    // let the gallery be droppable as well, accepting items from the trash
+    $gallery.droppable({
+      accept: "#trash li",
+      activeClass: "custom-state-active",
+      drop: function( event, ui ) {
+        recycleImage( ui.draggable );
+      }
+    });
+ 
+    // image deletion function
+    //var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+    function deleteImage( $item ) {
+      $item.fadeOut(function() {
+        var $list = $( "ul", $trash ).length ?
+          $( "ul", $trash ) :
+          $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $trash );
+ 
+        $item.find( "a.ui-icon-trash" ).remove();
+        $item.appendTo( $list ).fadeIn(function() {
+          $item
+            .animate({ width: "105px" });
+        });
+      });
+    }
+ 
+    // image recycle function
+   // var trash_icon = "<a href='link/to/trash/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-trash'>Delete image</a>";
+    function recycleImage( $item ) {
+      $item.fadeOut(function() {
+        $item
+          .find( "a.ui-icon-refresh" )
+            .remove()
+          .end()
+          .css( "width", "100px")
+          .appendTo( $gallery )
+          .fadeIn();
+      });
+    }
+ 
+    // image preview function, demonstrating the ui.dialog used as a modal window
+ 
+    // resolve the icons behavior with event delegation
+    $( "ul.gallery > li" ).click(function( event ) {
+      var $item = $( this ),
+        $target = $( event.target );
+ 
+      if ( $target.is( "a.ui-icon-trash" ) ) {
+        deleteImage( $item );
+      }  else if ( $target.is( "a.ui-icon-refresh" ) ) {
+        recycleImage( $item );
+      }
+      return false;
+    });
+  });
         
        </script>
       <div id="createEventOneTime" style="width:100%;display:block">
