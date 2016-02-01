@@ -99,9 +99,18 @@ var ParticipantsListView = Backbone.View.extend({
 					'</ul>').appendTo('#parList');
 				});
 				$("#ParticipantListDiv").css("display", "block");
+				
+				//var user = gParticipants.findWhere({id: gLoginUserId}); 
+				var template = _.template($('#parList').html());    
+				$("#parList").html(template({participants: gParticipants.models}));
+				//$("#parList").html(template({user: user.attributes}));
+				
+				
+				
 			}
 		}); 
 		this.addEvent();
+		
     }
 	
 
