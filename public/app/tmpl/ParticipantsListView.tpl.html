@@ -33,10 +33,10 @@
 		-->
 		<script type="text/x-underscore">
 		<% _.each(participants, function(participant) { %>
-		<ul >
-		<li data-id='<%= participant.id%>' data-email='<%= participant.get("email") %>' data-name='<%= participant.get("name") %>' class="participant">
-		<img src='<%= participant.get("profile") %>'>  '<%= htmlEncode(participant.get("name")) %>'	
-		</li>
+		<ul>
+			<li data-id='<%= participant.id%>' data-email='<%= participant.get("email") %>' data-name='<%= participant.get("name") %>' class="participant">
+			<img src='<%= participant.get("profile") %>'>  '<%= htmlEncode(participant.get("name")) %>'	
+			</li>
 		</ul>
 		<% }); %>
 		</script>
