@@ -86,31 +86,11 @@ var ParticipantsListView = Backbone.View.extend({
     render: function () {
 		gParticipants.fetch({
             success: function (gParticipants) {
-				$.each(gParticipants.models, function(p) {
-					participant = gParticipants.models[p];
-					$('<ul>' +
-						'<li data-id=' + participant.id +
-							' data-email=' + participant.get('email') +
-							' data-name=' + participant.get('name') +
-							' class=participant>' + 
-							'<img src=' + participant.get('profile') + 'class=arrowFlyout> ' + 
-							participant.get('name') +
-						'</li>' + 
-					'</ul>').appendTo('#parList');
-				});
 				$("#ParticipantListDiv").css("display", "block");
-				
-				//var user = gParticipants.findWhere({id: gLoginUserId}); 
-				var template = _.template($('#parList').html());    
-				$("#parList").html(template({participants: gParticipants.models}));
-				//$("#parList").html(template({user: user.attributes}));
-				
-				
-				
+				evalUnderscore('#parList', {participants: gParticipants.models});
 			}
 		}); 
 		this.addEvent();
-		
     }
 	
 

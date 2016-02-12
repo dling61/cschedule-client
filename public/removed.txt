@@ -60,4 +60,23 @@ gParticipants.fetch({
 /* Reason: Moved information into ParticipantsListView.tpl.html */
 /* Position: cschedule_client\public\app\tmpl */
 
+
+
+/* File: cschedule_client\public\app\js\views\ParticipantsListView.js
+/* Reason: Templates now work
+/* Position: in the render, after the success
+$.each(gParticipants.models, function(p) {
+	participant = gParticipants.models[p];
+	$('<ul>' +
+		'<li data-id=' + participant.id +
+			' data-email=' + participant.get('email') +
+			' data-name=' + participant.get('name') +
+			' class=participant>' + 
+			'<img src=' + participant.get('profile') + 'class=arrowFlyout> ' + 
+			participant.get('name') +
+		'</li>' + 
+	'</ul>').appendTo('#parList');
+});*/
+
+
 </script>

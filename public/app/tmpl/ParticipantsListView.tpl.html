@@ -8,7 +8,26 @@
 				<img src="images/plus.png" class="arrowFlyout"> Add Participant
 			</li> 
 		</ul>
-	
+		
+		<script type="text/x-underscore">
+		<% _.each(participants, function(participant) { %>
+		<ul>
+			<li data-id=<%=participant.id%> 
+				data-email=<%=participant.get("email")%> 
+				data-name=<%=participant.get("name")%> 
+				class="participant">
+				<img src=<%=participant.get("profile")%>
+				class="arrowFlyout">
+				<span><%=participant.get("name")%></span>	
+			</li>
+		</ul>
+		<% }); %>
+		</script>
+
+	</div>
+</div>
+</template>
+
 		<!--
 		<div id="search" >
 			<input id="email" name="email" placeholder="Enter user e-mail" type="text" style="margin-top:8px"><br>
@@ -31,16 +50,3 @@
 			<button id="cancelAddMember">Cancel</button>
 		</div>
 		-->
-		<script type="text/x-underscore">
-		<% _.each(participants, function(participant) { %>
-		<ul>
-			<li data-id='<%= participant.id%>' data-email='<%= participant.get("email") %>' data-name='<%= participant.get("name") %>' class="participant">
-			<img src='<%= participant.get("profile") %>'>  '<%= htmlEncode(participant.get("name")) %>'	
-			</li>
-		</ul>
-		<% }); %>
-		</script>
-
-	</div>
-</div>
-</template>

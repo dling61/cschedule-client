@@ -315,10 +315,8 @@ body{
         <% }); %>
     </script>
 
-
-
-    <!-- load external html 'templates' part2/2 -->
     <script>
+		/* loading external templates */
         var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
         var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
         
@@ -333,6 +331,13 @@ body{
  		}
  		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
 		//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
+		
+		/* evaluating underscore in external templates */
+		function evalUnderscore(evalSelector, jsonReplace) {
+			var template = _.template($(evalSelector).html());    
+			$(evalSelector).html(template(jsonReplace));
+			$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
+		}
     </script>
 
     
