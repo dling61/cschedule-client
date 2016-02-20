@@ -8,9 +8,9 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/flyout.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
 
-
+<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+-->
 
 
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery.dropdown.css" />
@@ -20,14 +20,17 @@
 <script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <script type='text/javascript' src='javascripts/fullcalendar.js'></script>
+<!--
 <script type='text/javascript' src='javascripts/underscore.js'></script>
 <script type='text/javascript' src='javascripts/backbone.js'></script>
 
 <script type='text/javascript' src='javascripts/layer.js'></script>
-
+<!--
     <script src="carouselengine/amazingcarousel.js"></script>
     <link rel="stylesheet" type="text/css" href="carouselengine/initcarousel-1.css">
     <script src="carouselengine/initcarousel-1.js"></script>
+-->
+<script data-main="javascripts/config.js" src="javascripts/require.js"></script>
 
 <!-- load external html 'templates' part1/2 -->
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
@@ -343,47 +346,11 @@ body{
     
     <!-- Global Variables  !-->
     <script type="text/javascript">
-        var gFetchedEvents;
-        var communityEvents;
-
-        var communityListView;
-        var gParticipantsListView;
-        var userAddView;
-        var participantView;
-        var gEventsView;
-        var gEventView;
         
-        var gEvents;
-        var gParticipants;
-        var gTasks;
-        var gTaskAssignees;
-        var gTaskHelpers;
-
-        var gLoginUserId;
-        
-        var gLatestCommunityId;
-        var gLatestEventId;
-        var gLatestTaskId;
-        var gLatestTaskHelperId;
-		var gLatestParticipantId;
-        var gLoginUser;
-        var gLoginUserName;
-		var gSelectedCommunityId;
-		
-        var gSeverSetting;
 
 
         $(document).ready(function() {
-            gLoginUser			= JSON.parse(localStorage.getItem("login_user"));
-            gLoginUserId         = gLoginUser.ownerid;
-            gLatestCommunityId   = gLoginUser.communityid;
-            gLatestEventId       = gLoginUser.eventid;
-            gLatestTaskId        = gLoginUser.taskid;
-            gLatestTaskHelperId  = gLoginUser.taskhelperid;
-			gLatestParticipantId = gLoginUser.participantid;
-            gLoginUserName       = gLoginUser.username;
-			gSelectedCommunityId = 
-            
+
 
             communityEvents   = new EventsC();
             communityListView = new CommunityListView();
@@ -446,7 +413,7 @@ body{
     </script>
 
     <script type='text/javascript' src="utils/ajaxutil.js"></script>
-    <script type='text/javascript' src="utils/common.js"></script>
+    <script type='text/javascript' src="utils/commonUtils.js"></script>
 	<script type='text/javascript' src="utils/imageUtils.js"></script>
 	<script type='text/javascript' src="utils/flyoutUtils.js"></script>
 

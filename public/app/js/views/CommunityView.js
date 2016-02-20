@@ -1,4 +1,12 @@
-  
+define([
+	'underscore', 
+	'backbone',
+	'js/collections/communities',
+	'js/views/ParticipantsListView',
+	'js/views/ParticipantView',
+	'js/views/UserAddView',
+	'js/views/EventsView',
+], function(_, Backbone, Communities, ParticipantsListView, ParticipantView, UserAddView, EventsView){
 
 
 /*
@@ -134,6 +142,8 @@ var CommunityView = Backbone.View.extend({
       $('.community-show').show();
       $('#cbody').hide();
         
+        
+/* WFB        
       this.chats = new CommunityChats();
       this.chats.fetch({
         success: function(chatlist) {
@@ -145,6 +155,8 @@ var CommunityView = Backbone.View.extend({
           $('#chat-content').html('.close-popup');
         }
       });
+*/
+        
       $('#showName').html(this.model.get('communityname'));
         
 
@@ -152,23 +164,24 @@ var CommunityView = Backbone.View.extend({
             el: $("#calendar"),
             collection: communityEvents
       });
+      
+        
+      /* WFB    
       gEventView = new EventView({
             el: $("#eventView"),
             // collection: communityEvents
       });
-        gEventsView.render();
-        gEventView.render();
+      */
+        //gEventsView.render();
         
         gParticipantsListView = new ParticipantsListView();
-		//gParticipantsListView.render();
-		
+		participantView = new ParticipantView();
         userAddView = new UserAddView();
-        participantView = new ParticipantView();
-        
-
-        gEventView = new EventView();
-        gEventView.render();
+        /* gEventView = new EventView();
+        gEventView.render(); */
 
     }
 
   });
+      return CommunityView;
+});
