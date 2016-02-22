@@ -281,7 +281,7 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
   padding: 0;
   margin: 0;
 }
-#pool section{
+#pool section, #gallery section{
   text-align: center;
   color: silver;
   opacity: 0.6;
