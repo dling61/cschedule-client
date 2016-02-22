@@ -194,8 +194,7 @@
  
         $item.find( "a.ui-icon-trash" ).remove();
         $item.appendTo( $list ).fadeIn(function() {
-          $item
-            .animate({ width: "105px" });
+          $item.animate({ width: "220px" });
         });
       });
     }
@@ -208,7 +207,7 @@
           .find( "a.ui-icon-refresh" )
             .remove()
           .end()
-          .css( "width", "100px")
+          .css( "width", "220px")
           .appendTo( $gallery )
           .fadeIn();
       });
