@@ -18,10 +18,13 @@
 
 <script data-main="javascripts/config.js" src="javascripts/require.js"></script>
 <!-- import templates -->
+<link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
 <link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
 <link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
+
+  <script src="app/js/views/eventDialogView.js"></script>
 
 </head>
     
@@ -163,6 +166,25 @@ body{
                     <span id="eventDialogView">
                       <button id="createBtn" onclick="showDialog()">+ Create Event</button>
                     </span>
+                        <script>
+        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
+        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
+
+        document.body.appendChild(editEventView.cloneNode(true));
+        document.body.appendChild(createEventView.cloneNode(true));
+        
+        function loadTemplate(importID, templateID) {
+            var t = document.querySelector(importID),
+                t = t.import.querySelector(templateID),
+                t = t.content.cloneNode(true);
+            return t;
+        }
+        $("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+        
+                    var createEvent = new eventDialogView();
+            createEvent.render();
+        
+    </script>
                     <script>
                     function showDialog() {
 						document.getElementById("tabs-create").style.display = "block";
