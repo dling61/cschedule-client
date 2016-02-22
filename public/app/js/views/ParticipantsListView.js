@@ -20,13 +20,13 @@ define([
 			var parListWidth;
 			$('body').on('click','#parListHideBtn', function() {
 				parListWidth = $('#ParticipantListDiv').width(); 
-				$('#ParticipantListDiv').animate({width: 0}, 'slow', 'easeInQuart');
+				$('#ParticipantListDiv').animate({width: 0}, 'slow');
 				$('#parListHideBtn').attr('id', 'parListShowBtn');
 				$("#parListTopBar").toggle();
 				$("#parList").toggle();
 			});
 			$('body').on('click','#parListShowBtn', function() {
-				$('#ParticipantListDiv').animate({width: '+=' + parListWidth}, 'slow', 'easeOutBounce');
+				$('#ParticipantListDiv').animate({width: '+=' + parListWidth}, 'slow');
 				$('#parListShowBtn').attr('id', 'parListHideBtn');
 				$("#parListTopBar").toggle();
 				$("#parList").toggle();
