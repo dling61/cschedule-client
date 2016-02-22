@@ -1,8 +1,9 @@
 define([
 	'underscore', 
 	'backbone',
-    '../../../javascripts/fullcalendar'
-], function(_, Backbone, fullcalendar){
+    '../../../javascripts/fullcalendar',
+    'js/models/task',
+], function(_, Backbone, fullcalendar, Task){
 
 
     
@@ -400,6 +401,7 @@ var EventsView = Backbone.View.extend({
                                 gEventsView.viewMessaging();
                             } );
 
+                            /*
                             $(".taskAssignees").droppable({
                                   drop: function( event, ui ) {
                                       // this is the elem receiving the dropped ui.draggable elem
@@ -419,19 +421,20 @@ var EventsView = Backbone.View.extend({
                                 taskHelper.save();
                                 }
                             });
+                            */
                         }
                     })
                 }
             }]  //eventSources
         });
 
-
+        /*
         $(".taskAssignees").droppable({
               drop: function( event, ui ) {
                 alert( "Dropped!" );
               }
         });
-        
+        */
 
         /*
         renderCalendar: ->

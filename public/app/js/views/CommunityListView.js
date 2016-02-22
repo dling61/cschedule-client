@@ -1,10 +1,12 @@
 define([
 	'underscore', 
 	'backbone',
-	'js/Collections/communities',
-    'js/Views/CommunityView',
-	'js/Collections/Events',
-], function(_, Backbone, Communities, CommunityView, EventsC){
+	'js/collections/communities',
+	'js/models/task',
+    'js/views/CommunityView',
+	'js/collections/events',
+    'js/views/EventsView'
+], function(_, Backbone, Communities, Task, CommunityView, EventsC, EventsView){
 
 	// http://myapp.com/javascripts/jst.js
 	//var window;
@@ -112,9 +114,9 @@ define([
 
 			//communityView.render();
 
-			// var eventView =  new EventsView();
+            //var eventView =  new EventsView();
 
-			// eventView.render();
+            //eventView.render();
 			
 
 
@@ -129,7 +131,6 @@ define([
 					  event.tasks = [];
 					  _.each(event.get("task"), function(taskAttributes){
                           
-                          /*
 						  taskm = new Task(taskAttributes);
 						  taskm.set("event-id",event.get("eventid"));
 						  taskm.assignees = [];
@@ -139,7 +140,6 @@ define([
 							  // taskm.assignees.push(assignmentm);
 						   }); //end of assignees
 						   event.tasks.push(taskm);
-                           */
 
 					  });//end of taks
 				  });//end of events
