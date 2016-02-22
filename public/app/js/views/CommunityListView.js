@@ -128,6 +128,8 @@ define([
 				  _.each(events.models, function(event){
 					  event.tasks = [];
 					  _.each(event.get("task"), function(taskAttributes){
+                          
+                          /*
 						  taskm = new Task(taskAttributes);
 						  taskm.set("event-id",event.get("eventid"));
 						  taskm.assignees = [];
@@ -137,6 +139,8 @@ define([
 							  // taskm.assignees.push(assignmentm);
 						   }); //end of assignees
 						   event.tasks.push(taskm);
+                           */
+
 					  });//end of taks
 				  });//end of events
 
