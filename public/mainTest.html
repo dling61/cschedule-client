@@ -2,6 +2,9 @@
 <html>
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
@@ -9,14 +12,17 @@
 <link rel='stylesheet' type='text/css' href='stylesheets/flyout.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
 
-    
-<script data-main="javascripts/config.js" src="javascripts/require.js"></script>
+<script type='text/javascript' src='javascripts/layer.js'></script>
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery.dropdown.css" />
+<script type="text/javascript" src="javascripts/jquery.dropdown.js"></script>
 
+<script data-main="javascripts/config.js" src="javascripts/require.js"></script>
 <!-- import templates -->
 <link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
 <link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
 <link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
+
 </head>
     
 <style>
