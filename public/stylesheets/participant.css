@@ -82,6 +82,15 @@ ask details about accept decline
 	border: 3px solid blue;
 	vertical-align: middle;
 }
+#participantsListIcons {
+	height: 32px;
+	float: right;
+	border: 2px solid black;
+}
+#participantsListIcons span{
+	vertical-align: middle;
+	text-align: center;
+}
 
 /* Participant List Sidebar Button */
 #parListHideBtn {
