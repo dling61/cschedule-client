@@ -257,7 +257,7 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 
 }
 
-#gallery li, #trash li{
+#gallery li, #pool li{
   width: 220px;
     font-weight: normal;
   padding:3% 0;
@@ -266,12 +266,12 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
   text-transform: uppercase;
 
 }
-#trash{
+#pool{
   font-weight: normal;
   padding:3% 0;
   text-transform: uppercase;
 }
-#gallery li:hover, #trash li:hover{
+#gallery li:hover, #pool li:hover{
   color: white;
   cursor: move;
   background-color: #34629A
@@ -280,6 +280,14 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 #gallery, #pool{
   padding: 0;
   margin: 0;
+}
+#pool section{
+  text-align: center;
+  color: silver;
+  opacity: 0.6;
+  font-style: italic;
+  font-size: 15px;
+  text-transform: lowercase;
 }
 .discussion{
   text-align: left;
