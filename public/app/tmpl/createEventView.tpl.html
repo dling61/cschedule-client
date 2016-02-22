@@ -83,8 +83,8 @@
       <td class="t1" valign="top">Helper Pool: &nbsp;&nbsp; </td>
 
       <td style="width:10px">
-        <div class="participants" id="trash">
-          pool
+        <div class="participants" id="pool">
+          <section>participants pool</section>
         </div></td>
       <td style="width:50px">move</td>
       <td style="width:200px">
@@ -93,22 +93,23 @@
           <div id="p2">Participant 2</div>
           <div id="p3">Participant 3</div>-->
           <ul id="gallery" >
-  <li >
-    WenJuan Li
-  </li>
+            <section>candidates pool</section>
+            <li >
+              WenJuan Li
+            </li>
 
-  <li >
-    JingRan
-  </li>
+            <li >
+              JingRan
+            </li>
 
-  <li>
-    Tony
-  </li>
+            <li>
+              Tony
+            </li>
 
-  <li >
-    Bill
-  </li>
-</ul>
+            <li >
+              Bill
+            </li>
+          </ul><!-- end gallery list -->
         </div></td></tr>
       </table>
             <div style="width:40%"> 
@@ -153,9 +154,9 @@
       }
 
         $(function() {
-    // there's the gallery and the trash
+    // there's the gallery and the pool
     var $gallery = $( "#gallery" ),
-      $trash = $( "#trash" );
+      $pool = $( "#pool" );
  
     // let the gallery items be draggable
     $( "li", $gallery ).draggable({
@@ -166,8 +167,8 @@
       cursor: "move"
     });
  
-    // let the trash be droppable, accepting the gallery items
-    $trash.droppable({
+    // let the pool be droppable, accepting the gallery items
+    $pool.droppable({
       accept: "#gallery > li",
 
       drop: function( event, ui ) {
@@ -175,9 +176,9 @@
       }
     });
  
-    // let the gallery be droppable as well, accepting items from the trash
+    // let the gallery be droppable as well, accepting items from the pool
     $gallery.droppable({
-      accept: "#trash li",
+      accept: "#pool li",
       activeClass: "custom-state-active",
       drop: function( event, ui ) {
         recycleImage( ui.draggable );
@@ -188,11 +189,11 @@
     //var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
     function deleteImage( $item ) {
       $item.fadeOut(function() {
-        var $list = $( "ul", $trash ).length ?
-          $( "ul", $trash ) :
-          $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $trash );
+        var $list = $( "ul", $pool ).length ?
+          $( "ul", $pool ) :
+          $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $pool );
  
-        $item.find( "a.ui-icon-trash" ).remove();
+        $item.find( "a.ui-icon-pool" ).remove();
         $item.appendTo( $list ).fadeIn(function() {
           $item.animate({ width: "220px" });
         });
@@ -200,7 +201,7 @@
     }
  
     // image recycle function
-   // var trash_icon = "<a href='link/to/trash/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-trash'>Delete image</a>";
+   // var pool = "<a href='link/to/pool/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-pool'>Delete image</a>";
     function recycleImage( $item ) {
       $item.fadeOut(function() {
         $item
@@ -220,7 +221,7 @@
       var $item = $( this ),
         $target = $( event.target );
  
-      if ( $target.is( "a.ui-icon-trash" ) ) {
+      if ( $target.is( "a.ui-icon-pool" ) ) {
         deleteImage( $item );
       }  else if ( $target.is( "a.ui-icon-refresh" ) ) {
         recycleImage( $item );
