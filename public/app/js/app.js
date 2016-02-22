@@ -3,8 +3,8 @@ define([
 	'backbone',
     //'moment',
     //'javascripts/fullcalendar.js',
-	'js/Collections/Events', 
-	'js/Views/CommunityListView'
+	'js/collections/Events', 
+	'js/views/CommunityListView'
 ], function(_, Backbone, EventsC, CommunityListView){
 
 	return Backbone.View.extend({
