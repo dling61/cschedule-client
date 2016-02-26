@@ -6,7 +6,11 @@ define([
 	'js/views/ParticipantView',
 	'js/views/UserAddView',
 	'js/views/EventsView',
-], function(_, Backbone, Communities, ParticipantsListView, ParticipantView, UserAddView, EventsView){
+	//'js/views/eventDialogView'
+    
+], function(_, Backbone, Communities, ParticipantsListView, 
+               ParticipantView, UserAddView, EventsView
+               ){
 
 
 /*

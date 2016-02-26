@@ -1,4 +1,11 @@
-var eventDialogView = Backbone.View.extend({
+define([
+	'underscore', 
+	'backbone'
+], function(_, Backbone){
+
+
+
+    var eventDialogView = Backbone.View.extend({
     el: $('#eventDialogView'),
     events : {
         'click #createBtn' : 'eventCreateDialog'
@@ -185,4 +192,6 @@ var eventDialogView = Backbone.View.extend({
         
     }
 
+});
+    return eventDialogView;
 });

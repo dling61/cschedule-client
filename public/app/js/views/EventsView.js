@@ -1,10 +1,11 @@
 define([
 	'underscore', 
 	'backbone',
-    'jquery-ui',
+    'jquery',
+    'jqueryUI',
     '../../../javascripts/fullcalendar',
     'js/models/task',
-], function(_, Backbone, jquery-ui, fullcalendar, Task){
+], function(_, Backbone, jquery, jqueryUI, fullcalendar, Task){
 
 
     
