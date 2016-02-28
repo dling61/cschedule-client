@@ -5,6 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
+<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
@@ -23,6 +24,7 @@
 <link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
 <link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
 <link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
+
 
 </head>
     
@@ -164,6 +166,7 @@ body{
                     <span id="eventDialogView">
                       <button id="createBtn" onclick="showDialog()">+ Create Event</button>
                     </span>
+
                     <script>
                         function showDialog() {
                             document.getElementById("tabs-create").style.display = "block";

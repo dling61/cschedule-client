@@ -83,13 +83,8 @@ ask details about accept decline
 	vertical-align: middle;
 }
 #participantsListIcons {
-	height: 32px;
 	float: right;
-	border: 2px solid black;
-}
-#participantsListIcons span{
-	vertical-align: middle;
-	text-align: center;
+	margin-top: 10px;
 }
 
 /* Participant List Sidebar Button */

@@ -271,7 +271,7 @@ NOTE: use percentage font sizes or else old IE chokes
   position: relative;
   right: -856px;
   top: 184px;
-  z-index: 1000;
+  z-index: 0;
 }    
     
     
