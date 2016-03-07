@@ -8,9 +8,14 @@ require.config({
         moment:     'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min',
 		jqueryui:	'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
 		jquerypo:	'http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay',
-        jquery-ui:   'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min'
+
 	}, // set up custom paths to libraries, or paths to RequireJS plugins
-    shim: {}, // used for setting up all Shims (see below for more detail)
+    shim: {
+		"jqueryui": {
+            export:"$" ,
+            deps: ['jquery']
+        }
+	}, // used for setting up all Shims (see below for more detail)
 });
 
 requirejs([

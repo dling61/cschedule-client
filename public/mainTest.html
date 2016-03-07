@@ -5,6 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
+<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
@@ -31,7 +32,6 @@
 <link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
 <link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
 
-  <script src="app/js/views/eventDialogView.js"></script>
 
 </head>
     
@@ -173,29 +173,11 @@ body{
                     <span id="eventDialogView">
                       <button id="createBtn" onclick="showDialog()">+ Create Event</button>
                     </span>
-                        <script>
-        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
-        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
 
-        document.body.appendChild(editEventView.cloneNode(true));
-        document.body.appendChild(createEventView.cloneNode(true));
-        
-        function loadTemplate(importID, templateID) {
-            var t = document.querySelector(importID),
-                t = t.import.querySelector(templateID),
-                t = t.content.cloneNode(true);
-            return t;
-        }
-        $("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
-        
-                    var createEvent = new eventDialogView();
-            createEvent.render();
-        
-    </script>
                     <script>
-                    function showDialog() {
-						document.getElementById("tabs-create").style.display = "block";
-					}
+                        function showDialog() {
+                            document.getElementById("tabs-create").style.display = "block";
+                        }
                     </script>
                 </div>
             </div>
