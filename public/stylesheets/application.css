@@ -1,5 +1,17 @@
 @CHARSET "UTF-8";
 
+/* Because there are z-indexes everywhere */
+/* Drop elements should always be on top */
+.drop-element, 
+.drop-element *, 
+.drop-element :after, 
+.drop-element :before, 
+.drop-element:after, 
+.drop-element:before {
+	z-index: 9999;
+}
+
+
 .ReqChat {
   position: absolute;
   bottom:0px;
@@ -138,7 +150,6 @@ body {
    border: none;
    border-top:    1px solid #aaaaaa;
    border-bottom: 1px solid #ffffff;
-   z-index:10;
 }
 
 

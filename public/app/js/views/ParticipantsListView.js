@@ -1,8 +1,8 @@
 define([
-	'underscore', 
+	'js/collections/Participants',
+	'drop',
 	'backbone',
-	'js/collections/Participants'
-], function(_, Backbone, Participants){
+], function(Participants,Drop){
 	var ParticipantsListView = Backbone.View.extend({
 		el: '#parList',
 
@@ -88,19 +88,27 @@ define([
 			//ev.preventDefault();
 		}, */
 		
-			/* evaluating underscore in external templates */
-	evalUnderscore: function(evalSelector, jsonReplace) {
-		var template = _.template($(evalSelector).html());    
-		$(evalSelector).html(template(jsonReplace));
-		$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-	},
+/* evaluating underscore in external templates, remove after it is placed into correct place */
+		evalUnderscore: function(evalSelector, jsonReplace) {
+			var template = _.template($(evalSelector).html());    
+			$(evalSelector).html(template(jsonReplace));
+			$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
+		},
 		
+		/* render what we want displayed */
 		render: function () {
 			var that = this;
 			gParticipants.fetch({
 				success: function (gParticipants) {
 					$("#ParticipantListDiv").css("display", "block");
 					that.evalUnderscore('#parList', {participants: gParticipants.models});
+					var drop = new Drop({
+						target: document.querySelector('.arrowFlyoutDrop'),
+						content: '<div>GO?</div>',
+						position: 'bottom left',
+						openOn: 'click',
+						classes: 'drop-theme-arrows-bounce-dark',		
+					});
 				}
 			}); 
 			this.addEvent();
