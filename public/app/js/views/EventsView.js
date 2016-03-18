@@ -5,8 +5,17 @@ define([
     'jqueryui',
     '../../../javascripts/fullcalendar',
     'js/models/task',
-], function(_, Backbone, jquery, jqueryui, fullcalendar, Task){
+    'js/views/HelpersPoolView'
+], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, HelpersPoolView){
 
+
+/* Template */
+function loadTemplate(importID, templateID) {
+var t = document.querySelector(importID),
+    t = t.import.querySelector(templateID),
+    t = t.content.cloneNode(true);
+return t;
+}
 
 
     
@@ -187,15 +196,16 @@ var Events = Backbone.Collection.extend({
                 //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
                 $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
 
+                if (true) {
+                    for (taskid = 0; taskid < tasks.length; taskid++) {
 
-                for (taskid = 0; taskid < tasks.length; taskid++) {
-                    
-                    if (taskid === 0)
-                    $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
-                                              + '</div>');
-                    else
-                    $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
-                                              + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
+                        if (taskid === 0)
+                        $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
+                                                  + '</div>');
+                        else
+                        $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
+                                                  + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
+                    }
                 }
                 $('.taskname').click( function(fcEvent, jsEvent, view) {
                     var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
@@ -398,6 +408,17 @@ var EventsView = Backbone.View.extend({
                             });
 
                             callback(events);
+                            
+                            if (gTasksView.cid === undefined) {
+                                gTasksView = new TaskView();
+
+                                gTasksView.render(gEvents[0].task);
+                            }
+
+                            //WFB this.eventView.render();
+
+        
+
 
                             $('.numcircle').click( function(){
                                 //alert(event)
@@ -543,6 +564,51 @@ $data = json_encode(array(
 //window.JST = {};
 
     
+    
+/*
+window.JST['taskView'] = _.template(
+    //WFB '<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>'
+    '<button class="addtaskbtn" data-eventid="' + 30001 + '">+ task</button>'
+);
+*/
+
+
+var TaskView = Backbone.View.extend({
+    el: '#event1_title',
+    events : {
+        'click .addtaskbtn2' : 'addTask'
+    },
+    
+    
+    initialize: function() {
+        
+        // event1_title
+        $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
+    },
+    
+    
+    /* evaluating underscore in external templates */
+	evalUnderscore: function(evalSelector, jsonReplace) {
+		var template = _.template($(evalSelector).html());    
+		$(evalSelector).html(template(jsonReplace));
+		$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
+	},
+		
+
+    
+    render: function (eventTasks) {
+            this.evalUnderscore('#taskList', {tasks: eventTasks});
+			//this.addEvent();
+    },
+    
+    addTask: function() {
+         alert('Add Task !')
+    }
+
+});
+    
+    
+    
 /* WFB    
 window.JST['eventView'] = _.template(
     "<span id='eventName' data-id='30002'><%= event.get('eventname') %></span>" + 
@@ -558,6 +624,7 @@ window.JST['eventView'] = _.template(
 */
 
 var EventView = Backbone.View.extend({
+    
     el: $('#eventView'),
     events : {
         'click #eventName' : 'editEventName',

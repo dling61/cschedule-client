@@ -1,3 +1,10 @@
+define([
+	'underscore', 
+	'backbone',
+    'jquery',
+    'jqueryui',
+    'js/models/task',
+], function(_, Backbone, jquery, jqueryui, Task){
 
 
 
@@ -151,4 +158,6 @@ window.JST['eventViewSAMPLE'] = _.template(
     "<span id='eventHost' data-id='30002'><%= event.get('host') %></span>"
 );
 
-
+    
+return HelpersPoolView;
+});

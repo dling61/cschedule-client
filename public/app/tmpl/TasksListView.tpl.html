@@ -1,0 +1,22 @@
+<template id="tasksListTemplate">
+<div id="TaskListDiv" style="display:block;">
+
+    <div id="taskList"> 
+
+        <script type="text/x-underscore">
+
+            <button class="addtaskbtn2" data-eventid="' + 30001 + '">+ task</button>
+
+            <% _.each(tasks, function(task) { %>
+                
+                    <div data-id=<%=task.taskid%> 
+                        class="taskname">
+                        <span><%=task.taskname%></span>
+                    </div>
+               
+            <% }); %>
+
+        </div>
+        </script>
+    </div>
+</template>

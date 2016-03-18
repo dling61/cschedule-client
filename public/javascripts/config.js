@@ -16,7 +16,7 @@ require.config({
             deps: ['jquery']
         }
 	}, // used for setting up all Shims (see below for more detail)
-});
+    });
 
 requirejs([
 	'jquery', 
@@ -36,6 +36,7 @@ requirejs([
 	var gEvents;
 	var gParticipants;
 	var gTasks;
+	var gTasksView;
 	var gTaskAssignees;
 	var gTaskHelpers;
 
@@ -59,7 +60,8 @@ requirejs([
 		t = t.content.cloneNode(true);
 	return t;
 	}
-	$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
+	$("body").append(loadTemplate("#participantsListViewTpl", "#participantsListTemplate"));
+//	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
 	
 	/* evaluating underscore in external templates */
