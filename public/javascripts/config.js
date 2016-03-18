@@ -8,18 +8,31 @@ require.config({
         moment:     'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min',
 		jqueryui:	'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
 		jquerypo:	'http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay',
+		tether:		'../javascripts/tether.min',
+		drop:		'../javascripts/drop.min',
 	}, // set up custom paths to libraries, or paths to RequireJS plugins
     shim: {
-		"jqueryui": {
-            export:"$" ,
-            deps: ['jquery']
-        }
+		'backbone': {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+        'underscore': {
+            exports: '_'
+        },
+		'jqueryui': {
+            deps: ['jquery'],
+			exports: '$'
+        },
+		'drop': {
+            deps: ['tether'],
+			exports: 'Drop'
+        },	
 	}, // used for setting up all Shims (see below for more detail)
 });
 
 requirejs([
 	'jquery', 
-	'js/app'
+	'js/app',
 ], function($, App){
 	/* Global Variables  */
 	var gFetchedEvents;
