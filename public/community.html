@@ -1,44 +1,43 @@
+
 <html>
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
 <link rel='stylesheet' type='text/css' href='stylesheets/jquery-ui-1.8.13.custom.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/fullcalendar.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/application.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/participant.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/flyout.css' />
 <link rel='stylesheet' type='text/css' href='stylesheets/event.css' />
+<link rel='stylesheet' type='text/css' href='stylesheets/dropLib/drop-theme-arrows-bounce-dark.min.css' />
 
-<!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
--->
+<script type='text/javascript' src='javascripts/layer.js'></script>
+<script type='text/javascript' src='javascripts/underscore.js'></script>
+<script type='text/javascript' src='javascripts/backbone.js'></script>
+    
+<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
 
 
 <link type="text/css" rel="stylesheet" href="stylesheets/jquery.dropdown.css" />
 <script type="text/javascript" src="javascripts/jquery.dropdown.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script type='text/javascript' src='javascripts/fullcalendar.js'></script>
-<!--
-<script type='text/javascript' src='javascripts/underscore.js'></script>
-<script type='text/javascript' src='javascripts/backbone.js'></script>
-
-<script type='text/javascript' src='javascripts/layer.js'></script>
-
-    <script src="carouselengine/amazingcarousel.js"></script>
-    <link rel="stylesheet" type="text/css" href="carouselengine/initcarousel-1.css">
-    <script src="carouselengine/initcarousel-1.js"></script>
--->
 <script data-main="javascripts/config.js" src="javascripts/require.js"></script>
-
-<!-- load external html 'templates' part1/2 -->
-<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
+<!-- import templates -->
 <link rel="import" id="createEventView" href="app/tmpl/createEventView.tpl.html">
+<link rel="import" id="editEventView" href="app/tmpl/editEventView.tpl.html">
 <link rel="import" id="messageBoxTpl" href="app/tmpl/messageBox.tpl.html">
 <link rel="import" id="participantEditViewTpl" href="app/tmpl/participantEditView.tpl.html">
-<link rel="import" id="participantsListViewTpl" href="app/tmpl/participantsListView.tpl.html">
+<link rel="import" id="participantsListViewTpl" href="app/tmpl/ParticipantsListView.tpl.html">
+<link rel="import" id="tasksListViewTpl" href="app/tmpl/TasksListView.tpl.html">
+
+
 </head>
+    
 <style>
 body{
     margin: auto;
@@ -88,51 +87,9 @@ body{
   
  }
 </style>
+
 <body style="background-color: #88aaee">
-
-
-
     <div class="page">
-
-
-        <!-- header div-->
-        
-        <!--<div id="cheader">
-            <nav class="navbar navbar-default" style="background-color: #4488dd;">
-                <div class="container-fluid">
-                    <div>
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									Community 
-									<span class="caret"></span>
-								</a>
-                                <ul id="community-drop-down" class="dropdown-menu">
-                                    <li><a href="#">Community1</a></li>
-                                    <li><a href="#">Community2</a></li>
-                                    <li><a href="#">Community3</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">CSchedule</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-							<div id="editProfileImage"></div>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span id="gUser-display">TonyDing </span>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul id="users-drop-down" class="dropdown-menu">
-                                    <li><a href="#">Bill Grek</a></li>
-                                    <li><a href="#">Irene</a></li>
-                                    <li><a href="#">Mark</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>-->
        <div class="navheader">
             <div class="dropdown-community">
                 <a href="#" data-jq-dropdown="#jq-dropdown-1">Community</a>
@@ -165,12 +122,9 @@ body{
 
         <!-- Body div-->
         <div id="cbody">
-
             <!-- community list view div -->
             <div class="community-list-view">
-
                 <div class="nav-body"></div>
-
                 <div class="new-community-div">
                     <div class="container">
                         <div id="new_community_btn">
@@ -207,7 +161,6 @@ body{
                 <button class="create-btn" type="button"> + Create new Community</button>
 
             </div>
-
         </div>
     </div>
 
@@ -223,10 +176,11 @@ body{
                     <span id="eventDialogView">
                       <button id="createBtn" onclick="showDialog()">+ Create Event</button>
                     </span>
+
                     <script>
-                    function showDialog() {
-            document.getElementById("tabs-create").style.display = "block";
-        }
+                        function showDialog() {
+                            document.getElementById("tabs-create").style.display = "block";
+                        }
                     </script>
                 </div>
             </div>
@@ -237,13 +191,9 @@ body{
                 <div id="eventView" style="background-color: #4444FE; color: white; height: 48px; padding-top: 12px;"></div>
                 <br>
                 <div id="event1_title" style="float:left; margin-top: 53px;"></div>
-
                 <div id='calendar' style="display:inline-block"></div>
-
                 <div class="page"></div>
-
                 <div id="messageDialog"></div>
-
                 <div id="helperpool"> </div>
 
                 
@@ -257,20 +207,15 @@ body{
                             <img class="face" height=22 src="./images/Bill.png">
                         </div>
                         <div style="display: inline-block; width: 74%;">
-                            <div class="reqtype">You need a swap on
-                            </div>
-                            <div class="dateLarge">Saturday, December 19
-                            </div>
+                            <div class="reqtype">You need a swap on</div>
+                            <div class="dateLarge">Saturday, December 19</div>
                         </div>
                     </div>
                     <img height=200 src="./images/ReqRes.png">
                 </div>
             </div>
-
         </div>
-
         <div id="show-tasks" style="color:blue; display:none">Show Tasks</div>
-
     </div>
     <!--- end of CommunityView -->
 	
@@ -283,10 +228,14 @@ body{
 		</div>
 	</div>
 	<!-- End Flyout -->
-
+	
+	<script>
+		require(['../utils/flyoutUtils']);
+	</script>
+	
+	
 	
 	<!--- editparticipantdialog-->
-
     <script type="text/template" id="users-dropdown-template">
         <% _.each(loggedInUsers, function(user) { %>
             <li><a href="#">"<%= htmlEncode(user.get("name")) %>" </a></li>
@@ -309,7 +258,6 @@ body{
             </li>
         <% }); %>
     </script>
-
     <script type="text/template" id="events-template">
         <% _.each(events, function(message) { %>
             <li>
@@ -317,140 +265,12 @@ body{
             </li>
         <% }); %>
     </script>
-
-    <script>
-		/* loading external templates */
-        var editEventView = document.querySelector("#editEventView").import.querySelector('#editEventView');
-        var createEventView = document.querySelector("#createEventView").import.querySelector('#createEventDialog');
-        
-        document.body.appendChild(editEventView.cloneNode(true));
-        document.body.appendChild(createEventView.cloneNode(true));
-        
-		function loadTemplate(importID, templateID) {
- 			var t = document.querySelector(importID),
- 				t = t.import.querySelector(templateID),
- 				t = t.content.cloneNode(true);
- 			return t;
- 		}
- 		$("body").append(loadTemplate("#participantsListViewTpl","#participantsListTemplate"));
-		//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
-		
-		/* evaluating underscore in external templates */
-		function evalUnderscore(evalSelector, jsonReplace) {
-			var template = _.template($(evalSelector).html());    
-			$(evalSelector).html(template(jsonReplace));
-			$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-		}
-    </script>
-
-    
-    <!-- Global Variables  !-->
-    <script type="text/javascript">
-        
-
-
-        $(document).ready(function() {
-
-
-            communityEvents   = new EventsC();
-            communityListView = new CommunityListView();
-            communityListView.render();
-
-            var createEvent = new eventDialogView();
-            createEvent.render();
-
-            layersample.config.userId = gLoginUser.username; //"kalyani";
-            layersample.config.userId = "kalyani";
-
-            /*
-              getNonce();
-
-              // Use the nonce to get an identity token
-              .then(function(nonce) {
-                  return getIdentityToken(nonce);
-              })
-
-              // Use the identity token to get a session
-              .then(function(identityToken) {
-                  return getSession(identityToken);
-              })
-
-              // Store the sessionToken so we can use it in the header for our requests
-              .then(function(sessionToken) {
-                  layersample.headers.Authorization =
-                      'Layer session-token="' + sessionToken + '"';
-
-
-                  // Now we can do stuff, like get a list of conversations
-                  //return getConversations();
-              })
-            */
-			
-			/* Load Profile Image */
-			$('#editProfileImage').css('background-image','url(' + gLoginUser.profile + ')');
-        });
-    </script>
-
-    
-    
-    <script>
-		//Popup for image edit
-		$('#editProfileImage').click(function(e){
- 			//So that this function does not affect its children
- 			if (e.target != this) {
- 				return;
- 			} 
- 			//Create new if doesn't exist
- 			if ($("#editProfileImage").children().length == 0) {
-				participantView = new ParticipantView();
-  				participantView.render();
- 			}
- 			//Hide and show
- 			$("#participant-show").toggle( "fast", function() { 
-  				// Animation complete.
-  			});
-  		});
-    </script>
-
-    <script type='text/javascript' src="utils/ajaxutil.js"></script>
-    <script type='text/javascript' src="utils/commonUtils.js"></script>
-	<script type='text/javascript' src="utils/imageUtils.js"></script>
-	<script type='text/javascript' src="utils/flyoutUtils.js"></script>
-
-    <script src="app/js/collections/communities.js"></script>
-    <script src="app/js/models/community.js"></script>
-    <script src="app/js/views/CommunityListView.js"></script>
-    <script src="app/js/views/CommunityEditView.js"></script>
-    <script src="app/js/views/CommunityView.js"></script>
-    <script src="app/js/collections/users.js"></script>
-    <script src="app/js/models/user.js"></script>
-    <script src="app/js/router.js"></script>
-    <script src="app/js/views/UserAddView.js"></script>
-    <script src="app/js/views/ParticipantsListView.js"></script>
-    <script src="app/js/collections/loggedInUsers.js"></script>
-    <script src="app/js/models/loggedInUser.js"></script>
-    <script src="app/js/models/communityChat.js"></script>
-    <script src="app/js/collections/communityChats.js"></script>
-    <script src="app/js/models/participant.js"></script>
-    <script src="app/js/views/ParticipantView.js"></script>
-    <script src="app/js/views/EventsView.js"></script>
-    <script src="app/js/views/HelperPoolView.js"></script>
-    <script src="app/js/views/DialogView.js"></script>
-    <script src="app/js/views/ReQResView.js"></script>
-    <script src="app/js/collections/participants.js"></script>
-    <script src="app/js/models/taskHelper.js"></script>
-    <script src="app/js/collections/taskHelpers.js"></script>
-    <script src="app/js/models/task.js"></script>
-    <script src="app/js/collections/tasks.js"></script>
-    <script src="app/js/views/TaskView.js"></script>
-    <script src="app/js/views/EventView.js"></script>
-    <script src="app/js/collections/Events.js"></script>
-    <script src="app/js/models/eventDialog.js"></script>
-    <script src="app/js/views/eventDialogView.js"></script>
+	<!--end editparticipantdialog-->
+	
+	<script type='text/javascript' src="utils/commonUtils.js"></script>
+	
+	
 </body>
 
-<!-- please leave the following two lines here -->
-<link rel="stylesheet" type="text/css" href="stylesheets/jquery.datetimepicker.css">
-<script src="javascripts/jquery.datetimepicker.js"></script>
 
 </html>
