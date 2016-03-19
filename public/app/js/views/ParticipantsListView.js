@@ -102,13 +102,20 @@ define([
 				success: function (gParticipants) {
 					$("#ParticipantListDiv").css("display", "block");
 					that.evalUnderscore('#parList', {participants: gParticipants.models});
-					var drop = new Drop({
-						target: document.querySelector('.arrowFlyoutDrop'),
-						content: '<div>GO?</div>',
-						position: 'bottom left',
-						openOn: 'click',
-						classes: 'drop-theme-arrows-bounce-dark',		
-					});
+					
+					/*Flyouts configured for multiple elements*/
+					var flyouts = document.querySelectorAll('.pListFlyout'), i;
+					var newDiv;
+					for (i = 0; i < flyouts.length; ++i) {
+						newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
+						window["pListDrop" + i] = new Drop({
+							target: flyouts[i],
+							content: newDiv,
+							position: 'bottom left',
+							openOn: 'click',
+							classes: 'drop-theme-arrows-bounce-dark',		
+						});
+					}
 				}
 			}); 
 			this.addEvent();
