@@ -3,8 +3,9 @@ define([
 	'backbone',
     'jquery',
     'jqueryui',
+    'drop',
     'js/models/task',
-], function(_, Backbone, jquery, jqueryui, Task){
+], function(_, Backbone, jquery, jqueryui, Drop, Task){
 
 
 
@@ -78,15 +79,7 @@ var HelpersPoolView = Backbone.View.extend({
             success: function(eventList) {
                 events = [];
                 
-                
-                var helpers_overlay = $("<div id='helpers_pool' style='margin-top: 146px; width: 280px;'>");
-                $("#eventView").append(helpers_overlay);
-                
-                var top_arrow = $("<div class='arrow-up' style='margin-left: 30px'></div>");
-                $("#helpers_pool").append( top_arrow );
-
-                var popup_helpers = $("<div id='helper_pool0' style='padding-top: 18px; padding-bottom: 8px; background: black;'>");
-                $("#helpers_pool").append(popup_helpers);
+                newDiv = $('<div>');
                 
                 events = _.map(eventList.models, function(event) {
                     var title = event.attributes.username;
@@ -103,7 +96,7 @@ var HelpersPoolView = Backbone.View.extend({
                     //$("#floatDiv").append(personDiv);
                     //$("#helperpool").append(personDiv);
                     
-                    $("#helper_pool0").append(personDiv);
+                    newDiv.append(personDiv);
                     
                     
 
@@ -130,6 +123,16 @@ var HelpersPoolView = Backbone.View.extend({
                     $('.ui-dialog').css('overflow','visible');
 */                    
                 });
+                
+                this.helperPoolView = new Drop({
+							target: $('.taskname')[0],
+							content: newDiv[0],
+							position: 'bottom left',
+							openOn: 'click',
+							classes: 'drop-theme-arrows-bounce-dark',		
+						});
+
+
                 // WFB  $("#floatDiv").show();
             }
         });
@@ -137,27 +140,9 @@ var HelpersPoolView = Backbone.View.extend({
         //this.eventView.model = this.collection.get(fcEvent.id);
         //this.eventView.render();
     }
+    
+
 });
 
-
-
-
-
-
-
-
-window.JST['eventViewSAMPLE'] = _.template(
-    "<span id='eventName' data-id='30002'><%= event.get('eventname') %></span>" + 
-    "<span class='glyphicon glyphicon-time'></span>" + 
-    "<span id='eventTime' data-id='30002'><%= event.get('startdatetime') %> to <%= event.get('enddatetime') %></span>" +
-    "<span class='glyphicon glyphicon-retweet'></span>" + 
-    "<span id='eventRepeat' data-id='30002'>Every Saturday</span>" + 
-    "<span class='glyphicon glyphicon-map-marker'></span>" + 
-    "<span id='eventLocation' data-id='30002'><%= event.get('location') %></span>" + 
-    "<span class='glyphicon glyphicon-user'></span>" +
-    "<span id='eventHost' data-id='30002'><%= event.get('host') %></span>"
-);
-
-    
-return HelpersPoolView;
+return HelpersPoolView;    
 });

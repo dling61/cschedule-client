@@ -185,7 +185,7 @@ var Events = Backbone.Collection.extend({
 
 
 
-            if ($(".addtaskbtn").length === 0) {
+            if (false && $(".addtaskbtn").length === 0) {
                 var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
                 var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
                 var eventTime = times[dayIdx] + ':' + times[1];
@@ -196,7 +196,7 @@ var Events = Backbone.Collection.extend({
                 //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
                 $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
 
-                if (true) {
+                if (false) {
                     for (taskid = 0; taskid < tasks.length; taskid++) {
 
                         if (taskid === 0)
@@ -207,10 +207,13 @@ var Events = Backbone.Collection.extend({
                                                   + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
                     }
                 }
+                
+                /* 
                 $('.taskname').click( function(fcEvent, jsEvent, view) {
                     var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
                     helpersPoolView.render();
                 });
+                */
             }
 
         }
@@ -584,6 +587,10 @@ var TaskView = Backbone.View.extend({
         
         // event1_title
         $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
+        
+
+                    // helpersPoolView.render();
+
     },
     
     
@@ -597,8 +604,12 @@ var TaskView = Backbone.View.extend({
 
     
     render: function (eventTasks) {
-            this.evalUnderscore('#taskList', {tasks: eventTasks});
-			//this.addEvent();
+        this.evalUnderscore('#taskList', {tasks: eventTasks});
+        //this.addEvent();
+        
+        var taskid = 30001;
+        this.helpersPoolView = new HelpersPoolView( {'poolID' : taskid} ); 
+        this.helpersPoolView.render();
     },
     
     addTask: function() {
