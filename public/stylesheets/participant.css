@@ -55,8 +55,8 @@ ask details about accept decline
 #parListTopBar {
 	text-align: left;
 	color: #FFFFFF;
-	font-size: 14px;
-	padding: 3%;
+	font-size: 25px;
+	padding: 10px;
 	background: #34629A;
 	
 }
@@ -89,27 +89,32 @@ ask details about accept decline
 
 /* Participant List Sidebar Button */
 #parListHideBtn {
-    height: 52px;
-    left: -32px;
-    overflow: hidden;
-    position: absolute;
-    text-decoration: none;
-    top: 0px;
-    z-index: 6;
-    width: 32px;
-	background: url(../images/participantListArrow.png);
-	background-size: 100% 100%;
-	transform: scale(-1, 1);
+	position: absolute;
+	top: 30px;
+    left: -42px;	
+    width: 30px;
+	padding: 6px;
+	background: white;
+	border-radius: 50% 0 0 50%;
+	text-align: right;
+}
+#parListHideBtn:before {
+    content: "\f054";
+    font-family: FontAwesome;
+	font-size: 25px;
 }
 #parListShowBtn {
-    height: 52px;
-    left: -32px;
-    overflow: hidden;
-    position: absolute;
-    text-decoration: none;
-    top: 0px;
-    z-index: 6;
-    width: 32px;
-	background: url(../images/participantListArrow.png);
-	background-size: 100% 100%;
+	position: absolute;
+    top: 30px;
+    left: -42px;	
+    width: 30px;
+	padding: 6px;
+	background: white;
+	border-radius: 50% 0 0 50%;
+	text-align: right;
+}
+#parListShowBtn:before {
+    content: "\f053";
+    font-family: FontAwesome;
+	font-size: 25px;
 }
