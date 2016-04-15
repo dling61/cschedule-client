@@ -128,7 +128,7 @@ $(function() {
 
 
 
-                if ($(".addtaskbtn").length === 0) {
+                if (false && $(".addtaskbtn").length === 0) {
                     var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
                     var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
                     var eventTime = times[dayIdx] + ':' + times[1];

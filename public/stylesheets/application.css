@@ -626,3 +626,13 @@ body{
 .fa-caret-down:before {
   content:"\f0d7"
 }
+
+.taskIcons {
+    margin-left: 12px;
+    width:24px;
+    vertical-align: middle;
+    display: none;
+}
+.taskname:hover .taskIcons {
+    display: inline-block;
+}

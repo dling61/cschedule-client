@@ -1,6 +1,7 @@
 define([
 	'underscore', 
 	'backbone',
+    'drop',
 	'js/collections/communities',
 	'js/views/ParticipantsListView',
 	'js/views/ParticipantView',
@@ -8,7 +9,7 @@ define([
 	'js/views/EventsView',
 	//'js/views/eventDialogView'
     
-], function(_, Backbone, Communities, ParticipantsListView, 
+], function(_, Backbone, Drop, Communities, ParticipantsListView, 
                ParticipantView, UserAddView, EventsView
                ){
 

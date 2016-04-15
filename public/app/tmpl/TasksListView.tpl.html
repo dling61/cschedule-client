@@ -11,8 +11,14 @@
                 
                     <div data-id=<%=task.taskid%> 
                         class="taskname">
-                        <span><%=task.taskname%></span>
+                        <div style="display:inline-block;"><%=task.taskname%></div>
+                        <div class="taskIcons">
+                            <div class="fa fa-newspaper-o"></div>
+                            <div class="fa fa-book"></div>
+                            <div class="fa fa-ban"></div>
+                        </div>
                     </div>
+
                
             <% }); %>
 
