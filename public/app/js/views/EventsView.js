@@ -105,10 +105,12 @@ var Events = Backbone.Collection.extend({
 
 
         var evAry = [];
-        var evsC = resp.event;
+        //WFB var evsC = resp.event;
+        var evsC = resp;
         
-        this.add(evsC[30001][0]);
-        this.add(evsC[30001][1]);
+        this.add(resp);
+        //WFB this.add(evsC[30001][0]);
+        //this.add(evsC[30001][1]);
 
         var events = {
             events: [ // put the array in the `events` property
@@ -137,7 +139,7 @@ var Events = Backbone.Collection.extend({
         };
 
         var eventID = 30001;
-        var evsC = evsC[eventID];
+        //WFB var evsC = evsC[eventID];
         
         
         //parsing events to approximate collections(task assignees)
@@ -167,58 +169,59 @@ var Events = Backbone.Collection.extend({
         
         var assignNames = "";
 
-        
-        for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
+        if (false) {
+            for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
 
-            assignNames = "";
-            for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
-                var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
-                assignNames += '<div class="taskAssignees" data-taskid="' + taskID
-                                + '" style="margin-top:10px;">' 
-                    + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
-            }
-
-            var newEv = {
-                title: assignNames, //'Group ' + getAssignees(evsC[dayIdx].task[0].assignment),
-                start: evsC[dayIdx].startdatetime
-            };
-            eventsC.events.push(newEv);
-
-
-
-
-            if (false && $(".addtaskbtn").length === 0) {
-                var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
-                var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
-                var eventTime = times[dayIdx] + ':' + times[1];
-
-                var tasks = evsC[dayIdx].task;
-
-
-                //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
-                $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
-
-                if (false) {
-                    for (taskid = 0; taskid < tasks.length; taskid++) {
-
-                        if (taskid === 0)
-                        $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
-                                                  + '</div>');
-                        else
-                        $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
-                                                  + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
-                    }
+                assignNames = "";
+                for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
+                    var taskID = evsC[dayIdx].task[taskIdx].taskid;
+                    var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
+                    assignNames += '<div class="taskAssignees" data-taskid="' + taskID
+                                    + '" style="margin-top:10px;">' 
+                        + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
                 }
-                
-                /* 
-                $('.taskname').click( function(fcEvent, jsEvent, view) {
-                    var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
-                    helpersPoolView.render();
-                });
-                */
-            }
 
+                var newEv = {
+                    title: assignNames, //'Group ' + getAssignees(evsC[dayIdx].task[0].assignment),
+                    start: evsC[dayIdx].startdatetime
+                };
+                eventsC.events.push(newEv);
+
+
+
+
+                if (false && $(".addtaskbtn").length === 0) {
+                    var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
+                    var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
+                    var eventTime = times[dayIdx] + ':' + times[1];
+
+                    var tasks = evsC[dayIdx].task;
+
+
+                    //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
+                    $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
+
+                    if (false) {
+                        for (taskid = 0; taskid < tasks.length; taskid++) {
+
+                            if (taskid === 0)
+                            $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
+                                                      + '</div>');
+                            else
+                            $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
+                                                      + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
+                        }
+                    }
+
+                    /* 
+                    $('.taskname').click( function(fcEvent, jsEvent, view) {
+                        var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
+                        helpersPoolView.render();
+                    });
+                    */
+                }
+
+            }
         }
         //$('#event1_title').   
 
