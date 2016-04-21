@@ -35,6 +35,7 @@ requirejs([
 	'js/app',
 ], function($, App){
 	/* Global Variables  */
+	var gFetchedBaseEvents;
 	var gFetchedEvents;
 	var communityEvents;
 
@@ -45,6 +46,7 @@ requirejs([
 	var gEventsView;
 	var gEventView;
 
+	var gBaseEvents;
 	var gEvents;
 	var gParticipants;
 	var gTasks;
