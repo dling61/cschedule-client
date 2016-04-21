@@ -281,6 +281,7 @@ var Events = Backbone.Collection.extend({
         //WFB var evsC = resp.event;
         var evsC = resp;
         
+        //WFB this.add(resp);
         this.add(resp);
         //WFB this.add(evsC[30001][0]);
         //this.add(evsC[30001][1]);
@@ -342,7 +343,7 @@ var Events = Backbone.Collection.extend({
         
         var assignNames = "";
 
-        if (false) {
+        if (true) {
             for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
 
                 assignNames = "";
