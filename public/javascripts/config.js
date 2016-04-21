@@ -61,8 +61,8 @@ requirejs([
 	var gLatestTaskId;
 	var gLatestTaskHelperId;
 	var gLatestParticipantId;
-	var gLatestBaseEventId;
-	var gLatestRepeatScheduleId;
+	var gLatestBEventId;
+	var gLatestRScheduleId;
         var gLatestAssignmentPoolId;
 	var gLoginUser;
 	var gLoginUserName;
@@ -102,7 +102,7 @@ requirejs([
             //WFB options.url = 'http://api.cschedule.org/' +
 
 			//WFB options.url = 'http://apitest2.servicescheduler.net/' +
-			options.url = 'http://apitest2.cschedule.com/' +
+			options.url = 'http://api.cschedule.org/' +
 				options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 		}
 	});
