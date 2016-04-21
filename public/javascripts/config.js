@@ -61,6 +61,9 @@ requirejs([
 	var gLatestTaskId;
 	var gLatestTaskHelperId;
 	var gLatestParticipantId;
+	var gLatestBaseEventId;
+	var gLatestRepeatScheduleId;
+        var gLatestAssignmentPoolId;
 	var gLoginUser;
 	var gLoginUserName;
 	var gSelectedCommunityId;
