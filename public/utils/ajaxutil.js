@@ -14,7 +14,7 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     } else if (jsonFileRegex.test(options.url)) {
 
     } else {
-        options.url = 'http://api.cschedule.org/' +
+        options.url = 'http://apitest2.cschedule.com/' +
             options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 		/* Session Cookie */	
 			options.xhrFields = {
