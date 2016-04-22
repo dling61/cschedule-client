@@ -99,9 +99,13 @@ requirejs([
 		} else {
             //WFB options.url = 'http://api.cschedule.org/' +
 
-			//WFB options.url = 'http://apitest2.servicescheduler.net/' +
-			options.url = 'http://api.cschedule.org/' +
+			options.url = 'http://apitest2.servicescheduler.net/' +
+			// options.url = 'http://api.cschedule.org/' +
 				options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+			/* Session Cookie */	
+			options.xhrFields = {
+				withCredentials: false
+			};
 		}
 	});
 	
