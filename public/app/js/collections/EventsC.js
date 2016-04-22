@@ -2,13 +2,6 @@ define([
 	'underscore', 
 	'backbone'
 ], function(_, Backbone){
-	var serverSetting = Backbone.Model.extend({
-	  urlRoot: 'serversetting',
-	  parse: function(resp, xhr) {  
-		return resp;
-	  } 
-	});
-	
 	var EventM = Backbone.Model.extend({
 	  urlRoot: 'event',
 	  // save: function(attrs, options) {

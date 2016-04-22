@@ -7,7 +7,12 @@ define([
     'js/models/task',
 ], function(_, Backbone, jquery, jqueryui, Drop, Task){
 
-
+	var serverSetting = Backbone.Model.extend({
+		urlRoot: 'serversetting',
+		parse: function(resp, xhr) {  
+			return resp;
+		} 
+	});
 
 
     var eventDialogView = Backbone.View.extend({
@@ -78,10 +83,10 @@ define([
         
     },
     render: function() {
-        //save the sever settings into global variable gServerSetting
-        gSeverSetting = new serverSetting();
-        $.when(gSeverSetting).done(function() {
-            gSeverSetting.fetch({
+        //save the server settings into global variable gServerSetting
+        gServerSetting = new serverSetting();
+        $.when(gServerSetting).done(function() {
+            gServerSetting.fetch({
                 success: function(settings) {
                     var tzSettings = settings.attributes.timezones;
                     var alertSettings = settings.attributes.alerts;
@@ -273,10 +278,10 @@ define([
 			
 		},
 		render: function() {
-			//save the sever settings into global variable gServerSetting
-			gSeverSetting = new serverSetting();
-			$.when(gSeverSetting).done(function() {
-				gSeverSetting.fetch({
+			//save the Server settings into global variable gServerSetting
+			gServerSetting = new serverSetting();
+			$.when(gServerSetting).done(function() {
+				gServerSetting.fetch({
 					success: function(settings) {
 						var tzSettings = settings.attributes.timezones;
 						var alertSettings = settings.attributes.alerts;

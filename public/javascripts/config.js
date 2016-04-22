@@ -68,7 +68,7 @@ requirejs([
 	var gLoginUserName;
 	var gSelectedCommunityId;
 
-	var gSeverSetting;
+	var gServerSetting;
 	
 	/* Template */
 	function loadTemplate(importID, templateID) {
@@ -101,14 +101,10 @@ requirejs([
 		} else {
             //WFB options.url = 'http://api.cschedule.org/' +
 
-<<<<<<< HEAD
 			//WFB options.url = 'http://apitest2.servicescheduler.net/' +
 			options.url = 'http://apitest2.cschedule.com/' +
-=======
-			options.url = 'http://apitest2.servicescheduler.net/' +
-			// options.url = 'http://api.cschedule.org/' +
->>>>>>> origin/master
 				options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+				
 			/* Session Cookie */	
 			options.xhrFields = {
 				withCredentials: false
