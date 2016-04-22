@@ -1,0 +1,36 @@
+<template id="addParticipantTemplate">
+<div id="AddParticipantDiv" style="display:none;">
+    <div id="addPrtTop">
+		<div>Name or Email Address</div>
+		<input id="addNewParticipant" type="text" name="addNewParticipant"><br>
+	</div>
+	<div id="addPrtBtm">
+		<button>Cancel</button><button onclick="notRegistered()">Add</button>
+	</div>
+	<!--the onclick is an if then statement-->
+
+	<div id="addPrtOpt1" style="display:none;">
+		<div id="addPrtMsg"> has not been registered for CSchedule. Add a name and click "Send" 
+		and we'll add a virtual member and send them an invite email. They'll automatically recieve access to the
+		community once they sign-up and confirm their email address.</div><br>
+		<div>Full Name</div>
+		<input id="input2" type="text" name="input2"><br>
+	</div>
+
+	<div id="addPrtOpt2" style="display:none;">
+		<button>Cancel</button><button onclick="inviteSent()">Invite</button>
+	</div>
+	<script>
+	function notRegistered() {
+		$("#addPrtTop").append($("#addPrtOpt1").children());
+		$("#addPrtBtm").html($("#addPrtOpt2").children());
+		
+		var x = document.getElementById("addNewParticipant").value;
+		$("#addPrtMsg").prepend(x);
+	}
+	function inviteSent() {
+		$("#addPrtBtm").html("Virtual Participant Added");
+	}
+	</script>
+</div>
+</template>

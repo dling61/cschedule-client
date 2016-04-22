@@ -17,9 +17,8 @@ define([
 		},
 		
 		addEvent: function(){
-			var parListWidth;
-			$('body').on('click','#parListHideBtn', function() {
-				parListWidth = $('#ParticipantListDiv').width(); 
+			var parListWidth  = $('#ParticipantListDiv').width();
+			$('body').on('click','#parListHideBtn', function() { 
 				$('#ParticipantListDiv').animate({width: 0}, 'slow');
 				$('#parListHideBtn').attr('id', 'parListShowBtn');
 				$("#parListTopBar").toggle();
@@ -115,6 +114,20 @@ define([
 							openOn: 'click',
 							classes: 'drop-theme-arrows-bounce-dark',		
 						});
+					}
+					$("#AddParticipantDiv").css("display", "block");
+					newDiv = document.getElementById("AddParticipantDiv");
+					flyouts = document.querySelector('.addParticipantFlyout');
+					var addPartDrop = new Drop({
+						target: flyouts,
+						content: newDiv,
+						position: 'bottom right',
+						openOn: 'click',
+						classes: 'drop-theme-arrows-bounce-dark',	
+						beforeClose: myConfirmCloseFunc
+					});
+					function myConfirmCloseFunc() {
+						return false;
 					}
 				}
 			}); 

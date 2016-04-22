@@ -1,7 +1,7 @@
-define([
+﻿define([
 	'underscore', 
 	'backbone',
-    'drop',
+	'drop',
 	'js/collections/communities',
 	'js/views/ParticipantsListView',
 	'js/views/ParticipantView',
