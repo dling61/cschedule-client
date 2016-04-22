@@ -5,8 +5,9 @@ define([
     'jqueryui',
     '../../../javascripts/fullcalendar',
     'js/models/task',
+    'js/collections/EventsC',
     'js/views/HelpersPoolView'
-], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, HelpersPoolView){
+], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, EventsC, HelpersPoolView){
 
 
 /* Template */
@@ -39,36 +40,18 @@ var TaskHelpers = Backbone.Collection.extend({
 
 
 
-var BaseEvent = Backbone.Model.extend();
+var BaseEvent = Backbone.Model.extend({
+    url: 'baseevent'
+});
 
 var BaseEvents = Backbone.Collection.extend({
 
     model: BaseEvent,
-});
-
-
-
-
-var Event = Backbone.Model.extend();
-
-var Events = Backbone.Collection.extend({
-
-    model: Event,
-
-    //url: 'community/30001/event',
+    //WFB url: 'community/30001/baseevent',
     url: 'community/30001/baseevent',
-
     
-    //url: 'getevents.json',
-
-
-
-
-    // **parse** converts a response into a list of models to be added to the
-    // collection. The default implementation is just to pass it through.
+    
     parse: function(resp, xhr) {
-
-
 
         function getAssignees(taskID, taskAssignees, numNeeded) {
             var names = "";
@@ -145,10 +128,10 @@ var Events = Backbone.Collection.extend({
         //parsing events to approximate collections(task assignees)
         
         var taskm, assignmentm, tasksC, assignmentC;
-        gEvents = []; gTasks = []; gTaskAssignees = []; gTaskHelpers = [];
+        gBaseEvents = []; gTasks = []; gTaskAssignees = []; gTaskHelpers = [];
 
           _.each(evsC, function(event){
-              gEvents.push(event);
+              gBaseEvents.push(event);
               _.each(event.task, function(taskAttributes){
                   taskAttributes.eventid = event.eventid;
                   taskm = new Task(taskAttributes);
@@ -170,6 +153,203 @@ var Events = Backbone.Collection.extend({
         var assignNames = "";
 
         if (false) {
+            for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
+
+                assignNames = "";
+                for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
+                    var taskID = evsC[dayIdx].task[taskIdx].taskid;
+                    var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
+                    assignNames += '<div class="taskAssignees" data-taskid="' + taskID
+                                    + '" style="margin-top:10px;">' 
+                        + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
+                }
+
+                var newEv = {
+                    title: assignNames, //'Group ' + getAssignees(evsC[dayIdx].task[0].assignment),
+                    start: evsC[dayIdx].startdatetime
+                };
+                eventsC.events.push(newEv);
+
+
+
+
+                if (false && $(".addtaskbtn").length === 0) {
+                    var eventNm = evsC[dayIdx].eventname; //this.collection[0].eventname;
+                    var times = evsC[dayIdx].startdatetime.split(' ')[1].split(':');
+                    var eventTime = times[dayIdx] + ':' + times[1];
+
+                    var tasks = evsC[dayIdx].task;
+
+
+                    //WFB $('#event1_title').append('<div  contenteditable="true"  style="margin-top:10px;">' + eventNm + '  ' + eventTime + '</div>');
+                    $('#event1_title').append('<button class="addtaskbtn" data-eventid="' + eventID + '">+ task</button>');
+
+                    if (false) {
+                        for (taskid = 0; taskid < tasks.length; taskid++) {
+
+                            if (taskid === 0)
+                            $('#event1_title').append('<div id="event_task' + taskid + '" class="taskname" data-taskid="' + taskid + '" contenteditable="false">' + tasks[taskid].taskname 
+                                                      + '</div>');
+                            else
+                            $('#event1_title').append('<div class="taskname"  data-taskid="' + taskid + '" contenteditable="false">'  + tasks[taskid].taskname 
+                                                      + '<span style="margin-left:6px;" class="numcircle">' + taskid + '</span></div>');
+                        }
+                    }
+
+                    /* 
+                    $('.taskname').click( function(fcEvent, jsEvent, view) {
+                        var helpersPoolView = new HelpersPoolView( {'poolID' : $(fcEvent.toElement).data('taskid')} );
+                        helpersPoolView.render();
+                    });
+                    */
+                }
+
+            }
+        }
+        //$('#event1_title').   
+
+        //Object {color: "black", textColor: "yellow", events: Array[1]}
+        // eventsC.events[0]
+
+        // Object {title: "300011", start: "2015-03-06 20:30:00"}
+
+
+
+        //Object {events: Array[3], color: "black", textColor: "yellow"}
+        //Object {title: "event1", start: "2015-05-02"}
+
+        return eventsC; //[evAry[0]]  ;
+        //return evsC; //[evAry[0]]  ;
+    }
+});
+
+
+
+
+var Event = Backbone.Model.extend({
+    url: 'event',
+});
+
+var Events = Backbone.Collection.extend({
+
+    model: Event,
+
+    url: 'community/30001/event',
+    //url: 'baseevent/30002/event',
+
+    
+    //url: 'getevents.json',
+
+
+
+
+    // **parse** converts a response into a list of models to be added to the
+    // collection. The default implementation is just to pass it through.
+    parse: function(resp, xhr) {
+
+
+
+        function getAssignees(taskID, taskAssignees, numNeeded) {
+            var names = "";
+            var nameLen = 0;
+            
+            taskAssignees.forEach(function(name) {
+                var curUser = gParticipants.where({
+                  "id": name.userid
+                }); 
+                
+                if (nameLen < 1 && name.username.length > 7) {
+                    names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
+                        + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                } else {
+                    names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img class="assigneeImg" src="' 
+                    + name.userprofile + '"></div><div>' + name.username + '</div></div>';
+                }
+                nameLen = name.username.length;
+            });
+
+            for (var i=taskAssignees.length; i < numNeeded; i++) {
+                names += '<div class="poolIcon" task-id="' + taskID * 1.0 
+                    + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
+                    + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>need</div></div>';
+            }
+            /*
+            names += '<div class="poolIcon" task-id="' + taskID * 1.0 
+            + '" style=" right: 3px; position: absolute; text-align: center; color: lightgray;">' 
+            + '<div><img src=".\\images\\poolIcon.png" height="32" width="32"></div><div>pool</div></div>';
+            */
+            names += '<div style="clear:both"></div>';
+            return names;
+        }
+
+
+        var evAry = [];
+        //WFB var evsC = resp.event;
+        var evsC = resp;
+        
+        //WFB this.add(resp);
+        this.add(resp);
+        //WFB this.add(evsC[30001][0]);
+        //this.add(evsC[30001][1]);
+
+        var events = {
+            events: [ // put the array in the `events` property
+                {
+                    title: 'event1',
+                    start: '2015-05-02'
+                }, {
+                    title: 'event2',
+                    start: '2015-05-02',
+                    end: '2015-05-04'
+                }, {
+                    title: 'event3',
+                    start: '2015-05-04T12:30:00',
+                }
+            ],
+            color: 'black', // an option!
+            textColor: 'yellow' // an option!
+        };
+
+
+
+        var eventsC = {
+            events: [],
+            color: 'white', // an option!
+            textColor: 'black' // an option!
+        };
+
+        var eventID = 30001;
+        //WFB var evsC = evsC[eventID];
+        
+        
+        //parsing events to approximate collections(task assignees)
+        
+        var taskm, assignmentm, tasksC, assignmentC;
+        gBaseEvents = []; gTasks = []; gTaskAssignees = []; gTaskHelpers = [];
+
+          _.each(evsC, function(event){
+              gBaseEvents.push(event);
+              _.each(event.task, function(taskAttributes){
+                  taskAttributes.eventid = event.eventid;
+                  taskm = new Task(taskAttributes);
+                  gTasks.push(taskm);
+                  _.each(taskAttributes.taskhelper, function(assignmentAttr){
+                      assignmentAttr.taskid = taskm.get('taskid');
+                      assignmentAttr.eventid = event.eventid;
+                      assignmentm = new TaskHelper(assignmentAttr);
+                      gTaskAssignees.push(assignmentm);
+                      
+                      // taskm.assignees.push(assignmentm);
+                   }); //end of assignees
+                   // event.tasks.push(taskm);
+              });//end of taks
+          });//end of events
+
+
+        
+        var assignNames = "";
+
+        if (true) {
             for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
 
                 assignNames = "";
@@ -287,6 +467,16 @@ var EventsView = Backbone.View.extend({
         this.collection.bind('destroy', this.destroy);
 
         this.eventView = new EventView();
+        
+        gFetchedBaseEvents = new BaseEvents();
+        gFetchedBaseEvents.fetch({ //EventList().fetch({
+            success: function(collection, response, options) {
+                if (gTasksView.cid === undefined) {
+                    gTasksView = new TaskView();
+                    gTasksView.render(gBaseEvents[0].task);
+                }
+            }
+        });
     },
 
     events : {
@@ -418,12 +608,6 @@ var EventsView = Backbone.View.extend({
 
                             callback(events);
                             
-                            if (gTasksView.cid === undefined) {
-                                gTasksView = new TaskView();
-
-                                gTasksView.render(gEvents[0].task);
-                            }
-
                             //WFB this.eventView.render();
 
         
@@ -593,6 +777,8 @@ var TaskView = Backbone.View.extend({
         
         // event1_title
         $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
+
+        $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
         
 
                     // helpersPoolView.render();
@@ -611,6 +797,9 @@ var TaskView = Backbone.View.extend({
     
     render: function (eventTasks) {
         this.evalUnderscore('#taskList', {tasks: eventTasks});
+        
+        this.evalUnderscore('#createEventDialog', {tasks: eventTasks});  //WFB EVX
+        
         //this.addEvent();
         
         var taskid = 30001;
@@ -619,7 +808,45 @@ var TaskView = Backbone.View.extend({
     },
     
     addTask: function() {
-         alert('Add Task !')
+         alert('Add Event !');
+        
+        // var brandNewBook = new BookModel({ title: '1984', author: 'George Orwel' });
+        // brandNewBook.save();
+        
+        /*
+            'ownerid' => 3,
+			'communityid'=> '30005',
+			'eventid'=> '30012',
+			'desp' => 'this is a second test schedule for 1.4.0',
+			'eventname' => 'One New Event for task ID testing',
+			'startdatetime' => '2013-03-06 20:30:00',
+			'enddatetime' =>  '2013-03-06 23:59:20',
+			'tzid' => '1',
+			'alert' => 3,
+			'location' => '444 1th street, san jose, ca 91223',
+			'host' => 'Tonys house',
+            'status' => 'S',
+            'rscheduleid' => '333',
+			'beventid' => '0'
+        */
+                    
+         var nSingleEvent = new Event(
+             {  'communityid': '30001',
+                'ownerid' : '3',
+                'eventid': '30053',
+                'eventname' : 'Design Session',
+                'desp' : 'this is a third test schedule for 1.4.0',
+                'startdatetime' : '2013-03-06 12:30:00',
+                'enddatetime'   : '2013-03-06 14:59:20',
+                'tzid' : '1',
+                'alert' : 3,
+                'location' : '3333 1th street, san jose, ca 91223',
+                'host' : 'Bills house',
+                'status' : 'S',
+                'beventid' : '0'
+             }
+         );
+        nSingleEvent.destroy();
     }
 
 });

@@ -35,6 +35,7 @@ requirejs([
 	'js/app',
 ], function($, App){
 	/* Global Variables  */
+	var gFetchedBaseEvents;
 	var gFetchedEvents;
 	var communityEvents;
 
@@ -45,6 +46,7 @@ requirejs([
 	var gEventsView;
 	var gEventView;
 
+	var gBaseEvents;
 	var gEvents;
 	var gParticipants;
 	var gTasks;
@@ -59,6 +61,9 @@ requirejs([
 	var gLatestTaskId;
 	var gLatestTaskHelperId;
 	var gLatestParticipantId;
+	var gLatestBEventId;
+	var gLatestRScheduleId;
+        var gLatestAssignmentPoolId;
 	var gLoginUser;
 	var gLoginUserName;
 	var gSelectedCommunityId;
@@ -96,9 +101,18 @@ requirejs([
 		} else {
             //WFB options.url = 'http://api.cschedule.org/' +
 
+<<<<<<< HEAD
 			//WFB options.url = 'http://apitest2.servicescheduler.net/' +
-			options.url = 'http://api.cschedule.org/' +
+			options.url = 'http://apitest2.cschedule.com/' +
+=======
+			options.url = 'http://apitest2.servicescheduler.net/' +
+			// options.url = 'http://api.cschedule.org/' +
+>>>>>>> origin/master
 				options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
+			/* Session Cookie */	
+			options.xhrFields = {
+				withCredentials: false
+			};
 		}
 	});
 	

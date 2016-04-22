@@ -30,21 +30,31 @@
 
 #tabs-create 
 {
+    left:50%;
   border:0; 
   padding:0px; 
   margin:0px; 
   border-radius: 0px;
-  width: 100%;
+  width: 40%;
   display: none;
 }
-#createEventDialog{
 
-background-color: #F8F8F8 ;
-width: 100%;
-display: block;
-height: auto;
-z-index: 1000;
+
+#createEventDiv {
+    background-color: #F8F8F8 ;
+    width: 68%;
+    display: block;
+    height: auto;
+    z-index: 1000;
+    
+    position:absolute;
+    left: 30%;
+    top: 10%;
+    
+    z-index:999,
 }
+
+
 #basic table{
   width: 100%;
   height: auto;
@@ -320,4 +330,8 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 }
 .event-schedule{
   width: 69%;
+}
+
+.ui-dialog {
+    z-index: 1000
 }

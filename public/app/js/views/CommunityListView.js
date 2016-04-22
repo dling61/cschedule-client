@@ -4,9 +4,9 @@ define([
 	'js/collections/communities',
 	'js/models/task',
     'js/views/CommunityView',
-	'js/collections/events',
+
     'js/views/EventsView'
-], function(_, Backbone, Communities, Task, CommunityView, EventsC, EventsView){
+], function(_, Backbone, Communities, Task, CommunityView, EventsView){
 
 	// http://myapp.com/javascripts/jst.js
 	//var window;
@@ -121,34 +121,37 @@ define([
 
 
 			//Test code for Events parsing
-			var eventsC = new EventsC();
-			eventsC.fetch({
-			  success: function(events) {
-				  var taskm, assignmentm, tasksC, assignmentC;
-				  //parsing events to approximate collections(taks assignees)
-				  
-				  _.each(events.models, function(event){
-					  event.tasks = [];
-					  _.each(event.get("task"), function(taskAttributes){
-                          
-						  taskm = new Task(taskAttributes);
-						  taskm.set("event-id",event.get("eventid"));
-						  taskm.assignees = [];
-						  _.each(taskAttributes.assignment, function(assignmentAttr){
-							  // assignmentm = new AssignesM(assignmentAttr);
-							  // assignmentm.set("task-id", taskm.get("taskid"));
-							  // taskm.assignees.push(assignmentm);
-						   }); //end of assignees
-						   event.tasks.push(taskm);
+              
+              if (false) {
+                    var eventsC = new EventsC();
+                    eventsC.fetch({
+                      success: function(events) {
+                          var taskm, assignmentm, tasksC, assignmentC;
+                          //parsing events to approximate collections(taks assignees)
 
-					  });//end of taks
-				  });//end of events
+                          _.each(events.models, function(event){
+                              event.tasks = [];
+                              _.each(event.get("task"), function(taskAttributes){
 
-				
-				//code to be used in view
-				
-			  }
-			});
+                                  taskm = new Task(taskAttributes);
+                                  taskm.set("event-id",event.get("eventid"));
+                                  taskm.assignees = [];
+                                  _.each(taskAttributes.assignment, function(assignmentAttr){
+                                      // assignmentm = new AssignesM(assignmentAttr);
+                                      // assignmentm.set("task-id", taskm.get("taskid"));
+                                      // taskm.assignees.push(assignmentm);
+                                   }); //end of assignees
+                                   event.tasks.push(taskm);
+
+                              });//end of taks
+                          });//end of events
+
+
+                        //code to be used in view
+
+                      }
+                    });
+              }
 
 			//Test code for Events parsing
 			

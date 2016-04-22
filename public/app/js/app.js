@@ -3,9 +3,10 @@ define([
 	'backbone',
     //'moment',
     //'javascripts/fullcalendar.js',
-	'js/collections/Events', 
-	'js/views/CommunityListView'
-], function(_, Backbone, EventsC, CommunityListView){
+	//'js/collections/EventsC', 
+	'js/views/CommunityListView',
+	'js/views/eventDialogView'
+], function(_, Backbone,  CommunityListView, eventDialogView){
 
 	return Backbone.View.extend({
 		initialize: function () {
@@ -19,16 +20,17 @@ define([
 			gLoginUserName       = gLoginUser.username;
 			
 			
-			communityEvents   = new EventsC();
+			//communityEvents   = new EventsC();
 			communityListView = new CommunityListView();
 			//communityListView.render();
 			
 			
 			
-			/*
+			
 			var createEvent = new eventDialogView();
 			createEvent.render();
 
+            /*
 			layersample.config.userId = gLoginUser.username; //"kalyani";
 			layersample.config.userId = "kalyani";
 			*/
