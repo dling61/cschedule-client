@@ -1,7 +1,12 @@
 define([
-	'underscore',
-	'backbone'
-], function(_, Backbone){
+	'underscore', 
+	'backbone',
+    'jquery',
+    'jqueryui',
+    'drop',
+    'js/models/task',
+], function(_, Backbone, jquery, jqueryui, Drop, Task){
+
 
 
 
@@ -45,6 +50,7 @@ define([
             modal: false,
             width: 930,
             height: 600,
+            //z-index:999,
             title: 'Create an Event',
             buttons: buttons,
             open: this.open,
@@ -188,12 +194,14 @@ define([
                 alert('Publish succeeds');
             }
         });
-
-        
     }
-
+ 
+    });
+    return eventDialogView; 
 });
-    return eventDialogView;
+
+
+    /*
 =======
 	'backbone',
 ], function(_, Backbone){
@@ -237,6 +245,7 @@ define([
 				modal: false,
 				width: 930,
 				height: 600,
+                z-index:999,
 				title: 'Create an Event',
 				buttons: buttons,
 				open: this.open,
@@ -384,3 +393,4 @@ define([
 	});
 	return eventDialogView;
 });
+*/

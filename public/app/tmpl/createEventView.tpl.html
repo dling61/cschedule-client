@@ -1,4 +1,12 @@
-<div id="createEventDialog">
+<template id="createEventTemplate">
+<div id="createEventDiv" style="display:block;">
+
+    <div id="createEventDialog"> 
+
+        <script type="text/x-underscore">
+              
+        
+
   <div id="tabs-create">
     <ul id="create-tab-list">
       <li><a href="#basic" data-id="tab-1" class="first-tab">Basic Info</a></li>
@@ -24,7 +32,7 @@
             <div class="event-schedule">    
 <!-- Insert to your webpage where you want to display the carousel -->
 <div id="amazingcarousel-container-1">
-    <div id="amazingcarousel-1" style="display:none;position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
+    <div id="amazingcarousel-1" style="display:block; position:relative;width:100%;max-width:720px;margin:0px auto 0px;">
         <div class="amazingcarousel-list-container">
             <ul class="amazingcarousel-list">
                 <li class="amazingcarousel-item">
@@ -130,107 +138,9 @@
          <div id="radio2"><input type="radio" onclick="repeat()" id="repeatEvent" name="eventType">This is a repeating event.<br></div>
        </form>
        </div>
-       <script>
-       function oneEvent()
-       {
-        document.getElementById("createEventRepeat").style.display = "none";
-        document.getElementById("createEventOneTime").style.display = "block";
-        document.getElementById("radio1").style.color="#34629A";
-        document.getElementById("radio1").style.fontWeight="bold";
-        document.getElementById("radio2").style.color="black";
-        document.getElementById("radio2").style.fontWeight="normal";
-
-
-      }
-      function repeat()
-      {
-        document.getElementById("createEventRepeat").style.display = "block";
-        document.getElementById("createEventOneTime").style.display = "none";
-        document.getElementById("radio1").style.color="black";
-        document.getElementById("radio1").style.fontWeight="normal";
-        document.getElementById("radio2").style.color="#34629A";
-        document.getElementById("radio2").style.fontWeight="bold";
-
-      }
-
-        $(function() {
-    // there's the gallery and the pool
-    var $gallery = $( "#gallery" ),
-      $pool = $( "#pool" );
- 
-    // let the gallery items be draggable
-    $( "li", $gallery ).draggable({
-      cancel: "a.ui-icon", // clicking an icon won't initiate dragging
-      revert: "invalid", // when not dropped, the item will revert back to its initial position
-      containment: "document",
-      helper: "clone",
-      cursor: "move"
-    });
- 
-    // let the pool be droppable, accepting the gallery items
-    $pool.droppable({
-      accept: "#gallery > li",
-
-      drop: function( event, ui ) {
-        deleteImage( ui.draggable );
-      }
-    });
- 
-    // let the gallery be droppable as well, accepting items from the pool
-    $gallery.droppable({
-      accept: "#pool li",
-      activeClass: "custom-state-active",
-      drop: function( event, ui ) {
-        recycleImage( ui.draggable );
-      }
-    });
- 
-    // image deletion function
-    //var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
-    function deleteImage( $item ) {
-      $item.fadeOut(function() {
-        var $list = $( "ul", $pool ).length ?
-          $( "ul", $pool ) :
-          $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $pool );
- 
-        $item.find( "a.ui-icon-pool" ).remove();
-        $item.appendTo( $list ).fadeIn(function() {
-          $item.animate({ width: "220px" });
-        });
-      });
-    }
- 
-    // image recycle function
-   // var pool = "<a href='link/to/pool/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-pool'>Delete image</a>";
-    function recycleImage( $item ) {
-      $item.fadeOut(function() {
-        $item
-          .find( "a.ui-icon-refresh" )
-            .remove()
-          .end()
-          .css( "width", "220px")
-          .appendTo( $gallery )
-          .fadeIn();
-      });
-    }
- 
-    // image preview function, demonstrating the ui.dialog used as a modal window
- 
-    // resolve the icons behavior with event delegation
-    $( "ul.gallery > li" ).click(function( event ) {
-      var $item = $( this ),
-        $target = $( event.target );
- 
-      if ( $target.is( "a.ui-icon-pool" ) ) {
-        deleteImage( $item );
-      }  else if ( $target.is( "a.ui-icon-refresh" ) ) {
-        recycleImage( $item );
-      }
-      return false;
-    });
-  });
-        
-       </script>
+       
+       
+       
       <div id="createEventOneTime" style="width:100%;display:block">
         <table style="width:95%;left:2%">
           <tr>
@@ -289,3 +199,8 @@
 
   </div>
 </div>
+
+</script>
+    </div>
+</div>
+</template>

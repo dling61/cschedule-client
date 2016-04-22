@@ -5,8 +5,9 @@ define([
     'jqueryui',
     '../../../javascripts/fullcalendar',
     'js/models/task',
+    'js/collections/EventsC',
     'js/views/HelpersPoolView'
-], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, HelpersPoolView){
+], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, EventsC, HelpersPoolView){
 
 
 /* Template */
@@ -39,11 +40,14 @@ var TaskHelpers = Backbone.Collection.extend({
 
 
 
-var BaseEvent = Backbone.Model.extend();
+var BaseEvent = Backbone.Model.extend({
+    url: 'baseevent'
+});
 
 var BaseEvents = Backbone.Collection.extend({
 
     model: BaseEvent,
+    //WFB url: 'community/30001/baseevent',
     url: 'community/30001/baseevent',
     
     
@@ -222,14 +226,16 @@ var BaseEvents = Backbone.Collection.extend({
 
 
 
-var Event = Backbone.Model.extend();
+var Event = Backbone.Model.extend({
+    url: 'event',
+});
 
 var Events = Backbone.Collection.extend({
 
     model: Event,
 
-    //url: 'community/30001/event',
-    url: 'baseevent/30002/event',
+    url: 'community/30001/event',
+    //url: 'baseevent/30002/event',
 
     
     //url: 'getevents.json',
@@ -771,6 +777,8 @@ var TaskView = Backbone.View.extend({
         
         // event1_title
         $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
+
+        $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
         
 
                     // helpersPoolView.render();
@@ -789,6 +797,9 @@ var TaskView = Backbone.View.extend({
     
     render: function (eventTasks) {
         this.evalUnderscore('#taskList', {tasks: eventTasks});
+        
+        this.evalUnderscore('#createEventDialog', {tasks: eventTasks});  //WFB EVX
+        
         //this.addEvent();
         
         var taskid = 30001;
@@ -797,7 +808,45 @@ var TaskView = Backbone.View.extend({
     },
     
     addTask: function() {
-         alert('Add Task !')
+         alert('Add Event !');
+        
+        // var brandNewBook = new BookModel({ title: '1984', author: 'George Orwel' });
+        // brandNewBook.save();
+        
+        /*
+            'ownerid' => 3,
+			'communityid'=> '30005',
+			'eventid'=> '30012',
+			'desp' => 'this is a second test schedule for 1.4.0',
+			'eventname' => 'One New Event for task ID testing',
+			'startdatetime' => '2013-03-06 20:30:00',
+			'enddatetime' =>  '2013-03-06 23:59:20',
+			'tzid' => '1',
+			'alert' => 3,
+			'location' => '444 1th street, san jose, ca 91223',
+			'host' => 'Tonys house',
+            'status' => 'S',
+            'rscheduleid' => '333',
+			'beventid' => '0'
+        */
+                    
+         var nSingleEvent = new Event(
+             {  'communityid': '30001',
+                'ownerid' : '3',
+                'eventid': '30053',
+                'eventname' : 'Design Session',
+                'desp' : 'this is a third test schedule for 1.4.0',
+                'startdatetime' : '2013-03-06 12:30:00',
+                'enddatetime'   : '2013-03-06 14:59:20',
+                'tzid' : '1',
+                'alert' : 3,
+                'location' : '3333 1th street, san jose, ca 91223',
+                'host' : 'Bills house',
+                'status' : 'S',
+                'beventid' : '0'
+             }
+         );
+        nSingleEvent.destroy();
     }
 
 });

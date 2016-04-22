@@ -7,10 +7,12 @@ define([
 	'js/views/ParticipantView',
 	'js/views/UserAddView',
 	'js/views/EventsView',
-	//'js/views/eventDialogView'
+    'js/collections/EventsC',
+	'js/views/eventDialogView'
     
 ], function(_, Backbone, Drop, Communities, ParticipantsListView, 
-               ParticipantView, UserAddView, EventsView
+               ParticipantView, UserAddView, EventsView, EventsC,
+               eventDialogView
                ){
 
 
@@ -164,6 +166,8 @@ var CommunityView = Backbone.View.extend({
         
       $('#showName').html(this.model.get('communityname'));
         
+        
+      communityEvents   = new EventsC();
 
       gEventsView = new EventsView({
             el: $("#calendar"),

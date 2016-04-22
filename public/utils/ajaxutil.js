@@ -18,7 +18,7 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
             options.url + '?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.4.0&';
 		/* Session Cookie */	
 			options.xhrFields = {
-				withCredentials: true
+				withCredentials: false
 			};	
     }
 });
