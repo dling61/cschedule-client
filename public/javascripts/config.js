@@ -10,6 +10,7 @@ require.config({
 		jquerypo:	'http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay',
 		tether:		'../javascripts/tether.min',
 		drop:		'../javascripts/drop.min',
+        //WFBdatetimepicker: '../javascripts/jquery.datetimepicker.js'
 	}, // set up custom paths to libraries, or paths to RequireJS plugins
     shim: {
 		'backbone': {
@@ -27,6 +28,10 @@ require.config({
             deps: ['tether'],
 			exports: 'Drop'
         },	
+		/*'datetimepicker': {
+            deps: ['jquery'],
+			exports: '$'
+        },*/	
 	}, // used for setting up all Shims (see below for more detail)
     });
 

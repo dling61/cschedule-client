@@ -30,28 +30,28 @@
 
 #tabs-create 
 {
-    left:50%;
+    left:0%;
   border:0; 
   padding:0px; 
   margin:0px; 
   border-radius: 0px;
-  width: 40%;
+  /*width: 0%;*/
   display: none;
 }
 
 
 #createEventDiv {
     background-color: #F8F8F8 ;
-    width: 68%;
+    width: 100%;
     display: block;
     height: auto;
     z-index: 1000;
     
-    position:absolute;
+    /*WFB position:absolute;
     left: 30%;
     top: 10%;
     
-    z-index:999,
+    z-index:999,*/
 }
 
 
@@ -74,6 +74,7 @@
 #createEventDialog a{
   font-family: font-family: Century Gothic, sans-serif;
 }
+
 #create-tab-list 
 { 
   background: none; 
@@ -83,8 +84,8 @@
   width: 20%;
   background-color: #F0F0F0;
   border-radius: 0px;
-pointer-events: none; user-select: none; -webkit-user-select: none;
 }
+
 #create-tab-list li{
   padding-bottom: 5%;
   width: 92%;
@@ -92,6 +93,7 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
   border-radius: 0;
   border: none;
 }
+
 #create-tab-list .ui-tabs-nav {background: transparent; border: 0; } 
 .first-tab { 
   background: #D0D0D0;
@@ -102,6 +104,7 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
 .createEventTab{
   width: 92%;
 }
+
 
 #basic, #timeLoc, #task, #preview{
  font-size: 18px;

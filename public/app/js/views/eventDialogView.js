@@ -4,8 +4,9 @@ define([
     'jquery',
     'jqueryui',
     'drop',
+    //'datetimepicker',
     'js/models/task',
-], function(_, Backbone, jquery, jqueryui, Drop, Task){
+], function(_, Backbone, jquery, jqueryui, Drop, /*datetimepicker,*/ Task){
 
 	var serverSetting = Backbone.Model.extend({
 		urlRoot: 'serversetting',
@@ -66,11 +67,13 @@ define([
         $('.publish-btn').hide();
         
 
+        /* WFB
         $( "#createOneEventStartDTFLD, #createOneEventEndDTFLD, #createReEventStartDTFLD, #createReEventEndDTFLD" )
         .datetimepicker({
             format: 'Y-m-d H:i',
             step: 30
         });
+        */
 
         $( "#createEventRS" ).datepicker({
             changeMonth: true,
