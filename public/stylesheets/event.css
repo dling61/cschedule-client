@@ -28,14 +28,12 @@
  }
 .ui-tabs-anchor:active, .ui-tabs-anchor:focus { outline:none; }
 
-#tabs-create 
-{
-    left:50%;
+#tabs-create {
+  left:0;
   border:0; 
   padding:0px; 
   margin:0px; 
   border-radius: 0px;
-  width: 40%;
   display: none;
 }
 
@@ -74,16 +72,13 @@
 #createEventDialog a{
   font-family: font-family: Century Gothic, sans-serif;
 }
-#create-tab-list 
-{ 
-  background: none; 
+#create-tab-list { 
   border: none; 
   min-height: 100%; 
   height: auto;
   width: 20%;
   background-color: #F0F0F0;
   border-radius: 0px;
-pointer-events: none; user-select: none; -webkit-user-select: none;
 }
 #create-tab-list li{
   padding-bottom: 5%;
@@ -92,13 +87,11 @@ pointer-events: none; user-select: none; -webkit-user-select: none;
   border-radius: 0;
   border: none;
 }
-#create-tab-list .ui-tabs-nav {background: transparent; border: 0; } 
-.first-tab { 
-  background: #D0D0D0;
-  width: 92%;
-  left: 0;
-  padding-top: 1%;
+.ui-tabs-active a {
+	background: #D0D0D0;
 }
+#create-tab-list .ui-tabs-nav {background: transparent; border: 0; } 
+
 .createEventTab{
   width: 92%;
 }
