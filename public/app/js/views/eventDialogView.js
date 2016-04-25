@@ -8,6 +8,26 @@ define([
     'js/models/task',
 ], function(_, Backbone, jquery, jqueryui, Drop, /*datetimepicker,*/ Task){
 
+    
+    
+var RepeatSchedule = Backbone.Model.extend({
+    url: 'repeatschedule',
+    
+    generate: function ()
+    {
+        alert ('Generate');
+    }
+});
+
+    
+var RepeatSchedules = Backbone.Collection.extend({
+
+    model: RepeatSchedule,
+
+    url: 'community/30001/repeatschedule',
+});
+    
+    
 	var serverSetting = Backbone.Model.extend({
 		urlRoot: 'serversetting',
 		parse: function(resp, xhr) {  
@@ -28,7 +48,7 @@ define([
              "save" : {
               text: 'Save as Draft',
               class: 'save-btn',
-              click: this.draft
+              click: this.save  // EVX this.draft
             },
             "back" : {
               text: 'Previous',
@@ -38,13 +58,14 @@ define([
             "next" : {
               text: 'Next',
               class: 'next-btn',
-              click: this.next
+                click: this.generate
+              //click: this.next
             },
 
             "publish" : {
               text: 'Publish',
               class: 'publish-btn',
-              click: this.save
+              click: this.generate
             }
         };
 
@@ -85,6 +106,14 @@ define([
         _.bindAll(this, 'render');
         
     },
+        
+        
+    generate: function ()
+    {
+        alert ('Generate');
+    },
+        
+        
     render: function() {
         //save the server settings into global variable gServerSetting
         gServerSetting = new serverSetting();
@@ -138,10 +167,14 @@ define([
             });
         });
     },
+        
+        
     open: function() {
         $( "#tabs-create" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
         $( "#tabs-create li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
     },
+      
+        
     back: function() {
         // alert('back');
         var preTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]) - 1;
@@ -152,6 +185,8 @@ define([
         $('.next-btn').css('display', 'inline');
         $('.publish-btn').hide();
     },
+        
+        
     next: function() {
         // alert('next');
         var currTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]);
@@ -168,27 +203,70 @@ define([
         }
 
     },
+        
+        
     reset: function() {
         $('a[data-id=tab-1]').trigger('click');
         $( "#create-tab-list a" ).children('.glyphicon-ok').remove();
     },
 
+        
     save: function() {
-        var param = {
-            "ownerid": gLoginUser.ownerid,
-            "communityid": 30001,
-            "eventid": getNextObjectId(gLoginUser.ownerid, gLatestEventId),
-            "eventname": $('#createEventNameFLD').val(),
-            "desp": $('#createEventDescripFLD').val(),
-            "startdatetime": $('#createOneEventStartDTFLD').val(),
-            "enddatetime": $('#createOneEventEndDTFLD').val(),
-            "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
-            "alert": parseInt($('#alert-one').find(':selected').attr('value')),
-            "location": $('#createEventLocFLD').val(),
-            "host": $('#createEventHostFLD').val(),
-            "beventid": "0"
-        };
+        
+        /*
+        $url = 'http://127.0.0.1/cschedule1.5/baseevent?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
+	$method = 'POST';
 
+	# headers and data (this is API dependent, some uses XML)
+	$headers = array(
+	'Accept: application/json',
+	'Content-Type: application/json',
+	);
+	$data = json_encode(array(
+                'ownerid' => 3,
+                'beventid'=> '30050',
+                'beventname' => 'This is a base event',
+                'bstarttime' => '20:30:00',
+		        'bendtime' =>  '23:59:20',
+		        'btzid' => '1',
+                'blocation' => '3333 1th street, san jose, ca 91223',
+                'bhost' => 'Tonys house')
+	           );
+    */
+        /*
+        'ownerid' => 3,
+			'rscheduleid'=> '30045',
+			'fromdate' => '2015-03-05',
+		        'todate' => '2015-03-26',
+			'repeatinterval' => 'FRQ=weekly; BYDAY=MON,FRI',
+			'beventid' => '300002'
+            */
+        
+        
+        var param = {
+            "rscheduleid": '30003',
+            "beventid": '30050',
+            
+            "fromdate": '2015-03-05', //$('#createOneEventStartDTFLD').val(),
+            "todate":   '2015-03-26', //$('#createOneEventEndDTFLD').val(),
+            "repeatinterval": 'FRQ=weekly; BYDAY=MON,FRI'
+        };
+        
+        var repeatSched = new RepeatSchedule(param);
+        repeatSched.save({}, {
+            success: function() {
+                           
+            },
+            error: function() {
+                gLatestEventId = param.eventid;
+                var tmp = JSON.parse(localStorage.login_user);
+                tmp.eventid = param.eventid;
+                localStorage.login_user = JSON.stringify(tmp);
+                alert('Publish succeeds');
+            }
+        });
+        
+        /*
         var newEvent = new EventM(param);
         newEvent.save({}, {
             success: function() {
@@ -202,6 +280,7 @@ define([
                 alert('Publish succeeds');
             }
         });
+        */
     }
  
     });
