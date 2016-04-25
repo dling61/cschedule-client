@@ -67,6 +67,7 @@
  #createEventDialog td{
   padding-bottom: 1%;
   padding-top: 1%;
+     vertical-align: middle
 }
 #createEventDialog tr{
   margin-top: 10%;
@@ -166,7 +167,7 @@
 #createEventOneTime textarea{
   border:1px solid #E8E8E8;
   resize:none;
-  width:95%;
+  width: 26px;
   font-family: Century Gothic, sans-serif;
 }
 #createEventRepeat input{
@@ -175,6 +176,7 @@
      font-size: 15px;
      height: 30px;
      padding: 2%;
+         vertical-align: middle
 }
 
 #timeLoc .one-time-event{
