@@ -24,7 +24,7 @@
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active { padding-bottom: 0; padding-right: .1em; border: 0; background: transparent;}
 .ui-tabs-vertical .ui-tabs-panel {
   float: right;
-   /*width: 40em;*/
+  width: 80%
  }
 .ui-tabs-anchor:active, .ui-tabs-anchor:focus { outline:none; }
 
