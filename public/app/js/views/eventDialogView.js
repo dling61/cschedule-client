@@ -6,7 +6,9 @@ define([
     'drop',
     //'datetimepicker',
     'js/models/task',
-], function(_, Backbone, jquery, jqueryui, Drop, /*datetimepicker,*/ Task){
+    'js/models/EventM'
+
+], function(_, Backbone, jquery, jqueryui, Drop, /*datetimepicker,*/ Task, EventM){
 
     
     
@@ -58,8 +60,7 @@ var RepeatSchedules = Backbone.Collection.extend({
             "next" : {
               text: 'Next',
               class: 'next-btn',
-                click: this.generate
-              //click: this.next
+              click: this.next
             },
 
             "publish" : {
@@ -85,7 +86,7 @@ var RepeatSchedules = Backbone.Collection.extend({
         });
 
         $('.back-btn').hide();
-        $('.publish-btn').hide();
+        //$('.publish-btn').hide();
         
 
         /* WFB
@@ -242,20 +243,58 @@ var RepeatSchedules = Backbone.Collection.extend({
 			'beventid' => '300002'
             */
         
+        gLatestRScheduleId= getNextObjectId(gLoginUser.ownerid, gLatestRScheduleId);
         
         var param = {
-            "rscheduleid": '30003',
-            "beventid": '30050',
+            "rscheduleid": gLatestRScheduleId,
+            "beventid": 30050,
             
             "fromdate": '2015-03-05', //$('#createOneEventStartDTFLD').val(),
             "todate":   '2015-03-26', //$('#createOneEventEndDTFLD').val(),
-            "repeatinterval": 'FRQ=weekly; BYDAY=MON,FRI'
+            "repeatinterval": 'FRQ=weekly; INTERVAL=1; BYDAY=FRI'
         };
+        
+        
+        
+        
+        // Override Backbone's sync method, to take a 'regenerate' option
+        
         
         var repeatSched = new RepeatSchedule(param);
         repeatSched.save({}, {
             success: function() {
                            
+            },
+            error: function() {
+                gLatestRScheduleId = param.rscheduleid;
+                var tmp = JSON.parse(localStorage.login_user);
+                tmp.repeatscheduleid  = param.rscheduleid;
+                localStorage.login_user = JSON.stringify(tmp);
+                alert('Save Repeat Schedule succeeded');
+            }
+        });
+        
+        
+        
+        param = {
+            "ownerid": gLoginUser.ownerid,
+            "communityid": 30001,
+            "eventid": getNextObjectId(gLoginUser.ownerid, gLatestEventId),
+            "eventname": $('#createEventNameFLD').val(),
+            "desp": $('#createEventDescripFLD').val(),
+            "startdatetime": $('#createOneEventStartDTFLD').val(),
+            "enddatetime": $('#createOneEventEndDTFLD').val(),
+            "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
+            "alert": parseInt($('#alert-one').find(':selected').attr('value')),
+            "location": $('#createEventLocFLD').val(),
+            "host": $('#createEventHostFLD').val(),
+            "beventid": "0"
+        };
+
+        var newEvent = new EventM(param);
+        newEvent.save({}, {
+            success: function() {
+
             },
             error: function() {
                 gLatestEventId = param.eventid;
@@ -265,7 +304,7 @@ var RepeatSchedules = Backbone.Collection.extend({
                 alert('Publish succeeds');
             }
         });
-        
+
         /*
         var newEvent = new EventM(param);
         newEvent.save({}, {

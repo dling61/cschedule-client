@@ -1,7 +1,11 @@
 define([
 	'underscore', 
-	'backbone'
-], function(_, Backbone){
+	'backbone',
+    'js/models/EventM'
+
+], function(_, Backbone, EventM){
+    
+    /*
 	var EventM = Backbone.Model.extend({
 	  urlRoot: 'event',
 	  // save: function(attrs, options) {
@@ -9,6 +13,7 @@ define([
 	  //   Backbone.Model.prototype.save.call(this, attrs, options);
 	  // }   
 	});
+    */
 
 	var EventsC = Backbone.Collection.extend({
 		model: EventM,

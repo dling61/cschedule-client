@@ -20,6 +20,10 @@ return t;
 
 
     
+
+
+    
+    
 var TaskHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
     urlRoot: 'taskhelper'
@@ -846,7 +850,7 @@ var TaskView = Backbone.View.extend({
                 'beventid' : '0'
              }
          );
-        nSingleEvent.destroy();
+        nSingleEvent.save();
     }
 
 });

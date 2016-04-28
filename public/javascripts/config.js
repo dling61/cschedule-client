@@ -60,7 +60,14 @@ requirejs([
 	var gTaskHelpers;
 
 	var gLoginUserId;
+    var gLoginUser;
+	var gLoginUserName;
+	var gSelectedCommunityId;
 
+	var gServerSetting;
+
+    
+    // NOTE: need to add an entry for each of these to app.js
 	var gLatestCommunityId;
 	var gLatestEventId;
 	var gLatestTaskId;
@@ -68,12 +75,8 @@ requirejs([
 	var gLatestParticipantId;
 	var gLatestBEventId;
 	var gLatestRScheduleId;
-        var gLatestAssignmentPoolId;
-	var gLoginUser;
-	var gLoginUserName;
-	var gSelectedCommunityId;
-
-	var gServerSetting;
+    var gLatestAssignmentPoolId;
+    
 	
 	/* Template */
 	function loadTemplate(importID, templateID) {

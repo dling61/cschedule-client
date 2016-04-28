@@ -91,19 +91,20 @@
       <div id="createEventOneTime" style="width:100%;display:none">
         <table style="width:95%;left:2%">
           <tr>
-          <td class="t1">First Event Start:*</td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD" style="width:40%"></input>
+          <td class="t1">First Event Start:*</td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD-Once" style="width:40%"></input>
           &nbsp;&nbsp;
-          <input style="width:30%"type="text" placeholder="HH:MM AM"  id="StartTime"></input></td>
+          <input style="width:30%"type="text" placeholder="HH:MM AM"  id="StartTime-Once"></input></td>
         </tr>
         <tr>
-          <td class="t1">First Event End:* </td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD" style="width:40%"></input>
+          <td class="t1">First Event End:* </td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD-Once" style="width:40%"></input>
           &nbsp;&nbsp;
-          <input style="width:30%"type="text" placeholder="HH:MM AM"  id="EndTime"></input></td>
+          <input style="width:30%"type="text" placeholder="HH:MM AM"  id="EndTime-Once"></input></td>
         </tr>
          <tr> <td class="t1">Time Zone:* </td><td><input type="text" value="Pacific Time"  id="timezone-one"></input></td></tr>
-        <tr><td valign="top" class="t1"> Location:*</td><td><textarea rows="4"type="text" placeholder=" Address" id="createEventLocFLD"></textarea></td></tr>
-        <tr><td class="t1"> Host:</td> <td><input style="width:95%"type="text" placeholder="Type a participant's name" id="createEventHostFLD"></input></td></tr>
-          <tr><td class="t1">Alert:*</td><td><input tyle="text" value="24 Hours Before" id="alert-one"></input></td></tr>
+        <tr><td valign="top" class="t1"> Location:*</td>
+        <td><textarea rows="4"type="text" placeholder=" Address" id="createEventLocFLD-Once"></textarea></td></tr>
+        <tr><td class="t1"> Host:</td> <td><input style="width:95%"type="text" placeholder="Type a participant's name" id="createEventHostFLD-Once"></input></td></tr>
+          <tr><td class="t1">Alert:*</td><td><input tyle="text" value="24 Hours Before" id="alert-one-Once"></input></td></tr>
        </table>
      </div>
 
@@ -144,11 +145,15 @@
          
           <div class="createEventRepeatSetting">
             <table style="left:2%"><tr>
-          <td class="t1">Repeat Every: </td><td><input type="text" value="1" style="width:26px"> &nbsp;&nbsp;<input type="text" value="weeks" style="width:20%"></td>
+          <td class="t1">Repeat Every: </td>
+          <td><input type="text" value="1" style="width:26px"> &nbsp;&nbsp;
+              <input type="text" value="weeks" style="width:20%"></td>
         </tr>
          <tr>
-          <td class="t1">On: </td> <td ><input type="checkbox" value="Sun"> Sun
-              <input  type="checkbox" value="Mon"> Mon
+          <td class="t1">On: </td> 
+            <td>
+              <input type="checkbox" value="Sun"> Sun
+              <input type="checkbox" value="Mon"> Mon
               <input type="checkbox" value="Tue"> Tue 
               <input type="checkbox" value="Wed"> Wed
               <input type="checkbox" value="Thu"> Thu 
