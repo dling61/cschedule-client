@@ -220,11 +220,13 @@
   width: 220px;
 
 }
-#task .arrow{
+
+#task .arrow {
   background-image: url(images/arrow.png);
-    width: 20px;
+  width:  20px;
   height: 20px;
 }
+
 #addNewTask{
   text-align: left;
   width: 100%;
@@ -235,15 +237,42 @@
   background: transparent;
   left:0px;
   color:  #34629A;
- }
-#addNewTask:before{
+}
+
+#addNewTask:before {
   content: '\2295';
   padding: 2%;
     color:  #34629A;
   }
-  #addNewTask:hover{
-    cursor: pointer;
-  }
+
+#addNewTask:hover {
+  cursor: pointer;
+}
+
+#createBtn {
+  /*text-align: left;
+  width: 100%;*/
+  border: none;
+  width: 140px;
+  /*padding: 1%;*/
+  font-family: Century Gothic, sans-serif;
+  font-size: 16px;
+  background: transparent;
+  left:0px;
+  color:  #34629A;
+}
+
+#createBtn:before {
+  content: '\2295';
+  padding: 2%;
+    color:  #34629A;
+}
+
+#createBtn:hover {
+cursor: pointer;
+}
+
+
 
  #preview .schedule{
   width: 100%;

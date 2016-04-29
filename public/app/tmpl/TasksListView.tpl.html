@@ -5,7 +5,7 @@
 
         <script type="text/x-underscore">
 
-            <button class="addtaskbtn2" data-eventid="' + 30001 + '">+ task</button>
+            <button id="addNewTask" data-eventid="' + 30001 + '">Task</button>
 
             <% _.each(tasks, function(task) { %>
                 
@@ -13,9 +13,9 @@
                         class="taskname">
                         <div style="display:inline-block;"><%=task.taskname%></div>
                         <div class="taskIcons">
-                            <div class="fa fa-newspaper-o"></div>
-                            <div class="fa fa-book"></div>
-                            <div class="fa fa-ban"></div>
+                            <div class="horizBtn fa fa-newspaper-o"></div>
+                            <div class="horizBtn fa fa-book"></div>
+                            <div class="horizBtn fa fa-ban"></div>
                         </div>
                     </div>
 

@@ -773,7 +773,7 @@ window.JST['taskView'] = _.template(
 var TaskView = Backbone.View.extend({
     el: '#event1_title',
     events : {
-        'click .addtaskbtn2' : 'addTask'
+        'click #addNewTask' : 'addTask'
     },
     
     

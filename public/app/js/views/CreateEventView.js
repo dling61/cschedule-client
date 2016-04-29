@@ -1,14 +1,3 @@
-
-
-<template id="createEventTemplate">
-<div id="TaskListDiv" style="display:block;">
-
-    <div id="taskList"> 
-        
-
-        
-        
-        
 <div id="createEventDialog">
   <div id="tabs-create">
     <ul id="create-tab-list">
@@ -300,5 +289,3 @@
 
   </div>
 </div>
-
-</template>
