@@ -260,12 +260,17 @@
   background: transparent;
   left:0px;
   color:  #34629A;
+    
+  background-color: #eee;
+  height: 32px;
+  border-radius: 4px;
 }
 
 #createBtn:before {
   content: '\2295';
   padding: 2%;
     color:  #34629A;
+    font-size: 22px;
 }
 
 #createBtn:hover {
@@ -372,4 +377,9 @@ cursor: pointer;
 
 .horizBtn {
     display: inline-block;
+}
+
+
+.panel-heading {
+    padding-top: 20px;
 }
