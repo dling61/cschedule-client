@@ -369,3 +369,7 @@ cursor: pointer;
 .ui-dialog {
     z-index: 1000
 }
+
+.horizBtn {
+    display: inline-block;
+}
