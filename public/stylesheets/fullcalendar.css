@@ -394,7 +394,7 @@ hr.fc-divider {
 .fc th,
 .fc td {
 	border-style: solid;
-	border-width: 1px;
+	border-width: 0px; /* WFB 1px; */
 	padding: 0;
 	vertical-align: top;
     
@@ -408,7 +408,9 @@ hr.fc-divider {
 }
 
 .fc td.fc-today {
-	border-style: double; /* overcome neighboring borders */
+	/* WFB border-style: double; *//* overcome neighboring borders */
+    
+    border-radius: 0 0 8px 8px;
 }
 
 
