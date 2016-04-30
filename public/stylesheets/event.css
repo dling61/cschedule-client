@@ -236,14 +236,16 @@
   font-size: 16px;
   background: transparent;
   left:0px;
+  margin-left: 8px;
   color:  #34629A;
 }
 
 #addNewTask:before {
   content: '\2295';
   padding: 2%;
-    color:  #34629A;
-  }
+  color:  #34629A;
+  font-size: 22px;
+}
 
 #addNewTask:hover {
   cursor: pointer;

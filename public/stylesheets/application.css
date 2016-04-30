@@ -90,7 +90,7 @@ body {
     margin-top: 0px;
 	text-align: center;
 	font-size: 14px;
-	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-family: "Avenir, Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	}
 
 .dialog label {
@@ -221,6 +221,8 @@ body {
     padding:14px;
     font-family: Avenir;
     font-weight: lighter;
+    
+        background-color: white;
 }
 
 
@@ -501,7 +503,7 @@ body{
   text-align: right;
   float: right;
   display: inline-block;
-  padding-right: 50px;
+  padding-right: 8px;
 }
 .profile-pic img{
   width: 4%;
