@@ -472,12 +472,12 @@ var EventsView = Backbone.View.extend({
 
         this.eventView = new EventView();
         
-        gFetchedBaseEvents = new BaseEvents();
-        gFetchedBaseEvents.fetch({ //EventList().fetch({
+        gFetchedEvents = new Events();
+        gFetchedEvents.fetch({ //EventList().fetch({
             success: function(collection, response, options) {
                 if (gTasksView.cid === undefined) {
                     gTasksView = new TaskView();
-                    gTasksView.render(gBaseEvents[0].task);
+                    gTasksView.render(response.task);
                 }
             }
         });

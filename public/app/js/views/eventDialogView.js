@@ -215,67 +215,37 @@ var RepeatSchedules = Backbone.Collection.extend({
     save: function() {
         
         /*
-        $url = 'http://127.0.0.1/cschedule1.5/baseevent?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
+$url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
 	$method = 'POST';
-
+    
 	# headers and data (this is API dependent, some uses XML)
 	$headers = array(
 	'Accept: application/json',
 	'Content-Type: application/json',
 	);
 	$data = json_encode(array(
-                'ownerid' => 3,
-                'beventid'=> '30050',
-                'beventname' => 'This is a base event',
-                'bstarttime' => '20:30:00',
-		        'bendtime' =>  '23:59:20',
-		        'btzid' => '1',
-                'blocation' => '3333 1th street, san jose, ca 91223',
-                'bhost' => 'Tonys house')
-	           );
-    */
-        /*
-        'ownerid' => 3,
-			'rscheduleid'=> '30045',
-			'fromdate' => '2015-03-05',
-		        'todate' => '2015-03-26',
-			'repeatinterval' => 'FRQ=weekly; BYDAY=MON,FRI',
-			'beventid' => '300002'
+			'ownerid' => 3,
+			'communityid'=> '30001',
+			'eventid'=> '30022',
+			'desp' => 'this is a second test schedule for 1.4.0',
+			'eventname' => 'One New Event for task ID testing',
+			'startdatetime' => '2013-03-06 20:30:00',
+			'enddatetime' =>  '2013-03-06 23:59:20',
+			'tzid' => '1',
+			'alert' => 3,
+			'location' => '444 1th street, san jose, ca 91223',
+			'host' => 'Tonys house',
+                        'status' => 'S',
+                        'referid' => '',
+			'repeatinterval' => '',
+                        'fromdate' => '',
+			'todate' => ''
+			)
             */
-        
-        gLatestRScheduleId= getNextObjectId(gLoginUser.ownerid, gLatestRScheduleId);
-        
-        var param = {
-            "rscheduleid": gLatestRScheduleId,
-            "beventid": 30050,
-            
-            "fromdate": '2015-03-05', //$('#createOneEventStartDTFLD').val(),
-            "todate":   '2015-03-26', //$('#createOneEventEndDTFLD').val(),
-            "repeatinterval": 'FRQ=weekly; INTERVAL=1; BYDAY=FRI'
-        };
-        
-        
-        
+
         
         // Override Backbone's sync method, to take a 'regenerate' option
-        
-        
-        var repeatSched = new RepeatSchedule(param);
-        repeatSched.save({}, {
-            success: function() {
-                           
-            },
-            error: function() {
-                gLatestRScheduleId = param.rscheduleid;
-                var tmp = JSON.parse(localStorage.login_user);
-                tmp.repeatscheduleid  = param.rscheduleid;
-                localStorage.login_user = JSON.stringify(tmp);
-                alert('Save Repeat Schedule succeeded');
-            }
-        });
-        
-        
-        
+       
         param = {
             "ownerid": gLoginUser.ownerid,
             "communityid": 30001,
@@ -284,24 +254,23 @@ var RepeatSchedules = Backbone.Collection.extend({
             "desp": $('#createEventDescripFLD').val(),
             "startdatetime": $('#createOneEventStartDTFLD').val(),
             "enddatetime": $('#createOneEventEndDTFLD').val(),
+            "repeatinterval": 'FRQ=weekly; BYDAY=MON,FRI',
             "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
             "alert": parseInt($('#alert-one').find(':selected').attr('value')),
             "location": $('#createEventLocFLD').val(),
-            "host": $('#createEventHostFLD').val(),
-            "beventid": "0"
+            "host": $('#createEventHostFLD').val()
         };
 
         var newEvent = new EventM(param);
         newEvent.save({}, {
             success: function() {
-
+                gLatestEventId++; // = param.eventid;
+                var tmp = JSON.parse(localStorage.login_user);
+                tmp.eventid = gLatestEventId;  //param.eventid;
+                localStorage.login_user = JSON.stringify(tmp);
+                alert('Event created - need to call Generate');
             },
             error: function() {
-                gLatestEventId = param.eventid;
-                var tmp = JSON.parse(localStorage.login_user);
-                tmp.eventid = param.eventid;
-                localStorage.login_user = JSON.stringify(tmp);
-                alert('Publish succeeds');
             }
         });
 
