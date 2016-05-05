@@ -266,10 +266,10 @@ var Events = Backbone.Collection.extend({
                 
                 if (nameLen < 1 && name.username.length > 7) {
                     names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' 
-                        + name.username + '.png"  height="32" width="32"></div><div>' + name.username + '</div></div>';
+                        + name.username + '.png"  height="32" width="32"></div><div style="margin-top: -5px;">' + name.username + '</div></div>';
                 } else {
                     names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img class="assigneeImg" src="' 
-                    + name.userprofile + '"></div><div>' + name.username + '</div></div>';
+                    + name.userprofile + '"></div><div style="margin-top: -5px;">' + name.username + '</div></div>';
                 }
                 nameLen = name.username.length;
             });
@@ -277,7 +277,7 @@ var Events = Backbone.Collection.extend({
             for (var i=taskAssignees.length; i < numNeeded; i++) {
                 names += '<div class="poolIcon" task-id="' + taskID * 1.0 
                     + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
-                    + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div>need</div></div>';
+                    + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div style="margin-top: -5px;">need</div></div>';
             }
             /*
             names += '<div class="poolIcon" task-id="' + taskID * 1.0 
@@ -369,7 +369,7 @@ var Events = Backbone.Collection.extend({
                 
                 for (var taskIdx = 0; taskIdx < 1; taskIdx++) {
                 var taskID = evsC.taskhelper[taskIdx].taskid;
-                var numNeeded = 2; //evsC.task[taskIdx].assignallowed;
+                var numNeeded = 7; //evsC.task[taskIdx].assignallowed;
                 assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                 + '" style="margin-top:10px;">' 
                     + getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';
