@@ -363,20 +363,36 @@ var Events = Backbone.Collection.extend({
         var assignNames = "";
 
         if (true) {
-            for (var dayIdx = 0; dayIdx < evsC.length; dayIdx++) {
+            for (var dayIdx = 0; dayIdx < evsC.event.length; dayIdx++) {
 
                 assignNames = "";
-                for (var taskIdx = 0; taskIdx < evsC[dayIdx].task.length; taskIdx++) {
-                    var taskID = evsC[dayIdx].task[taskIdx].taskid;
-                    var  numNeeded = evsC[dayIdx].task[taskIdx].assignallowed;
+                
+                for (var taskIdx = 0; taskIdx < 1; taskIdx++) {
+                var taskID = evsC.taskhelper[taskIdx].taskid;
+                var numNeeded = 2; //evsC.task[taskIdx].assignallowed;
+                assignNames += '<div class="taskAssignees" data-taskid="' + taskID
+                                + '" style="margin-top:10px;">' 
+                    + getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';
+                }
+                
+                if (false) {for (var taskIdx = 0; taskIdx < evsC.taskhelper.length; taskIdx++) {
+                    var taskID = evsC.taskhelper[taskIdx].taskid;
+                    var  numNeeded = 2; //evsC.task[taskIdx].assignallowed;
                     assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                     + '" style="margin-top:10px;">' 
-                        + getAssignees(taskID, evsC[dayIdx].task[taskIdx].taskhelper, numNeeded) + '</div>';
-                }
+                        + getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';
+                }}
 
+                if (dayIdx ===0)
+                    evsC.event[dayIdx].startdatetime = "2016-05-07 17:00:00";
+                else if (dayIdx ===1)
+                    evsC.event[dayIdx].startdatetime = "2016-05-14 17:00:00";
+                else if (dayIdx ===2)
+                    evsC.event[dayIdx].startdatetime = "2016-05-21 17:00:00";
+                
                 var newEv = {
                     title: assignNames, //'Group ' + getAssignees(evsC[dayIdx].task[0].assignment),
-                    start: evsC[dayIdx].startdatetime
+                    start: evsC.event[dayIdx].startdatetime
                 };
                 eventsC.events.push(newEv);
 
@@ -608,6 +624,8 @@ var EventsView = Backbone.View.extend({
                         },
                         */
                         success: function(collection, response, options) {
+                            
+                            var eventId = collection.models[0].attributes.events[0];
                             
                             if (gTasksView.cid === undefined) {
                                 gTasksView = new TaskView();
