@@ -279,6 +279,7 @@ var Events = Backbone.Collection.extend({
                     + '" style="float:left; margin-left:10px;text-align: center; color: lightgray;">' 
                     + '<div><img src=".\\images\\needed.png" height="32" width="32"></div><div style="margin-top: -5px;">need</div></div>';
             }
+            //names += '<div style="float:left; margin-top:6;"><button>assign from pool</div>';
             /*
             names += '<div class="poolIcon" task-id="' + taskID * 1.0 
             + '" style=" right: 3px; position: absolute; text-align: center; color: lightgray;">' 

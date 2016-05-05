@@ -54,8 +54,9 @@ ask details about accept decline
 /* Top of container */
 #parListTopBar {
 	text-align: left;
+    padding-left: 20;
 	color: #FFFFFF;
-	font-size: 25px;
+	font-size: 16px;
 	padding: 10px;
 	background: #34629A;
 	
@@ -105,7 +106,7 @@ ask details about accept decline
 }
 #parListShowBtn {
 	position: absolute;
-    top: 30px;
+    top: -30px;
     left: -42px;	
     width: 30px;
 	padding: 6px;
