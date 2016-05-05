@@ -6,8 +6,10 @@ define([
     '../../../javascripts/fullcalendar',
     'js/models/task',
     'js/collections/EventsC',
+    'js/collections/PoolHelpers',
     'js/views/HelpersPoolView'
-], function(_, Backbone, jquery, jqueryui, fullcalendar, Task, EventsC, HelpersPoolView){
+], function(_, Backbone, jquery, jqueryui, fullcalendar, 
+             Task, EventsC, PoolHelpers, HelpersPoolView){
 
 
 /* Template */
@@ -329,8 +331,15 @@ var Events = Backbone.Collection.extend({
         //parsing events to approximate collections(task assignees)
         
         var taskm, assignmentm, tasksC, assignmentC;
-        gBaseEvents = []; gTasks = []; gTaskAssignees = []; gTaskHelpers = [];
+        gBaseEvents = []; gTasks = []; gTaskAssignees = []; 
+        
+        gTaskHelpers = new PoolMembers();
+        
+        _.each(resp.taskhelper, function(helper) {
+               gTaskHelpers.add(helper);
+        });
 
+        /*
           _.each(evsC, function(event){
               gBaseEvents.push(event);
               _.each(event.task, function(taskAttributes){
@@ -348,7 +357,7 @@ var Events = Backbone.Collection.extend({
                    // event.tasks.push(taskm);
               });//end of taks
           });//end of events
-
+          */
 
         
         var assignNames = "";
@@ -472,6 +481,7 @@ var EventsView = Backbone.View.extend({
 
         this.eventView = new EventView();
         
+        /* WFB NEW
         gFetchedEvents = new Events();
         gFetchedEvents.fetch({ //EventList().fetch({
             success: function(collection, response, options) {
@@ -481,6 +491,7 @@ var EventsView = Backbone.View.extend({
                 }
             }
         });
+        */
     },
 
     events : {
@@ -597,6 +608,12 @@ var EventsView = Backbone.View.extend({
                         },
                         */
                         success: function(collection, response, options) {
+                            
+                            if (gTasksView.cid === undefined) {
+                                gTasksView = new TaskView();
+                                gTasksView.render(response.task);
+                            }
+
                             events = []
                             events = _.map(collection.models[0].attributes.events, function(event) {
                                 var newEv = {
