@@ -1,7 +1,7 @@
 <div id="createEventDialog">
   <div id="tabs-create">
     <ul id="create-tab-list">
-      <li><a href="#basic" data-id="tab-1" class="first-tab">Basic Info</a></li>
+      <li><a href="#basic" data-id="tab-1" class="createEventTab">Basic Info</a></li>
       <li><a href="#timeLoc" class="createEventTab" data-id="tab-2">Time & Location</a></li>
       <li><a href="#task" class="createEventTab" data-id="tab-3">Tasks (optional)</a></li>
       <li><a href="#preview" class="createEventTab" data-id="tab-4">Preview & Publish</a></li>

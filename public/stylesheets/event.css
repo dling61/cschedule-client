@@ -76,8 +76,7 @@
   font-family: font-family: Century Gothic, sans-serif;
 }
 
-#create-tab-list 
-{ 
+#create-tab-list { 
   background: none; 
   border: none; 
   min-height: 100%; 
@@ -94,16 +93,21 @@
   border-radius: 0;
   border: none;
 }
-
-#create-tab-list .ui-tabs-nav {background: transparent; border: 0; } 
-.first-tab { 
-  background: #D0D0D0;
-  width: 92%;
-  left: 0;
-  padding-top: 1%;
+#create-tab-list .ui-tabs-nav {
+	background: transparent; 
+	border: 0;
+} 
+/* Create Event: Changing the background color on click */
+.ui-state-default {
+	outline: 0;
 }
-.createEventTab{
-  width: 92%;
+.ui-tabs-active {
+	outline: 0;
+}
+.ui-tabs-active > .ui-tabs-anchor {
+	outline: 0;
+	width: 92%;
+	background-color: #D0D0D0;
 }
 
 
