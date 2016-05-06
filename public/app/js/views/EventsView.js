@@ -7,9 +7,10 @@ define([
     'js/models/task',
     'js/collections/EventsC',
     'js/collections/PoolHelpers',
+    'js/collections/TaskAssignees',
     'js/views/HelpersPoolView'
 ], function(_, Backbone, jquery, jqueryui, fullcalendar, 
-             Task, EventsC, PoolHelpers, HelpersPoolView){
+             Task, EventsC, PoolHelpers, TaskAssignees, HelpersPoolView){
 
 
 /* Template */
@@ -56,7 +57,7 @@ var Events = Backbone.Collection.extend({
 
     model: Event,
 
-    url: 'community/30001/event',
+    url: 'community/30001/event?start=2016:05:01&numevents=4',
     //url: 'baseevent/30002/event',
 
     
@@ -156,6 +157,8 @@ var Events = Backbone.Collection.extend({
                gTaskHelpers.add(helper);
         });
 
+        //gTaskAssignees = new TaskAssignees();
+        
         /*
           _.each(evsC, function(event){
               gBaseEvents.push(event);
