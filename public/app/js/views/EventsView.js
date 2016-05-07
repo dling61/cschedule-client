@@ -637,7 +637,7 @@ var TaskView = Backbone.View.extend({
         // event1_title
         $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
 
-        $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
+        //WFB $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
         
 
                     // helpersPoolView.render();

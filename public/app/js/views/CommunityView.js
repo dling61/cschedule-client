@@ -1,4 +1,4 @@
-﻿define([
+define([
 	'underscore', 
 	'backbone',
 	'drop',
@@ -15,6 +15,15 @@
                eventDialogView
                ){
 
+
+    
+/* Template */
+function loadTemplate(importID, templateID) {
+var t = document.querySelector(importID),
+    t = t.import.querySelector(templateID),
+    t = t.content.cloneNode(true);
+return t;
+}
 
 /*
 
@@ -142,6 +151,14 @@ var CommunityView = Backbone.View.extend({
       $('#community-chat-popup').show();
     },
 
+    /* evaluating underscore in external templates, remove after it is placed into correct place */
+    evalUnderscore: function(evalSelector, jsonReplace) {
+			//var template = _.template($(evalSelector).html());    
+			//$(evalSelector).html(template(jsonReplace));
+			$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
+    },
+    
+    
     render: function() {
       var that = this;
         //name = this.model.get('communityname');
@@ -187,6 +204,11 @@ var CommunityView = Backbone.View.extend({
         gParticipantsListView = new ParticipantsListView();
 		participantView = new ParticipantView();
         userAddView = new UserAddView();
+        
+        $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
+        
+        this.evalUnderscore('#createEventDialog', {participants: gParticipants.models});
+        
         /* gEventView = new EventView();
         gEventView.render(); */
 
