@@ -25,7 +25,7 @@ define([
 	window.JST['community/list'] = _.template(
 		  '<% _.each(communities, function(community) { %>'
 		+ '			<div class="community" data-id="<%=community.get("id")%>"> '
-		+ '				<div id="community-name" contenteditable="true">'
+		+ '				<div class="community-name" contenteditable="true">'
 		+ '                 <%=  htmlEncode(community.get("communityname")) %> </div>'
 		+ '			</div>'
 		+ '		<% }); %>'
