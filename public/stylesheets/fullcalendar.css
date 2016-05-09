@@ -776,17 +776,7 @@ a.fc-more:hover {
 }
 
 
-.fc-view-container:before {
-   font-family: FontAwesome;
-   content: "\f095";  
-}
 
-.fc-view-container:after {
-   font-family: FontAwesome;
-   content: "\f095";  
-   
-   //display: inline-block;
-}
 
 
 /* BasicView
