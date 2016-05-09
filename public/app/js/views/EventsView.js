@@ -57,7 +57,7 @@ var Events = Backbone.Collection.extend({
 
     model: Event,
 
-    url: 'community/30001/event?start=2016:05:01&numevents=4',
+    url: 'community/30001/event?start=2016:05:01&num=4',
     //url: 'baseevent/30002/event',
 
     
