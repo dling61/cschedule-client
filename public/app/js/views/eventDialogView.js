@@ -9,27 +9,6 @@ define([
     'js/models/EventM'
 
 ], function(_, Backbone, jquery, jqueryui, Drop, /*datetimepicker,*/ Task, EventM){
-
-    
-    
-var RepeatSchedule = Backbone.Model.extend({
-    url: 'repeatschedule',
-    
-    generate: function ()
-    {
-        alert ('Generate');
-    }
-});
-
-    
-var RepeatSchedules = Backbone.Collection.extend({
-
-    model: RepeatSchedule,
-
-    url: 'community/30001/repeatschedule',
-});
-    
-    
 	var serverSetting = Backbone.Model.extend({
 		urlRoot: 'serversetting',
 		parse: function(resp, xhr) {  
