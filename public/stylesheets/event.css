@@ -232,15 +232,18 @@
 }
 
 #addNewTask{
-  text-align: left;
+  text-align: right;
   width: 100%;
   border: none;
   padding: 1%;
   font-family: Century Gothic, sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   background: transparent;
   left:0px;
-  margin-left: 8px;
+  margin-bottom: -16px;
+    margin-right: 4px;
+    padding-right: 8px;
+    padding-top: 6px;
   color:  #34629A;
 }
 
@@ -248,7 +251,7 @@
   content: '\2295';
   padding: 2%;
   color:  #34629A;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 #addNewTask:hover {
