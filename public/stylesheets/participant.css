@@ -49,15 +49,15 @@ ask details about accept decline
 	right: 0;
 	width: 20%;
 	background-color: #eee;
+	visibility: hidden;
 	z-index: 9;
 }
 /* Top of container */
 #parListTopBar {
 	text-align: left;
-    padding-left: 20;
+	font-size: 20px;
+	padding: 15px;
 	color: #FFFFFF;
-	font-size: 16px;
-	padding: 10px;
 	background: #34629A;
 	
 }
@@ -71,6 +71,7 @@ ask details about accept decline
 #parList li {
     font-size: 10pt;
 	padding: 3%;	
+	padding-left: 5%;
 }
 /* Hover */
 #parList li:hover {
@@ -98,23 +99,39 @@ ask details about accept decline
 	background: white;
 	border-radius: 50% 0 0 50%;
 	text-align: right;
+	visibility: visible;
 }
 #parListHideBtn:before {
+	display: inline-block;
     content: "\f054";
     font-family: FontAwesome;
 	font-size: 25px;
 }
+#parListHideBtn span {
+	display: none;
+}
 #parListShowBtn {
-	position: absolute;
-    top: -30px;
-    left: -42px;	
-    width: 30px;
+	width: 30px;
 	padding: 6px;
 	background: white;
-	border-radius: 50% 0 0 50%;
-	text-align: right;
+	border-radius: 50% 0 0 50% / 100% 100%;
+	visibility: visible;
+	float: right;
+	text-align: center;
+}
+#parListShowBtn:hover  {
+	width: 130px;
+}
+#parListShowBtn:hover span {
+	display: inline-block;
+	top: 50%;
+    transform: translate(0, -30%);
+}
+#parListShowBtn span {
+	display: none;
 }
 #parListShowBtn:before {
+	display: inline-block;
     content: "\f053";
     font-family: FontAwesome;
 	font-size: 25px;
