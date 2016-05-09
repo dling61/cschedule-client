@@ -411,6 +411,8 @@ hr.fc-divider {
 	/* WFB border-style: double; *//* overcome neighboring borders */
     
     border-radius: 0 0 8px 8px;
+    
+    box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
 }
 
 
