@@ -187,9 +187,9 @@ var Events = Backbone.Collection.extend({
 
                 assignNames = "";
                 
-                for (var taskIdx = 0; taskIdx < 1; taskIdx++) {
+                for (var taskIdx = 0; taskIdx < 3; taskIdx++) {
                 var taskID = evsC.taskhelper[taskIdx].taskid;
-                var numNeeded = 7; //evsC.task[taskIdx].assignallowed;
+                var numNeeded = 5; //WFB evsC.task[taskIdx].assignallowed;
                 assignNames += '<div class="taskAssignees" data-taskid="' + taskID
                                 + '" style="margin-top:10px;">' 
                     + getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';

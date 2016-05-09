@@ -224,14 +224,11 @@ body {
     
         background-color: white;
     border-radius: 8px 8px 0 0;
-    
-    box-shadow: 2px 2px 3px #888, -2px 2px 3px #888;
-    
-    /*
+        
     box-shadow:         0px 0px 6px 2px rgba(119, 119, 119, 0.75);
     -moz-box-shadow:    0px 0px 6px 2px rgba(119, 119, 119, 0.75);
     -webkit-box-shadow: 0px 0px 6px 2px rgba(119, 119, 119, 0.75);
-    */
+    
 }
 
 
@@ -647,4 +644,21 @@ body{
 }
 .taskname:hover .taskIcons {
     display: inline-block;
+}
+
+#TaskListDiv {
+    margin-left:    12px;
+    padding-bottom: 50px;
+    
+    background: white;
+    
+    border-radius: 8px;
+    box-shadow:         0px 0px 6px 2px rgba(119, 119, 119, 0.75);
+    -moz-box-shadow:    0px 0px 6px 2px rgba(119, 119, 119, 0.75);
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(119, 119, 119, 0.75);
+}
+
+.taskAssignees {
+    border-bottom: thin dotted lightgrey;
+    padding-bottom: 10px;
 }
