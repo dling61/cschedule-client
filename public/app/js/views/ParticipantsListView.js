@@ -17,18 +17,14 @@ define([
 		},
 		
 		addEvent: function(){
-			var parListWidth  = $('#ParticipantListDiv').width();
 			$('body').on('click','#parListHideBtn', function() { 
-				$('#ParticipantListDiv').animate({width: 0}, 'slow');
+				$('#ParticipantListDiv').css("visibility","hidden") ;
 				$('#parListHideBtn').attr('id', 'parListShowBtn');
-				$("#parListTopBar").toggle();
-				$("#parList").toggle();
+				
 			});
 			$('body').on('click','#parListShowBtn', function() {
-				$('#ParticipantListDiv').animate({width: '+=' + parListWidth}, 'slow');
+				$('#ParticipantListDiv').css("visibility","visible") ;
 				$('#parListShowBtn').attr('id', 'parListHideBtn');
-				$("#parListTopBar").toggle();
-				$("#parList").toggle();
 			});
 		},
 		
