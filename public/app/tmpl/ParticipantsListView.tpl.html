@@ -16,13 +16,11 @@
 		<ul>
 			<li data-id=<%=participant.id%> 
 				data-email=<%=participant.get("email")%> 
-				data-name=<%=participant.get("name")%> 
-				class="participant">
-				<img src=<%=participant.get("profile")%>
-				class="pListFlyout">
+				data-name=<%=participant.get("name")%> class="participant">
+				<img src=<%=participant.get("profile")%> class="pListProfileFlyout">
 				<span><%=participant.get("name")%></span>
 				<div id="participantsListIcons">
-					<span class="fa fa-newspaper-o"></span>
+					<span class="fa fa-newspaper-o pListIcon1Flyout"></span>
 					<span class="fa fa-book"></span>
 					<span class="fa fa-ban"></span>
 				<div>

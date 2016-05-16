@@ -99,14 +99,33 @@ define([
 					that.evalUnderscore('#parList', {participants: gParticipants.models});
 					
 					/*Flyouts configured for multiple elements*/
-					var flyouts = document.querySelectorAll('.pListFlyout'), i;
-					var newDiv;
+					var flyouts = document.getElementsByClassName('pListProfileFlyout'), 
+						i, 
+						newDiv;
 					for (i = 0; i < flyouts.length; ++i) {
 						newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
-						window["pListDrop" + i] = new Drop({
+						window["pListProfileDrop" + i] = new Drop({
 							target: flyouts[i],
 							content: newDiv,
 							position: 'bottom left',
+							openOn: 'click',
+							classes: 'drop-theme-arrows-bounce-dark',		
+						});
+					}
+					flyouts = document.getElementsByClassName('pListIcon1Flyout');
+					for (i = 0; i < flyouts.length; ++i) {
+						newDiv = '<form>' +
+							'Name <input type="text" name="name" value="'+gParticipants.models[i].get("name")+'"><br>' +
+							'Position <input type="text" name="position" value="'+gParticipants.models[i].get("position")+'"><br>' +
+							'Title <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
+							'Phone <input type="text" name="phone" value="'+gParticipants.models[i].get("phone")+'"><br>' +
+							'Email <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
+							'<input type="submit" value="Submit">' +
+						'</form>';
+						window["pListIcon1Drop" + i] = new Drop({
+							target: flyouts[i],
+							content: newDiv,
+							position: 'bottom right',
 							openOn: 'click',
 							classes: 'drop-theme-arrows-bounce-dark',		
 						});
