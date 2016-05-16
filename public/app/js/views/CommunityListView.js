@@ -26,7 +26,10 @@ define([
 		  '<% _.each(communities, function(community) { %>'
 		+ '			<div class="community" data-id="<%=community.get("id")%>"> '
 		+ '				<div class="community-name" contenteditable="true">'
-		+ '                 <%=  htmlEncode(community.get("communityname")) %> </div>'
+		+ '                 <%=  htmlEncode(community.get("communityname")) %>'
+        + ' <div class="latestRnR">'
+        + '   <span style="color:blue; font-size:20pt;"> &#8226; </span>'
+        + '   Request swap from Bill</div></div>'
 		+ '			</div>'
 		+ '		<% }); %>'
 	);

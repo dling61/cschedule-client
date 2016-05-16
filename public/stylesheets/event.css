@@ -392,3 +392,8 @@ cursor: pointer;
 .panel-heading {
     padding-top: 20px;
 }
+
+.latestRnR {
+  margin-top:12px;
+  font-size: 12pt;
+}
