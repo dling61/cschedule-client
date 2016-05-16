@@ -19,7 +19,7 @@ define([
 		model: EventM,
 	  
 		// TBD: replace 30001 with accurate community id
-		url: 'community/30001/event?start="2016:0501"&numevents=4',
+		url: 'community/30001/event?start="2016:0501"&num=4',
 
 		// **parse** converts a response into a list of models to be added to the
 		// collection. The default implementation is just to pass it through.

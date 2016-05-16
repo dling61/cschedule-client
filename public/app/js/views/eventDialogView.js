@@ -224,16 +224,20 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
 
         
         // Override Backbone's sync method, to take a 'regenerate' option
-       
+        gLatestEventId = getNextObjectId(gLoginUser.ownerid, gLatestEventId);
         param = {
+            "baseeventflag": 1,
+            
             "ownerid": gLoginUser.ownerid,
             "communityid": 30001,
-            "eventid": getNextObjectId(gLoginUser.ownerid, gLatestEventId),
+            "eventid": gLatestEventId,
             "eventname": $('#createEventNameFLD').val(),
             "desp": $('#createEventDescripFLD').val(),
-            "startdatetime": $('#createOneEventStartDTFLD').val(),
-            "enddatetime": $('#createOneEventEndDTFLD').val(),
-            "repeatinterval": 'FRQ=weekly; BYDAY=MON,FRI',
+            "fromdate" : $('#createOneEventStartDTFLD').val(),
+            "todate" : $('#createOneEventEndDTFLD').val(),
+            "startdatetime": $('#createOneEventStartDTFLD').val() + ' ' + $('#StartTime').val(),
+            "enddatetime":   $('#createOneEventEndDTFLD').val()   + ' ' + $('#EndTime').val(),
+            "repeatinterval": 'FREQ=weekly; INTERVAL=1; BYDAY=SAT',
             "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
             "alert": parseInt($('#alert-one').find(':selected').attr('value')),
             "location": $('#createEventLocFLD').val(),
@@ -243,11 +247,36 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
         var newEvent = new EventM(param);
         newEvent.save({}, {
             success: function() {
-                gLatestEventId++; // = param.eventid;
+                //gLatestEventId++; // = param.eventid;
                 var tmp = JSON.parse(localStorage.login_user);
                 tmp.eventid = gLatestEventId;  //param.eventid;
                 localStorage.login_user = JSON.stringify(tmp);
-                alert('Event created - need to call Generate');
+                alert('Event created - click to calling Generate');
+                
+                
+                // POST /event/[the base event ID created in the "a"]/generateevents
+                
+                var baseEvId = gLatestEventId;
+                gLatestEventId = getNextObjectId(gLoginUser.ownerid, gLatestEventId);
+                
+                $.postJSON(
+                    'event/' + baseEvId + '/generateevents',
+                    {
+                      "ownerid": 3,
+                      "initeventid": gLatestEventId
+                    },
+                    function(xhr) {
+                        if (xhr.status == 200) {
+                            var tmp = JSON.parse(localStorage.login_user);
+                            tmp.eventid = gLatestEventId;  //param.eventid;
+                            localStorage.login_user = JSON.stringify(tmp);
+                            alert('Generate done');
+                        } else {
+                            alert('Generate failed');
+                        }
+                    }
+			    );
+
             },
             error: function() {
             }

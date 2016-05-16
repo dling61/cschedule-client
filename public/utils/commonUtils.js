@@ -14,7 +14,7 @@ function getNextObjectId(userId, eId) {
 		return (userId * 10000 + 1);
 	}
 	else {
-		return eId + 1;
+		return (eId*1 + 1).toString();
 	}
 }
 
