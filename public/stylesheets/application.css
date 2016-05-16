@@ -265,6 +265,9 @@ body {
 .nav-body {
 	display: block;
 	border: 1px black;
+    
+    margin-bottom: 30px;
+    margin-left: 100px;
 }
 
 .new_community_btn {
