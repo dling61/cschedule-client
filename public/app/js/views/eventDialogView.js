@@ -172,7 +172,7 @@ define([
         var currTabNo = parseInt($('#create-tab-list').children('.ui-state-active').children().attr('data-id').split('-')[1]);
         var nextTabNo = currTabNo + 1;
         if(currTabNo < 4) {
-             $('a[data-id=tab-' + (nextTabNo -1) + ']').css("background-color","transparent");
+            $('a[data-id=tab-' + (nextTabNo -1) + ']').css("background-color","transparent");
             $('a[data-id=tab-' + (nextTabNo) + ']').css("background-color","silver");
             $('a[data-id=tab-' + (nextTabNo - 1) + ']').prepend('');
             $('a[data-id=tab-' + nextTabNo + ']').trigger('click');
@@ -190,6 +190,11 @@ define([
         $( "#create-tab-list a" ).children('.glyphicon-ok').remove();
     },
 
+        
+    appendDay: function( checkboxDiv, dayToCheck, daysSelected ) {
+        return daysSelected;
+    },
+        
         
     save: function() {
         
@@ -222,6 +227,9 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
 			)
             */
 
+        var repeatFrequency  = 'FREQ='     + $('#evRepeatFrequency').val();
+        var repeatInterval   = 'INTERVAL=' + $('#evRepeatInterval').val();
+        var repeatDays;  // use .prop('checked',this.checked) to get all checked days
         
         // Override Backbone's sync method, to take a 'regenerate' option
         gLatestEventId = getNextObjectId(gLoginUser.ownerid, gLatestEventId);
@@ -232,16 +240,17 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
             "communityid": 30001,
             "eventid": gLatestEventId,
             "eventname": $('#createEventNameFLD').val(),
-            "desp": $('#createEventDescripFLD').val(),
+            "desp":      $('#createEventDescripFLD').val(),
             "fromdate" : $('#createOneEventStartDTFLD').val(),
-            "todate" : $('#createOneEventEndDTFLD').val(),
+            "todate" :   $('#createOneEventEndDTFLD').val(),
             "startdatetime": $('#createOneEventStartDTFLD').val() + ' ' + $('#StartTime').val(),
             "enddatetime":   $('#createOneEventEndDTFLD').val()   + ' ' + $('#EndTime').val(),
             "repeatinterval": 'FREQ=weekly; INTERVAL=1; BYDAY=SAT',
-            "tzid": parseInt($('#timezone-one').find(':selected').attr('value')),
+            "tzid":  parseInt($('#timezone-one').find(':selected').attr('value')),
             "alert": parseInt($('#alert-one').find(':selected').attr('value')),
             "location": $('#createEventLocFLD').val(),
-            "host": $('#createEventHostFLD').val()
+            "host":     $('#createEventHostFLD').val(),
+            "status": "S"
         };
 
         var newEvent = new EventM(param);
@@ -251,7 +260,7 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
                 var tmp = JSON.parse(localStorage.login_user);
                 tmp.eventid = gLatestEventId;  //param.eventid;
                 localStorage.login_user = JSON.stringify(tmp);
-                alert('Event created - click to calling Generate');
+                //alert('Event created - click to calling Generate');
                 
                 
                 // POST /event/[the base event ID created in the "a"]/generateevents
@@ -263,16 +272,16 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
                     'event/' + baseEvId + '/generateevents',
                     {
                       "ownerid": 3,
-                      "initeventid": gLatestEventId
+                      "initeventid": gLatestEventId*1
                     },
                     function(xhr) {
-                        if (xhr.status == 200) {
+                        if (xhr.lasteventid === "-1") {
+                            alert('Generate failed');
+                        } else {
                             var tmp = JSON.parse(localStorage.login_user);
                             tmp.eventid = gLatestEventId;  //param.eventid;
                             localStorage.login_user = JSON.stringify(tmp);
-                            alert('Generate done');
-                        } else {
-                            alert('Generate failed');
+                            alert('Repeating event created');
                         }
                     }
 			    );

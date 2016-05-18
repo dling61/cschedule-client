@@ -20,7 +20,7 @@
       <div class="title">Basic Info</div>
       <div class="eventbody">
         <table><tr >
-        <td class="t1">Event Name:*</td> <td><input type="text" placeholder=" eg. Monthly Potluck" id="createEventNameFLD" required></td></tr>
+        <td class="t1">Event Name:</td> <td><input type="text" placeholder=" eg. Monthly Potluck" id="createEventNameFLD" required></td></tr>
         <tr><td class="t1">Description:</td><td><input type="text" placeholder=" Brief introduction about this event" id="createEventDescripFLD"></td></tr>
       </table>
     </div>
@@ -80,10 +80,10 @@
       <div class="eventbody">
         <div class="one-time-event">
 
-          <form>
-         <div id="radio2"><input type="radio" onclick="repeat()" id="repeatEvent" name="eventType" checked>This is a repeating event.<br></div>
-        <div id="radio1"> <input type="radio" onclick="oneEvent()" id="onetimeEvent" name="eventType">This is a one-time event.</div>
-       </form>
+          <section style="padding: 4px 12px">
+         <div id="radio2" style="display: inline-block;"><input type="radio" onclick="repeat()" id="repeatEvent" name="eventType" checked>Repeating event<br></div>
+        <div id="radio1" style="display: inline-block; margin-left: 30px;"> <input type="radio" onclick="oneEvent()" id="onetimeEvent" name="eventType">One-time event</div>
+       </section>
        </div>
        
        
@@ -91,20 +91,20 @@
       <div id="createEventOneTime" style="width:100%;display:none">
         <table style="width:95%;left:2%">
           <tr>
-          <td class="t1">First Event Start:*</td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD-Once" style="width:40%"></input>
+          <td class="t1">First Event Start:</td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD-Once" style="width:40%"></input>
           &nbsp;&nbsp;
           <input style="width:30%"type="text" placeholder="HH:MM AM"  id="StartTime-Once"></input></td>
         </tr>
         <tr>
-          <td class="t1">First Event End:* </td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD-Once" style="width:40%"></input>
+          <td class="t1">First Event End: </td><td><input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD-Once" style="width:40%"></input>
           &nbsp;&nbsp;
           <input style="width:30%"type="text" placeholder="HH:MM AM"  id="EndTime-Once"></input></td>
         </tr>
-         <tr> <td class="t1">Time Zone:* </td><td><input type="text" value="Pacific Time"  id="timezone-one"></input></td></tr>
-        <tr><td valign="top" class="t1"> Location:*</td>
-        <td><textarea rows="4"type="text" placeholder=" Address" id="createEventLocFLD-Once"></textarea></td></tr>
+         <tr> <td class="t1">Time Zone: </td><td><input type="text" value="Pacific Time"  id="timezone-one"></input></td></tr>
+        <tr><td valign="top" class="t1"> Location:</td>
+        <td><textarea rows="4"type="text" placeholder="Address" id="createEventLocFLD-Once"></textarea></td></tr>
         <tr><td class="t1"> Host:</td> <td><input style="width:95%"type="text" placeholder="Type a participant's name" id="createEventHostFLD-Once"></input></td></tr>
-          <tr><td class="t1">Alert:*</td><td><input tyle="text" value="24 Hours Before" id="alert-one-Once"></input></td></tr>
+          <tr><td class="t1">Alert:</td><td><input tyle="text" value="24 Hours Before" id="alert-one-Once"></input></td></tr>
        </table>
      </div>
 
@@ -115,11 +115,11 @@
           <tr>
           <td class="t1">Start Date:</td>
           <td>
-            <input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD" style="width:40%"></input>
+            <input type="text" placeholder="mm/dd/yyyy" id="createOneEventStartDTFLD" style="width:45%"></input>
             </td>
                       <td class="t1">End Date: </td>
           <td>
-          <input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD" style="width:40%"></input>
+          <input type="text" placeholder="mm/dd/yyyy" id="createOneEventEndDTFLD" style="width:45%"></input>
           </td>
 
         </tr>
@@ -146,8 +146,8 @@
           <div class="createEventRepeatSetting">
             <table style="left:2%"><tr>
           <td class="t1">Repeat Every: </td>
-          <td><input type="text" value="1" style="width:26px"> &nbsp;&nbsp;
-              <input type="text" value="weeks" style="width:20%"></td>
+          <td><input type="text" id="evRepeatFrequency" value="1" style="width:26px"> &nbsp;&nbsp;
+              <input type="text" id="evRepeatInterval"  value="weeks" style="width:20%"></td>
         </tr>
          <tr>
           <td class="t1">On: </td> 
