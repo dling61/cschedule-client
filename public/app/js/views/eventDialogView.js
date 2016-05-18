@@ -258,7 +258,7 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
                 
                 var baseEvId = gLatestEventId;
                 gLatestEventId = getNextObjectId(gLoginUser.ownerid, gLatestEventId);
-                
+                /*
                 $.postJSON(
                     'event/' + baseEvId + '/generateevents',
                     {
@@ -276,7 +276,23 @@ $url = 'http://apitest2.cschedule.com/event?d=IOS&sc=28e336ac6c9423d946ba02dddd6
                         }
                     }
 			    );
-
+				*/
+				$.ajax({
+					type: 'POST',
+					url: 'event/' + baseEvId + '/generateevents',
+					data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or JSON.stringify ({name: 'jonas'}),
+					success: function(data) {  
+                            var tmp = JSON.parse(localStorage.login_user);
+                            tmp.eventid = gLatestEventId;  //param.eventid;
+                            localStorage.login_user = JSON.stringify(tmp);
+                            alert('Generate done');
+					},
+                    error: function() {
+						alert('Generate failed');
+					},
+					contentType: "application/json",
+					dataType: 'json'
+				});
             },
             error: function() {
             }
