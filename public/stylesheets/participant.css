@@ -45,9 +45,11 @@ ask details about accept decline
 #ParticipantListDiv {
 	position: absolute;
 	top: 8%;
-	height: 85%;
 	right: 0;
-	width: 20%;
+	min-height: 92%;
+	width: 300px;
+	border-radius: 10px 0 0 10px;
+	-webkit-box-shadow: 0px 0px 6px 2px rgba(119, 119, 119, 0.75);
 	background-color: #eee;
 	visibility: hidden;
 	z-index: 9;
@@ -59,7 +61,8 @@ ask details about accept decline
 	padding: 15px;
 	color: #FFFFFF;
 	background: #34629A;
-	
+	border-top-left-radius: 10px;	
+	font-variant: small-caps;
 }
 /* List in container */
 /* Removing inherited css */
@@ -69,37 +72,55 @@ ask details about accept decline
 }
 /* ParticipantList font size */
 #parList li {
-    font-size: 10pt;
+    font-size: 12px;
 	padding: 3%;	
-	padding-left: 5%;
 }
 /* Hover */
 #parList li:hover {
-	background-color: grey;
+	background-color: #c9c9c9;
+}
+#parList img:hover {
+	border: 1px solid blue;
+	
 }
 /* ParticipantList image size */
 #parList img {
     height: 32px;
 	border-radius: 50%;
-	border: 3px solid blue;
+	border: 2px outset blue;
+	border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: solid;
 	vertical-align: middle;
 }
+/* Clickable Icons */
 #participantsListIcons {
 	float: right;
-	margin-top: 10px;
+	margin-top: 7px;
+	font-size: 20px;
+	width: 110px;
+	color: white;
+}
+#participantsListIcons i {
+	margin-right: 15px;
+}
+#participantsListIcons i:hover {
+	text-shadow: 0px 0px 5px black;
 }
 
 /* Participant List Arrow Button */
 #parListHideBtn {
 	position: absolute;
-	top: 30px;
-    left: -42px;	
+	top: 33px;
+    left: -45px;	
     width: 30px;
 	padding: 6px;
 	background: white;
 	border-radius: 50% 0 0 50%;
 	text-align: right;
 	visibility: visible;
+	-webkit-box-shadow: 0px 0px 6px 2px rgba(119, 119, 119, 0.75);
 }
 #parListHideBtn:before {
 	display: inline-block;
@@ -114,13 +135,14 @@ ask details about accept decline
 	width: 30px;
 	padding: 6px;
 	background: white;
-	border-radius: 50% 0 0 50% / 100% 100%;
+	border-radius: 50% 0 0 50% / 100px 100px;
 	visibility: visible;
 	float: right;
 	text-align: center;
+	-webkit-box-shadow: 0px 0px 6px 2px rgba(119, 119, 119, 0.75);
 }
 #parListShowBtn:hover  {
-	width: 130px;
+	width: 150px;
 }
 #parListShowBtn:hover span {
 	display: inline-block;
