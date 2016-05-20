@@ -11,11 +11,6 @@
 	z-index: 9999;
 }
 
-html {
-	overflow: hidden;
-}
-
-
 .ReqChat {
   position: absolute;
   bottom:0px;
