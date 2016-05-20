@@ -62,6 +62,7 @@ ask details about accept decline
 	color: #FFFFFF;
 	background: #34629A;
 	border-top-left-radius: 10px;	
+	font-variant: small-caps;
 }
 /* List in container */
 /* Removing inherited css */
