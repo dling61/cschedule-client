@@ -106,7 +106,7 @@ ask details about accept decline
 	margin-right: 15px;
 }
 #participantsListIcons i:hover {
-	text-shadow: 0px 0px 5px #fff;
+	text-shadow: 0px 0px 5px black;
 }
 
 /* Participant List Arrow Button */
