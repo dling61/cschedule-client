@@ -29,7 +29,7 @@ define([
 		+ '                 <%=  htmlEncode(community.get("communityname")) %>'
         + ' <div class="latestRnR">'
         + '   <span style="color:blue; font-size:20pt;"> &#8226; </span>'
-        + '   Request swap from Bill</div></div>'
+        + '   Swap Request from Bill</div></div>'
 		+ '			</div>'
 		+ '		<% }); %>'
 	);
