@@ -75,13 +75,9 @@ ask details about accept decline
     font-size: 12px;
 	padding: 3%;	
 }
-/* Hover */
+/* Highlight line */
 #parList li:hover {
 	background-color: #c9c9c9;
-}
-#parList img:hover {
-	border: 1px solid blue;
-	
 }
 /* ParticipantList image size */
 #parList img {
@@ -93,6 +89,9 @@ ask details about accept decline
     border-bottom-style: solid;
     border-left-style: solid;
 	vertical-align: middle;
+}
+#parList img:hover {
+	border: 1px solid blue;
 }
 /* Clickable Icons */
 #participantsListIcons {
