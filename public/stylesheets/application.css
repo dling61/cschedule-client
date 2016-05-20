@@ -4,11 +4,15 @@
 /* Drop elements should always be on top */
 .drop-element, 
 .drop-element *, 
-.drop-element :after, 
-.drop-element :before, 
+.drop-element:after, 
+.drop-element:before, 
 .drop-element:after, 
 .drop-element:before {
 	z-index: 9999;
+}
+
+html {
+	overflow: hidden;
 }
 
 

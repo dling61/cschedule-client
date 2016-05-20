@@ -107,7 +107,7 @@ define([
 						window["pListProfileDrop" + i] = new Drop({
 							target: flyouts[i],
 							content: newDiv,
-							position: 'bottom left',
+							position: 'bottom center',
 							openOn: 'click',
 							classes: 'drop-theme-arrows-bounce-dark',		
 						});
@@ -115,19 +115,19 @@ define([
 					flyouts = document.getElementsByClassName('pListIcon1Flyout');
 					for (i = 0; i < flyouts.length; ++i) {
 						newDiv = '<form>' +
-							'Name <input type="text" name="name" value="'+gParticipants.models[i].get("name")+'"><br>' +
-							'Position <input type="text" name="position" value="'+gParticipants.models[i].get("position")+'"><br>' +
-							'Title <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
-							'Phone <input type="text" name="phone" value="'+gParticipants.models[i].get("phone")+'"><br>' +
-							'Email <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
+							'<i class="fa fa-user" aria-hidden="true"></i> <input type="text" name="name" value="'+gParticipants.models[i].get("name")+'"><br>' +
+							'<i class="fa fa-wrench" aria-hidden="true"></i> <input type="text" name="role" value="'+gParticipants.models[i].get("role")+'"><br>' +
+							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
+							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+gParticipants.models[i].get("phone")+'"><br>' +
+							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
 							'<input type="submit" value="Submit">' +
 						'</form>';
 						window["pListIcon1Drop" + i] = new Drop({
 							target: flyouts[i],
 							content: newDiv,
-							position: 'bottom right',
+							position: 'left middle',
 							openOn: 'click',
-							classes: 'drop-theme-arrows-bounce-dark',		
+							classes: 'drop-theme-arrows-bounce-dark',						
 						});
 					}
 					$("#AddParticipantDiv").css("display", "block");
