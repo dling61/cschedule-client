@@ -9,7 +9,7 @@ require.config({
 		jqueryui:	'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
 		jquerypo:	'http://vast-engineering.github.io/jquery-popup-overlay/jquery.popupoverlay',
 		tether:		'../javascripts/tether.min',
-		drop:		'../javascripts/drop.min',
+		drop:		'../javascripts/drop',
         //WFBdatetimepicker: '../javascripts/jquery.datetimepicker.js'
 	}, // set up custom paths to libraries, or paths to RequireJS plugins
     shim: {

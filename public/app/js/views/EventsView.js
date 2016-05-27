@@ -332,8 +332,8 @@ var EventsView = Backbone.View.extend({
 
     events : {
         'dragenter .droparea' : 'tellDrop',
-            'dragenter .droparea' : 'highlightDropZone',
-            'dragleave .droparea' : 'unhighlightDropZone',
+        'dragenter .droparea' : 'highlightDropZone',
+        'dragleave .droparea' : 'unhighlightDropZone',
         'click .numcircle' : 'viewMessaging',
         'click #eventName' : 'editEventName'
     },

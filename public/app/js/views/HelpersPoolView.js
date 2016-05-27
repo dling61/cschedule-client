@@ -38,20 +38,41 @@ var HelpersPoolView = Backbone.View.extend({
         helpersDiv.find(".helperPoolLI").remove();
 
     },
+    
+    addDroppable : function() {
+            this.helperPoolView.content.droppable({
+            drop: function( event, ui ) {
+                  // this is the elem receiving the dropped ui.draggable elem
+                var newHelperID = ui.draggable.data('id');
+                var taskID =$(this).data('taskid');
 
-    render: function() {
+            var taskHelper = new TaskHelper({
+                'taskhelperid' : 100013,
+                'eventid': 30001,
+                'ownerid': '3',
+                'taskid': taskID,
+                'userid': '125', //newHelperID
+                'status': 'A'
+                                //'add': [newHelperID]
+            });              
 
-        events = [];
+            taskHelper.save();
+            }
+        });
+    },
 
-        newDiv = $('<div>');
+
+
+    renderHelperList : function() {
+        newDiv = $('<div/>');
 
         //events = _.map(eventList.models, function(event) {
 
         //_.each(gTaskHelpers, function(event) {
         gTaskHelpers.each( function(event) {
             var title = event.attributes.username;
-            var pic = event.attributes.userprofile;
-            var id = event.attributes.userid;
+            var pic   = event.attributes.userprofile;
+            var id    = event.attributes.userid;
 
             var personDiv = $("<div data-id='" + id + "' class='helperPoolLI' style='display:inline-block; z-index:9000; margin-left:8px; margin-right:8px;'>");
 
@@ -66,13 +87,25 @@ var HelpersPoolView = Backbone.View.extend({
             newDiv.append(personDiv);
         });
 
+        //this.addDroppable();
+    
+        return newDiv[0];
+    },
+    
+    
+    render: function() {
+
+        events = [];
+
         this.helperPoolView = new Drop({
-                    target: $('.taskname')[0],
-                    content: newDiv[0],
-                    position: 'bottom left',
-                    openOn: 'click',
-                    classes: 'drop-theme-arrows-bounce-dark',		
-                });
+            target: $('.taskname')[0],
+            content: this.renderHelperList(),   //WFB newDiv[0],
+            position: 'bottom left',
+            openOn: 'click',
+            classes: 'drop-theme-arrows-bounce-dark',		
+        });
+
+
     }
     
 

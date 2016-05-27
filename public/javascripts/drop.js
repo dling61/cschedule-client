@@ -1,4 +1,4 @@
-/*! tether-drop 1.2.2 */
+/*! tether-drop 1.4.1 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -11,7 +11,6 @@
 }(this, function(Tether) {
 
 /* global Tether */
-
 'use strict';
 
 var _bind = Function.prototype.bind;
@@ -20,11 +19,11 @@ var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = 
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _Tether$Utils = Tether.Utils;
 var extend = _Tether$Utils.extend;
@@ -95,7 +94,7 @@ var allDrops = {};
 // copy of drop which won't interact with other copies on the page (beyond calling the document events).
 
 function createContext() {
-  var options = arguments[0] === undefined ? {} : arguments[0];
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
   var drop = function drop() {
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -121,6 +120,13 @@ function createContext() {
       constrainToWindow: true,
       classes: '',
       remove: false,
+      openDelay: 0,
+      closeDelay: 50,
+      // inherited from openDelay and closeDelay if not explicitly defined
+      focusDelay: null,
+      blurDelay: null,
+      hoverOpenDelay: null,
+      hoverCloseDelay: null,
       tetherOptions: {}
     }
   };
@@ -154,6 +160,8 @@ function createContext() {
   };
 
   var DropInstance = (function (_Evented) {
+    _inherits(DropInstance, _Evented);
+
     function DropInstance(opts) {
       _classCallCheck(this, DropInstance);
 
@@ -163,6 +171,22 @@ function createContext() {
 
       if (typeof this.target === 'undefined') {
         throw new Error('Drop Error: You must provide a target.');
+      }
+
+      var dataPrefix = 'data-' + drop.classPrefix;
+
+      var contentAttr = this.target.getAttribute(dataPrefix);
+      if (contentAttr && this.options.content == null) {
+        this.options.content = contentAttr;
+      }
+
+      var attrsOverride = ['position', 'openOn'];
+      for (var i = 0; i < attrsOverride.length; ++i) {
+
+        var override = this.target.getAttribute(dataPrefix + '-' + attrsOverride[i]);
+        if (override && this.options[attrsOverride[i]] == null) {
+          this.options[attrsOverride[i]] = override;
+        }
       }
 
       if (this.options.classes && this.options.addTargetClasses !== false) {
@@ -178,8 +202,6 @@ function createContext() {
       this.setupEvents();
       this.setupTether();
     }
-
-    _inherits(DropInstance, _Evented);
 
     _createClass(DropInstance, [{
       key: '_on',
@@ -333,36 +355,43 @@ function createContext() {
           }
         }
 
-        if (events.indexOf('hover') >= 0) {
-          (function () {
-            var onUs = false;
+        var inTimeout = null;
+        var outTimeout = null;
 
-            var over = function over(event) {
-              onUs = true;
+        var inHandler = function inHandler(event) {
+          if (outTimeout !== null) {
+            clearTimeout(outTimeout);
+          } else {
+            inTimeout = setTimeout(function () {
               _this2.open(event);
-            };
+              inTimeout = null;
+            }, (event.type === 'focus' ? _this2.options.focusDelay : _this2.options.hoverOpenDelay) || _this2.options.openDelay);
+          }
+        };
 
-            var outTimeout = null;
-            var out = function out(event) {
-              onUs = false;
+        var outHandler = function outHandler(event) {
+          if (inTimeout !== null) {
+            clearTimeout(inTimeout);
+          } else {
+            outTimeout = setTimeout(function () {
+              _this2.close(event);
+              outTimeout = null;
+            }, (event.type === 'blur' ? _this2.options.blurDelay : _this2.options.hoverCloseDelay) || _this2.options.closeDelay);
+          }
+        };
 
-              if (typeof outTimeout !== 'undefined') {
-                clearTimeout(outTimeout);
-              }
+        if (events.indexOf('hover') >= 0) {
+          this._on(this.target, 'mouseover', inHandler);
+          this._on(this.drop, 'mouseover', inHandler);
+          this._on(this.target, 'mouseout', outHandler);
+          this._on(this.drop, 'mouseout', outHandler);
+        }
 
-              outTimeout = setTimeout(function () {
-                if (!onUs) {
-                  _this2.close(event);
-                }
-                outTimeout = null;
-              }, 50);
-            };
-
-            _this2._on(_this2.target, 'mouseover', over);
-            _this2._on(_this2.drop, 'mouseover', over);
-            _this2._on(_this2.target, 'mouseout', out);
-            _this2._on(_this2.drop, 'mouseout', out);
-          })();
+        if (events.indexOf('focus') >= 0) {
+          this._on(this.target, 'focus', inHandler);
+          this._on(this.drop, 'focus', inHandler);
+          this._on(this.target, 'blur', outHandler);
+          this._on(this.drop, 'blur', outHandler);
         }
       }
     }, {
@@ -386,6 +415,7 @@ function createContext() {
       value: function open(event) {
         var _this3 = this;
 
+        /* eslint no-unused-vars: 0 */
         if (this.isOpened()) {
           return;
         }

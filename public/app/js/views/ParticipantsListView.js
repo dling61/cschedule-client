@@ -133,6 +133,8 @@ define([
 					$("#AddParticipantDiv").css("display", "block");
 					newDiv = document.getElementById("AddParticipantDiv");
 					flyouts = document.querySelector('.addParticipantFlyout');
+                    if (false) { // WFB causes err: 
+                        //drop.js:250 Uncaught TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.
 					var addPartDrop = new Drop({
 						target: flyouts,
 						content: newDiv,
@@ -141,6 +143,7 @@ define([
 						classes: 'drop-theme-arrows-bounce-dark',	
 						beforeClose: myConfirmCloseFunc
 					});
+                    }
 					function myConfirmCloseFunc() {
 						return false;
 					}

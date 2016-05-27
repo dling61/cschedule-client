@@ -605,7 +605,7 @@ $(function() {
         var userListView = new UserListView();
 
         var userAddView = new UserAddView();
-        var participantView = new ParticipantView();
+        //WFB var participantView = new ParticipantView();
         userListView.render();
     
     
