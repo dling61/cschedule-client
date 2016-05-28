@@ -11,11 +11,37 @@ define([
 
 
 
+    
+    
+    
+var PoolHelper = Backbone.Model.extend({
+    //url: 'schedules/1070068/onduty/1070000'
+    urlRoot: 'assignmentpool'
+});
+
+var PoolHelpers = Backbone.Collection.extend({
+
+    model: PoolHelper,
+    //url: 'taskhelper',  // 'schedules/1070068/onduty/1070000',
+
+    parse: function(resp, xhr) {
+        return resp.apgroup[0].member;
+    }
+});
+
+
 
 
 
 
 var HelpersPoolView = Backbone.View.extend({
+
+    
+    
+    addHelper: function () {
+        alert('Added helper');
+    },
+    
 
     //el: "#floatDiv",
     //el: "#helperpool",
@@ -39,6 +65,24 @@ var HelpersPoolView = Backbone.View.extend({
 
     },
     
+    
+    addNewHelper: function( event, ui ) {
+        // this is the elem receiving the dropped ui.draggable elem
+        var taskID = $(event.target).closest('.helperPool').data('id');
+
+        var taskHelper = new PoolHelper({
+            'assignmentpoolid' : 30010,
+            // 'eventid': 30001,
+            'ownerid': 3,
+            'taskid': 30001, //taskID,
+            'userid': 125 //newHelperID
+                            //'add': [newHelperID]
+        });              
+
+        taskHelper.save();
+    },
+                    
+                    
     addDroppable : function() {
             this.helperPoolView.content.droppable({
             drop: function( event, ui ) {
@@ -62,9 +106,13 @@ var HelpersPoolView = Backbone.View.extend({
     },
 
 
+    OnSearch: function  (input) {
+        alert ("The current value of the search field: " + input.value);
+    },
 
-    renderHelperList : function() {
-        newDiv = $('<div/>');
+    
+    renderHelperList : function( taskID ) {
+        newDiv = $('<div/ class="helperPool" data-id=' + taskID + '>');
 
         //events = _.map(eventList.models, function(event) {
 
@@ -86,8 +134,16 @@ var HelpersPoolView = Backbone.View.extend({
 
             newDiv.append(personDiv);
         });
-
+        var helperName = $("<div>");
+        helperName.append("<input id='addHelper' type='search' placeholder='Enter participant'>");
+        var addBtn = $("<span id='addHelperBtn'>Add</span>");
+        helperName.append(addBtn);
+        newDiv.append(helperName);
+        
         //this.addDroppable();
+        
+        $('body').on('keyup', '#addHelper',    this.OnSearch(this));
+        $('body').on('click', '#addHelperBtn', this.addNewHelper);
     
         return newDiv[0];
     },
@@ -96,10 +152,12 @@ var HelpersPoolView = Backbone.View.extend({
     render: function() {
 
         events = [];
+        
+        var curTask = $('.taskname')[0];
 
         this.helperPoolView = new Drop({
-            target: $('.taskname')[0],
-            content: this.renderHelperList(),   //WFB newDiv[0],
+            target: curTask,
+            content: this.renderHelperList( $(curTask).data('id') ),   //WFB newDiv[0],
             position: 'bottom left',
             openOn: 'click',
             classes: 'drop-theme-arrows-bounce-dark',		

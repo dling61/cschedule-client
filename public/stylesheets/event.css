@@ -225,6 +225,25 @@
 
 }
 
+#addHelper {
+    font-size: 14pt;
+    margin-top: 12pt;
+}
+
+#addHelperBtn {
+  font-size: 16pt;
+  margin-left: 10px;
+  position: relative;
+  top: 2px;
+}
+
+
+#addHelperBtn:hover {
+  color: blue;
+}
+
+
+
 #task .arrow {
   background-image: url(images/arrow.png);
   width:  20px;
