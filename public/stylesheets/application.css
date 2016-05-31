@@ -102,9 +102,11 @@ body {
 }
 
 #calendar {
-	width: 1114px;
+  width: 1114px;
 	/*margin: 0 auto;WFB */
   position: relative;
+    
+  height: 300px;
 }
 
 
