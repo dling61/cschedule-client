@@ -142,8 +142,8 @@ var HelpersPoolView = Backbone.View.extend({
         
         //this.addDroppable();
         
-        $('body').on('keyup', '#addHelper',    this.OnSearch(this));
-        $('body').on('click', '#addHelperBtn', this.addNewHelper);
+        //WFB $('body').on('keyup', '#addHelper',    {}, this.OnSearch(this));
+        $('body').on('click', '#addHelperBtn', {}, this.addNewHelper);
     
         return newDiv[0];
     },
