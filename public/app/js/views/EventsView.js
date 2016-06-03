@@ -235,7 +235,7 @@ define([
             this.collection.bind('addToTask', this.addToTask);
             this.collection.bind('destroy', this.destroy);
 
-            this.eventView = new EventView();
+            //WFB this.eventView = new EventView();
 
             /* WFB NEW
             gFetchedEvents = new Events();
@@ -367,6 +367,9 @@ define([
                                 */
                                 success: function(collection, response, options) {
 
+                                    
+                                    this.eventView = new EventView();
+                                    
                                     var eventId = collection.models[0].attributes.events[0];
 
                                     if (gTasksView.cid === undefined) {
