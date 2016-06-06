@@ -77,13 +77,14 @@ requirejs([
     
 	
 	/* Template */
-	function loadTemplate(importID, templateID) {
+	function loadTemplatePart(importID, templateID) {
 	var t = document.querySelector(importID),
 		t = t.import.querySelector(templateID),
 		t = t.content.cloneNode(true);
 	return t;
 	}
-	$("body").append(loadTemplate("#participantsListViewTpl", "#participantsListTemplate"));
+	//WFB-disable $("body").append(loadTemplatePart("#participantsListViewTpl", "#participantsListTemplate"));
+    
 //	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
 	
