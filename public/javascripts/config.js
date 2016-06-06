@@ -79,7 +79,7 @@ requirejs([
 	/* Template */
 	function loadTemplate(importID, templateID) {
 	var t = document.querySelector(importID),
-		t = t.import.querySelector(templateID),
+		t = t.import.querySelector("head > template"),
 		t = t.content.cloneNode(true);
 	return t;
 	}
