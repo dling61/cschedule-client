@@ -18,7 +18,7 @@ define([
 
 
     /* Template */
-    function loadTemplate(importID, templateID) {
+    function loadTemplateCommunity(importID, templateID) {
         var t = document.querySelector(importID),
             t = t.import.querySelector(templateID),
             t = t.content.cloneNode(true);
@@ -206,7 +206,7 @@ define([
             participantView = new ParticipantView();
             userAddView = new UserAddView();
 
-            $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
+            //WFB-disable $("body").append(loadTemplateCommunity("#createEventViewTpl", "#createEventTemplate"));
 
             this.evalUnderscore('#createEventDialog', {
                 participants: gParticipants.models

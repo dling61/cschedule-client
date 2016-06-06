@@ -13,14 +13,14 @@ define([
     Task, EventsC, PoolHelpers, TaskAssignees, HelpersPoolView) {
 
 
-    /* Template */
-    function loadTemplate(importID, templateID) {
+    /* Template 
+    function loadTemplateWFB(importID, templateID) {
         var t = document.querySelector(importID),
             t = t.import.querySelector(templateID),
             t = t.content.cloneNode(true);
         return t;
     }
-
+*/
 
 
 
@@ -564,7 +564,7 @@ define([
         initialize: function() {
 
             // event1_title
-            $("#event1_title").append(loadTemplate("#tasksListViewTpl", "#tasksListTemplate"));
+            //WFB $("#event1_title").append(loadTemplateWFB("#tasksListViewTpl", "#tasksListTemplate"));
 
             //WFB $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
 
