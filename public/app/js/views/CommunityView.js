@@ -152,12 +152,7 @@ define([
             $('#community-chat-popup').show();
         },
 
-        /* evaluating underscore in external templates, remove after it is placed into correct place */
-        evalUnderscore: function(evalSelector, jsonReplace) {
-            //var template = _.template($(evalSelector).html());    
-            //$(evalSelector).html(template(jsonReplace));
-            $(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-        },
+
 
 
         render: function() {
@@ -206,9 +201,12 @@ define([
             participantView = new ParticipantView();
             userAddView = new UserAddView();
 
-            //WFB-disable $("body").append(loadTemplateCommunity("#createEventViewTpl", "#createEventTemplate"));
+            $("body").append($.loadTemplate("#createEventViewTpl"));
 
-            this.evalUnderscore('#createEventDialog', {
+            /* evaluating underscore in external templates, 
+               remove after it is placed into correct place */
+
+            $.evalUnderscore('#createEventDialog', {
                 participants: gParticipants.models
             });
 
