@@ -116,9 +116,9 @@ define([
 					for (i = 0; i < flyouts.length; ++i) {
 						newDiv = '<form>' +
 							'<i class="fa fa-user" aria-hidden="true"></i> <input type="text" name="name" value="'+gParticipants.models[i].get("name")+'"><br>' +
-							'<i class="fa fa-wrench" aria-hidden="true"></i> <input type="text" name="role" value="'+gParticipants.models[i].get("userrole")+'"><br>' +
+							'<i class="fa fa-wrench" aria-hidden="true"></i> <input type="text" name="role" value="'+gParticipants.models[i].get("role")+'"><br>' +
 							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
-							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+gParticipants.models[i].get("mobile")+'"><br>' +
+							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+gParticipants.models[i].get("phone")+'"><br>' +
 							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
 							'<input type="submit" value="Submit">' +
 						'</form>';

@@ -83,7 +83,12 @@ requirejs([
 		t = t.content.cloneNode(true);
 	return t;
 	}
+<<<<<<< HEAD
+	$("body").append(loadTemplatePart("#participantsListViewTpl"));
+    
+=======
 	$("body").append(loadTemplate("#participantsListViewTpl", "#participantsListTemplate"));
+>>>>>>> origin/master
 //	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
 	
