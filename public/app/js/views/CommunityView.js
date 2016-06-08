@@ -14,9 +14,6 @@ define([
     ParticipantView, UserAddView, EventsView, EventsC,
     eventDialogView
 ) {
-
-
-
     /* Template */
     function loadTemplateCommunity(importID, templateID) {
         var t = document.querySelector(importID),
@@ -26,9 +23,6 @@ define([
     }
 
     /*
-
-              
-
     			<div id="community-chat-popup" class="overlay">
     				<div class="popup">
     					<div id="chat-content" class="content">
@@ -178,8 +172,7 @@ define([
             */
 
             $('#showName').html(this.model.get('communityname'));
-
-
+            
             communityEvents = new EventsC();
 
             gEventsView = new EventsView({

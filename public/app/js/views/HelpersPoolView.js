@@ -8,12 +8,7 @@ define([
     'js/collections/PoolHelpers',
 
 ], function(_, Backbone, jquery, jqueryui, Drop, Task, PoolHelpers){
-
-
-
-    
-    
-    
+  
 var PoolHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
     urlRoot: 'assignmentpool'
@@ -28,12 +23,7 @@ var PoolHelpers = Backbone.Collection.extend({
         return resp.apgroup[0].member;
     }
 });
-
-
-
-
-
-
+    
 var HelpersPoolView = Backbone.View.extend({
 
     
