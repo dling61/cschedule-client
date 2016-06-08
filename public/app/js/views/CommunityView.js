@@ -15,7 +15,7 @@ define([
     eventDialogView
 ) {
     /* Template */
-    function loadTemplate(importID, templateID) {
+    function loadTemplateCommunity(importID, templateID) {
         var t = document.querySelector(importID),
             t = t.import.querySelector(templateID),
             t = t.content.cloneNode(true);
@@ -146,12 +146,7 @@ define([
             $('#community-chat-popup').show();
         },
 
-        /* evaluating underscore in external templates, remove after it is placed into correct place */
-        evalUnderscore: function(evalSelector, jsonReplace) {
-            //var template = _.template($(evalSelector).html());    
-            //$(evalSelector).html(template(jsonReplace));
-            $(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-        },
+
 
 
         render: function() {
@@ -199,9 +194,12 @@ define([
             participantView = new ParticipantView();
             userAddView = new UserAddView();
 
-            $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
+            $("body").append($.loadTemplate("#createEventViewTpl"));
 
-            this.evalUnderscore('#createEventDialog', {
+            /* evaluating underscore in external templates, 
+               remove after it is placed into correct place */
+
+            $.evalUnderscore('#createEventDialog', {
                 participants: gParticipants.models
             });
 

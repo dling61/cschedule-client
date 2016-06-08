@@ -79,22 +79,31 @@ requirejs([
     
 	
 	/* Template */
-	function loadTemplate(importID, templateID) {
+	jQuery["loadTemplate"] = function (importID, templateID) {
 	var t = document.querySelector(importID),
-		t = t.import.querySelector(templateID),
+		t = t.import.querySelector("head > template"),
 		t = t.content.cloneNode(true);
 	return t;
-	}
-	$("body").append(loadTemplate("#participantsListViewTpl", "#participantsListTemplate"));
+	};
+    
+    
+    
+    
+    
+    
+        /* evaluating underscore in external templates */
+    jQuery["evalUnderscore"] = function(evalSelector, jsonReplace) {
+        var template = _.template($(evalSelector).html());
+        $(evalSelector).html(template(jsonReplace));
+        $(evalSelector + " script").replaceWith($(evalSelector + " script").html());
+    };
+
+            
+            
+	$("body").append($.loadTemplate("#participantsListViewTpl"));
+    
 //	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
-	
-	/* evaluating underscore in external templates */
-	function evalUnderscore(evalSelector, jsonReplace) {
-		var template = _.template($(evalSelector).html());    
-		$(evalSelector).html(template(jsonReplace));
-		$(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-	}
 	
     
     jQuery["postJSON"] = function( url, data, callback ) {
