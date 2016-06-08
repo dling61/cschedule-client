@@ -6,6 +6,7 @@ define([
 	//'js/collections/EventsC', 
 	'js/views/CommunityListView',
 	'js/views/eventDialogView'
+    
 ], function(_, Backbone,  CommunityListView, eventDialogView){
 
 	return Backbone.View.extend({
@@ -33,12 +34,9 @@ define([
 			communityListView = new CommunityListView();
 			//communityListView.render();
 			
-			
-			
-			
 			var createEvent = new eventDialogView();
 			createEvent.render();
-
+            
             /*
 			layersample.config.userId = gLoginUser.username; //"kalyani";
 			layersample.config.userId = "kalyani";
