@@ -62,6 +62,9 @@ var ProfileView = Backbone.View.extend({
     render: function() {
         
         // needs to connect to the server
+        var profilePic = $("<img src="+gProfilePicture+">");
+        $(this.el).prepend(profilePic);
+        
         $(this.el).append("<a id= 'curUser'> Samuel Breck </a>");
         
         var targets = $('#curUser')[0];
@@ -71,9 +74,8 @@ var ProfileView = Backbone.View.extend({
             content: this.renderHelperMenu,
             position: 'bottom center',
             openOn: 'click',
-            classes: 'drop-theme-arrows-bounce-dark',		
+            classes: 'drop-theme-arrows-bounce-dark',
         });
-        
         
         }
 });

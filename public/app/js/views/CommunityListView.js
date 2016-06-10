@@ -229,6 +229,8 @@ define([
 
         render: function() {
             
+            // creation of gProfileView view
+            
             var gProfileView = new ProfileView();
             gProfileView.render();
 
