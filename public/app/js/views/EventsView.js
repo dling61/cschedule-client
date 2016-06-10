@@ -590,19 +590,21 @@ define([
                     'ownerid': 5,
                     'inittaskhelperid': 5000200 };
             
+            gLatestTaskHelperId = getNextObjectId(gLoginUser.ownerid, gLatestTaskHelperId);
+            gLatestTaskHelperId++;
+
+            
             
             $.ajax({
                 type:    'POST',
                 url:     'event/' + eventID + '/autoassignment',
                 
                 //data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or 
-                data:    '{"taskid":' + taskID + ', "ownerid": 5, "inittaskhelperid": 5000200 }',
+                data:    '{"taskid":' + taskID + ', "ownerid": 5, "inittaskhelperid":' + gLatestTaskHelperId + '}',
                 success: function(data) {
-                    /*
                     var tmp = JSON.parse(localStorage.login_user);
-                    tmp.eventid = gLatestEventId; //param.eventid;
+                    tmp.taskhelperid = gLatestTaskHelperId; //param.eventid;
                     localStorage.login_user = JSON.stringify(tmp);
-                    */
                     alert('Assign task done');
                 },
                 error: function() {
