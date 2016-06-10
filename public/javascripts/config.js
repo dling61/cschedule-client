@@ -65,6 +65,8 @@ requirejs([
 	var gLoginUserName;
 	var gSelectedCommunityId;
     
+    var gProfilePicture;
+    
     var gProfileView;
 
 	var gServerSetting;

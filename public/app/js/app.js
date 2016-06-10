@@ -8,7 +8,7 @@ define([
 	'js/views/eventDialogView'
     
 ], function(_, Backbone,  CommunityListView, eventDialogView){
-
+    
 	return Backbone.View.extend({
 		initialize: function () {
 			gLoginUser			 = JSON.parse(localStorage.getItem("login_user"));
@@ -21,6 +21,8 @@ define([
 			gLatestTaskHelperId  = gLoginUser.taskhelperid;
 			gLatestParticipantId = gLoginUser.participantid;
 			gLoginUserName       = gLoginUser.username;
+            gProfilePicture      = gLoginUser.profile;
+            
 			
  /* Example:           
  {"email":"123@yahoo.com","password":"123","ownerid":"123","username":"Cyndi",
@@ -29,7 +31,7 @@ define([
  "taskid":"0","eventid":"0","taskhelperid":"0","baseeventid":"0",
  "participantgroupid":"0","repeatscheduleid":"0","participantid":"0"}
  */
-			
+            
 			//communityEvents   = new EventsC();
 			communityListView = new CommunityListView();
 			//communityListView.render();
