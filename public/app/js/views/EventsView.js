@@ -563,6 +563,54 @@ define([
 
         },
 
+        reassign: function() {
+            /*
+            $url = 'http://apitest2.cschedule.com/event/50001/autoassignment?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
+            $method = 'POST';
+
+            # headers and data (this is API dependent, some uses XML)
+            $headers = array(
+            'Accept: application/json',
+            'Content-Type: application/json',
+            );
+            $data = json_encode(array(
+                        'taskid' => '30006',
+                        'ownerid' => 5,
+                        'inittaskhelperid' => 5000123
+                        )
+                    );
+            */
+
+            
+            var eventID = 50001;
+            var taskdata = {
+                    'taskid': '30006',
+                    'ownerid': 5,
+                    'inittaskhelperid': 5000200 };
+            
+            
+            $.ajax({
+                type:    'POST',
+                url:     'event/' + eventID + '/autoassignment',
+                data:    taskdata,
+                success: function(data) {
+                    /*
+                    var tmp = JSON.parse(localStorage.login_user);
+                    tmp.eventid = gLatestEventId; //param.eventid;
+                    localStorage.login_user = JSON.stringify(tmp);
+                    */
+                    alert('Assign task done');
+                },
+                error: function() {
+                    alert('Asign task failed');
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+
+
+            
+        },
 
         render: function(eventTasks) {
             $.evalUnderscore('#taskList', {
@@ -571,7 +619,7 @@ define([
 
             $.evalUnderscore('#createEventDialog', {
                 tasks: eventTasks
-            }); //WFB EVX
+            });
 
             //this.addEvent();
 
@@ -580,6 +628,8 @@ define([
                 'poolID': taskid
             });
             this.helpersPoolView.render();
+
+            $(".taskIcons").on("click", this.reassign);
         },
 
         addTask: function() {
