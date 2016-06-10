@@ -563,7 +563,7 @@ define([
 
         },
 
-        reassign: function() {
+        reassign: function(ev) {
             /*
             $url = 'http://apitest2.cschedule.com/event/50001/autoassignment?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
             $method = 'POST';
@@ -583,6 +583,8 @@ define([
 
             
             var eventID = 50001;
+            
+            var taskID = $(ev.target).closest('.taskname').data('id');
             var taskdata = {
                     'taskid': '30006',
                     'ownerid': 5,
@@ -594,7 +596,7 @@ define([
                 url:     'event/' + eventID + '/autoassignment',
                 
                 //data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or 
-                data:    '{"taskid": 30006, "ownerid": 5, "inittaskhelperid": 5000200 }',
+                data:    '{"taskid":' + taskID + ', "ownerid": 5, "inittaskhelperid": 5000200 }',
                 success: function(data) {
                     /*
                     var tmp = JSON.parse(localStorage.login_user);
@@ -631,7 +633,7 @@ define([
             });
             this.helpersPoolView.render();
 
-            $(".taskIcons").on("click", this.reassign);
+            $(".taskAutoAssign").on("click", this.reassign);
         },
 
         addTask: function() {
