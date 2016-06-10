@@ -592,7 +592,9 @@ define([
             $.ajax({
                 type:    'POST',
                 url:     'event/' + eventID + '/autoassignment',
-                data:    taskdata,
+                
+                //data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or 
+                data:    '{"taskid": 30006, "ownerid": 5, "inittaskhelperid": 5000200 }',
                 success: function(data) {
                     /*
                     var tmp = JSON.parse(localStorage.login_user);
