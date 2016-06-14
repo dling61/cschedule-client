@@ -65,8 +65,9 @@ var ProfileView = Backbone.View.extend({
         var profilePic = $("<img src="+gProfilePicture+">");
         $(this.el).prepend(profilePic);
         
-        $(this.el).append("<a id= 'curUser'> Samuel Breck </a>");
-        
+        // takes the current user
+        $(this.el).append("<span id= 'curUser'>" + gLoginUserName + "</span>");
+            
         var targets = $('#curUser')[0];
         
         this.dropElm = new Drop({
