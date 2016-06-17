@@ -8,9 +8,10 @@ define([
     'js/collections/EventsC',
     'js/collections/PoolHelpers',
     'js/collections/TaskAssignees',
+    'js/collections/Tasks',
     'js/views/HelpersPoolView'
 ], function(_, Backbone, jquery, jqueryui, fullcalendar,
-    Task, EventsC, PoolHelpers, TaskAssignees, HelpersPoolView) {
+    Task, EventsC, PoolHelpers, TaskAssignees, Tasks, HelpersPoolView) {
 
 
     var TaskHelper = Backbone.Model.extend({
@@ -361,9 +362,14 @@ define([
                                     
                                     var eventId = collection.models[0].attributes.events[0];
 
+                                    gTasks = new Tasks();
+                                    _.each(response.task, function(task) {
+                                        gTasks.add(task);
+                                    });
+                                    
                                     if (gTasksView.cid === undefined) {
                                         gTasksView = new TaskView();
-                                        gTasksView.render(response.task);
+                                        gTasksView.render(gTasks.models);
                                     }
 
                                     events = []
@@ -622,10 +628,12 @@ define([
             $.evalUnderscore('#taskList', {
                 tasks: eventTasks
             });
+            $("#TaskListDiv").css("display", "block");
 
             $.evalUnderscore('#createEventDialog', {
                 tasks: eventTasks
             });
+            
 
             //this.addEvent();
 
@@ -660,23 +668,19 @@ define([
             'rscheduleid' => '333',
 			'beventid' => '0'
         */
-
-            var nSingleEvent = new Event({
-                'communityid': '30001',
-                'ownerid': '3',
-                'eventid': '30053',
-                'eventname': 'Design Session',
-                'desp': 'this is a third test schedule for 1.4.0',
-                'startdatetime': '2013-03-06 12:30:00',
-                'enddatetime': '2013-03-06 14:59:20',
-                'tzid': '1',
-                'alert': 3,
-                'location': '3333 1th street, san jose, ca 91223',
-                'host': 'Bills house',
-                'status': 'S',
-                'beventid': '0'
+            
+            
+	       var nTask = new Task({
+                'ownerid':  '3',
+	            'taskid':   '20061',
+                'eventid':  '30001',
+                'taskname': 'Chairs',
+                'desp':     'This task is to arrange chairs after each meeting',
+                'assignallowed': '2',
+                'assignedgroupid': ''
             });
-            nSingleEvent.save();
+
+            nTask.save();
         }
 
     });

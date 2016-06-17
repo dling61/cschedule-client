@@ -99,6 +99,7 @@ requirejs([
             
             
 	$("body").append($.loadTemplate("#participantsListViewTpl"));
+	$("body").append($.loadTemplate("#tasksListViewTpl"));
     
 //	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));
