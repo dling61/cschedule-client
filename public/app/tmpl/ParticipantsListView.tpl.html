@@ -16,7 +16,7 @@
 		<ul>
 			<li data-id=<%=participant.id%> 
 				data-email=<%=participant.get("email")%> 
-				data-name=<%=participant.get("name")%> class="participant">
+				data-name=<%=participant.get("name")%> class="participant" draggable="true" ondragstart="drag(event)">
 				<img src=<%=participant.get("profile")%> class="pListProfileFlyout">
 				<span><%=participant.get("name")%></span>
 				<div id="participantsListIcons">
