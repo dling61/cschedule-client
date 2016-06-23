@@ -400,7 +400,7 @@ define([
 
                                     $(".taskAssignees").droppable({
                                         drop: function(event, ui) {
-                                            // this is the elem receiving the dropped ui.draggable elem
+                                            // this is the elem receiving the                                                                                                                                   dropped ui.draggable elem
                                             var newHelperID = ui.draggable.data('id');
                                             var taskID = $(this).data('taskid');
 
@@ -647,7 +647,7 @@ define([
         },
 
         addTask: function() {
-            alert('Add Event !');
+            alert('Add Task ...');
 
             // var brandNewBook = new BookModel({ title: '1984', author: 'George Orwel' });
             // brandNewBook.save();
@@ -680,6 +680,8 @@ define([
                 'assignedgroupid': ''
             });
 
+            gTasks.add(nTask);
+            
             nTask.save();
         }
 
