@@ -231,8 +231,8 @@ define([
             
             // creation of gProfileView view
             
-            var gProfileView = new ProfileView();
-            gProfileView.render();
+//            var gProfileView = new ProfileView();
+//            gProfileView.render();
 
             var that = this;
             /*

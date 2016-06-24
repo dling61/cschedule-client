@@ -54,19 +54,32 @@ var ProfileView = Backbone.View.extend({
     // display of dropdown menu 
     renderHelperMenu : function() {
         
-        var profile = "<div>Settings</div>";
+        var user = gParticipants.findWhere({id: gLoginUserId}); 
+        
+        // logout has not been implemented
+        var profile = '<form>' +
+							'<i class="fa fa-user" aria-hidden="true"></i> <input type="text" name="name" value="'+ user.get("name")+'"><br>' +
+							'<i class="fa fa-wrench" aria-hidden="true"></i> <input type="text" name="role" value="'+user.get("userrole") +'"><br>' +
+							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+user.get("title")+'"><br>' +
+							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+user.get("mobile")+'"><br>' +
+							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+user.get("email")+'"><br>' +
+							'<input type="submit" value="Logout">' +
+						'</form>';
     
         return profile; 
     },
        
     render: function() {
         
+        // this currently is not called until you enter a community
+        
         // needs to connect to the server
         var profilePic = $("<img src="+gProfilePicture+">");
         $(this.el).prepend(profilePic);
         
-        $(this.el).append("<a id= 'curUser'> Samuel Breck </a>");
-        
+        // takes the current user
+        $(this.el).append("<span id='curUser'>" + gLoginUserName + "</span>");
+            
         var targets = $('#curUser')[0];
         
         this.dropElm = new Drop({

@@ -2,7 +2,8 @@ define([
 	'js/collections/Participants',
 	'drop',
 	'backbone',
-], function(Participants,Drop){
+    'js/views/ProfileView'
+], function(Participants,Drop,ProfileView){
 	var ParticipantsListView = Backbone.View.extend({
 		el: '#parList',
 
@@ -141,6 +142,8 @@ define([
 					function myConfirmCloseFunc() {
 						return false;
 					}
+                    
+                    gProfileView.render();
 				}
 			}); 
 			this.addEvent();

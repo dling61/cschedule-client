@@ -51,6 +51,7 @@ requirejs([
 	var participantView;
 	var gEventsView;
 	var gEventView;
+    var gProfileView;
 
 	var gBaseEvents;
 	var gEvents;
@@ -64,10 +65,7 @@ requirejs([
     var gLoginUser;
 	var gLoginUserName;
 	var gSelectedCommunityId;
-    
     var gProfilePicture;
-    
-    var gProfileView;
 
 	var gServerSetting;
     
