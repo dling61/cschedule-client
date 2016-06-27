@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+@font-face {
+    font-family: 'Avenir'; /*a name to be used later*/
+    src: url('../font/Avenir.ttc'); /*URL to font*/
+}
+
+html {
+	font-family: Avenir;
+}
+
 /* Because there are z-indexes everywhere */
 /* Drop elements should always be on top */
 .drop-element, 
@@ -89,7 +98,7 @@ body {
     margin-top: 0px;
 	text-align: center;
 	font-size: 14px;
-	font-family: "Avenir, Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-family: Avenir, "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	}
 
 .dialog label {

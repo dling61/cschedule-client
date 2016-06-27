@@ -102,7 +102,7 @@ var HelpersPoolView = Backbone.View.extend({
 
     
     renderHelperList : function( taskID ) {
-        newDiv = $('<div/ class="helperPool" data-id=' + taskID + '>');
+        newDiv = $('<div/ class="helperPool" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" data-id=' + taskID + '>');
 
         //events = _.map(eventList.models, function(event) {
 

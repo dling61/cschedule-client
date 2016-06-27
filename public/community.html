@@ -201,6 +201,20 @@ body{
 	
 	<script>
 		require(['../utils/flyoutUtils']);
+		function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.getAttribute('data-id'));
+}
+		function dragover_handler(ev) {
+ ev.preventDefault();
+ // Set the dropEffect to move
+ ev.dataTransfer.dropEffect = "move"
+}
+function drop_handler(ev) {
+ ev.preventDefault();
+ // Get the id of the target and add the moved element to the target's DOM
+ var data = ev.dataTransfer.getData("text");
+ ev.target.innerHTML += data;
+}
 	</script>
 	
 	
