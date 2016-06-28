@@ -13,17 +13,6 @@ define([
     Task, EventsC, PoolHelpers, TaskAssignees, HelpersPoolView) {
 
 
-    /* Template 
-    function loadTemplateWFB(importID, templateID) {
-        var t = document.querySelector(importID),
-            t = t.import.querySelector(templateID),
-            t = t.content.cloneNode(true);
-        return t;
-    }
-*/
-
-
-
     var TaskHelper = Backbone.Model.extend({
         //url: 'schedules/1070068/onduty/1070000'
         urlRoot: 'taskhelper'
@@ -564,7 +553,8 @@ define([
         initialize: function() {
 
             // event1_title
-            //WFB $("#event1_title").append(loadTemplateWFB("#tasksListViewTpl", "#tasksListTemplate"));
+            $("#event1_title").append(
+                $.loadTemplate("#tasksListViewTpl"));
 
             //WFB $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
 
@@ -574,21 +564,12 @@ define([
         },
 
 
-        /* evaluating underscore in external templates */
-        evalUnderscore: function(evalSelector, jsonReplace) {
-            var template = _.template($(evalSelector).html());
-            $(evalSelector).html(template(jsonReplace));
-            $(evalSelector + " script").replaceWith($(evalSelector + " script").html());
-        },
-
-
-
         render: function(eventTasks) {
-            this.evalUnderscore('#taskList', {
+            $.evalUnderscore('#taskList', {
                 tasks: eventTasks
             });
 
-            this.evalUnderscore('#createEventDialog', {
+            $.evalUnderscore('#createEventDialog', {
                 tasks: eventTasks
             }); //WFB EVX
 
