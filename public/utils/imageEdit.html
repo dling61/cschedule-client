@@ -50,14 +50,16 @@
 	var imgToEdit = new Image(),
 		saveAreaSize, halfSaveArea, 
 		stopMouse, 
-		editMidX, editMidY;	
+		editMidX, editMidY,
+		changeThisID = 123;	
 	
 	
 	
 	/*check if there was an image before*/
 	document.addEventListener('DOMContentLoaded', function () {
 		if (location.search != ""){
-			imgToEdit.src = location.search.split("=")[1];
+			changeThisID = location.search.split("?")[1];
+			imgToEdit.src = location.search.split("?")[2];
 			setDefaultProperties();
 		}
 	});
@@ -173,19 +175,17 @@
 		/*save image*/
 		var dataURL = cSave.toDataURL("image/png");
 		var image = dataURL.replace('data:image/png;base64,', '');
-		var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + 123 + '"}';
+		var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + changeThisID + '"}';
 		
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				alert("Image Uploaded");
+				window.parent.removeImageEditor();
 			}
 		};
 		xhttp.open("POST", 'http://apitest2.cschedule.com/creator/upload');
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(imgJSON);	
-		
-		createSaveArea();
 	}
 	</script>
 </body>

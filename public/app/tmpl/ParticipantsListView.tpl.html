@@ -17,7 +17,7 @@
 			<li data-id=<%=participant.id%> 
 				data-email=<%=participant.get("email")%> 
 				data-name=<%=participant.get("name")%> class="participant" draggable="true" ondragstart="drag(event)">
-				<img src=<%=participant.get("profile")%> onclick="editThisImage(this.src)" class="pListProfileFlyout">
+				<img src=<%=participant.get("profile")%> onclick="editThisImage(<%=participant.id%> + '?' + this.src)" class="pListProfileFlyout">
 				<span><%=participant.get("name")%></span>
 				<div id="participantsListIcons">
 					<i class="fa fa-file-text pListIcon1Flyout" aria-hidden="true"></i>

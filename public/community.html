@@ -212,7 +212,7 @@ function drop_handler(ev) {
 
 /*TESTING FOR PARTICIPANT PROFILE EDIT*/
 function editThisImage(profileData){
-	$("#parList").prepend('<object data="utils/imageEdit.html?loadThis='+profileData+'"></object>');
+	$("#parList").prepend('<object data="utils/imageEdit.html?'+profileData+'"></object>');
 	$('#parList :not(:first)').hide();
 	//NEED TO PASS IN ID
 }
