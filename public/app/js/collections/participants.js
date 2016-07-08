@@ -7,5 +7,3 @@ define([
 	});
 	return Participants;
 });
-
-

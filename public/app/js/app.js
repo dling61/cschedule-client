@@ -5,14 +5,17 @@ define([
     //'javascripts/fullcalendar.js',
 	//'js/collections/EventsC', 
 	'js/views/CommunityListView',
-	'js/views/eventDialogView'
+	'js/views/eventDialogView',
+    'js/models/Participant',
+    'js/collections/Participants'
     
-], function(_, Backbone,  CommunityListView, eventDialogView){
+], function(_, Backbone,  CommunityListView, eventDialogView, Participant, Participants){
     
 	return Backbone.View.extend({
 		initialize: function () {
 			gLoginUser			 = JSON.parse(localStorage.getItem("login_user"));
 			gLoginUserId         = gLoginUser.ownerid;
+            
 			gLatestCommunityId   = gLoginUser.communityid;
 			gLatestEventId       = gLoginUser.eventid;
 			gLatestBEventId      = gLoginUser.baseeventid;
@@ -20,17 +23,28 @@ define([
 			gLatestTaskId        = gLoginUser.taskid;
 			gLatestTaskHelperId  = gLoginUser.taskhelperid;
 			gLatestParticipantId = gLoginUser.participantid;
+            
+            gParticipants = new Participants([{userrole: '0', 
+            email: gLoginUser.email, 
+            name: gLoginUser.username, 
+            mobile: gLoginUser.mobile, 
+            profile: gLoginUser.profile,
+            userid:gLoginUser.ownerid}]);
+            
 			gLoginUserName       = gLoginUser.username;
             gProfilePicture      = gLoginUser.profile;
             
-			
- /* Example:           
- {"email":"123@yahoo.com","password":"123","ownerid":"123","username":"Cyndi",
- "profile":"http://test.cschedule.com/profile/123.png\t",
- "mobile":"122123456","communityid":"0",
- "taskid":"0","eventid":"0","taskhelperid":"0","baseeventid":"0",
- "participantgroupid":"0","repeatscheduleid":"0","participantid":"0"}
- */
+            // This will determine whether or not we are currently in a community 
+            gSelectedCommunityId = null; 
+            
+            /* Example:           
+            {"email":"123@yahoo.com","password":"123","ownerid":"123","username":"Cyndi",
+            "profile":"http://test.cschedule.com/profile/123.png\t",
+            "mobile":"122123456","communityid":"0",
+            "taskid":"0","eventid":"0","taskhelperid":"0","baseeventid":"0",
+            "participantgroupid":"0","repeatscheduleid":"0","participantid":"0"}
+            */
+            
             
 			//communityEvents   = new EventsC();
 			communityListView = new CommunityListView();

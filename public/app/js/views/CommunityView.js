@@ -173,13 +173,14 @@ define([
             */
             $('#showName').html(this.model.get('communityname'));
             
+            gSelectedCommunityId = this.model.get('id');
+            
             communityEvents = new EventsC();
 
             gEventsView = new EventsView({
                 el: $("#calendar"),
                 collection: communityEvents
             });
-
 
             /* WFB    
             gEventView = new EventView({
@@ -190,7 +191,7 @@ define([
             gTasksView = [];
             gEventsView.render();
             
-            gProfileView = new ProfileView();
+            gProfileView.render();
             
             gParticipantsListView = new ParticipantsListView();
             participantView = new ParticipantView();

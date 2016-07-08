@@ -6,6 +6,7 @@ define([
     'drop',
     'js/models/task',
     'js/collections/PoolHelpers',
+    'js/models/participant'
 
 ], function(_, Backbone, jquery, jqueryui, Drop, Task, PoolHelpers){
     
@@ -41,10 +42,12 @@ var ProfileView = Backbone.View.extend({
 
     initialize: function() {
         
-        /*
-        _.bindAll(this);
-        this.helpersPoolView = new HelpersPoolView();
-        */
+        // needs to connect to the server
+        var profilePic = $("<img src="+gProfilePicture+">");
+        $(this.el).prepend(profilePic);
+        
+        // takes the current user
+        $(this.el).append("<span id='curUser'>" + gLoginUserName + "</span>");
     },
 
     events : {
@@ -54,10 +57,15 @@ var ProfileView = Backbone.View.extend({
     // display of dropdown menu 
     renderHelperMenu : function() {
         
-        var user = gParticipants.findWhere({id: gLoginUserId}); 
+        var user = gParticipants.findWhere({userid: gLoginUserId}); 
         
         // logout has not been implemented
-        var profile = '<form>' +
+        
+        // when switching the community, need to make to reset gCommunityID to NULL
+        
+        if (gSelectedCommunityId != null) {
+            
+            var profile = '<form>' +
 							'<i class="fa fa-user" aria-hidden="true"></i> <input type="text" name="name" value="'+ user.get("name")+'"><br>' +
 							'<i class="fa fa-wrench" aria-hidden="true"></i> <input type="text" name="role" value="'+user.get("userrole") +'"><br>' +
 							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+user.get("title")+'"><br>' +
@@ -65,21 +73,23 @@ var ProfileView = Backbone.View.extend({
 							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+user.get("email")+'"><br>' +
 							'<input type="submit" value="Logout">' +
 						'</form>';
+        }
+        else {
+            
+            var profile = '<form>' +
+							'<i class="fa fa-user" aria-hidden="true"></i> <input type="text" name="name" value="'+ user.get("name")+'"><br>' +
+							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+user.get("title")+'"><br>' +
+							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+user.get("mobile")+'"><br>' +
+							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+user.get("email")+'"><br>' +
+							'<input type="submit" value="Logout">' +
+						'</form>';
+        }
     
         return profile; 
     },
        
     render: function() {
         
-        // this currently is not called until you enter a community
-        
-        // needs to connect to the server
-        var profilePic = $("<img src="+gProfilePicture+">");
-        $(this.el).prepend(profilePic);
-        
-        // takes the current user
-        $(this.el).append("<span id='curUser'>" + gLoginUserName + "</span>");
-            
         var targets = $('#curUser')[0];
         
         this.dropElm = new Drop({

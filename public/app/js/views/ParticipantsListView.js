@@ -142,8 +142,6 @@ define([
 					function myConfirmCloseFunc() {
 						return false;
 					}
-                    
-                    gProfileView.render();
 				}
 			}); 
 			this.addEvent();

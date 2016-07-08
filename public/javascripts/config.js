@@ -60,7 +60,8 @@ requirejs([
 	var gTasksView;
 	var gTaskAssignees;
 	var gTaskHelpers;
-
+    
+    var gLoginParticipant;
 	var gLoginUserId;
     var gLoginUser;
 	var gLoginUserName;
@@ -88,7 +89,7 @@ requirejs([
     
     
     
-    
+
     
     
         /* evaluating underscore in external templates */
