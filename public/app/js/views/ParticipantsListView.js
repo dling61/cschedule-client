@@ -88,17 +88,21 @@ define([
 		/* render what we want displayed */
 		render: function () {
 			var that = this;
+			function testFunction(profileData){
+				alert(profileData);
+			}
 			gParticipants.fetch({
 				success: function (gParticipants) {
 					$("#ParticipantListDiv").css("display", "block");
 					$.evalUnderscore('#parList', {participants: gParticipants.models});
 					
-					/*Flyouts configured for multiple elements*/
+					/*Flyouts configured for multiple elements
 					var flyouts = document.getElementsByClassName('pListProfileFlyout'), 
 						i, 
 						newDiv;
 					for (i = 0; i < flyouts.length; ++i) {
-						newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
+						//newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
+						//newDiv = '<object data="utils/imageEdit.html"></object>'
 						window["pListProfileDrop" + i] = new Drop({
 							target: flyouts[i],
 							content: newDiv,
@@ -106,7 +110,7 @@ define([
 							openOn: 'click',
 							classes: 'drop-theme-arrows-bounce-dark',		
 						});
-					}
+					}*/
 					flyouts = document.getElementsByClassName('pListIcon1Flyout');
 					for (i = 0; i < flyouts.length; ++i) {
 						newDiv = '<form>' +

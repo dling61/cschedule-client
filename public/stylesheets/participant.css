@@ -95,6 +95,11 @@ ask details about accept decline
 #parList img:hover {
 	border: 1px solid blue;
 }
+/* Participant object */
+#parList object {
+	height: 80%;
+}
+
 /* Clickable Icons */
 #participantsListIcons {
 	float: right;
