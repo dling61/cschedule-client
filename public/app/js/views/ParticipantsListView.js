@@ -88,9 +88,6 @@ define([
 		/* render what we want displayed */
 		render: function () {
 			var that = this;
-			function testFunction(profileData){
-				alert(profileData);
-			}
 			gParticipants.fetch({
 				success: function (gParticipants) {
 					$("#ParticipantListDiv").css("display", "block");

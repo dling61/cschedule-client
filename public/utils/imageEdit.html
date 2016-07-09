@@ -58,6 +58,7 @@
 	/*check if there was an image before*/
 	document.addEventListener('DOMContentLoaded', function () {
 		if (location.search != ""){
+			//imgToEdit.crossOrigin = "Anonymous"; 
 			changeThisID = location.search.split("?")[1];
 			imgToEdit.src = location.search.split("?")[2];
 			setDefaultProperties();

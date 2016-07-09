@@ -214,7 +214,6 @@ function drop_handler(ev) {
 function editThisImage(profileData){
 	$("#parList").prepend('<object data="utils/imageEdit.html?'+profileData+'"></object>');
 	$('#parList :not(:first)').hide();
-	//NEED TO PASS IN ID
 }
 function removeImageEditor(){
 	$('#parList :not(:first)').show();
