@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Upload and Edit Image</title>
+	<style>
+	#imageEditorFrame {
+		width: 290px;
+		text-align: center;
+		margin: 0 auto;
+	}
+	#editor {
+		width: 280px;
+		border: 1px solid red;
+	}
+	#filter {
+		display: none;
+	}
+	#toSave {
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="imageEditorFrame">
+		<input type="file" id="imageLoader" accept="image/*"/><br/>
+		<canvas id="editor"></canvas>
+		<canvas id="toSave"></canvas>
+		<canvas id="filter"></canvas>
+		<input id="zoom" type="range" min=".3" max="1" value="1" step=".01" oninput="handleZoom()"/><br/>
+		<input id="bright" type="range" min=".1" max=".9" value=".1" step=".01" oninput="handleBright()"/><br/>
+		<input type="submit" onclick="saveImage();" value="Save"/>
+		<input type="reset" onclick="window.parent.removeImageEditor();" value="Cancel"/>
+	</div>
+	
+	<img src="" id="test" alt=""/>
+	
+	<script>
+	/*create variables*/
+	var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
+	
+	var cEdit = document.getElementById('editor');
+	var ctxEdit = cEdit.getContext('2d');
+	var cSave = document.getElementById('toSave');
+	var ctxSave = cSave.getContext('2d');
+	var cFilt = document.getElementById('filter');
+	var ctxFilt = cFilt.getContext('2d');
+	
+	var imgToEdit = new Image(),
+		saveAreaSize, halfSaveArea, 
+		stopMouse, 
+		editMidX, editMidY,
+		changeThisID = 123;	
+	
+	
+	
+	/*check if there was an image before*/
+	document.addEventListener('DOMContentLoaded', function () {
+		if (location.search != ""){
+			//imgToEdit.crossOrigin = "Anonymous"; 
+			changeThisID = location.search.split("?")[1];
+			imgToEdit.src = location.search.split("?")[2];
+			setDefaultProperties();
+		}
+	});
+	/*handles loaded images*/
+	function handleImage(e){
+		var reader = new FileReader();
+		reader.onload = function(event){
+			stopMouse = true;
+			imgToEdit.onload = function(){
+				setDefaultProperties(); 
+				createSaveArea();
+			}
+			imgToEdit.src = event.target.result;
+		}
+		reader.readAsDataURL(e.target.files[0]);     
+	}
+	
+	
+	
+	/*set canvas properties*/
+	function setDefaultProperties(){
+		cEdit.width = imgToEdit.width;
+		cEdit.height = imgToEdit.height;
+		cFilt.width = imgToEdit.width;
+		cFilt.height = imgToEdit.height;
+		ctxEdit.drawImage(imgToEdit,0,0); 
+	}
+	/*create save area*/
+	function createSaveArea(){
+		/*determine smaller measurement*/
+		if (imgToEdit.width > imgToEdit.height){
+			saveAreaSize = parseInt(imgToEdit.height * document.getElementById("zoom").value);
+		} else {
+			saveAreaSize = parseInt(imgToEdit.width * document.getElementById("zoom").value);
+		}
+		/*save area size and location*/
+		cSave.width = saveAreaSize;
+		cSave.height = saveAreaSize;
+		halfSaveArea = saveAreaSize/2;
+		editMidX = imgToEdit.width/2-halfSaveArea;
+		editMidY = imgToEdit.height/2-halfSaveArea;
+		/*display save area*/
+		ctxSave.clearRect(0,0,saveAreaSize,saveAreaSize);
+		ctxSave.lineWidth=saveAreaSize/100;
+		ctxSave.arc(halfSaveArea,halfSaveArea,halfSaveArea-5,0,2*Math.PI);
+		ctxSave.stroke();
+	}
+	/*draw canvas*/
+	function drawCanvas(){
+		ctxEdit.drawImage(imgToEdit,0,0); //add true clear
+		ctxEdit.drawImage(cSave,editMidX,editMidY);
+		ctxEdit.drawImage(cFilt,0,0);
+	}
+	
+	
+	
+	/*loop canvas*/
+	setInterval(function(){
+		drawCanvas();
+	}, 30);
+	/*follow mouse*/
+	cEdit.onmousemove = function(e){
+		mouseX = (e.clientX - cEdit.getBoundingClientRect().left)
+			* cEdit.width/cEdit.offsetWidth;
+		mouseY = (e.clientY - cEdit.getBoundingClientRect().top)
+			* cEdit.height/cEdit.offsetHeight;
+		/*boundaries*/
+		if (mouseX-halfSaveArea < 0){
+			mouseX = halfSaveArea;
+		}
+		if (mouseX+halfSaveArea > imgToEdit.width){
+			mouseX = imgToEdit.width-halfSaveArea;
+		}
+		if (mouseY-halfSaveArea < 0){
+			mouseY = halfSaveArea;
+		}
+		if (mouseY+halfSaveArea > imgToEdit.height){
+			mouseY = imgToEdit.height-halfSaveArea;
+		}
+		/*move center of overlay onto mouse location*/
+		if (!stopMouse){
+			editMidX = mouseX-halfSaveArea;
+			editMidY = mouseY-halfSaveArea;
+		}
+	}
+	/*stop following mouse*/
+	cEdit.addEventListener("click", function() {
+		stopMouse = !stopMouse;
+	}, false);
+	
+	
+	
+	/*handles slider changes*/
+	function handleZoom(){
+		createSaveArea();
+		drawCanvas();
+	}
+	function handleBright(){ 
+		ctxFilt.clearRect(0,0,cFilt.width,cFilt.height);
+		ctxFilt.fillStyle = "rgba(255,255,255," + document.getElementById('bright').value + ")";
+		ctxFilt.fillRect(0,0,cFilt.width,cFilt.height);
+		ctxFilt.stroke();
+		drawCanvas();
+	}
+	
+	
+	
+	/*save image*/
+	function saveImage() {
+		/*add image to overlay canvas*/
+		ctxSave.drawImage(imgToEdit,-editMidX,-editMidY); 
+		ctxSave.drawImage(cFilt,0,0);
+		/*save image*/
+		var dataURL = cSave.toDataURL("image/png");
+		var image = dataURL.replace('data:image/png;base64,', '');
+		var imgJSON = '{"data":"' + image + '","extension":"png","ownerid":"' + changeThisID + '"}';
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				window.parent.removeImageEditor();
+			}
+		};
+		xhttp.open("POST", 'http://apitest2.cschedule.com/creator/upload');
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send(imgJSON);	
+	}
+	</script>
+</body>
+</html>

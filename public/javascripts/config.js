@@ -39,6 +39,7 @@ requirejs([
 	'jquery', 
 	'js/app',
 ], function($, App){
+    
 	/* Global Variables  */
 	var gFetchedBaseEvents;
 	var gFetchedEvents;
@@ -49,13 +50,16 @@ requirejs([
 	var userAddView;
 	var participantView;
 	var gEventsView;
+	var gEventsView2;
 	var gEventView;
+    var gProfileView;
 
 	var gBaseEvents;
 	var gEvents;
 	var gParticipants;
 	var gTasks;
 	var gTasksView;
+	var gTasksView2;
 	var gTaskAssignees;
 	var gTaskHelpers;
 
@@ -63,9 +67,9 @@ requirejs([
     var gLoginUser;
 	var gLoginUserName;
 	var gSelectedCommunityId;
+    var gProfilePicture;
 
 	var gServerSetting;
-
     
     // NOTE: need to add an entry for each of these to app.js
 	var gLatestCommunityId;
@@ -99,6 +103,7 @@ requirejs([
             
             
 	$("body").append($.loadTemplate("#participantsListViewTpl"));
+	$("body").append($.loadTemplate("#tasksListViewTpl"));
     
 //	$("body").append(loadTemplate("#tasksListViewTpl",        "#tasksListTemplate"));
 	//Can be used to load flyout: $("#blackBox").html(loadTemplate(importID, templateID));

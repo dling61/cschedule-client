@@ -2,7 +2,8 @@ define([
 	'js/collections/Participants',
 	'drop',
 	'backbone',
-], function(Participants,Drop){
+    'js/views/ProfileView'
+], function(Participants,Drop,ProfileView){
 	var ParticipantsListView = Backbone.View.extend({
 		el: '#parList',
 
@@ -92,12 +93,13 @@ define([
 					$("#ParticipantListDiv").css("display", "block");
 					$.evalUnderscore('#parList', {participants: gParticipants.models});
 					
-					/*Flyouts configured for multiple elements*/
+					/*Flyouts configured for multiple elements
 					var flyouts = document.getElementsByClassName('pListProfileFlyout'), 
 						i, 
 						newDiv;
 					for (i = 0; i < flyouts.length; ++i) {
-						newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
+						//newDiv = '<img src=' +gParticipants.models[i].get("profile")+ '>';
+						//newDiv = '<object data="utils/imageEdit.html"></object>'
 						window["pListProfileDrop" + i] = new Drop({
 							target: flyouts[i],
 							content: newDiv,
@@ -105,7 +107,7 @@ define([
 							openOn: 'click',
 							classes: 'drop-theme-arrows-bounce-dark',		
 						});
-					}
+					}*/
 					flyouts = document.getElementsByClassName('pListIcon1Flyout');
 					for (i = 0; i < flyouts.length; ++i) {
 						newDiv = '<form>' +
@@ -114,7 +116,7 @@ define([
 							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
 							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+gParticipants.models[i].get("mobile")+'"><br>' +
 							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
-							'<input type="submit" value="Submit">' +
+							'<input type="submit" value="Save">' +
 						'</form>';
 						window["pListIcon1Drop" + i] = new Drop({
 							target: flyouts[i],
@@ -141,6 +143,8 @@ define([
 					function myConfirmCloseFunc() {
 						return false;
 					}
+                    
+                    gProfileView.render();
 				}
 			}); 
 			this.addEvent();

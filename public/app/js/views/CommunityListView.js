@@ -4,13 +4,14 @@ define([
     'js/collections/communities',
     'js/models/task',
     'js/views/CommunityView',
-
-    'js/views/EventsView'
-], function(_, Backbone, Communities, Task, CommunityView, EventsView) {
+    'js/views/EventsView',
+    'js/views/ProfileView'
+    
+], function(_, Backbone, Communities, Task, CommunityView, EventsView, ProfileView) {
 
     // http://myapp.com/javascripts/jst.js
     //var window;
-
+    
     window.JST = {};
 
     window.JST['person/contact'] = _.template(
@@ -33,8 +34,7 @@ define([
         + '			</div></div>'     
         + '		<% }); %>'
     );
-
-
+    
     /*
 
 
@@ -228,6 +228,11 @@ define([
         },
 
         render: function() {
+            
+            // creation of gProfileView view
+            
+//            var gProfileView = new ProfileView();
+//            gProfileView.render();
 
             var that = this;
             /*

@@ -8,15 +8,13 @@ define([
     'js/views/UserAddView',
     'js/views/EventsView',
     'js/collections/EventsC',
-    'js/views/eventDialogView'
+    'js/views/eventDialogView',
+    'js/views/ProfileView'
 
 ], function(_, Backbone, Drop, Communities, ParticipantsListView,
     ParticipantView, UserAddView, EventsView, EventsC,
-    eventDialogView
+    eventDialogView, ProfileView
 ) {
-
-
-
     /* Template */
     function loadTemplateCommunity(importID, templateID) {
         var t = document.querySelector(importID),
@@ -26,9 +24,6 @@ define([
     }
 
     /*
-
-              
-
     			<div id="community-chat-popup" class="overlay">
     				<div class="popup">
     					<div id="chat-content" class="content">
@@ -89,6 +84,7 @@ define([
         },
 
         initialize: function() {
+            gFetchedEvents = null;
             this.render();
         },
 
@@ -176,14 +172,18 @@ define([
                     }
                   });
             */
-
             $('#showName').html(this.model.get('communityname'));
-
-
+            
             communityEvents = new EventsC();
 
             gEventsView = new EventsView({
                 el: $("#calendar"),
+                collection: communityEvents
+            });
+
+
+            gEventsView2 = new EventsView({
+                el: $("#calendar2"),
                 collection: communityEvents
             });
 
@@ -196,6 +196,10 @@ define([
             */
             gTasksView = [];
             gEventsView.render();
+            gEventsView2.render();
+            
+            gProfileView = new ProfileView();
+            
 
             gParticipantsListView = new ParticipantsListView();
             participantView = new ParticipantView();
