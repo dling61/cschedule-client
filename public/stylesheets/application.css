@@ -110,7 +110,7 @@ body {
 	width:170px;	
 }
 
-#calendar {
+.csCalendar {
   width: 1114px;
 	/*margin: 0 auto;WFB */
   position: relative;

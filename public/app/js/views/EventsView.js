@@ -40,7 +40,7 @@ define([
 
         model: Event,
 
-        url: 'community/30001/event?start=2016:05:01&num=4',
+        url: 'community/30001/event?start=2016:07:15&num=4',
         //url: 'baseevent/30002/event',
 
 
@@ -172,14 +172,15 @@ define([
 
                     assignNames = "";
 
-                    for (var taskIdx = 0; taskIdx < 3; taskIdx++) {
-                        var taskID = evsC.taskhelper[taskIdx].taskid;
-                        var numNeeded = 5; //WFB evsC.task[taskIdx].assignallowed;
-                        assignNames += '<div class="taskAssignees" data-taskid="' + taskID +
-                            '" style="margin-top:10px;">' +
-                            getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';
+                    if (evsC.taskhelper.length > 0) {
+                        for (var taskIdx = 0; taskIdx < 3; taskIdx++) {
+                            var taskID = evsC.taskhelper[taskIdx].taskid;
+                            var numNeeded = 5; //WFB evsC.task[taskIdx].assignallowed;
+                            assignNames += '<div class="taskAssignees" data-taskid="' + taskID +
+                                '" style="margin-top:10px;">' +
+                                getAssignees(taskID, evsC.taskhelper, numNeeded) + '</div>';
+                        }
                     }
-
                     if (false) {
                         for (var taskIdx = 0; taskIdx < evsC.taskhelper.length; taskIdx++) {
                             var taskID = evsC.taskhelper[taskIdx].taskid;
@@ -347,79 +348,92 @@ define([
                         textColor: 'black',
 
                         events: function(start, end, timezone, callback) {
-                            gFetchedEvents = new Events();
-                            gFetchedEvents.fetch({ //EventList().fetch({
-                                /*
-                                data: {
-                                  from: start.getTime(),
-                                  to: end.getTime()
-                                },
-                                */
-                                success: function(collection, response, options) {
+                            
+                            if (gFetchedEvents === null ||
+                                gFetchedEvents.startDate === undefined ||
+                                 gFetchedEvents.startDate.valueOf() !== start._d.valueOf()) {
+                                
+                                gFetchedEvents = new Events();
+                                                                                
+                                gFetchedEvents.startDate = start._d;
+                                
+                                gFetchedEvents.fetch({ //EventList().fetch({
+                                    /*
+                                    data: {
+                                      from: start.getTime(),
+                                      to: end.getTime()
+                                    },
+                                    */
+                                    success: function(collection, response, options) {
 
-                                    
-                                    this.eventView = new EventView();
-                                    
-                                    var eventId = collection.models[0].attributes.events[0];
+                                        gFetchedEvents.startDate = start._d;
 
-                                    gTasks = new Tasks();
-                                    _.each(response.task, function(task) {
-                                        gTasks.add(task);
-                                    });
-                                    
-                                    if (gTasksView.cid === undefined) {
-                                        gTasksView = new TaskView();
-                                        gTasksView.render(gTasks.models);
-                                    }
+                                        this.eventView = new EventView();
 
-                                    events = []
-                                    events = _.map(collection.models[0].attributes.events, function(event) {
-                                        var newEv = {
-                                            title: event.title, //get("title"),
-                                            start: new Date(event.start),
-                                            //end: new Date(event.get("end")),
-                                            //url: event.get("url")
-                                        };
-                                        //newEv.title = event.attributes.events[0].title;
-                                        //newEv.start = event.attributes.events[0].start;
-                                        return newEv;
-                                    });
+                                        var eventId = collection.models[0].attributes.events[0];
 
-                                    callback(events);
+                                        gTasks = new Tasks();
+                                        _.each(response.task, function(task) {
+                                            gTasks.add(task);
+                                        });
 
-                                    //WFB this.eventView.render();
+                                        if (gTasksView.cid === undefined) {
+                                            gTasksView = new TaskView({el: '#event1_title'});
+                                            gTasksView.render(gTasks.models);
 
-
-
-
-                                    $('.numcircle').click(function() {
-                                        //alert(event)
-                                        gEventsView.viewMessaging();
-                                    });
-
-
-                                    $(".taskAssignees").droppable({
-                                        drop: function(event, ui) {
-                                            // this is the elem receiving the                                                                                                                                   dropped ui.draggable elem
-                                            var newHelperID = ui.draggable.data('id');
-                                            var taskID = $(this).data('taskid');
-
-                                            var taskHelper = new TaskHelper({
-                                                'taskhelperid': 100013,
-                                                'eventid': 30001,
-                                                'ownerid': '3',
-                                                'taskid': taskID,
-                                                'userid': '125', //newHelperID
-                                                'status': 'A'
-                                                    //'add': [newHelperID]
-                                            });
-
-                                            taskHelper.save();
+                                            gTasksView2 = new TaskView({el: '#event2_title'});
+                                            gTasksView2.render(gTasks.models);
                                         }
-                                    });
 
-                                }
-                            })
+                                        events = []
+                                        events = _.map(collection.models[0].attributes.events, function(event) {
+                                            var newEv = {
+                                                title: event.title, //get("title"),
+                                                start: new Date(event.start),
+                                                //end: new Date(event.get("end")),
+                                                //url: event.get("url")
+                                            };
+                                            //newEv.title = event.attributes.events[0].title;
+                                            //newEv.start = event.attributes.events[0].start;
+                                            return newEv;
+                                        });
+
+                                        callback(events);
+
+                                        //WFB this.eventView.render();
+
+
+
+
+                                        $('.numcircle').click(function() {
+                                            //alert(event)
+                                            gEventsView.viewMessaging();
+                                        });
+
+
+                                        $(".taskAssignees").droppable({
+                                            drop: function(event, ui) {
+                                                // this is the elem receiving the                                                                                                                                   dropped ui.draggable elem
+                                                var newHelperID = ui.draggable.data('id');
+                                                var taskID = $(this).data('taskid');
+
+                                                var taskHelper = new TaskHelper({
+                                                    'taskhelperid': 100013,
+                                                    'eventid': 30001,
+                                                    'ownerid': '3',
+                                                    'taskid': taskID,
+                                                    'userid': '125', //newHelperID
+                                                    'status': 'A'
+                                                        //'add': [newHelperID]
+                                                });
+
+                                                taskHelper.save();
+                                            }
+                                        });
+
+                                    }
+                                })
+                            }
                         }
                     }] //eventSources
             });
@@ -556,10 +570,13 @@ define([
         },
 
 
-        initialize: function() {
+        initialize: function(options) {
 
             // event1_title
-            $("#event1_title").append(
+            var elm = options.el;
+            
+            //WFB $("#event1_title").append(
+            $(elm).append(
                 $.loadTemplate("#tasksListViewTpl"));
 
             //WFB $("body").append(loadTemplate("#createEventViewTpl", "#createEventTemplate"));
