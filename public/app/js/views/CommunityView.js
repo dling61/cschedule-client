@@ -196,14 +196,11 @@ define([
             */
             gTasksView = [];
             gEventsView.render();
-<<<<<<< HEAD
             gEventsView2.render();
-
-=======
             
             gProfileView = new ProfileView();
             
->>>>>>> origin/master
+
             gParticipantsListView = new ParticipantsListView();
             participantView = new ParticipantView();
             userAddView = new UserAddView();
