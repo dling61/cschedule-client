@@ -39,6 +39,7 @@ requirejs([
 	'jquery', 
 	'js/app',
 ], function($, App){
+    
 	/* Global Variables  */
 	var gFetchedBaseEvents;
 	var gFetchedEvents;
@@ -51,6 +52,7 @@ requirejs([
 	var gEventsView;
 	var gEventsView2;
 	var gEventView;
+    var gProfileView;
 
 	var gBaseEvents;
 	var gEvents;
@@ -65,9 +67,9 @@ requirejs([
     var gLoginUser;
 	var gLoginUserName;
 	var gSelectedCommunityId;
+    var gProfilePicture;
 
 	var gServerSetting;
-
     
     // NOTE: need to add an entry for each of these to app.js
 	var gLatestCommunityId;
