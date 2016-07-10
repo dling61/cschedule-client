@@ -155,13 +155,15 @@ var HelpersPoolView = Backbone.View.extend({
         
         var curTask = $('.taskname')[0];
 
-        this.helperPoolView = new Drop({
-            target: curTask,
-            content: this.renderHelperList( $(curTask).data('id') ),   //WFB newDiv[0],
-            position: 'bottom left',
-            openOn: 'click',
-            classes: 'drop-theme-arrows-bounce-dark',		
-        });
+        if (curTask != undefined) {
+            this.helperPoolView = new Drop({
+                target: curTask,
+                content: this.renderHelperList( $(curTask).data('id') ),   //WFB newDiv[0],
+                position: 'bottom left',
+                openOn: 'click',
+                classes: 'drop-theme-arrows-bounce-dark',		
+            });
+        }
 
 
     }

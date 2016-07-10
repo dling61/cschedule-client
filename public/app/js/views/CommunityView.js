@@ -89,6 +89,7 @@ define([
         },
 
         initialize: function() {
+            gFetchedEvents = null;
             this.render();
         },
 
@@ -188,6 +189,12 @@ define([
             });
 
 
+            gEventsView2 = new EventsView({
+                el: $("#calendar2"),
+                collection: communityEvents
+            });
+
+
             /* WFB    
             gEventView = new EventView({
                   el: $("#eventView"),
@@ -196,6 +203,7 @@ define([
             */
             gTasksView = [];
             gEventsView.render();
+            gEventsView2.render();
 
             gParticipantsListView = new ParticipantsListView();
             participantView = new ParticipantView();

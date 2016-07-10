@@ -49,6 +49,7 @@ requirejs([
 	var userAddView;
 	var participantView;
 	var gEventsView;
+	var gEventsView2;
 	var gEventView;
 
 	var gBaseEvents;
@@ -56,6 +57,7 @@ requirejs([
 	var gParticipants;
 	var gTasks;
 	var gTasksView;
+	var gTasksView2;
 	var gTaskAssignees;
 	var gTaskHelpers;
 
