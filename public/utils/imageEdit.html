@@ -61,6 +61,10 @@
 			//imgToEdit.crossOrigin = "Anonymous"; 
 			changeThisID = location.search.split("?")[1];
 			imgToEdit.src = location.search.split("?")[2];
+			/*cSave.width = imgToEdit.width;
+			cSave.height = imgToEdit.height;
+			ctxSave.drawImage(imgToEdit,0,0);
+			imgToEdit.src = cSave.toDataURL("image/png");*/
 			setDefaultProperties();
 		}
 	});
