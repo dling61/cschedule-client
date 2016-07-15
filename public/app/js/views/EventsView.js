@@ -642,10 +642,12 @@ define([
         },
 
         render: function(eventTasks) {
-            $.evalUnderscore('#taskList', {
+            var taskTemplate = this.$el.find("#tasklist");
+            //$.evalUnderscore('#taskList', {
+            $.evalUnderscoreDOM(taskTemplate, {
                 tasks: eventTasks
             });
-            $("#TaskListDiv").css("display", "block");
+            $(".TaskListDiv").css("display", "block");
 
             $.evalUnderscore('#createEventDialog', {
                 tasks: eventTasks
@@ -689,8 +691,8 @@ define([
             
 	       var nTask = new Task({
                 'ownerid':  '3',
-	            'taskid':   '20061',
-                'eventid':  '30001',
+	            'taskid':   '20062',
+                'eventid':  '1230016',
                 'taskname': 'Chairs',
                 'desp':     'This task is to arrange chairs after each meeting',
                 'assignallowed': '2',

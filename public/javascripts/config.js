@@ -100,6 +100,17 @@ requirejs([
         $(evalSelector + " script").replaceWith($(evalSelector + " script").html());
     };
 
+    
+    
+    
+        /* evaluating underscore in external templates */
+    jQuery["evalUnderscoreDOM"] = function(evalDOMNode, jsonReplace) {
+        var template = _.template(evalDOMNode.html());
+        evalDOMNode.html(template(jsonReplace));
+        var scriptNode = evalDOMNode.find("script");
+        scriptNode.replaceWith(scriptNode.html());
+    };
+
             
             
 	$("body").append($.loadTemplate("#participantsListViewTpl"));
