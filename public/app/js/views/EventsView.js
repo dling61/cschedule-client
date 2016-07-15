@@ -379,10 +379,11 @@ define([
 
                                         if (gTasksView.cid === undefined) {
                                             gTasksView = new TaskView({el: '#event1_title'});
-                                            gTasksView.render(gTasks.models);
+                                            gTasksView.render(gTasks.where({eventid:"1230016"}));
+                                            //gTasksView.render(gTasks.models);
 
                                             gTasksView2 = new TaskView({el: '#event2_title'});
-                                            gTasksView2.render(gTasks.models);
+                                            gTasksView2.render(gTasks.where({eventid:"1230015"}));
                                         }
 
                                         events = []
@@ -691,10 +692,10 @@ define([
             
 	       var nTask = new Task({
                 'ownerid':  '3',
-	            'taskid':   '20062',
-                'eventid':  '1230016',
-                'taskname': 'Chairs',
-                'desp':     'This task is to arrange chairs after each meeting',
+	            'taskid':   '20063',
+                'eventid':  '1230015',
+                'taskname': 'Ride pickup',
+                'desp':     'This task is to provide rides to each meeting',
                 'assignallowed': '2',
                 'assignedgroupid': ''
             });
