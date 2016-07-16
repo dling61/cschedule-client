@@ -1,12 +1,9 @@
 @CHARSET "UTF-8";
 
-@font-face {
-    font-family: 'Avenir'; /*a name to be used later*/
-    src: url('../font/Avenir.ttc'); /*URL to font*/
-}
+@import url(https://fonts.googleapis.com/css?family=Muli);
 
 html {
-	font-family: Avenir;
+	font-family: 'Muli';
 }
 
 /* Because there are z-indexes everywhere */
@@ -98,7 +95,7 @@ body {
     margin-top: 0px;
 	text-align: center;
 	font-size: 14px;
-	font-family: Avenir, "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-family: 'Muli', "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	}
 
 .dialog label {
@@ -229,7 +226,7 @@ body {
 
 .fc-day-header.fc-widget-header {
     padding:14px;
-    font-family: Avenir;
+    font-family: 'Muli';
     font-weight: lighter;
     
         background-color: white;
