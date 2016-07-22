@@ -2,7 +2,8 @@ define([
 	'js/collections/Participants',
 	'drop',
 	'backbone',
-], function(Participants,Drop){
+    'js/views/ProfileView'
+], function(Participants,Drop,ProfileView){
 	var ParticipantsListView = Backbone.View.extend({
 		el: '#parList',
 
@@ -114,7 +115,7 @@ define([
 							'<i class="fa fa-gavel" aria-hidden="true"></i> <input type="text" name="title" value="'+gParticipants.models[i].get("title")+'"><br>' +
 							'<i class="fa fa-phone" aria-hidden="true"></i> <input type="text" name="phone" value="'+gParticipants.models[i].get("mobile")+'"><br>' +
 							'<i class="fa fa-envelope-o" aria-hidden="true"></i> <input type="text" name="email" value="'+gParticipants.models[i].get("email")+'"><br>' +
-							'<input type="submit" value="Submit">' +
+							'<input type="submit" value="Save">' +
 						'</form>';
 						window["pListIcon1Drop" + i] = new Drop({
 							target: flyouts[i],
@@ -141,6 +142,8 @@ define([
 					function myConfirmCloseFunc() {
 						return false;
 					}
+                    
+                    gProfileView.render();
 				}
 			}); 
 			this.addEvent();

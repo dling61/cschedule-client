@@ -8,9 +8,10 @@ define([
     'js/collections/EventsC',
     'js/collections/PoolHelpers',
     'js/collections/TaskAssignees',
+    'js/collections/Tasks',
     'js/views/HelpersPoolView'
 ], function(_, Backbone, jquery, jqueryui, fullcalendar,
-    Task, EventsC, PoolHelpers, TaskAssignees, HelpersPoolView) {
+    Task, EventsC, PoolHelpers, TaskAssignees, Tasks, HelpersPoolView) {
 
 
     var TaskHelper = Backbone.Model.extend({
@@ -361,9 +362,14 @@ define([
                                     
                                     var eventId = collection.models[0].attributes.events[0];
 
+                                    gTasks = new Tasks();
+                                    _.each(response.task, function(task) {
+                                        gTasks.add(task);
+                                    });
+                                    
                                     if (gTasksView.cid === undefined) {
                                         gTasksView = new TaskView();
-                                        gTasksView.render(response.task);
+                                        gTasksView.render(gTasks.models);
                                     }
 
                                     events = []
@@ -394,7 +400,7 @@ define([
 
                                     $(".taskAssignees").droppable({
                                         drop: function(event, ui) {
-                                            // this is the elem receiving the dropped ui.draggable elem
+                                            // this is the elem receiving the                                                                                                                                   dropped ui.draggable elem
                                             var newHelperID = ui.draggable.data('id');
                                             var taskID = $(this).data('taskid');
 
@@ -563,15 +569,71 @@ define([
 
         },
 
+        reassign: function(ev) {
+            /*
+            $url = 'http://apitest2.cschedule.com/event/50001/autoassignment?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
+            $method = 'POST';
+
+            # headers and data (this is API dependent, some uses XML)
+            $headers = array(
+            'Accept: application/json',
+            'Content-Type: application/json',
+            );
+            $data = json_encode(array(
+                        'taskid' => '30006',
+                        'ownerid' => 5,
+                        'inittaskhelperid' => 5000123
+                        )
+                    );
+            */
+
+            
+            var eventID = 50001;
+            
+            var taskID = $(ev.target).closest('.taskname').data('id');
+            var taskdata = {
+                    'taskid': '30006',
+                    'ownerid': 5,
+                    'inittaskhelperid': 5000200 };
+            
+            gLatestTaskHelperId = getNextObjectId(gLoginUser.ownerid, gLatestTaskHelperId);
+            gLatestTaskHelperId++;
+
+            
+            
+            $.ajax({
+                type:    'POST',
+                url:     'event/' + eventID + '/autoassignment',
+                
+                //data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or 
+                data:    '{"taskid":' + taskID + ', "ownerid": 5, "inittaskhelperid":' + gLatestTaskHelperId + '}',
+                success: function(data) {
+                    var tmp = JSON.parse(localStorage.login_user);
+                    tmp.taskhelperid = gLatestTaskHelperId; //param.eventid;
+                    localStorage.login_user = JSON.stringify(tmp);
+                    alert('Assign task done');
+                },
+                error: function() {
+                    alert('Asign task failed');
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+
+
+            
+        },
 
         render: function(eventTasks) {
             $.evalUnderscore('#taskList', {
                 tasks: eventTasks
             });
+            $("#TaskListDiv").css("display", "block");
 
             $.evalUnderscore('#createEventDialog', {
                 tasks: eventTasks
-            }); //WFB EVX
+            });
+            
 
             //this.addEvent();
 
@@ -580,10 +642,12 @@ define([
                 'poolID': taskid
             });
             this.helpersPoolView.render();
+
+            $(".taskAutoAssign").on("click", this.reassign);
         },
 
         addTask: function() {
-            alert('Add Event !');
+            alert('Add Task ...');
 
             // var brandNewBook = new BookModel({ title: '1984', author: 'George Orwel' });
             // brandNewBook.save();
@@ -604,23 +668,21 @@ define([
             'rscheduleid' => '333',
 			'beventid' => '0'
         */
-
-            var nSingleEvent = new Event({
-                'communityid': '30001',
-                'ownerid': '3',
-                'eventid': '30053',
-                'eventname': 'Design Session',
-                'desp': 'this is a third test schedule for 1.4.0',
-                'startdatetime': '2013-03-06 12:30:00',
-                'enddatetime': '2013-03-06 14:59:20',
-                'tzid': '1',
-                'alert': 3,
-                'location': '3333 1th street, san jose, ca 91223',
-                'host': 'Bills house',
-                'status': 'S',
-                'beventid': '0'
+            
+            
+	       var nTask = new Task({
+                'ownerid':  '3',
+	            'taskid':   '20061',
+                'eventid':  '30001',
+                'taskname': 'Chairs',
+                'desp':     'This task is to arrange chairs after each meeting',
+                'assignallowed': '2',
+                'assignedgroupid': ''
             });
-            nSingleEvent.save();
+
+            gTasks.add(nTask);
+            
+            nTask.save();
         }
 
     });

@@ -8,12 +8,7 @@ define([
     'js/collections/PoolHelpers',
 
 ], function(_, Backbone, jquery, jqueryui, Drop, Task, PoolHelpers){
-
-
-
-    
-    
-    
+  
 var PoolHelper = Backbone.Model.extend({
     //url: 'schedules/1070068/onduty/1070000'
     urlRoot: 'assignmentpool'
@@ -28,12 +23,7 @@ var PoolHelpers = Backbone.Collection.extend({
         return resp.apgroup[0].member;
     }
 });
-
-
-
-
-
-
+    
 var HelpersPoolView = Backbone.View.extend({
 
     
@@ -112,7 +102,7 @@ var HelpersPoolView = Backbone.View.extend({
 
     
     renderHelperList : function( taskID ) {
-        newDiv = $('<div/ class="helperPool" data-id=' + taskID + '>');
+        newDiv = $('<div/ class="helperPool" ondrop="drop_handler(event);" ondragover="dragover_handler(event);" data-id=' + taskID + '>');
 
         //events = _.map(eventList.models, function(event) {
 

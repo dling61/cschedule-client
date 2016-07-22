@@ -1,19 +1,19 @@
 <template id="tasksListTemplate">
-<div id="TaskListDiv" style="display:block;">
+<div id="TaskListDiv" style="display:none;">
 
     <div id="taskList"> 
 
         <script type="text/x-underscore">
 
-            <button id="addNewTask" data-eventid="' + 30001 + '">Add Task</button>
+            <button id="addNewTask" data-eventid="30001">Add Task</button>
 
             <% _.each(tasks, function(task) { %>
                 
-                    <div data-id=<%=task.taskid%> 
+                    <div data-id="<%=task.get('taskid')%>"
                         class="taskname">
-                        <div style="display:inline-block;"><%=task.taskname%></div>
+                        <div style="display:inline-block;"><%=task.get('taskname')%></div>
                         <div class="taskIcons" style="font-size:20pt">
-                            <div class="horizBtn fa fa-commenting"></div>
+                            <div class="taskAutoAssign horizBtn fa fa-commenting"></div>
                             <div class="horizBtn fa fa-edit"></div>
                             <div class="horizBtn fa fa-trash"></div>
                         </div>

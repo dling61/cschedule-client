@@ -12,6 +12,8 @@ gray - requested
 ask details about accept decline
 */
 
+
+
 /* Image Update Popup */
 /* Location: upper right navigation bar */
 /* Event: profile image clicked */
@@ -62,7 +64,7 @@ ask details about accept decline
 	color: #FFFFFF;
 	background: #34629A;
 	border-top-left-radius: 10px;	
-	font-variant: small-caps;
+	//font-variant: small-caps;
 }
 /* List in container */
 /* Removing inherited css */
