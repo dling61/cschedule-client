@@ -5,9 +5,10 @@ define([
     'js/models/task',
     'js/views/CommunityView',
     'js/views/EventsView',
-    'js/views/ProfileView'
+    'js/views/ProfileView',
+    'js/views/CommunitySwitchView'
     
-], function(_, Backbone, Communities, Task, CommunityView, EventsView, ProfileView) {
+], function(_, Backbone, Communities, Task, CommunityView, EventsView, ProfileView, CommunitySwitchView) {
 
     // http://myapp.com/javascripts/jst.js
     //var window;
@@ -169,8 +170,11 @@ define([
                 community;
 
             if (_.contains(communitynamesArray, communityName)) {
-                alert("Enter valid community name,Community name already Exists");
+
+                alert("Enter valid community name, Community name already Exists");
+
             } else {
+
                 community = new Community({
                     ownerid: gLoginUser.ownerid, // same as login user id
                     communityname: $('#input').val(),
@@ -181,10 +185,12 @@ define([
                 });
 
                 community.save({}, {
+
                     success: function() {
                         alert("you have successfully created community");
                         $('.createCommunity').hide();
                     },
+                    
                     error: function(model, response) {
 
                         alert("Error in creatiing Community " + response.statusText);
@@ -228,40 +234,11 @@ define([
         },
 
         render: function() {
-            
-            // creation of gProfileView view
-            
-//            var gProfileView = new ProfileView();
-//            gProfileView.render();
+
+            var gCommunitySwitchView = new CommunitySwitchView();
+            gCommunitySwitchView.render();
 
             var that = this;
-            /*
-			this.chats = new CommunityChats();
-			this.chats.fetch({
-
-			  success: function(chatlist) {
-				var template4 = _.template($("#chats-template").html());
-				$('.popup').html(template4({
-				  chats: chatlist.models
-				}));
-			  }
-
-
-			});
-
-			this.users = new loggedInUsers();
-			this.users.fetch({
-			  success: function(users) {
-				
-				$("#gUser-diplay").append("Cyndi"); //= gLoginUserName;
-				var template3 = _.template($("#users-dropdown-template").html());
-				$("#users-drop-down").html(template3({
-				  loggedInUsers: users.models
-				}));
-			  }
-			});
-			*/
-
 
             this.collection = new Communities();
 
@@ -270,6 +247,7 @@ define([
                 data: $.param({
                     ownerid: gLoginUser.ownerid //user id 
                 }),
+
                 success: function(communityList) {
 
                     //var template1 = _.template($('#community-list-template').html());
@@ -291,7 +269,7 @@ define([
 				}));
 				*/
                 }
-            })
+            });
 
         },
 

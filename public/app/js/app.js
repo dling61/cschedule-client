@@ -5,7 +5,7 @@ define([
     //'javascripts/fullcalendar.js',
 	//'js/collections/EventsC', 
 	'js/views/CommunityListView',
-	'js/views/eventDialogView'
+	'js/views/eventDialogView',
     
 ], function(_, Backbone,  CommunityListView, eventDialogView){
     
@@ -39,13 +39,6 @@ define([
 			var createEvent = new eventDialogView();
 			createEvent.render();
             
-            /*
-			layersample.config.userId = gLoginUser.username; //"kalyani";
-			layersample.config.userId = "kalyani";
-			*/
-			
-			/* Load Profile Image */
-			//$('#editProfileImage').css('background-image','url(' + gLoginUser.profile + ')');
 		}
 	});
 });
