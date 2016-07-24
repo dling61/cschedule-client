@@ -16,6 +16,10 @@ define([
 			/*'dblclick .participant' : 'showDetails',
 			'click .participant' : 'messageBox'*/
 		},
+        
+        drag: function(ev) {
+            ev.dataTransfer.setData("text", $(ev.target).parent().data('id'));
+        },
 		
 		addEvent: function(){
 			$('body').on('click','#parListHideBtn', function() { 

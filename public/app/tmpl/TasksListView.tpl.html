@@ -10,7 +10,9 @@
             <% _.each(tasks, function(task) { %>
                 
                     <div data-id="<%=task.get('taskid')%>"
-                        class="taskname">
+                        class="taskname" 
+                        ondrop="gTasksView.drop(event)"
+                        ondragover="gTasksView.allowDrop(event)">
                         <div style="display:inline-block;"><%=task.get('taskname')%></div>
                         <div class="taskIcons" style="font-size:20pt">
                             <div class="taskAutoAssign horizBtn fa fa-commenting"></div>

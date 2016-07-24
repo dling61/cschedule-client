@@ -65,8 +65,8 @@ define([
                     });
 
                     if (nameLen < 1 && name.username.length > 7) {
-                        names += '<div style="float:left;   text-align: center;"><div><img src=".\\images\\' +
-                            name.username + '.png"  height="32" width="32"></div><div style="margin-top: -5px;">' + name.username + '</div></div>';
+                        names += '<div style="float:left;   text-align: center;"><div><img src="' +
+                            name.userprofile + '"  height="32" width="32"></div><div style="margin-top: -5px;">' + name.username + '</div></div>';
                     } else {
                         names += '<div style="float:left; margin-left:10px; text-align: center;"><div><img class="assigneeImg" src="' +
                             name.userprofile + '"></div><div style="margin-top: -5px;">' + name.username + '</div></div>';
@@ -173,7 +173,7 @@ define([
                     assignNames = "";
 
                     if (evsC.taskhelper.length > 0) {
-                        for (var taskIdx = 0; taskIdx < 3; taskIdx++) {
+                        for (var taskIdx = 0; taskIdx < evsC.taskhelper.length; taskIdx++) {
                             var taskID = evsC.taskhelper[taskIdx].taskid;
                             var numNeeded = 5; //WFB evsC.task[taskIdx].assignallowed;
                             assignNames += '<div class="taskAssignees" data-taskid="' + taskID +
@@ -567,7 +567,8 @@ define([
     var TaskView = Backbone.View.extend({
         el: '#event1_title',
         events: {
-            'click #addNewTask': 'addTask'
+            'click #addNewTask': 'addTask',
+            'click .taskname': 'addParticipant'
         },
 
 
@@ -642,6 +643,110 @@ define([
             
         },
 
+
+
+        allowDrop: function (ev) {
+            ev.preventDefault();
+        },
+
+        dropOLD: function (ev) {
+            alert('Did drop');
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        },
+
+
+        
+        
+        
+        drop: function(ev) {
+            /*
+            $url = 'http://apitest2.cschedule.com/event/50001/autoassignment?d=IOS&sc=28e336ac6c9423d946ba02dddd6a2632&v=1.2.0&';
+            $method = 'POST';
+
+            # headers and data (this is API dependent, some uses XML)
+            $headers = array(
+            'Accept: application/json',
+            'Content-Type: application/json',
+            );
+            $data = json_encode(array(
+                        'taskid' => '30006',
+                        'ownerid' => 5,
+                        'inittaskhelperid' => 5000123
+                        )
+                    );
+            */
+
+            ev.preventDefault();
+            var userID = ev.dataTransfer.getData("text");
+            //WFB ev.target.appendChild(document.getElementById(data));
+
+
+
+            // this is the URL to test
+            //$url = 'http://127.0.0.1/cschedule1.5/taskhelper';
+
+            /*
+            'ownerid' => 3,
+            'taskid' => '20051',
+            'userid' => '20012',
+            'eventid' => '30001',
+            'taskhelperid' => '202222',
+            'status' => 'A'
+            */
+
+            
+            
+            
+            
+            var eventID = 1230016;
+            
+            var taskID = $(ev.target).closest('.taskname').data('id');
+            var taskdata = {
+                    'taskid': '30006',
+                    'ownerid': 5,
+                    'inittaskhelperid': 5000200 };
+            
+            gLatestTaskHelperId = getNextObjectId(gLoginUser.ownerid, gLatestTaskHelperId);
+            gLatestTaskHelperId++;
+
+            
+            
+            $.ajax({
+                type:    'POST',
+                url:     'taskhelper',
+                
+                //data: '{"ownerid": 3, "initeventid":' + gLatestEventId + '}', // or 
+                
+                data:    '{"taskid":'  + taskID 
+                      + ', "userid":'  + userID 
+                      + ', "eventid":' + eventID
+                      + ', "ownerid": 3 '
+                      + ', "status":  "A" '
+                      + ', "taskhelperid":' + gLatestTaskHelperId + '}',
+                
+                success: function(data) {
+                    var tmp = JSON.parse(localStorage.login_user);
+                    tmp.taskhelperid = gLatestTaskHelperId; //param.eventid;
+                    localStorage.login_user = JSON.stringify(tmp);
+                    alert('Assign task done');
+                },
+                error: function() {
+                    alert('Asign task failed');
+                },
+                contentType: "application/json",
+                dataType: 'json'
+            });
+
+
+            
+        },
+
+
+
+        
+
         render: function(eventTasks) {
             var taskTemplate = this.$el.find("#tasklist");
             //$.evalUnderscore('#taskList', {
@@ -664,6 +769,10 @@ define([
             this.helpersPoolView.render();
 
             $(".taskAutoAssign").on("click", this.reassign);
+        },
+
+        addParticipant: function() {
+            alert('Add Participant to Task ...');
         },
 
         addTask: function() {
