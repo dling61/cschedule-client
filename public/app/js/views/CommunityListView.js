@@ -83,8 +83,9 @@ define([
             communities = that.collection.where({
                 "id": communityId
             });
+
             console.info(that.collection.toJSON());
-            communities[0].destroy({
+            /*communities.models[0].destroy({
                 success: function() {
                     alert("you have  deleted community");
 
@@ -94,7 +95,8 @@ define([
                     alert("Error in deleting Community " + response.statusText);
                 }
 
-            });
+            });*/
+
             var deletedcommunity = that.collection.remove(communities[0]);
 
             console.info(this.collection.toJSON());
@@ -175,29 +177,40 @@ define([
 
             } else {
 
-                community = new Community({
+                community = new Communities({
+
                     ownerid: gLoginUser.ownerid, // same as login user id
                     communityname: $('#input').val(),
 
                     desp: "test communityname",
-                    communityid: 90045
+                    communityid: getNextObjectId(gLoginUser.ownerid, gLatestCommunityId)
 
                 });
 
-                community.save({}, {
+                gLatestCommunityId++;
+
+                var tmp = JSON.parse(localStorage.login_user);
+
+                community.models[0].save({}, {
 
                     success: function() {
+
+                        var tmp = JSON.parse(localStorage.login_user);
+
+                        tmp.communityid = gLatestCommunityId; //param.eventid;
+                        localStorage.login_user = JSON.stringify(tmp);
+
                         alert("you have successfully created community");
                         $('.createCommunity').hide();
                     },
-                    
+
                     error: function(model, response) {
 
                         alert("Error in creatiing Community " + response.statusText);
                     }
                 });
             }
-            $('.createCommunity').hide();
+            
         },
         hideCreate: function() {
             $('.createCommunity').hide();
